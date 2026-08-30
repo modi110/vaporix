@@ -1,0 +1,814 @@
+<title>Vaporix Detailing Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+/* ============================================================
+   VAPORIX — design tokens
+   Single dark world by design: this is a black detailing bay,
+   not a document. Every colour is painted explicitly so the
+   page holds on any host ground.
+   ============================================================ */
+:root{
+  --void:#000000;
+  --surface:#0A0D0F;
+  --surface-2:#12171A;
+  --hairline:rgba(255,255,255,.10);
+  --hairline-strong:rgba(255,255,255,.20);
+
+  /* the accent — sampled from the VRK mark, one token drives everything */
+  --accent:#2FD2FF;
+  --accent-deep:#0C7E9E;
+  --accent-rgb:47,210,255;
+  --bolt:#DCF7FF;
+  --on-accent:#03212B;
+
+  --ink:#FFFFFF;
+  --muted:#8A9095;          /* cool-biased neutral, not a default grey */
+  --muted-dim:#5A6165;
+
+  --r-pill:999px;
+  --r-card:32px;
+  --r-block:40px;
+
+  --pad-section:clamp(5.5rem,11vw,11rem);
+  --gutter:clamp(1.25rem,4vw,4.5rem);
+  --maxw:1320px;
+
+  --f-display:"Onest",-apple-system,"Segoe UI",system-ui,sans-serif;
+  --f-mono:"DM Mono",ui-monospace,"SF Mono",Menlo,monospace;
+
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--ink);
+  font-family:var(--f-display);
+  font-weight:400;
+  line-height:1.55;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* ---------- type scale ---------- */
+.h1{font-size:clamp(2.4rem,6.2vw,5.6rem);line-height:.96;letter-spacing:-.035em;font-weight:500;margin:0}
+.h2{font-size:clamp(1.9rem,4.4vw,3.9rem);line-height:1.02;letter-spacing:-.03em;font-weight:500;margin:0}
+.lede{color:var(--muted);font-size:clamp(.95rem,1.1vw,1.0625rem);line-height:1.65;max-width:46ch;margin:0}
+.label{
+  font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);margin:0;
+}
+.num{font-size:clamp(3rem,8.5vw,8rem);line-height:.82;letter-spacing:-.05em;font-weight:500;font-variant-numeric:tabular-nums}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.section{padding-block:var(--pad-section);position:relative}
+
+/* ============================================================
+   SMOOTH SCROLL
+   The whole page rides inside a fixed wrapper translated by a
+   lerped scroll value. Body height mirrors the content so the
+   native scrollbar stays real. Desktop + full-motion only.
+   ============================================================ */
+.smooth #smooth{position:fixed;top:0;left:0;width:100%;z-index:2;will-change:transform}
+
+/* ============================================================
+   SCROLL REVEALS
+   Three devices, each doing a different job:
+     data-split  — headings rise word by word out of a mask
+     data-clip   — images wipe open from the bottom edge
+     data-reveal — everything else lifts and fades, optionally staggered
+   ============================================================ */
+[data-reveal]{opacity:0;transform:translateY(32px);transition:opacity .95s var(--ease),transform .95s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+
+[data-clip]{clip-path:inset(0 0 100% 0);transition:clip-path 1.15s var(--ease)}
+[data-clip].in{clip-path:inset(0 0 0 0)}
+
+.w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}
+.w i{display:inline-block;font-style:normal;transform:translateY(115%);transition:transform 1s var(--ease)}
+[data-split].in .w i{transform:translateY(0)}
+
+/* the accent rule draws itself */
+.hero-eyebrow span,.rule{width:0;transition:width .9s var(--ease) .15s}
+.hero-eyebrow.in span,.rule.in{width:52px}
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+#preloader{
+  position:fixed;inset:0;z-index:100;background:var(--void);
+  display:grid;place-items:center;
+  transition:transform .9s var(--ease);
+}
+#preloader.done{transform:translateY(-101%)}
+.pre-inner{display:grid;justify-items:center;gap:2rem}
+.pre-mark{width:min(240px,56vw);height:auto;filter:drop-shadow(0 0 18px rgba(var(--accent-rgb),.55))}
+.pre-mark path{
+  fill:rgba(var(--accent-rgb),0);
+  stroke:var(--accent);stroke-width:2.5;stroke-linejoin:miter;
+  stroke-dasharray:var(--len);stroke-dashoffset:var(--len);
+  animation:draw 1s var(--ease) forwards, fillin .5s var(--ease) .85s forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fillin{to{fill:var(--accent)}}
+.pre-word{
+  font-size:.8125rem;letter-spacing:.62em;text-indent:.62em;
+  font-weight:700;opacity:0;animation:fadeUp .6s var(--ease) 1.15s forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pre-bar{width:min(220px,52vw);height:2px;background:var(--hairline);overflow:hidden}
+.pre-bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s linear}
+
+/* ============================================================
+   AMBIENT LAYERS
+   ============================================================ */
+#beams{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.85}
+.glow{
+  position:absolute;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(var(--accent-rgb),.20) 0%,rgba(var(--accent-rgb),.06) 42%,transparent 70%);
+  will-change:transform;
+}
+main,header{position:relative;z-index:2}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+header{position:fixed;top:0;left:0;right:0;z-index:50;padding-block:1.15rem;transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent}
+header.stuck{background:rgba(0,0,0,.72);backdrop-filter:blur(16px);border-bottom-color:var(--hairline)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.brand{display:flex;align-items:center;gap:.62rem}
+.brand .mark{
+  width:52px;height:auto;flex:none;
+  filter:drop-shadow(0 0 10px rgba(var(--accent-rgb),.5));
+  animation:flicker 9s steps(1,end) infinite;
+}
+.brand b{font-size:1.0625rem;font-weight:800;letter-spacing:.01em;line-height:1}
+@keyframes flicker{
+  0%,96.4%,100%{opacity:1}
+  96.7%{opacity:.34}
+  97%{opacity:1}
+  97.3%{opacity:.5}
+  97.6%{opacity:1}
+}
+.capsule{
+  display:none;align-items:center;gap:.15rem;
+  background:rgba(255,255,255,.06);border:1px solid var(--hairline);
+  border-radius:var(--r-pill);padding:.3rem;
+}
+.capsule a{
+  padding:.55rem 1.1rem;border-radius:var(--r-pill);font-size:.75rem;
+  letter-spacing:.11em;text-transform:uppercase;font-weight:500;color:var(--muted);
+  transition:color .25s,background .25s;
+}
+.capsule a:hover{color:var(--ink)}
+.capsule a.on{background:var(--ink);color:var(--void)}
+.nav-right{display:flex;align-items:center;gap:.6rem}
+.lang{display:flex;gap:.1rem;font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.1em}
+.lang button{padding:.4rem .5rem;color:var(--muted-dim);transition:color .2s}
+.lang button.on{color:var(--ink)}
+@media(min-width:1080px){.capsule{display:flex}}
+
+/* ---------- pill button ---------- */
+.btn{
+  --mx:50%;--my:50%;
+  position:relative;display:inline-flex;align-items:center;gap:.6rem;
+  padding:1.05rem 2.1rem;border-radius:var(--r-pill);
+  background:var(--accent);color:var(--on-accent);
+  font-size:.75rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  overflow:hidden;isolation:isolate;
+  box-shadow:0 0 0 rgba(var(--accent-rgb),0);
+  transition:box-shadow .45s var(--ease),transform .5s var(--ease);
+  will-change:transform;
+}
+.btn::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(180px circle at var(--mx) var(--my),rgba(255,255,255,.55),transparent 65%);
+  opacity:0;transition:opacity .35s;
+}
+.btn::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;z-index:-2;padding:1.5px;
+  background:conic-gradient(from 0deg,transparent 0deg,var(--bolt) 12deg,var(--accent) 26deg,transparent 60deg,transparent 360deg);
+  opacity:0;transition:opacity .3s;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+.btn:hover{box-shadow:0 0 46px -8px rgba(var(--accent-rgb),.75)}
+.btn:hover::before{opacity:1}
+.btn:hover::after{opacity:1;animation:arc 1.4s linear infinite}
+@keyframes arc{to{rotate:360deg}}
+.btn .txt{display:inline-block;transition:transform .35s var(--ease)}
+.btn:hover .txt{transform:translateY(-1px)}
+.btn .arw{width:0;opacity:0;transition:width .35s var(--ease),opacity .3s;overflow:hidden}
+.btn:hover .arw{width:14px;opacity:1}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--hairline-strong)}
+.btn.ghost:hover{border-color:var(--accent);box-shadow:0 0 34px -12px rgba(var(--accent-rgb),.6)}
+.btn.small{padding:.72rem 1.35rem;font-size:.6875rem}
+
+/* ============================================================
+   HERO — light-tunnel bay built in CSS.
+   Real photography replaces .bay in the production build.
+   ============================================================ */
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding-bottom:clamp(2.5rem,5vw,4.5rem);position:relative;overflow:hidden}
+.bay{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--void)}
+.bay-persp{
+  position:absolute;left:50%;top:44%;width:190vmax;height:120vmax;
+  transform:translate(-50%,-50%) perspective(760px) rotateX(66deg);
+  transform-style:preserve-3d;will-change:transform;
+}
+.bay-persp::before{
+  content:"";position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 7.2%,rgba(var(--accent-rgb),.5) 7.2% 7.9%,transparent 7.9% 15%),
+    repeating-linear-gradient(0deg,transparent 0 9%,rgba(var(--accent-rgb),.16) 9% 9.5%,transparent 9.5% 18%);
+  mask-image:radial-gradient(ellipse 62% 52% at 50% 42%,#000 0%,transparent 76%);
+}
+.bay-floor{
+  position:absolute;left:0;right:0;bottom:0;height:52%;
+  background:linear-gradient(to top,rgba(var(--accent-rgb),.13),transparent 72%);
+  filter:blur(1px);
+}
+.bay-core{
+  position:absolute;left:50%;top:42%;width:min(760px,72vw);aspect-ratio:1;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(var(--accent-rgb),.34) 0%,rgba(var(--accent-rgb),.08) 40%,transparent 68%);
+}
+.bay-vig{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to top,var(--void) 4%,transparent 46%),
+    linear-gradient(to right,var(--void) 0%,transparent 26%,transparent 74%,var(--void) 100%);
+}
+.hero-grid{display:grid;gap:2.5rem;position:relative;z-index:2}
+.hero-eyebrow{display:flex;align-items:center;gap:.85rem;margin-bottom:1.6rem}
+.hero-eyebrow span{height:1px;background:var(--accent);flex:none}
+.hero-copy{display:grid;gap:1.6rem;max-width:19ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-top:.4rem}
+.hero-foot{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:2.5rem}
+.stats{display:flex;gap:clamp(1.75rem,4vw,3.5rem);flex-wrap:wrap}
+.stat b{display:block;font-size:clamp(1.6rem,3vw,2.6rem);font-weight:500;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.stat .label{margin-top:.5rem;border-top:1px solid var(--hairline);padding-top:.5rem}
+.play{
+  width:clamp(104px,12vw,152px);aspect-ratio:1;border-radius:50%;flex:none;
+  border:1px solid var(--hairline);background:
+    radial-gradient(circle at 30% 25%,rgba(var(--accent-rgb),.30),transparent 62%),var(--surface);
+  display:grid;place-items:center;position:relative;overflow:hidden;transition:transform .5s var(--ease)
+}
+.play:hover{transform:scale(1.05)}
+.play i{width:38px;height:38px;border-radius:50%;background:var(--ink);display:grid;place-items:center}
+.play i::after{content:"";border-left:9px solid var(--void);border-block:6px solid transparent;margin-left:3px}
+.rail{
+  position:absolute;left:var(--gutter);top:50%;transform:translateY(-50%);z-index:3;
+  display:none;flex-direction:column;gap:.6rem;
+}
+.rail a{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--hairline);
+  display:grid;place-items:center;font-family:var(--f-mono);font-size:.625rem;
+  color:var(--muted);transition:color .25s,border-color .25s,background .25s;
+}
+.rail a:hover{color:var(--void);background:var(--ink);border-color:var(--ink)}
+@media(min-width:1180px){.rail{display:flex}}
+
+/* ============================================================
+   ESTUDIO
+   ============================================================ */
+.two-col{display:grid;gap:clamp(2.5rem,5vw,5rem);align-items:end}
+@media(min-width:900px){.two-col{grid-template-columns:.85fr 1.15fr}}
+.silhouette{
+  aspect-ratio:16/10;border-radius:var(--r-card);border:1px solid var(--hairline);
+  background:
+    radial-gradient(ellipse 70% 46% at 50% 62%,rgba(var(--accent-rgb),.22),transparent 70%),
+    linear-gradient(160deg,var(--surface-2),var(--surface));
+  display:grid;place-items:center;position:relative;overflow:hidden;
+}
+.silhouette .label{position:absolute;bottom:1.1rem;left:1.3rem}
+.silhouette svg{width:72%;opacity:.9}
+.bignums{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:clamp(2.5rem,5vw,4rem)}
+.bignums .label{margin-top:.9rem;border-top:1px solid var(--hairline);padding-top:.75rem}
+
+/* ============================================================
+   SERVICIOS + PRECIOS
+   ============================================================ */
+.svc{display:grid;gap:clamp(2.5rem,4vw,3.5rem)}
+@media(min-width:1080px){.svc{grid-template-columns:.9fr 1.1fr .95fr;align-items:start}}
+.svc-list{list-style:none;margin:0;padding:0;display:grid}
+.svc-list li{border-bottom:1px solid var(--hairline)}
+.svc-list button{
+  width:100%;text-align:left;padding:.95rem 0;
+  font-size:clamp(.75rem,.95vw,.8125rem);letter-spacing:.09em;text-transform:uppercase;
+  font-weight:500;color:var(--muted);transition:color .28s,padding-left .28s;
+  display:flex;align-items:center;gap:.7rem;
+}
+.svc-list button::before{content:"";width:0;height:1px;background:var(--accent);transition:width .28s var(--ease);flex:none}
+.svc-list button:hover,.svc-list button.on{color:var(--accent);padding-left:.2rem}
+.svc-list button:hover::before,.svc-list button.on::before{width:18px}
+
+.price-card{
+  background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-card);
+  padding:clamp(1.4rem,2.2vw,2rem);position:relative;overflow:hidden;
+}
+.price-card::before{
+  content:"";position:absolute;left:50%;top:-60%;width:130%;aspect-ratio:1;transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(var(--accent-rgb),.14),transparent 62%);pointer-events:none
+}
+.tabs{
+  display:flex;gap:.2rem;background:rgba(255,255,255,.05);border:1px solid var(--hairline);
+  border-radius:var(--r-pill);padding:.28rem;position:relative;z-index:1;
+}
+.tabs button{
+  flex:1;padding:.62rem .5rem;border-radius:var(--r-pill);
+  font-size:.625rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+  color:var(--muted);transition:background .3s,color .3s;
+}
+.tabs button.on{background:var(--ink);color:var(--void)}
+.rows{margin-top:1.5rem;position:relative;z-index:1}
+.row{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  padding:.7rem 0;border-bottom:1px solid var(--hairline);
+  font-size:.875rem;color:var(--muted);
+  opacity:0;transform:translateY(10px);animation:rowIn .5s var(--ease) forwards;
+}
+@keyframes rowIn{to{opacity:1;transform:none}}
+.row:last-child{border-bottom:0}
+.row span{color:var(--ink);font-weight:400}
+.row b{font-family:var(--f-mono);font-weight:500;color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.foot-note{
+  border-top:1px solid var(--hairline);
+  padding-block:2.5rem;color:var(--muted-dim);font-size:.8125rem;
+  display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  #beams{display:none}
+  [data-reveal],[data-clip],.w i{opacity:1!important;transform:none!important;clip-path:none!important}
+}
+</style>
+
+<!-- ============================== PRELOADER ============================== -->
+<div id="preloader">
+  <div class="pre-inner">
+    <svg class="pre-mark" viewBox="0 0 350 116" aria-hidden="true">
+      <g transform="skewX(-8) translate(14,0)">
+        <path d="M6 8 H34 L60 76 L86 8 H114 L74 108 H46 Z"/>
+        <path fill-rule="evenodd" d="M124 8 H188 L208 28 V50 L190 68 L212 108 H180 L160 68 H146 V108 H124 Z M146 30 H180 L186 36 V42 L180 48 H146 Z"/>
+        <path d="M222 8 H246 V48 L286 8 H318 L272 56 L320 108 H288 L246 64 V108 H222 Z"/>
+      </g>
+    </svg>
+    <div class="pre-word">VAPORIX</div>
+    <div class="pre-bar"><i id="preBar"></i></div>
+  </div>
+</div>
+
+<canvas id="beams" aria-hidden="true"></canvas>
+
+<!-- ============================== NAV ============================== -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Vaporix — inicio">
+      <svg class="mark" viewBox="0 0 350 116" aria-hidden="true">
+        <g transform="skewX(-8) translate(14,0)" fill="var(--accent)">
+          <path d="M6 8 H34 L60 76 L86 8 H114 L74 108 H46 Z"/>
+          <path fill-rule="evenodd" d="M124 8 H188 L208 28 V50 L190 68 L212 108 H180 L160 68 H146 V108 H124 Z M146 30 H180 L186 36 V42 L180 48 H146 Z"/>
+          <path d="M222 8 H246 V48 L286 8 H318 L272 56 L320 108 H288 L246 64 V108 H222 Z"/>
+        </g>
+      </svg>
+      <b>VAPORIX</b>
+    </a>
+
+    <nav class="capsule">
+      <a href="#top" class="on">Inicio</a>
+      <a href="#estudio">Estudio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Idioma">
+        <button class="on" type="button">ES</button><button type="button">EN</button>
+      </div>
+      <a class="btn small" href="#contacto"><span class="txt">Reservar</span><span class="arw">→</span></a>
+    </div>
+  </div>
+</header>
+
+<div id="smooth">
+<main id="top">
+
+<!-- ============================== HERO ============================== -->
+<section class="hero">
+  <div class="bay" aria-hidden="true">
+    <div class="bay-persp" data-par="0.06"></div>
+    <div class="bay-core" data-par="0.16"></div>
+    <div class="bay-floor" data-par="0.10"></div>
+    <div class="bay-vig"></div>
+  </div>
+
+  <div class="rail" aria-label="Redes sociales">
+    <a href="#" aria-label="Instagram">IG</a>
+    <a href="#" aria-label="YouTube">YT</a>
+    <a href="#" aria-label="WhatsApp">WA</a>
+  </div>
+
+  <div class="wrap hero-grid">
+    <div>
+      <p class="label hero-eyebrow"><span></span>Detailing &amp; Care</p>
+      <div class="hero-copy">
+        <h1 class="h1" data-split>Devolvemos el brillo del primer día.</h1>
+        <p class="lede" data-reveal>Detailing a vapor con acabado de estudio. Cuidamos el interior y el exterior de tu coche milímetro a milímetro, sin una sola gota de más.</p>
+        <div class="hero-actions" data-reveal data-stagger>
+          <a class="btn" href="#contacto"><span class="txt">Reservar cita</span><span class="arw">→</span></a>
+          <a class="btn ghost" href="#servicios"><span class="txt">Ver servicios</span><span class="arw">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <div class="stats" data-stagger>
+        <div class="stat" data-reveal><b>3</b><p class="label">Centros</p></div>
+        <div class="stat" data-reveal><b>12 000</b><p class="label">Coches tratados</p></div>
+        <div class="stat" data-reveal><b>4.9</b><p class="label">Valoración media</p></div>
+      </div>
+      <button class="play" type="button" data-reveal aria-label="Ver el estudio en vídeo"><i></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ESTUDIO ============================== -->
+<section class="section" id="estudio">
+  <div class="glow" data-par="0.22" style="width:640px;height:640px;left:-14%;top:6%"></div>
+  <div class="wrap">
+    <div class="two-col">
+      <div class="silhouette" data-clip>
+        <svg viewBox="0 0 400 150" aria-hidden="true">
+          <path d="M40 108 L44 84 Q52 62 84 56 L150 48 Q186 30 232 32 Q286 34 318 58 L352 66 Q380 74 380 96 L378 108 Z"
+                fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2"/>
+          <path d="M150 50 L176 34 M232 33 L246 52" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+          <circle cx="116" cy="108" r="21" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2"/>
+          <circle cx="312" cy="108" r="21" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2"/>
+        </svg>
+        <p class="label">Bahía 02 · Vapor + pulido</p>
+      </div>
+
+      <div>
+        <p class="label" data-reveal style="margin-bottom:1.5rem">El estudio</p>
+        <h2 class="h2" data-split>Hacemos menos servicios, y los hacemos mejor.</h2>
+        <p class="lede" data-reveal style="margin-top:1.5rem">Cuando abrimos el primer taller decidimos dos cosas: no aceptar más coches de los que podemos tratar bien, y explicar siempre qué le hacemos a cada uno. Seguimos igual.</p>
+      </div>
+    </div>
+
+    <div class="bignums" data-stagger>
+      <div data-reveal><div class="num" data-count="3">0</div><p class="label">Centros en la ciudad</p></div>
+      <div data-reveal><div class="num" data-count="12">0</div><p class="label">Años de oficio</p></div>
+      <div data-reveal><div class="num" data-count="9">0</div><p class="label">Tipos de servicio</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SERVICIOS ============================== -->
+<section class="section" id="servicios">
+  <div class="glow" data-par="0.28" style="width:720px;height:720px;right:-18%;top:14%"></div>
+  <div class="wrap svc">
+    <div>
+      <p class="label" data-reveal style="margin-bottom:1.5rem">Servicios</p>
+      <h2 class="h2" data-split>Rápido, cuidadoso y sin sorpresas en la factura.</h2>
+      <p class="lede" data-reveal style="margin-top:1.5rem">Trabajamos por presupuesto cerrado. Ves el precio antes de dejarnos las llaves.</p>
+      <div data-reveal style="margin-top:2rem">
+        <a class="btn" href="#contacto"><span class="txt">Pedir presupuesto</span><span class="arw">→</span></a>
+      </div>
+    </div>
+
+    <div>
+      <ul class="svc-list" data-stagger>
+        <li data-reveal><button type="button" class="on">Lavado a vapor sin contacto</button></li>
+        <li data-reveal><button type="button">Limpieza interior en seco</button></li>
+        <li data-reveal><button type="button">Pulido de carrocería y faros</button></li>
+        <li data-reveal><button type="button">Tratamiento cerámico</button></li>
+        <li data-reveal><button type="button">Lámina de protección de pintura</button></li>
+        <li data-reveal><button type="button">Laminado de lunas</button></li>
+        <li data-reveal><button type="button">Descontaminación ferrosa</button></li>
+        <li data-reveal><button type="button">Limpieza de motor</button></li>
+        <li data-reveal><button type="button">Restauración de plásticos</button></li>
+      </ul>
+    </div>
+
+    <div class="price-card" data-reveal>
+      <div class="tabs" role="tablist">
+        <button type="button" class="on" data-tier="0">Esencial</button>
+        <button type="button" data-tier="1">Avanzado</button>
+        <button type="button" data-tier="2">Extremo</button>
+      </div>
+      <div class="rows" id="rows"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CONTACTO ============================== -->
+<section class="section" id="contacto" style="padding-block:clamp(4rem,8vw,7rem)">
+  <div class="wrap">
+    <div class="two-col" style="align-items:center">
+      <h2 class="h2" data-split>Tu coche ya está esperando esta transformación.</h2>
+      <div data-reveal style="justify-self:start">
+        <a class="btn" href="#top"><span class="txt">Reservar cita</span><span class="arw">→</span></a>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span>Prototipo visual · Vaporix Detailing &amp; Care</span>
+      <span>Fase 0 — antes de la construcción en Next.js</span>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+"use strict";
+var reduce  = matchMedia("(prefers-reduced-motion: reduce)").matches;
+var desktop = matchMedia("(min-width: 900px)").matches;
+var smoothOn = desktop && !reduce;
+
+var sy = window.scrollY;     // the scroll position everything reads
+var prevSy = sy;
+var vel = 0;
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+var pre = document.getElementById("preloader");
+var bar = document.getElementById("preBar");
+document.querySelectorAll(".pre-mark path").forEach(function(p){
+  p.style.setProperty("--len", p.getTotalLength());
+});
+var pct = 0;
+var tick = setInterval(function(){
+  pct = Math.min(pct + 9 + Math.random()*11, 92);
+  bar.style.width = pct + "%";
+}, 110);
+
+function finish(){
+  clearInterval(tick);
+  bar.style.width = "100%";
+  setTimeout(function(){ pre.classList.add("done"); }, 260);
+  setTimeout(function(){ pre.remove(); reveal(); }, 1250);
+}
+var fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+Promise.all([fontsReady, new Promise(function(r){ setTimeout(r, reduce ? 200 : 1250); })]).then(finish);
+
+/* ============================================================
+   SPLIT HEADINGS — wrap each word in a mask so it can rise
+   ============================================================ */
+document.querySelectorAll("[data-split]").forEach(function(el){
+  var words = el.textContent.trim().split(/\s+/);
+  el.textContent = "";
+  words.forEach(function(word, i){
+    var s = document.createElement("span");
+    s.className = "w";
+    var em = document.createElement("i");
+    em.textContent = word;
+    em.style.transitionDelay = (i * 45) + "ms";
+    s.appendChild(em);
+    el.appendChild(s);
+    if (i < words.length - 1) el.appendChild(document.createTextNode(" "));
+  });
+});
+
+/* ============================================================
+   REVEALS — one observer, three behaviours
+   ============================================================ */
+document.querySelectorAll("[data-stagger]").forEach(function(group){
+  [].slice.call(group.children).forEach(function(child, i){
+    if (child.hasAttribute("data-reveal")) child.style.transitionDelay = (i * 70) + "ms";
+  });
+});
+
+var targets = document.querySelectorAll("[data-reveal],[data-split],[data-clip],.hero-eyebrow");
+var io = null;
+if ("IntersectionObserver" in window && !reduce){
+  io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      en.target.classList.add("in");
+      io.unobserve(en.target);
+    });
+  }, {threshold:.15, rootMargin:"0px 0px -8% 0px"});
+}
+function reveal(){
+  targets.forEach(function(t){
+    if (!io){ t.classList.add("in"); return; }
+    io.observe(t);
+  });
+}
+if (reduce) reveal();
+
+/* ============================================================
+   COUNT-UP
+   ============================================================ */
+var cio = ("IntersectionObserver" in window) ? new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if (!en.isIntersecting) return;
+    var el = en.target, target = +el.dataset.count, t0 = null;
+    cio.unobserve(el);
+    if (reduce){ el.textContent = target; return; }
+    requestAnimationFrame(function step(t){
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / 1100, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1-p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    });
+  });
+}, {threshold:.5}) : null;
+if (cio) document.querySelectorAll("[data-count]").forEach(function(c){ cio.observe(c); });
+
+/* ============================================================
+   SMOOTH SCROLL
+   Body height mirrors the content, the wrapper is translated by
+   a lerped value. Everything downstream reads `sy`, so parallax
+   and the beam field stay locked to what you actually see.
+   ============================================================ */
+var smooth = document.getElementById("smooth");
+var current = window.scrollY;
+
+if (smoothOn){
+  document.documentElement.classList.add("smooth");
+  var setHeight = function(){
+    document.body.style.height = smooth.getBoundingClientRect().height + "px";
+  };
+  if ("ResizeObserver" in window) new ResizeObserver(setHeight).observe(smooth);
+  addEventListener("resize", setHeight);
+  setHeight();
+}
+
+/* anchor links have to be driven manually once scroll is virtualised */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener("click", function(e){
+    var id = a.getAttribute("href");
+    if (id === "#") return;
+    var t = document.querySelector(id);
+    if (!t) return;
+    e.preventDefault();
+    var y = smoothOn ? t.offsetTop : (t.getBoundingClientRect().top + window.scrollY);
+    scrollTo({top: Math.max(0, y - 72), behavior: smoothOn ? "auto" : "smooth"});
+  });
+});
+
+/* ============================================================
+   BEAM FIELD — soft cyan light falling past the page.
+   Scroll speed drives how fast and how far it streaks.
+   ============================================================ */
+var cv = document.getElementById("beams");
+var ctx = null, dpr = 1, W = 0, H = 0, streaks = [], beamsOn = desktop && !reduce;
+
+if (!beamsOn){ cv.style.display = "none"; }
+else {
+  ctx = cv.getContext("2d");
+  dpr = Math.min(devicePixelRatio || 1, 2);
+  var RGB = getComputedStyle(document.documentElement).getPropertyValue("--accent-rgb").trim() || "47,210,255";
+
+  var sizeBeams = function(){
+    W = cv.width  = innerWidth  * dpr;
+    H = cv.height = innerHeight * dpr;
+    cv.style.width  = innerWidth + "px";
+    cv.style.height = innerHeight + "px";
+    streaks = [];
+    var n = Math.round(innerWidth / 46);
+    for (var i=0;i<n;i++){
+      streaks.push({
+        x: Math.random()*W, y: Math.random()*H,
+        len:(70 + Math.random()*250)*dpr,
+        w:(0.5 + Math.random()*2.0)*dpr,
+        sp: 0.22 + Math.random()*0.85,
+        a: 0.10 + Math.random()*0.34
+      });
+    }
+  };
+  addEventListener("resize", sizeBeams);
+  sizeBeams();
+
+  var drawBeams = function(boost){
+    ctx.clearRect(0,0,W,H);
+    ctx.globalCompositeOperation = "lighter";
+    for (var i=0;i<streaks.length;i++){
+      var b = streaks[i];
+      b.y += (b.sp + boost) * dpr;
+      if (b.y - b.len > H){ b.y = -b.len; b.x = Math.random()*W; }
+      if (b.y + b.len < 0){ b.y = H + b.len; b.x = Math.random()*W; }
+      var L = b.len * (1 + Math.min(Math.abs(boost)*0.10, 3.4));
+      var g = ctx.createLinearGradient(0, b.y-L, 0, b.y);
+      g.addColorStop(0,   "rgba(" + RGB + ",0)");
+      g.addColorStop(0.55,"rgba(" + RGB + "," + (b.a*0.5) + ")");
+      g.addColorStop(1,   "rgba(" + RGB + ",0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(b.x, b.y-L, b.w, L);
+    }
+  };
+  window.__drawBeams = drawBeams;
+}
+
+/* ============================================================
+   ONE LOOP — smoothing, parallax and the beam field share it
+   ============================================================ */
+var parEls = [].slice.call(document.querySelectorAll("[data-par]"));
+var hdr = document.getElementById("hdr");
+var stuck = false;
+var paused = false;
+document.addEventListener("visibilitychange", function(){ paused = document.hidden; });
+
+function frame(){
+  requestAnimationFrame(frame);
+  if (paused) return;
+
+  if (smoothOn){
+    var t = window.scrollY;
+    current += (t - current) * 0.09;
+    if (Math.abs(t - current) < 0.08) current = t;
+    smooth.style.transform = "translate3d(0," + (-current).toFixed(2) + "px,0)";
+    sy = current;
+  } else {
+    sy = window.scrollY;
+  }
+
+  vel = vel * 0.88 + (sy - prevSy) * 0.12;
+  prevSy = sy;
+
+  var shouldStick = sy > 40;
+  if (shouldStick !== stuck){ stuck = shouldStick; hdr.classList.toggle("stuck", stuck); }
+
+  if (desktop && !reduce){
+    for (var i=0;i<parEls.length;i++){
+      var el = parEls[i], d = +el.dataset.par;
+      el.style.transform = el.classList.contains("bay-persp")
+        ? "translate(-50%,-50%) perspective(760px) rotateX(66deg) translate3d(0," + (sy*d) + "px,0)"
+        : "translate3d(0," + (sy*d) + "px,0)";
+    }
+  }
+
+  if (window.__drawBeams){
+    window.__drawBeams(Math.max(-6, Math.min(vel * 2.4, 26)));
+  }
+}
+requestAnimationFrame(frame);
+
+/* ============================================================
+   COMPONENTS
+   ============================================================ */
+document.querySelectorAll(".btn").forEach(function(btn){
+  if (reduce) return;
+  btn.addEventListener("pointermove", function(e){
+    var r = btn.getBoundingClientRect();
+    var mx = e.clientX - r.left, my = e.clientY - r.top;
+    btn.style.setProperty("--mx", mx + "px");
+    btn.style.setProperty("--my", my + "px");
+    btn.style.transform = "translate3d(" +
+      ((mx - r.width/2)/r.width*12).toFixed(2) + "px," +
+      ((my - r.height/2)/r.height*8).toFixed(2) + "px,0)";
+  });
+  btn.addEventListener("pointerleave", function(){ btn.style.transform = "translate3d(0,0,0)"; });
+});
+
+document.querySelectorAll(".svc-list button").forEach(function(b){
+  b.addEventListener("click", function(){
+    document.querySelectorAll(".svc-list button").forEach(function(x){ x.classList.remove("on"); });
+    b.classList.add("on");
+  });
+});
+
+var tiers = [
+  [["Lavado a vapor exterior","45 €"],["Interior en seco","65 €"],["Llantas y pasos de rueda","30 €"],["Descontaminación ferrosa","55 €"],["Acabado de plásticos","25 €"]],
+  [["Vapor + interior completo","120 €"],["Pulido de un paso","190 €"],["Faros restaurados","85 €"],["Sellado hidrofóbico 6 meses","140 €"],["Limpieza de motor","70 €"]],
+  [["Pulido de tres pasos","390 €"],["Recubrimiento cerámico 5 años","690 €"],["Lámina PPF frontal","950 €"],["Laminado de lunas","260 €"],["Tapicería en profundidad","180 €"]]
+];
+var rowsEl = document.getElementById("rows");
+function renderTier(i){
+  rowsEl.innerHTML = tiers[i].map(function(r, n){
+    return '<div class="row" style="animation-delay:' + (n*55) + 'ms"><span>' + r[0] + '</span><b>' + r[1] + '</b></div>';
+  }).join("");
+}
+renderTier(0);
+document.querySelectorAll(".tabs button").forEach(function(b){
+  b.addEventListener("click", function(){
+    document.querySelectorAll(".tabs button").forEach(function(x){ x.classList.remove("on"); });
+    b.classList.add("on");
+    renderTier(+b.dataset.tier);
+  });
+});
+
+document.querySelectorAll(".lang button").forEach(function(b){
+  b.addEventListener("click", function(){
+    document.querySelectorAll(".lang button").forEach(function(x){ x.classList.remove("on"); });
+    b.classList.add("on");
+  });
+});
+})();
+</script>

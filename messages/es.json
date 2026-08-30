@@ -1,0 +1,137 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "studio": "Estudio",
+    "services": "Servicios",
+    "gallery": "Galería",
+    "about": "Nosotros",
+    "pricing": "Precios",
+    "contact": "Contacto",
+    "book": "Reservar",
+    "menu": "Menú",
+    "close": "Cerrar",
+    "language": "Idioma",
+    "home_aria": "Vaporix — inicio"
+  },
+  "hero": {
+    "eyebrow": "Detailing & Care",
+    "titleLine1": "Devolvemos el brillo",
+    "titleLine2": "del primer día.",
+    "lede": "Detailing a vapor con acabado de estudio. Cuidamos el interior y el exterior de tu coche milímetro a milímetro, sin una sola gota de más.",
+    "ctaPrimary": "Reservar cita",
+    "ctaSecondary": "Ver servicios",
+    "scroll": "Desliza",
+    "watch": "Ver el estudio",
+    "stats": {
+      "locations": "Centros",
+      "cars": "Coches tratados",
+      "rating": "Valoración media"
+    }
+  },
+  "studio": {
+    "label": "El estudio",
+    "title": "Hacemos menos servicios, y los hacemos mejor.",
+    "lede": "Cuando abrimos el primer taller decidimos dos cosas: no aceptar más coches de los que podemos tratar bien, y explicar siempre qué le hacemos a cada uno. Seguimos igual.",
+    "bay": "Bahía 02 · Vapor + pulido",
+    "nums": {
+      "locations": "Centros en la ciudad",
+      "years": "Años de oficio",
+      "types": "Tipos de servicio"
+    }
+  },
+  "services": {
+    "label": "Servicios",
+    "title": "Rápido, cuidadoso y sin sorpresas en la factura.",
+    "lede": "Trabajamos por presupuesto cerrado. Ves el precio antes de dejarnos las llaves.",
+    "cta": "Pedir presupuesto",
+    "from": "Desde",
+    "duration": "Duración",
+    "minutes": "{count} min",
+    "all": "Ver todos los servicios",
+    "items": {
+      "steam-wash": {
+        "name": "Lavado a vapor sin contacto",
+        "short": "Vapor a presión controlada que arrastra la suciedad sin tocar la pintura."
+      },
+      "dry-interior": {
+        "name": "Limpieza interior en seco",
+        "short": "Tapicería, plásticos y techo tratados en seco. El coche se entrega listo para usar."
+      },
+      "paint-correction": {
+        "name": "Pulido de carrocería y faros",
+        "short": "Eliminamos microrrayas y holograma y devolvemos el brillo espejo."
+      },
+      "ceramic-coating": {
+        "name": "Tratamiento cerámico",
+        "short": "Capa dura e hidrofóbica que protege el color durante años."
+      },
+      "paint-protection-film": {
+        "name": "Lámina de protección de pintura",
+        "short": "Film transparente en frontal y zonas de impacto contra piedras y arañazos."
+      },
+      "window-tint": {
+        "name": "Laminado de lunas",
+        "short": "Control solar y privacidad con láminas homologadas."
+      },
+      "decontamination": {
+        "name": "Descontaminación ferrosa",
+        "short": "Retiramos partículas metálicas incrustadas antes de cualquier pulido."
+      },
+      "engine-bay": {
+        "name": "Limpieza de motor",
+        "short": "Vano motor desengrasado y protegido, con los conectores sellados."
+      },
+      "trim-restoration": {
+        "name": "Restauración de plásticos",
+        "short": "Devolvemos el negro original a molduras y paragolpes descoloridos."
+      }
+    }
+  },
+  "pricing": {
+    "label": "Tarifas",
+    "title": "Precio cerrado, antes de empezar.",
+    "tiers": {
+      "essential": { "name": "Esencial" },
+      "advanced": { "name": "Avanzado" },
+      "extreme": { "name": "Extremo" }
+    },
+    "rows": {
+      "steamExterior": "Lavado a vapor exterior",
+      "dryInterior": "Interior en seco",
+      "wheels": "Llantas y pasos de rueda",
+      "decontamination": "Descontaminación ferrosa",
+      "trim": "Acabado de plásticos",
+      "steamFull": "Vapor + interior completo",
+      "onePass": "Pulido de un paso",
+      "headlights": "Faros restaurados",
+      "sealant": "Sellado hidrofóbico 6 meses",
+      "engineBay": "Limpieza de motor",
+      "threePass": "Pulido de tres pasos",
+      "ceramic": "Recubrimiento cerámico 5 años",
+      "ppfFront": "Lámina PPF frontal",
+      "tint": "Laminado de lunas",
+      "upholstery": "Tapicería en profundidad"
+    }
+  },
+  "cta": {
+    "title": "Tu coche ya está esperando esta transformación.",
+    "book": "Reservar cita",
+    "call": "Llamar"
+  },
+  "footer": {
+    "main": "Principal",
+    "more": "Más",
+    "privacy": "Política de privacidad",
+    "legal": "Aviso legal",
+    "rights": "Todos los derechos reservados.",
+    "hours": "Horario",
+    "weekdays": "Lunes a viernes",
+    "saturday": "Sábado"
+  },
+  "meta": {
+    "home": {
+      "title": "Vaporix — Detailing & Care",
+      "description": "Estudio de detailing a vapor. Lavado sin contacto, pulido, tratamiento cerámico y protección de pintura con acabado de estudio."
+    }
+  }
+}

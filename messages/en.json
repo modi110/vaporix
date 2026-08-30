@@ -1,0 +1,137 @@
+{
+  "nav": {
+    "home": "Home",
+    "studio": "Studio",
+    "services": "Services",
+    "gallery": "Gallery",
+    "about": "About",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "book": "Book",
+    "menu": "Menu",
+    "close": "Close",
+    "language": "Language",
+    "home_aria": "Vaporix — home"
+  },
+  "hero": {
+    "eyebrow": "Detailing & Care",
+    "titleLine1": "We bring back",
+    "titleLine2": "the first-day shine.",
+    "lede": "Steam detailing with a studio finish. We look after the inside and the outside of your car millimetre by millimetre, without a drop wasted.",
+    "ctaPrimary": "Book a slot",
+    "ctaSecondary": "See services",
+    "scroll": "Scroll",
+    "watch": "See the studio",
+    "stats": {
+      "locations": "Locations",
+      "cars": "Cars treated",
+      "rating": "Average rating"
+    }
+  },
+  "studio": {
+    "label": "The studio",
+    "title": "We do fewer services, and we do them better.",
+    "lede": "When we opened the first workshop we settled two things: never take in more cars than we can treat properly, and always explain what we did to each one. Nothing has changed.",
+    "bay": "Bay 02 · Steam + polish",
+    "nums": {
+      "locations": "Locations in the city",
+      "years": "Years at the trade",
+      "types": "Types of service"
+    }
+  },
+  "services": {
+    "label": "Services",
+    "title": "Fast, careful, and no surprises on the invoice.",
+    "lede": "We quote a fixed price. You see the number before you hand over the keys.",
+    "cta": "Request a quote",
+    "from": "From",
+    "duration": "Duration",
+    "minutes": "{count} min",
+    "all": "See every service",
+    "items": {
+      "steam-wash": {
+        "name": "Touch-free steam wash",
+        "short": "Pressure-controlled steam lifts dirt away without touching the paint."
+      },
+      "dry-interior": {
+        "name": "Dry interior clean",
+        "short": "Upholstery, trim and headliner treated dry. The car leaves ready to drive."
+      },
+      "paint-correction": {
+        "name": "Paint and headlight correction",
+        "short": "We remove micro-scratches and holograms and bring back the mirror finish."
+      },
+      "ceramic-coating": {
+        "name": "Ceramic coating",
+        "short": "A hard, hydrophobic layer that protects the colour for years."
+      },
+      "paint-protection-film": {
+        "name": "Paint protection film",
+        "short": "Clear film across the front end and impact zones, against stones and scratches."
+      },
+      "window-tint": {
+        "name": "Window tinting",
+        "short": "Heat control and privacy with fully road-legal film."
+      },
+      "decontamination": {
+        "name": "Iron decontamination",
+        "short": "We pull embedded metal particles out before any polishing starts."
+      },
+      "engine-bay": {
+        "name": "Engine bay clean",
+        "short": "Bay degreased and dressed, with every connector sealed first."
+      },
+      "trim-restoration": {
+        "name": "Trim restoration",
+        "short": "Faded mouldings and bumpers taken back to their original black."
+      }
+    }
+  },
+  "pricing": {
+    "label": "Rates",
+    "title": "A fixed price, before we start.",
+    "tiers": {
+      "essential": { "name": "Essential" },
+      "advanced": { "name": "Advanced" },
+      "extreme": { "name": "Extreme" }
+    },
+    "rows": {
+      "steamExterior": "Exterior steam wash",
+      "dryInterior": "Dry interior",
+      "wheels": "Wheels and arches",
+      "decontamination": "Iron decontamination",
+      "trim": "Trim dressing",
+      "steamFull": "Steam + full interior",
+      "onePass": "One-pass correction",
+      "headlights": "Headlight restoration",
+      "sealant": "6-month hydrophobic sealant",
+      "engineBay": "Engine bay clean",
+      "threePass": "Three-pass correction",
+      "ceramic": "5-year ceramic coating",
+      "ppfFront": "Front-end PPF",
+      "tint": "Window tinting",
+      "upholstery": "Deep upholstery clean"
+    }
+  },
+  "cta": {
+    "title": "Your car is already waiting for this transformation.",
+    "book": "Book a slot",
+    "call": "Call us"
+  },
+  "footer": {
+    "main": "Main",
+    "more": "More",
+    "privacy": "Privacy policy",
+    "legal": "Legal notice",
+    "rights": "All rights reserved.",
+    "hours": "Opening hours",
+    "weekdays": "Monday to Friday",
+    "saturday": "Saturday"
+  },
+  "meta": {
+    "home": {
+      "title": "Vaporix — Detailing & Care",
+      "description": "Steam detailing studio. Touch-free washing, paint correction, ceramic coating and paint protection with a studio finish."
+    }
+  }
+}
