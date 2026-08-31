@@ -21,12 +21,7 @@
     "ctaPrimary": "Reservar cita",
     "ctaSecondary": "Ver servicios",
     "scroll": "Desliza",
-    "watch": "Ver el estudio",
-    "stats": {
-      "locations": "Centros",
-      "cars": "Coches tratados",
-      "rating": "Valoración media"
-    }
+    "brandAlt": "Vaporix"
   },
   "studio": {
     "label": "El estudio",
@@ -91,9 +86,15 @@
     "label": "Tarifas",
     "title": "Precio cerrado, antes de empezar.",
     "tiers": {
-      "essential": { "name": "Esencial" },
-      "advanced": { "name": "Avanzado" },
-      "extreme": { "name": "Extremo" }
+      "essential": {
+        "name": "Esencial"
+      },
+      "advanced": {
+        "name": "Avanzado"
+      },
+      "extreme": {
+        "name": "Extremo"
+      }
     },
     "rows": {
       "steamExterior": "Lavado a vapor exterior",
@@ -132,6 +133,34 @@
     "home": {
       "title": "Vaporix — Detailing & Care",
       "description": "Estudio de detailing a vapor. Lavado sin contacto, pulido, tratamiento cerámico y protección de pintura con acabado de estudio."
+    }
+  },
+  "vehicles": {
+    "label": "Tipo de vehículo",
+    "title": "Elige tu vehículo y verás el precio.",
+    "lede": "Cada tamaño lleva su tiempo y su producto. El precio cambia con el vehículo, nunca con el día.",
+    "from": "Desde",
+    "duration": "Duración aproximada",
+    "includes": "Incluye",
+    "select": "Seleccionar",
+    "selected": "Seleccionado",
+    "items": {
+      "moto": {
+        "name": "Moto",
+        "examples": "Ducati Monster · Yamaha MT · BMW GS"
+      },
+      "urbano": {
+        "name": "Urbano",
+        "examples": "Fiat 500 · MINI · VW Polo"
+      },
+      "berlina": {
+        "name": "Berlina y SUV",
+        "examples": "BMW Serie 5 · Range Rover · Audi Q7"
+      },
+      "furgoneta": {
+        "name": "Furgoneta",
+        "examples": "Mercedes Sprinter · VW Transporter · Vito"
+      }
     }
   }
 }

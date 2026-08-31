@@ -74,7 +74,12 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className={`${onest.variable} ${dmMono.variable}`}>
+    <html
+      lang={locale}
+      className={`${onest.variable} ${dmMono.variable}`}
+      // The pre-paint script below stamps data-preloaded on this element.
+      suppressHydrationWarning
+    >
       <head>
         {/* Runs before first paint so a repeat visit never flashes the curtain. */}
         <script dangerouslySetInnerHTML={{ __html: preloadFlagScript }} />

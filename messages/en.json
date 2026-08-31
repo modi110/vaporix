@@ -21,12 +21,7 @@
     "ctaPrimary": "Book a slot",
     "ctaSecondary": "See services",
     "scroll": "Scroll",
-    "watch": "See the studio",
-    "stats": {
-      "locations": "Locations",
-      "cars": "Cars treated",
-      "rating": "Average rating"
-    }
+    "brandAlt": "Vaporix"
   },
   "studio": {
     "label": "The studio",
@@ -91,9 +86,15 @@
     "label": "Rates",
     "title": "A fixed price, before we start.",
     "tiers": {
-      "essential": { "name": "Essential" },
-      "advanced": { "name": "Advanced" },
-      "extreme": { "name": "Extreme" }
+      "essential": {
+        "name": "Essential"
+      },
+      "advanced": {
+        "name": "Advanced"
+      },
+      "extreme": {
+        "name": "Extreme"
+      }
     },
     "rows": {
       "steamExterior": "Exterior steam wash",
@@ -132,6 +133,34 @@
     "home": {
       "title": "Vaporix — Detailing & Care",
       "description": "Steam detailing studio. Touch-free washing, paint correction, ceramic coating and paint protection with a studio finish."
+    }
+  },
+  "vehicles": {
+    "label": "Vehicle type",
+    "title": "Pick your vehicle and the price follows.",
+    "lede": "Each size takes its own time and its own products. The price changes with the vehicle, never with the day.",
+    "from": "From",
+    "duration": "Approximate time",
+    "includes": "Includes",
+    "select": "Select",
+    "selected": "Selected",
+    "items": {
+      "moto": {
+        "name": "Motorcycle",
+        "examples": "Ducati Monster · Yamaha MT · BMW GS"
+      },
+      "urbano": {
+        "name": "City car",
+        "examples": "Fiat 500 · MINI · VW Polo"
+      },
+      "berlina": {
+        "name": "Saloon & SUV",
+        "examples": "BMW 5 Series · Range Rover · Audi Q7"
+      },
+      "furgoneta": {
+        "name": "Van",
+        "examples": "Mercedes Sprinter · VW Transporter · Vito"
+      }
     }
   }
 }
