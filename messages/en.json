@@ -29,12 +29,7 @@
     "label": "The studio",
     "title": "We do fewer services, and we do them better.",
     "lede": "When we opened the first workshop we settled two things: never take in more cars than we can treat properly, and always explain what we did to each one. Nothing has changed.",
-    "bay": "Bay 02 · Steam + polish",
-    "nums": {
-      "locations": "Locations in the city",
-      "years": "Years at the trade",
-      "types": "Types of service"
-    }
+    "bay": "Bay 02 · Steam + polish"
   },
   "services": {
     "label": "Services",
@@ -186,6 +181,80 @@
         "name": "Wash + sealant",
         "desc": "The full wash plus a hydrophobic sealant that repels water and dirt for months."
       }
+    }
+  },
+  "pages": {
+    "servicesIndex": {
+      "label": "Services",
+      "title": "Everything we do to your car.",
+      "lede": "Nine treatments. Each with its own time, its own products and a fixed price."
+    },
+    "serviceDetail": {
+      "label": "Service",
+      "includes": "What it includes",
+      "duration": "Duration",
+      "priceFrom": "From",
+      "book": "Book this service",
+      "others": "Other services",
+      "back": "Back to services",
+      "pricingNote": "The final price depends on the size of the vehicle. See the full table on pricing."
+    },
+    "gallery": {
+      "label": "Gallery",
+      "title": "Recent work.",
+      "lede": "Every car that leaves the workshop, photographed before and after.",
+      "placeholder": "Photography to come"
+    },
+    "about": {
+      "label": "About",
+      "title": "A small workshop that works slowly.",
+      "lede": "We are a short team and we like it that way.",
+      "p1": "Vaporix started because we were tired of leaving a car somewhere and getting it back with no idea what had been done to it. We opened with one bay, one steam machine and a rule: never take on more work than fits in a day.",
+      "p2": "The rule still holds. We use steam because it uses ninety per cent less water than a hose and never scratches the paint. And we tell you exactly what went on your car, every time.",
+      "valuesTitle": "How we work",
+      "values": {
+        "care": {
+          "name": "No rushing",
+          "desc": "One car per bay, per slot. We never overlap jobs to squeeze another in."
+        },
+        "honesty": {
+          "name": "Fixed price",
+          "desc": "What we quote before we start is what you pay. If something turns up, we call you."
+        },
+        "steam": {
+          "name": "Steam, not a hose",
+          "desc": "Less water, no contact with the paint, and no harsh chemicals inside the cabin."
+        }
+      }
+    },
+    "pricing": {
+      "label": "Pricing",
+      "title": "The full rate card, no small print.",
+      "lede": "The price depends on the size of the vehicle and the service. Nothing else.",
+      "note": "Prices include VAT. Vehicles with extreme soiling or pet hair may carry a supplement, which we tell you before we start.",
+      "vehicle": "Vehicle"
+    },
+    "contact": {
+      "label": "Contact",
+      "title": "Write to us and we will find you a slot.",
+      "lede": "We reply the same working day.",
+      "name": "Your name",
+      "phone": "Phone",
+      "vehicle": "Vehicle",
+      "message": "What does your car need?",
+      "send": "Send",
+      "findUs": "Where we are",
+      "hours": "Opening hours",
+      "callUs": "Call us",
+      "formNote": "This form does not send anything yet. Call or message us on WhatsApp in the meantime."
+    },
+    "book": {
+      "label": "Book",
+      "title": "Book your slot.",
+      "lede": "Choose a vehicle and a service, and we will confirm a time.",
+      "soon": "Online booking is coming shortly. For now, the fastest way to get a slot is by phone or WhatsApp.",
+      "call": "Call now",
+      "whatsapp": "Message on WhatsApp"
     }
   }
 }

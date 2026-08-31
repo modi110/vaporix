@@ -1,7 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Counter } from "@/components/ui/Counter";
 import { SplitText } from "@/components/ui/SplitText";
-import { site } from "@/content/site";
 
 export function Studio() {
   const t = useTranslations("studio");
@@ -36,23 +34,8 @@ export function Studio() {
             </p>
           </div>
         </div>
-
-        <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-10 sm:grid-cols-3">
-          <BigNum n={site.stats.locations} label={t("nums.locations")} />
-          <BigNum n={site.stats.years} label={t("nums.years")} />
-          <BigNum n={site.stats.serviceTypes} label={t("nums.types")} />
-        </div>
       </div>
     </section>
-  );
-}
-
-function BigNum({ n, label }: { n: number; label: string }) {
-  return (
-    <div data-reveal>
-      <Counter to={n} className="t-num block" />
-      <p className="t-label mt-3.5 border-t border-hairline pt-3">{label}</p>
-    </div>
   );
 }
 

@@ -83,6 +83,13 @@
     position: relative;
   }
 
+  /* The first section under a PageHeader: the header already carries the top
+     air, so a full section pad on top of it opens a dead gap. */
+  .section-under-header {
+    padding-block: clamp(2.75rem, 5vw, 4.5rem) var(--pad-section);
+    position: relative;
+  }
+
   /* ---------- type scale ---------- */
   .t-display {
     font-size: clamp(2.6rem, 7vw, 7rem);

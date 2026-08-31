@@ -29,12 +29,7 @@
     "label": "El estudio",
     "title": "Hacemos menos servicios, y los hacemos mejor.",
     "lede": "Cuando abrimos el primer taller decidimos dos cosas: no aceptar más coches de los que podemos tratar bien, y explicar siempre qué le hacemos a cada uno. Seguimos igual.",
-    "bay": "Bahía 02 · Vapor + pulido",
-    "nums": {
-      "locations": "Centros en la ciudad",
-      "years": "Años de oficio",
-      "types": "Tipos de servicio"
-    }
+    "bay": "Bahía 02 · Vapor + pulido"
   },
   "services": {
     "label": "Servicios",
@@ -186,6 +181,80 @@
         "name": "Lavado + sellado",
         "desc": "El lavado completo más un sellado hidrofóbico que repele agua y suciedad durante meses."
       }
+    }
+  },
+  "pages": {
+    "servicesIndex": {
+      "label": "Servicios",
+      "title": "Todo lo que le hacemos a tu coche.",
+      "lede": "Nueve tratamientos. Cada uno con su tiempo, su producto y su precio cerrado."
+    },
+    "serviceDetail": {
+      "label": "Servicio",
+      "includes": "Qué incluye",
+      "duration": "Duración",
+      "priceFrom": "Desde",
+      "book": "Reservar este servicio",
+      "others": "Otros servicios",
+      "back": "Volver a servicios",
+      "pricingNote": "El precio final depende del tamaño del vehículo. Consulta la tabla completa en precios."
+    },
+    "gallery": {
+      "label": "Galería",
+      "title": "Trabajos recientes.",
+      "lede": "Cada coche que sale del taller, fotografiado antes y después.",
+      "placeholder": "Fotografías pendientes"
+    },
+    "about": {
+      "label": "Nosotros",
+      "title": "Un taller pequeño que trabaja despacio.",
+      "lede": "Somos un equipo corto y lo preferimos así.",
+      "p1": "Vaporix nació porque estábamos cansados de dejar el coche en sitios donde nadie te explica qué te han hecho. Abrimos con una sola bahía, una máquina de vapor y la norma de no aceptar más trabajo del que cabe en un día.",
+      "p2": "Seguimos con la misma norma. Trabajamos con vapor porque gasta noventa por ciento menos agua que una manguera y no araña la pintura. Y te contamos exactamente qué producto lleva tu coche, siempre.",
+      "valuesTitle": "Cómo trabajamos",
+      "values": {
+        "care": {
+          "name": "Sin prisa",
+          "desc": "Un coche por bahía y por franja. Nunca solapamos trabajos para meter uno más."
+        },
+        "honesty": {
+          "name": "Precio cerrado",
+          "desc": "Lo que te decimos antes de empezar es lo que pagas. Si aparece algo, te llamamos."
+        },
+        "steam": {
+          "name": "Vapor, no manguera",
+          "desc": "Menos agua, sin contacto con la pintura y sin químicos agresivos en el interior."
+        }
+      }
+    },
+    "pricing": {
+      "label": "Precios",
+      "title": "La tarifa completa, sin letra pequeña.",
+      "lede": "El precio depende del tamaño del vehículo y del servicio. Nada más.",
+      "note": "Precios con IVA incluido. Los vehículos con suciedad extrema o pelo de mascota pueden llevar un suplemento, que te decimos antes de empezar.",
+      "vehicle": "Vehículo"
+    },
+    "contact": {
+      "label": "Contacto",
+      "title": "Escríbenos y te decimos hueco.",
+      "lede": "Respondemos el mismo día laborable.",
+      "name": "Tu nombre",
+      "phone": "Teléfono",
+      "vehicle": "Vehículo",
+      "message": "¿Qué necesita tu coche?",
+      "send": "Enviar",
+      "findUs": "Dónde estamos",
+      "hours": "Horario",
+      "callUs": "Llámanos",
+      "formNote": "Este formulario todavía no envía nada. Llámanos o escríbenos por WhatsApp mientras tanto."
+    },
+    "book": {
+      "label": "Reservar",
+      "title": "Reserva tu cita.",
+      "lede": "Elige vehículo y servicio, y te confirmamos la hora.",
+      "soon": "La reserva online llega en breve. De momento, la forma más rápida de coger cita es por teléfono o WhatsApp.",
+      "call": "Llamar ahora",
+      "whatsapp": "Escribir por WhatsApp"
     }
   }
 }

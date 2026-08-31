@@ -59,7 +59,7 @@ export function Hero() {
               },
             })
             .to(".hero-copy", { yPercent: -12, opacity: 0, ease: "none" }, 0)
-            .to(".hero-stage", { yPercent: -6, scale: 1.06, ease: "none" }, 0);
+            .to(".hero-stage", { xPercent: -26, yPercent: -4, ease: "none" }, 0);
         },
       );
     }, root);
