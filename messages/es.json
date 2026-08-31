@@ -161,6 +161,29 @@
         "name": "Furgoneta",
         "examples": "Mercedes Sprinter · VW Transporter · Vito"
       }
+    },
+    "choose": "Elige tu servicio",
+    "packages": {
+      "interior": {
+        "name": "Solo interior",
+        "desc": "Aspirado a fondo, tapicería y plásticos tratados en seco, cristales por dentro y desodorización con vapor."
+      },
+      "exterior": {
+        "name": "Solo exterior",
+        "desc": "Lavado a vapor sin contacto, llantas y pasos de rueda, secado a mano con microfibra y brillo en neumáticos."
+      },
+      "full": {
+        "name": "Interior + exterior",
+        "desc": "Todo lo anterior en una sola cita, con una revisión final punto por punto antes de devolverte las llaves."
+      },
+      "motoExterior": {
+        "name": "Lavado completo",
+        "desc": "Vapor en carenado, llantas y cadena, secado a mano y brillo en gomas. Sin tocar la electrónica."
+      },
+      "motoSealed": {
+        "name": "Lavado + sellado",
+        "desc": "El lavado completo más un sellado hidrofóbico que repele agua y suciedad durante meses."
+      }
     }
   }
 }

@@ -5,20 +5,29 @@ import { useTranslations } from "next-intl";
 import { SplitText } from "@/components/ui/SplitText";
 import { PillLink } from "@/components/ui/PillButton";
 import { VehicleArt } from "@/components/ui/VehicleArt";
-import { vehicles, servicesFor, startingPrice, type VehicleId } from "@/content/vehicles";
+import {
+  vehicles,
+  getVehicle,
+  startingPrice,
+  type VehicleId,
+} from "@/content/vehicles";
 
 /**
- * Pricing starts from the vehicle, because that is the first thing a customer
- * knows and the thing that actually drives the number. Pick a bracket and the
- * whole service board re-prices against it.
+ * Pricing starts from the vehicle, because size is the thing a customer
+ * already knows and the thing that drives the number. Pick a bracket and the
+ * packages below swap to that bracket's board.
+ *
+ * Note on the reveals: `data-reveal` sits on a wrapper React never re-renders.
+ * The reveal class is added straight to the DOM by GSAP, so putting it on an
+ * element whose className React also owns would wipe it on the next state
+ * change — and the card would vanish back to opacity 0.
  */
 export function Services() {
   const t = useTranslations("services");
   const v = useTranslations("vehicles");
   const [selected, setSelected] = useState<VehicleId>("urbano");
 
-  const vehicle = vehicles.find((x) => x.id === selected) ?? vehicles[1];
-  const rows = servicesFor(vehicle);
+  const vehicle = getVehicle(selected);
 
   return (
     <section className="section" id="services">
@@ -48,100 +57,115 @@ export function Services() {
           {vehicles.map((item, i) => {
             const on = item.id === selected;
             return (
-              <button
+              <div
                 key={item.id}
-                type="button"
-                onClick={() => setSelected(item.id)}
-                aria-pressed={on}
                 data-reveal
                 style={{ transitionDelay: `${i * 70}ms` }}
-                className={`group relative overflow-hidden rounded-card border p-6 text-left transition-colors duration-400 ${
-                  on
-                    ? "border-vapor/60 bg-surface-2"
-                    : "border-hairline bg-surface hover:border-hairline-strong"
-                }`}
               >
-                <span
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute inset-x-0 -top-1/2 aspect-square bg-[radial-gradient(circle,rgba(var(--vapor-rgb),.16),transparent_62%)] transition-opacity duration-500 ${
-                    on ? "opacity-100" : "opacity-0 group-hover:opacity-60"
+                <button
+                  type="button"
+                  onClick={() => setSelected(item.id)}
+                  aria-pressed={on}
+                  className={`group relative h-full w-full overflow-hidden rounded-card border p-6 text-left transition-colors duration-400 ${
+                    on
+                      ? "border-vapor/60 bg-surface-2"
+                      : "border-hairline bg-surface hover:border-hairline-strong"
                   }`}
-                />
-
-                <VehicleArt
-                  id={item.id}
-                  className={`relative h-24 w-full transition-colors duration-400 ${
-                    on ? "text-vapor" : "text-muted group-hover:text-ink"
-                  }`}
-                />
-
-                <span className="relative mt-5 block">
-                  <span className="block text-lg font-medium tracking-[-0.02em]">
-                    {v(`items.${item.id}.name`)}
-                  </span>
-                  {/* reserve two lines so every card's price row shares a baseline */}
-                  <span className="t-label mt-2 block min-h-[2.9em] normal-case tracking-[0.04em] text-muted-dim">
-                    {v(`items.${item.id}.examples`)}
-                  </span>
-                </span>
-
-                <span className="relative mt-5 flex items-baseline gap-2 border-t border-hairline pt-4">
-                  <span className="t-label">{v("from")}</span>
+                >
                   <span
-                    className={`font-mono text-xl font-medium tabular-nums transition-colors duration-400 ${
-                      on ? "text-vapor" : "text-ink"
+                    aria-hidden="true"
+                    className={`pointer-events-none absolute inset-x-0 -top-1/2 aspect-square bg-[radial-gradient(circle,rgba(var(--vapor-rgb),.16),transparent_62%)] transition-opacity duration-500 ${
+                      on ? "opacity-100" : "opacity-0 group-hover:opacity-60"
                     }`}
-                  >
-                    {startingPrice(item)} €
+                  />
+
+                  <VehicleArt
+                    id={item.id}
+                    className={`relative h-24 w-full transition-colors duration-400 ${
+                      on ? "text-vapor" : "text-muted group-hover:text-ink"
+                    }`}
+                  />
+
+                  <span className="relative mt-5 block">
+                    <span className="block text-lg font-medium tracking-[-0.02em]">
+                      {v(`items.${item.id}.name`)}
+                    </span>
+                    {/* two lines reserved so every price row shares a baseline */}
+                    <span className="t-label mt-2 block min-h-[2.9em] normal-case tracking-[0.04em] text-muted-dim">
+                      {v(`items.${item.id}.examples`)}
+                    </span>
                   </span>
-                </span>
-              </button>
+
+                  <span className="relative mt-5 flex items-baseline gap-2 border-t border-hairline pt-4">
+                    <span className="t-label">{v("from")}</span>
+                    <span
+                      className={`font-mono text-xl font-medium tabular-nums transition-colors duration-400 ${
+                        on ? "text-vapor" : "text-ink"
+                      }`}
+                    >
+                      {startingPrice(item)} €
+                    </span>
+                  </span>
+                </button>
+              </div>
             );
           })}
         </div>
 
-        {/* the board, re-priced for the chosen bracket */}
-        <div className="mt-6 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]" data-reveal>
-          <div className="rounded-card border border-hairline bg-surface p-[clamp(1.4rem,2.2vw,2rem)]">
-            <p className="t-label mb-5">
-              {v("includes")} · {v(`items.${vehicle.id}.name`)}
-            </p>
-            <ul>
-              {rows.map((row, i) => (
-                <li
-                  key={row.slug}
-                  className="flex items-baseline justify-between gap-4 border-b border-hairline py-3 last:border-b-0"
-                  style={{
-                    animation: `vaporix-row-in .45s var(--ease-out-expo) ${i * 45}ms both`,
-                  }}
-                >
-                  <span className="text-sm">{t(`items.${row.slug}.name`)}</span>
-                  <span className="flex shrink-0 items-baseline gap-4">
-                    <span className="t-label hidden sm:block">
-                      {t("minutes", { count: row.minutes })}
-                    </span>
-                    <b className="w-20 text-right font-mono font-medium tabular-nums text-vapor">
-                      {row.price} €
-                    </b>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* packages for the chosen bracket */}
+        <div className="mt-16">
+          <p className="t-label mb-6">
+            {v("choose")} · {v(`items.${vehicle.id}.name`)}
+          </p>
 
-          <div className="relative flex flex-col justify-between gap-8 overflow-hidden rounded-card border border-hairline bg-surface p-[clamp(1.4rem,2.2vw,2rem)]">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-[-55%] aspect-square w-[130%] -translate-x-1/2 bg-[radial-gradient(circle,rgba(var(--vapor-rgb),.14),transparent_62%)]"
-            />
-            <div className="relative">
-              <VehicleArt id={vehicle.id} className="h-28 w-full text-vapor" />
-              <p className="t-label mt-6">{t("label")}</p>
-              <p className="t-lede mt-3 text-sm">{t("lede")}</p>
-            </div>
-            <PillLink href="/contact" className="relative self-start">
-              {t("cta")}
-            </PillLink>
+          {/* keyed on the bracket so the cards remount and re-run their
+              entrance every time the selection changes */}
+          <div
+            key={vehicle.id}
+            className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+          >
+            {vehicle.packages.map((pkg, i) => (
+              <article
+                key={pkg.id}
+                style={{
+                  animation: `vaporix-row-in .55s var(--ease-out-expo) ${i * 90}ms both`,
+                }}
+                className={`relative flex flex-col gap-5 overflow-hidden rounded-card border p-7 ${
+                  pkg.featured
+                    ? "border-vapor/50 bg-surface-2"
+                    : "border-hairline bg-surface"
+                }`}
+              >
+                {pkg.featured ? (
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-1/2 top-[-60%] aspect-square w-[130%] -translate-x-1/2 bg-[radial-gradient(circle,rgba(var(--vapor-rgb),.15),transparent_62%)]"
+                  />
+                ) : null}
+
+                <div className="relative flex items-baseline justify-between gap-4">
+                  <h3 className="text-lg font-medium tracking-[-0.02em]">
+                    {v(`packages.${pkg.id}.name`)}
+                  </h3>
+                  <b className="shrink-0 font-mono text-2xl font-medium tabular-nums text-vapor">
+                    {pkg.price} €
+                  </b>
+                </div>
+
+                <p className="relative t-lede text-sm">
+                  {v(`packages.${pkg.id}.desc`)}
+                </p>
+
+                <PillLink
+                  href="/book"
+                  variant={pkg.featured ? "solid" : "ghost"}
+                  size="sm"
+                  className="relative mt-auto self-start"
+                >
+                  {t("cta")}
+                </PillLink>
+              </article>
+            ))}
           </div>
         </div>
       </div>

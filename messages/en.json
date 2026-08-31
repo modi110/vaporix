@@ -161,6 +161,29 @@
         "name": "Van",
         "examples": "Mercedes Sprinter · VW Transporter · Vito"
       }
+    },
+    "choose": "Choose your service",
+    "packages": {
+      "interior": {
+        "name": "Interior only",
+        "desc": "Deep vacuum, upholstery and trim treated dry, glass cleaned inside and steam deodorising."
+      },
+      "exterior": {
+        "name": "Exterior only",
+        "desc": "Touch-free steam wash, wheels and arches, hand-dried with microfibre and tyres dressed."
+      },
+      "full": {
+        "name": "Interior + exterior",
+        "desc": "Everything above in a single visit, with a point-by-point final check before you get the keys back."
+      },
+      "motoExterior": {
+        "name": "Full wash",
+        "desc": "Steam across fairings, wheels and chain, hand-dried and rubber dressed. Electronics left alone."
+      },
+      "motoSealed": {
+        "name": "Wash + sealant",
+        "desc": "The full wash plus a hydrophobic sealant that repels water and dirt for months."
+      }
     }
   }
 }
