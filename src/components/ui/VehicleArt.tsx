@@ -15,7 +15,17 @@ const stroke = {
 
 const faint = { ...stroke, strokeOpacity: 0.45 };
 
-function Wheels({ cx1, cx2, r = 21, cy = 108 }: { cx1: number; cx2: number; r?: number; cy?: number }) {
+function Wheels({
+  cx1,
+  cx2,
+  r = 21,
+  cy = 108,
+}: {
+  cx1: number;
+  cx2: number;
+  r?: number;
+  cy?: number;
+}) {
   return (
     <>
       <circle cx={cx1} cy={cy} r={r} {...stroke} />
@@ -49,12 +59,19 @@ const art: Record<VehicleId, React.ReactNode> = {
   ),
   berlina: (
     <>
+      {/*
+        A real SUV profile, not a tall saloon: near-vertical tailgate, a long
+        flat roof, deep glass, a short high bonnet, and wheels big enough to
+        leave clearance under the sill.
+      */}
       <path
-        d="M36 108 L40 82 Q46 60 82 55 L142 46 Q184 24 240 26 Q298 28 330 56 L366 66 Q390 72 390 94 L388 108 Z"
+        d="M44 112 L44 72 L46 40 Q48 26 66 24 L228 22 Q250 24 264 42 L292 56 L326 62 Q348 68 348 92 L348 112 Z"
         {...stroke}
       />
-      <path d="M142 48 L172 30 M240 26 L258 52" {...faint} />
-      <Wheels cx1={104} cx2={318} />
+      <path d="M50 60 L292 56" {...faint} />
+      <path d="M112 24 L112 59 M178 23 L178 58 M228 22 L242 57" {...faint} />
+      <path d="M72 108 A30 30 0 0 1 132 108 M262 108 A30 30 0 0 1 322 108" {...faint} />
+      <Wheels cx1={102} cx2={292} r={28} cy={112} />
     </>
   ),
   furgoneta: (
@@ -66,6 +83,20 @@ const art: Record<VehicleId, React.ReactNode> = {
       <path d="M246 30 L246 74 L330 74" {...faint} />
       <path d="M120 32 L120 74 L34 74" {...faint} />
       <Wheels cx1={96} cx2={310} />
+    </>
+  ),
+  camion: (
+    <>
+      {/* box body behind, cab set forward and lower, chassis running through */}
+      <path d="M26 94 L26 26 Q26 20 36 20 L246 20 L246 94 Z" {...stroke} />
+      <path
+        d="M252 94 L252 56 Q252 46 264 46 L306 46 Q318 46 326 58 L344 76 L358 80 Q372 84 372 94 Z"
+        {...stroke}
+      />
+      <path d="M26 94 L372 94" {...stroke} />
+      <path d="M42 26 L42 88" {...faint} />
+      <path d="M266 56 L316 56 L316 68 L266 68 Z" {...faint} />
+      <Wheels cx1={172} cx2={318} r={22} cy={102} />
     </>
   ),
 };

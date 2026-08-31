@@ -53,7 +53,7 @@ export function Services() {
         </header>
 
         {/* the four brackets */}
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {vehicles.map((item, i) => {
             const on = item.id === selected;
             return (

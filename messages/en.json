@@ -151,12 +151,16 @@
         "examples": "Fiat 500 · MINI · VW Polo"
       },
       "berlina": {
-        "name": "Saloon & SUV",
+        "name": "SUV & saloon",
         "examples": "BMW 5 Series · Range Rover · Audi Q7"
       },
       "furgoneta": {
         "name": "Van",
         "examples": "Mercedes Sprinter · VW Transporter · Vito"
+      },
+      "camion": {
+        "name": "Truck",
+        "examples": "Iveco Eurocargo · MAN TGL · Mercedes Atego"
       }
     },
     "choose": "Choose your service",

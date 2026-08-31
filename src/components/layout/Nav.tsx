@@ -9,6 +9,7 @@ import { PillLink } from "@/components/ui/PillButton";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 
 const links: { href: StaticPathname; key: string }[] = [
+  { href: "/", key: "home" },
   { href: "/services", key: "services" },
   { href: "/gallery", key: "gallery" },
   { href: "/about", key: "about" },
@@ -58,7 +59,7 @@ export function Nav() {
                 key={l.href}
                 href={l.href}
                 aria-current={active ? "page" : undefined}
-                className={`rounded-pill px-4.5 py-2.5 text-[0.8125rem] font-medium uppercase tracking-[0.11em] transition-colors duration-300 ${
+                className={`rounded-pill px-3.5 py-2.5 text-[0.8125rem] xl:px-4.5 font-medium uppercase tracking-[0.11em] transition-colors duration-300 ${
                   active
                     ? "bg-ink text-void"
                     : "text-muted hover:text-ink"

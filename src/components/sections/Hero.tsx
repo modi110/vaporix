@@ -49,17 +49,42 @@ export function Hero() {
       mm.add(
         "(min-width: 900px) and (prefers-reduced-motion: no-preference)",
         () => {
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: el,
-                start: "top top",
-                end: "bottom top",
-                scrub: 1,
-              },
-            })
-            .to(".hero-copy", { yPercent: -12, opacity: 0, ease: "none" }, 0)
-            .to(".hero-stage", { xPercent: -26, yPercent: -4, ease: "none" }, 0);
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: el,
+              start: "top top",
+              end: "bottom top",
+              scrub: 1,
+            },
+          });
+
+          tl.to(".hero-copy", { yPercent: -12, opacity: 0, ease: "none" }, 0).to(
+            ".hero-stage",
+            { xPercent: -26, yPercent: -4, ease: "none" },
+            0,
+          );
+
+          /**
+           * The wheels turn with the car. Each one needs its own pivot, so
+           * they are tweened individually with an explicit `svgOrigin` rather
+           * than a shared `transformOrigin` — a bounding box would drift as
+           * the spokes rotate. The car is mirrored inside the SVG, so a
+           * positive rotation here renders counter-clockwise on screen, which
+           * is what rolling to the left looks like.
+           */
+          gsap.utils
+            .toArray<SVGGElement>(".v-wheel")
+            .forEach((wheel) =>
+              tl.to(
+                wheel,
+                {
+                  rotation: 540,
+                  svgOrigin: `${wheel.dataset.spin} 300`,
+                  ease: "none",
+                },
+                0,
+              ),
+            );
         },
       );
     }, root);
@@ -77,7 +102,7 @@ export function Hero() {
         aria-hidden="true"
         className="hero-stage absolute inset-0 z-0"
       >
-        <div className="absolute inset-y-0 right-[-10%] flex w-[86%] items-center lg:w-[68%]">
+        <div className="absolute inset-y-0 right-[-6%] flex w-[88%] items-center lg:w-[66%]">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_62%_54%_at_50%_50%,rgba(var(--vapor-rgb),.18),transparent_72%)]" />
           <CarStage
             className={`w-full transition-[filter,opacity] duration-[1200ms] ${
@@ -88,7 +113,7 @@ export function Hero() {
           />
         </div>
         {/* the copy always sits on solid ground, however far the car extends */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-void)_14%,rgba(0,0,0,.72)_46%,rgba(0,0,0,.15)_78%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-void)_12%,rgba(0,0,0,.74)_38%,rgba(0,0,0,.16)_62%,transparent_84%)]" />
         <div className="absolute inset-x-0 bottom-0 h-1/4 bg-[linear-gradient(to_top,var(--color-void),transparent)]" />
       </div>
 
