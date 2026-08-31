@@ -15,9 +15,8 @@ export const site = {
     { days: "sat", open: "10:00", close: "14:00" },
   ],
   social: [
-    { label: "Instagram", short: "IG", href: "#" },
-    { label: "YouTube", short: "YT", href: "#" },
-    { label: "WhatsApp", short: "WA", href: "#" },
+    { label: "Instagram", icon: "instagram", href: "#" },
+    { label: "WhatsApp", icon: "whatsapp", href: "https://wa.me/34600000000" },
   ],
   stats: {
     locations: 3,

@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { StaticPathname } from "@/i18n/routing";
 import { Wordmark } from "@/components/brand/Wordmark";
+import { SocialIcon, type SocialIconId } from "@/components/ui/SocialIcon";
 import { site } from "@/content/site";
 
 const main: { href: StaticPathname; key: string }[] = [
@@ -62,9 +63,9 @@ export function Footer() {
                 key={s.label}
                 href={s.href}
                 aria-label={s.label}
-                className="grid size-9 place-items-center rounded-full border border-hairline font-mono text-[0.625rem] text-muted transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-void"
+                className="grid size-9 place-items-center rounded-full border border-hairline text-muted transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-void"
               >
-                {s.short}
+                <SocialIcon id={s.icon as SocialIconId} className="size-4" />
               </a>
             ))}
           </div>

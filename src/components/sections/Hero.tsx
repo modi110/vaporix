@@ -8,6 +8,7 @@ import { SplitText } from "@/components/ui/SplitText";
 import { PillLink } from "@/components/ui/PillButton";
 import { GrimeLayer } from "@/components/motion/GrimeLayer";
 import { CarStage } from "./CarStage";
+import { SocialIcon, type SocialIconId } from "@/components/ui/SocialIcon";
 import { site } from "@/content/site";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -130,9 +131,9 @@ export function Hero() {
             key={s.label}
             href={s.href}
             aria-label={s.label}
-            className="grid size-10 place-items-center rounded-full border border-hairline font-mono text-xs text-muted transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-void"
+            className="grid size-10 place-items-center rounded-full border border-hairline text-muted transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-void"
           >
-            {s.short}
+            <SocialIcon id={s.icon as SocialIconId} className="size-[1.05rem]" />
           </a>
         ))}
       </div>
@@ -159,23 +160,6 @@ export function Hero() {
 
         <div className="hero-meta flex flex-wrap items-center gap-x-5 gap-y-2">
           <span className="t-label text-ink">{t("priceFrom")}</span>
-          {/* the invitation, and its separator, retire once the job is done */}
-          <span
-            className={`t-label flex items-center gap-5 transition-opacity duration-700 ${
-              clean ? "opacity-0" : "opacity-100"
-            }`}
-          >
-            <span aria-hidden="true" className="h-3 w-px bg-hairline-strong" />
-            <span className="flex items-center gap-2">
-              <span
-                aria-hidden="true"
-                className="relative flex size-1.5 rounded-full bg-vapor"
-              >
-                <span className="absolute inset-0 animate-ping rounded-full bg-vapor motion-reduce:hidden" />
-              </span>
-              {t("wipeHint")}
-            </span>
-          </span>
         </div>
       </div>
 

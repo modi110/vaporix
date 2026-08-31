@@ -22,7 +22,6 @@
     "ctaSecondary": "Ver servicios",
     "scroll": "Desliza",
     "brandAlt": "Vaporix",
-    "wipeHint": "Pasa el cursor para limpiar",
     "priceFrom": "Desde 20 €"
   },
   "studio": {
@@ -159,8 +158,8 @@
         "examples": "Mercedes Sprinter · VW Transporter · Vito"
       },
       "camion": {
-        "name": "Camión",
-        "examples": "Iveco Eurocargo · MAN TGL · Mercedes Atego"
+        "name": "Pick-up",
+        "examples": "Toyota Hilux · Ford Ranger · VW Amarok"
       }
     },
     "choose": "Elige tu servicio",

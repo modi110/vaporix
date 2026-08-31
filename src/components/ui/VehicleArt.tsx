@@ -60,18 +60,20 @@ const art: Record<VehicleId, React.ReactNode> = {
   berlina: (
     <>
       {/*
-        A real SUV profile, not a tall saloon: near-vertical tailgate, a long
-        flat roof, deep glass, a short high bonnet, and wheels big enough to
-        leave clearance under the sill.
+        A Prado-shaped box: flat roof carried the whole length, upright
+        tailgate and windscreen, squared wheel arches, roof rails and a side
+        step. Boxiness is what separates it from the saloon at a glance.
       */}
       <path
-        d="M44 112 L44 72 L46 40 Q48 26 66 24 L228 22 Q250 24 264 42 L292 56 L326 62 Q348 68 348 92 L348 112 Z"
+        d="M46 112 L44 58 L46 30 Q48 21 60 20 L250 20 L286 42 L344 44 L356 60 L356 112 Z"
         {...stroke}
       />
-      <path d="M50 60 L292 56" {...faint} />
-      <path d="M112 24 L112 59 M178 23 L178 58 M228 22 L242 57" {...faint} />
-      <path d="M72 108 A30 30 0 0 1 132 108 M262 108 A30 30 0 0 1 322 108" {...faint} />
-      <Wheels cx1={102} cx2={292} r={28} cy={112} />
+      <path d="M52 56 L286 54" {...faint} />
+      <path d="M118 21 L118 55 M186 20 L186 55 M244 20 L246 54" {...faint} />
+      <path d="M70 16 L242 15 M78 16 L78 20 M234 15 L234 20" {...faint} />
+      <path d="M74 108 L74 92 L136 92 L136 108 M262 108 L262 92 L324 92 L324 108" {...faint} />
+      <path d="M140 104 L258 104" {...faint} />
+      <Wheels cx1={105} cx2={293} r={28} cy={112} />
     </>
   ),
   furgoneta: (
@@ -87,16 +89,16 @@ const art: Record<VehicleId, React.ReactNode> = {
   ),
   camion: (
     <>
-      {/* box body behind, cab set forward and lower, chassis running through */}
-      <path d="M26 94 L26 26 Q26 20 36 20 L246 20 L246 94 Z" {...stroke} />
+      {/* pick-up: open bed behind, cab and bonnet forward */}
       <path
-        d="M252 94 L252 56 Q252 46 264 46 L306 46 Q318 46 326 58 L344 76 L358 80 Q372 84 372 94 Z"
+        d="M28 100 L28 58 L192 58 L192 40 Q192 27 206 26 L266 24 Q282 24 292 36 L306 58 L352 62 Q372 66 372 88 L370 100 Z"
         {...stroke}
       />
-      <path d="M26 94 L372 94" {...stroke} />
-      <path d="M42 26 L42 88" {...faint} />
-      <path d="M266 56 L316 56 L316 68 L266 68 Z" {...faint} />
-      <Wheels cx1={172} cx2={318} r={22} cy={102} />
+      <path d="M40 58 L40 100 M40 76 L186 76" {...faint} />
+      <path d="M202 42 L202 56 L286 54 L286 40" {...faint} />
+      <path d="M214 56 L214 100" {...faint} />
+      <path d="M66 96 L66 82 L118 82 L118 96 M286 96 L286 82 L338 82 L338 96" {...faint} />
+      <Wheels cx1={92} cx2={312} r={24} cy={100} />
     </>
   ),
 };
