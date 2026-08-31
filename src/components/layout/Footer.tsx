@@ -30,7 +30,7 @@ export function Footer() {
 
         <FooterCol title={t("footer.main")}>
           {main.map((l) => (
-            <Link key={l.href} href={l.href} className="hover:text-ink">
+            <Link key={l.href} href={l.href} className="-my-1 py-1 hover:text-ink">
               {t(`nav.${l.key}`)}
             </Link>
           ))}
@@ -38,14 +38,14 @@ export function Footer() {
 
         <FooterCol title={t("footer.more")}>
           {more.map((l) => (
-            <Link key={l.href} href={l.href} className="hover:text-ink">
+            <Link key={l.href} href={l.href} className="-my-1 py-1 hover:text-ink">
               {t(`nav.${l.key}`)}
             </Link>
           ))}
         </FooterCol>
 
         <div className="grid content-start gap-5">
-          <h2 className="t-label">{t("footer.hours")}</h2>
+          <h3 className="t-label">{t("footer.hours")}</h3>
           <dl className="grid gap-2 text-sm text-muted">
             <div className="flex justify-between gap-4">
               <dt>{t("footer.weekdays")}</dt>
@@ -75,7 +75,7 @@ export function Footer() {
         <span>
           © {new Date().getFullYear()} {site.name}. {t("footer.rights")}
         </span>
-        <a href={site.phoneHref} className="font-mono hover:text-ink">
+        <a href={site.phoneHref} className="-my-1 py-1 font-mono hover:text-ink">
           {site.phone}
         </a>
       </div>
@@ -92,8 +92,8 @@ function FooterCol({
 }) {
   return (
     <div className="grid content-start gap-5">
-      <h2 className="t-label">{title}</h2>
-      <nav className="grid gap-2.5 text-sm text-muted">{children}</nav>
+      <h3 className="t-label">{title}</h3>
+      <nav className="grid gap-1.5 text-sm text-muted">{children}</nav>
     </div>
   );
 }

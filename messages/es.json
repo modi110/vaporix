@@ -21,7 +21,9 @@
     "ctaPrimary": "Reservar cita",
     "ctaSecondary": "Ver servicios",
     "scroll": "Desliza",
-    "brandAlt": "Vaporix"
+    "brandAlt": "Vaporix",
+    "wipeHint": "Pasa el cursor para limpiar",
+    "priceFrom": "Desde 20 €"
   },
   "studio": {
     "label": "El estudio",

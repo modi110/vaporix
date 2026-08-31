@@ -21,7 +21,9 @@
     "ctaPrimary": "Book a slot",
     "ctaSecondary": "See services",
     "scroll": "Scroll",
-    "brandAlt": "Vaporix"
+    "brandAlt": "Vaporix",
+    "wipeHint": "Move your cursor to clean",
+    "priceFrom": "From 20 €"
   },
   "studio": {
     "label": "The studio",

@@ -79,6 +79,20 @@ export function Services() {
                     }`}
                   />
 
+                  {/* selection must not rest on colour alone */}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute right-5 top-5 grid size-6 place-items-center rounded-full transition-all duration-300 ${
+                      on
+                        ? "scale-100 bg-vapor text-on-accent opacity-100"
+                        : "scale-75 opacity-0"
+                    }`}
+                  >
+                    <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </span>
+
                   <VehicleArt
                     id={item.id}
                     className={`relative h-24 w-full transition-colors duration-400 ${
