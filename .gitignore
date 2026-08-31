@@ -12,3 +12,6 @@ next-env.d.ts
 
 # Never commit credentials
 *passwords*.pdf
+
+# typescript incremental build cache
+*.tsbuildinfo
