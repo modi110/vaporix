@@ -8,7 +8,6 @@ import { site } from "@/content/site";
 const main: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
   { href: "/services", key: "services" },
-  { href: "/gallery", key: "gallery" },
   { href: "/about", key: "about" },
 ];
 
@@ -16,6 +15,7 @@ const more: { href: StaticPathname; key: string }[] = [
   { href: "/pricing", key: "pricing" },
   { href: "/contact", key: "contact" },
   { href: "/book", key: "book" },
+  { href: "/account", key: "account" },
 ];
 
 export function Footer() {

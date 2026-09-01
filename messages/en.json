@@ -3,7 +3,6 @@
     "home": "Home",
     "studio": "Studio",
     "services": "Services",
-    "gallery": "Gallery",
     "about": "About",
     "pricing": "Pricing",
     "contact": "Contact",
@@ -11,7 +10,8 @@
     "menu": "Menu",
     "close": "Close",
     "language": "Language",
-    "home_aria": "Vaporix — home"
+    "home_aria": "Vaporix — home",
+    "account": "My account"
   },
   "hero": {
     "eyebrow": "Detailing & Care",
@@ -202,12 +202,6 @@
       "back": "Back to services",
       "pricingNote": "The final price depends on the size of the vehicle. See the full table on pricing."
     },
-    "gallery": {
-      "label": "Gallery",
-      "title": "Recent work.",
-      "lede": "Every car that leaves the workshop, photographed before and after.",
-      "placeholder": "Photography to come"
-    },
     "about": {
       "label": "About",
       "title": "A small workshop that works slowly.",
@@ -258,6 +252,37 @@
       "soon": "Online booking is coming shortly. For now, the fastest way to get a slot is by phone or WhatsApp.",
       "call": "Call now",
       "whatsapp": "Message on WhatsApp"
+    },
+    "account": {
+      "label": "My account",
+      "title": "Your washes, and what stands between you and the reward.",
+      "lede": "Every visit earns a stamp. On the third, 25% off the service of your choice.",
+      "greeting": "Hello, {name}.",
+      "progressLabel": "Stamps",
+      "progressNote": "You are {earned} of {total} since your last reward.",
+      "progressDone": "Card full. Your discount is waiting at your next appointment.",
+      "rewardTitle": "Your reward",
+      "rewardDesc": "25% off the next service, whatever the vehicle.",
+      "stamp": "Stamp {n}",
+      "stampEarned": "Earned",
+      "stampPending": "Pending",
+      "visitsTitle": "Your visits",
+      "visitsLede": "What we did, when, and what it cost. No small print.",
+      "included": "What was done",
+      "bay": "Bay",
+      "empty": "No visits on record yet.",
+      "demoNote": "Sample view with placeholder data. Signing in to your own account arrives with online booking.",
+      "book": "Book the next one",
+      "tasks": {
+        "steam": "Contact-free steam wash",
+        "interior": "Vacuum and dry interior",
+        "wheels": "Wheels and wheel arches",
+        "glass": "Glass inside and out",
+        "handDry": "Hand-dried with microfibre",
+        "sealant": "Hydrophobic sealant",
+        "deodorise": "Steam deodorising",
+        "tyres": "Tyre dressing"
+      }
     }
   }
 }

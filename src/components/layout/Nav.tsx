@@ -11,7 +11,6 @@ import { LocaleSwitcher } from "./LocaleSwitcher";
 const links: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
   { href: "/services", key: "services" },
-  { href: "/gallery", key: "gallery" },
   { href: "/about", key: "about" },
   { href: "/pricing", key: "pricing" },
   { href: "/contact", key: "contact" },
@@ -73,6 +72,37 @@ export function Nav() {
 
         <div className="flex items-center gap-2.5">
           <LocaleSwitcher />
+
+          {/*
+            The account lives beside the CTA rather than in the pill capsule:
+            it is a destination for people who have already bought, not another
+            marketing page, and the capsule is full at this width.
+          */}
+          <Link
+            href="/account"
+            aria-label={t("account")}
+            aria-current={pathname === "/account" ? "page" : undefined}
+            className={`grid size-10 place-items-center rounded-full border transition-colors duration-300 ${
+              pathname === "/account"
+                ? "border-ink bg-ink text-void"
+                : "border-hairline text-muted hover:border-ink hover:text-ink"
+            }`}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              className="size-[1.05rem]"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.6}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="8.4" r="3.6" />
+              <path d="M4.8 19.4a7.4 7.4 0 0 1 14.4 0" />
+            </svg>
+          </Link>
+
           <PillLink href="/book" size="sm" className="hidden sm:inline-flex">
             {t("book")}
           </PillLink>
@@ -117,6 +147,13 @@ export function Nav() {
               {t(l.key)}
             </Link>
           ))}
+          <Link
+            href="/account"
+            onClick={() => setOpen(false)}
+            className="t-h2 border-b border-hairline py-4 transition-colors duration-300 hover:text-vapor"
+          >
+            {t("account")}
+          </Link>
           <PillLink
             href="/book"
             onClick={() => setOpen(false)}

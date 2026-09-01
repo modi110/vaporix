@@ -3,7 +3,6 @@
     "home": "Inicio",
     "studio": "Estudio",
     "services": "Servicios",
-    "gallery": "Galería",
     "about": "Nosotros",
     "pricing": "Precios",
     "contact": "Contacto",
@@ -11,7 +10,8 @@
     "menu": "Menú",
     "close": "Cerrar",
     "language": "Idioma",
-    "home_aria": "Vaporix — inicio"
+    "home_aria": "Vaporix — inicio",
+    "account": "Mi cuenta"
   },
   "hero": {
     "eyebrow": "Detailing & Care",
@@ -202,12 +202,6 @@
       "back": "Volver a servicios",
       "pricingNote": "El precio final depende del tamaño del vehículo. Consulta la tabla completa en precios."
     },
-    "gallery": {
-      "label": "Galería",
-      "title": "Trabajos recientes.",
-      "lede": "Cada coche que sale del taller, fotografiado antes y después.",
-      "placeholder": "Fotografías pendientes"
-    },
     "about": {
       "label": "Nosotros",
       "title": "Un taller pequeño que trabaja despacio.",
@@ -258,6 +252,37 @@
       "soon": "La reserva online llega en breve. De momento, la forma más rápida de coger cita es por teléfono o WhatsApp.",
       "call": "Llamar ahora",
       "whatsapp": "Escribir por WhatsApp"
+    },
+    "account": {
+      "label": "Mi cuenta",
+      "title": "Tus lavados, y lo que falta para el premio.",
+      "lede": "Cada visita suma un sello. Al tercero, un 25 % de descuento en el servicio que elijas.",
+      "greeting": "Hola, {name}.",
+      "progressLabel": "Sellos",
+      "progressNote": "Llevas {earned} de {total} desde tu último premio.",
+      "progressDone": "Sellos completos. Tu descuento te espera en la próxima cita.",
+      "rewardTitle": "Tu premio",
+      "rewardDesc": "25 % de descuento en el próximo servicio, sea cual sea el vehículo.",
+      "stamp": "Sello {n}",
+      "stampEarned": "Conseguido",
+      "stampPending": "Pendiente",
+      "visitsTitle": "Tus visitas",
+      "visitsLede": "Qué hicimos, cuándo y por cuánto. Sin letra pequeña.",
+      "included": "Qué se hizo",
+      "bay": "Bahía",
+      "empty": "Todavía no hay visitas registradas.",
+      "demoNote": "Vista de ejemplo con datos de muestra. El acceso con tu cuenta llega junto con la reserva online.",
+      "book": "Reservar la siguiente",
+      "tasks": {
+        "steam": "Lavado a vapor sin contacto",
+        "interior": "Aspirado e interior en seco",
+        "wheels": "Llantas y pasos de rueda",
+        "glass": "Cristales por dentro y por fuera",
+        "handDry": "Secado a mano con microfibra",
+        "sealant": "Sellado hidrofóbico",
+        "deodorise": "Desodorización con vapor",
+        "tyres": "Brillo en neumáticos"
+      }
     }
   }
 }
