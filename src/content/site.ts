@@ -5,23 +5,22 @@
  * studio's own Google Business listing, which is also what the map on the
  * home page embeds — so the page and the listing cannot drift apart.
  */
+/** E.164, the one place the number is written down. */
+const PHONE_E164 = "+34639876686";
+
 export const site = {
   name: "Vaporix",
   legalName: "Vaporix car wash",
   tagline: "Detailing & Care",
 
   /**
-   * As supplied by the studio. Note that the Google listing carries
-   * +34 639 87 66 86 instead; if that is the live line, change it here and
-   * every link on the site follows.
+   * One line, everywhere: the call link, the WhatsApp link and the number on
+   * the page all come from here, so there is nothing to keep in sync.
+   * Displayed in the Spanish grouping; the href stays E.164.
    */
-  phone: "8-800-10-500",
-  phoneHref: "tel:880010500",
-  /**
-   * WhatsApp needs a full international number, which the line above does not
-   * carry, so this uses the mobile on the Google listing.
-   */
-  whatsapp: "https://wa.me/34639876686",
+  phone: "+34 639 87 66 86",
+  phoneHref: `tel:${PHONE_E164}`,
+  whatsapp: `https://wa.me/${PHONE_E164.slice(1)}`,
   email: "hola@vaporix.es",
 
   address: {
@@ -58,7 +57,11 @@ export const site = {
 
   social: [
     { label: "Instagram", icon: "instagram", href: "#" },
-    { label: "WhatsApp", icon: "whatsapp", href: "https://wa.me/34639876686" },
+    {
+      label: "WhatsApp",
+      icon: "whatsapp",
+      href: `https://wa.me/${PHONE_E164.slice(1)}`,
+    },
   ],
 } as const;
 
