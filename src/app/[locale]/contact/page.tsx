@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { PillAnchor } from "@/components/ui/PillButton";
-import { site } from "@/content/site";
+import { site, addressLine } from "@/content/site";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -74,7 +74,7 @@ function Contact() {
           <aside className="grid content-start gap-8" data-reveal>
             <div className="grid gap-3">
               <h2 className="t-label">{p("findUs")}</h2>
-              <p className="text-lg">{site.address}</p>
+              <p className="text-lg">{addressLine}</p>
               <a
                 href={site.phoneHref}
                 className="font-mono text-lg text-vapor-ink hover:underline"
@@ -93,23 +93,32 @@ function Contact() {
               <h2 className="t-label">{p("hours")}</h2>
               <dl className="grid gap-2 text-sm">
                 <div className="flex justify-between gap-6 border-b border-hairline pb-2">
-                  <dt className="text-muted">{f("weekdays")}</dt>
-                  <dd className="font-mono tabular-nums">09:00 – 20:00</dd>
-                </div>
-                <div className="flex justify-between gap-6">
-                  <dt className="text-muted">{f("saturday")}</dt>
-                  <dd className="font-mono tabular-nums">10:00 – 14:00</dd>
+                  <dt className="text-muted">{f("dailyWindow")}</dt>
+                  <dd className="font-mono tabular-nums">
+                    {site.hours.open} – {site.hours.close}
+                  </dd>
                 </div>
               </dl>
+              <a
+                href={site.mapsUrl}
+                className="text-sm text-muted hover:text-ink"
+              >
+                {f("hoursOnGoogle")}
+              </a>
             </div>
 
-            {/* A real map embed replaces this once the address is confirmed. */}
-            <div
-              aria-hidden="true"
-              className="relative aspect-[4/3] overflow-hidden rounded-card border border-hairline bg-surface"
-            >
-              <div className="tint-grid absolute inset-0" />
-              <div className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-vapor shadow-[0_0_28px_6px_rgba(var(--vapor-rgb),.45)]" />
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-card border border-hairline">
+              <iframe
+                src={site.mapEmbedUrl}
+                title={p("mapTitle")}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="map-embed absolute inset-0 size-full border-0"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[rgba(var(--vapor-rgb),0.12)] transition-opacity duration-500 group-hover:opacity-0"
+              />
             </div>
           </aside>
         </div>

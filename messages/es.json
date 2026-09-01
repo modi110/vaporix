@@ -10,7 +10,7 @@
     "menu": "Menú",
     "close": "Cerrar",
     "language": "Idioma",
-    "home_aria": "Vaporix — inicio",
+    "home_aria": "Vaporix, inicio",
     "account": "Mi cuenta",
     "theme": "Cambiar tema"
   },
@@ -18,23 +18,24 @@
     "eyebrow": "Detailing & Care",
     "titleLine1": "Devolvemos el brillo",
     "titleLine2": "del primer día.",
-    "lede": "Detailing a vapor con acabado de estudio. Cuidamos el interior y el exterior de tu coche milímetro a milímetro, sin una sola gota de más.",
+    "lede": "Lavamos con vapor, no con manguera. El coche vuelve limpio por dentro y por fuera, con mucha menos agua y sin que nada roce la pintura.",
     "ctaPrimary": "Reservar cita",
     "ctaSecondary": "Ver servicios",
     "scroll": "Desliza",
     "brandAlt": "Vaporix",
-    "priceFrom": "Desde 20 €"
+    "priceFrom": "Desde 15 €"
   },
   "studio": {
     "label": "El estudio",
     "title": "Hacemos menos servicios, y los hacemos mejor.",
-    "lede": "Cuando abrimos el primer taller decidimos dos cosas: no aceptar más coches de los que podemos tratar bien, y explicar siempre qué le hacemos a cada uno. Seguimos igual.",
-    "bay": "Bahía 02 · Vapor + pulido"
+    "lede": "Cuando abrimos decidimos dos cosas: no aceptar más coches de los que caben en un día, y contarte siempre qué le hemos hecho al tuyo. Seguimos igual.",
+    "bay": "Nuestra nave en Buñol",
+    "photoAlt": "La nave de Vaporix en Buñol, con un coche en el centro bajo los lucernarios."
   },
   "services": {
     "label": "Servicios",
-    "title": "Rápido, cuidadoso y sin sorpresas en la factura.",
-    "lede": "Trabajamos por presupuesto cerrado. Ves el precio antes de dejarnos las llaves.",
+    "title": "Sabes lo que cuesta antes de dejarnos las llaves.",
+    "lede": "Trabajamos con presupuesto cerrado. Si aparece algo por el camino, te llamamos antes de tocarlo.",
     "cta": "Pedir presupuesto",
     "from": "Desde",
     "duration": "Duración",
@@ -47,15 +48,15 @@
       },
       "dry-interior": {
         "name": "Limpieza interior en seco",
-        "short": "Tapicería, plásticos y techo tratados en seco. El coche se entrega listo para usar."
+        "short": "Tapicería, plásticos y techo tratados en seco. Sale sin humedad, así que puedes conducirlo al salir."
       },
       "paint-correction": {
         "name": "Pulido de carrocería y faros",
-        "short": "Eliminamos microrrayas y holograma y devolvemos el brillo espejo."
+        "short": "Quitamos las microrrayas y los hologramas que deja el lavado de rodillo, y recuperamos el reflejo."
       },
       "ceramic-coating": {
         "name": "Tratamiento cerámico",
-        "short": "Capa dura e hidrofóbica que protege el color durante años."
+        "short": "Capa dura e hidrófuga: el agua resbala y a la suciedad le cuesta mucho más agarrarse."
       },
       "paint-protection-film": {
         "name": "Lámina de protección de pintura",
@@ -112,7 +113,7 @@
     }
   },
   "cta": {
-    "title": "Tu coche ya está esperando esta transformación.",
+    "title": "Dinos qué coche traes y te buscamos hueco.",
     "book": "Reservar cita",
     "call": "Llamar"
   },
@@ -123,13 +124,13 @@
     "legal": "Aviso legal",
     "rights": "Todos los derechos reservados.",
     "hours": "Horario",
-    "weekdays": "Lunes a viernes",
-    "saturday": "Sábado"
+    "dailyWindow": "Abrimos",
+    "hoursOnGoogle": "Ver el horario del día en Google"
   },
   "meta": {
     "home": {
-      "title": "Vaporix — Detailing & Care",
-      "description": "Estudio de detailing a vapor. Lavado sin contacto, pulido, tratamiento cerámico y protección de pintura con acabado de estudio."
+      "title": "Vaporix · Detailing a vapor en Buñol, Valencia",
+      "description": "Estudio de detailing a vapor en Buñol. Lavado sin contacto, interior en seco, pulido, tratamiento cerámico y protección de pintura, con presupuesto cerrado."
     }
   },
   "vehicles": {
@@ -191,7 +192,7 @@
     "servicesIndex": {
       "label": "Servicios",
       "title": "Todo lo que le hacemos a tu coche.",
-      "lede": "Nueve tratamientos. Cada uno con su tiempo, su producto y su precio cerrado."
+      "lede": "Nueve tratamientos, cada uno con su tiempo y su precio cerrado."
     },
     "serviceDetail": {
       "label": "Servicio",
@@ -208,7 +209,7 @@
       "title": "Un taller pequeño que trabaja despacio.",
       "lede": "Somos un equipo corto y lo preferimos así.",
       "p1": "Vaporix nació porque estábamos cansados de dejar el coche en sitios donde nadie te explica qué te han hecho. Abrimos con una sola bahía, una máquina de vapor y la norma de no aceptar más trabajo del que cabe en un día.",
-      "p2": "Seguimos con la misma norma. Trabajamos con vapor porque gasta noventa por ciento menos agua que una manguera y no araña la pintura. Y te contamos exactamente qué producto lleva tu coche, siempre.",
+      "p2": "Seguimos con la misma norma. Usamos vapor porque gasta mucha menos agua que una manguera y limpia sin frotar la pintura. Y si quieres saber qué producto lleva tu coche, te lo decimos.",
       "valuesTitle": "Cómo trabajamos",
       "values": {
         "care": {
@@ -227,15 +228,15 @@
     },
     "pricing": {
       "label": "Precios",
-      "title": "La tarifa completa, sin letra pequeña.",
+      "title": "Esto es lo que cuesta cada cosa.",
       "lede": "El precio depende del tamaño del vehículo y del servicio. Nada más.",
       "note": "Precios con IVA incluido. Los vehículos con suciedad extrema o pelo de mascota pueden llevar un suplemento, que te decimos antes de empezar.",
       "vehicle": "Vehículo"
     },
     "contact": {
       "label": "Contacto",
-      "title": "Escríbenos y te decimos hueco.",
-      "lede": "Respondemos el mismo día laborable.",
+      "title": "Cuéntanos qué coche traes.",
+      "lede": "Escríbenos y te decimos qué huecos quedan esta semana.",
       "name": "Tu nombre",
       "phone": "Teléfono",
       "vehicle": "Vehículo",
@@ -244,7 +245,8 @@
       "findUs": "Dónde estamos",
       "hours": "Horario",
       "callUs": "Llámanos",
-      "formNote": "Este formulario todavía no envía nada. Llámanos o escríbenos por WhatsApp mientras tanto."
+      "formNote": "Este formulario todavía no envía nada. Llámanos o escríbenos por WhatsApp mientras tanto.",
+      "mapTitle": "Mapa con la ubicación de Vaporix en Buñol"
     },
     "book": {
       "label": "Reservar",
@@ -268,7 +270,7 @@
       "stampEarned": "Conseguido",
       "stampPending": "Pendiente",
       "visitsTitle": "Tus visitas",
-      "visitsLede": "Qué hicimos, cuándo y por cuánto. Sin letra pequeña.",
+      "visitsLede": "Qué hicimos, cuándo y qué costó.",
       "included": "Qué se hizo",
       "bay": "Bahía",
       "empty": "Todavía no hay visitas registradas.",
@@ -285,5 +287,14 @@
         "tyres": "Brillo en neumáticos"
       }
     }
+  },
+  "map": {
+    "label": "Dónde estamos",
+    "title": "Aquí es donde dejas el coche.",
+    "hours": "Abrimos",
+    "phone": "Teléfono",
+    "hoursNote": "El horario del día lo tienes siempre al día en nuestra ficha de Google, festivos incluidos.",
+    "directions": "Cómo llegar",
+    "iframeTitle": "Mapa con la ubicación de {name}"
   }
 }

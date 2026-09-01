@@ -411,6 +411,14 @@
   }
 }
 
+/* Google's embed cannot be restyled, so a white map would sit on the black
+   page like a hole. Inverting and rotating the hue 180deg turns it into a
+   dark map with roughly the right colours back: the standard trick, and the
+   only one that works without an API key. Light mode leaves it alone. */
+:root[data-theme="dark"] .map-embed {
+  filter: invert(0.92) hue-rotate(180deg) saturate(0.82) brightness(0.95);
+}
+
 /* The toggle offers the theme you are not in, so only one icon ever shows.
    Keyed off the attribute the head script writes, never off React state. */
 .theme-icon-moon {

@@ -10,7 +10,7 @@
     "menu": "Menu",
     "close": "Close",
     "language": "Language",
-    "home_aria": "Vaporix — home",
+    "home_aria": "Vaporix, home",
     "account": "My account",
     "theme": "Switch theme"
   },
@@ -18,23 +18,24 @@
     "eyebrow": "Detailing & Care",
     "titleLine1": "We bring back",
     "titleLine2": "the first-day shine.",
-    "lede": "Steam detailing with a studio finish. We look after the inside and the outside of your car millimetre by millimetre, without a drop wasted.",
+    "lede": "We wash with steam, not a hose. Your car comes back clean inside and out, on a fraction of the water, with nothing rubbing against the paint.",
     "ctaPrimary": "Book a slot",
     "ctaSecondary": "See services",
     "scroll": "Scroll",
     "brandAlt": "Vaporix",
-    "priceFrom": "From 20 €"
+    "priceFrom": "From €15"
   },
   "studio": {
     "label": "The studio",
     "title": "We do fewer services, and we do them better.",
-    "lede": "When we opened the first workshop we settled two things: never take in more cars than we can treat properly, and always explain what we did to each one. Nothing has changed.",
-    "bay": "Bay 02 · Steam + polish"
+    "lede": "When we opened we decided two things: never take on more cars than fit in a day, and always tell you what we did to yours. That has not changed.",
+    "bay": "Our workshop in Buñol",
+    "photoAlt": "The Vaporix workshop in Buñol, a car parked in the middle of the floor under the roof lights."
   },
   "services": {
     "label": "Services",
-    "title": "Fast, careful, and no surprises on the invoice.",
-    "lede": "We quote a fixed price. You see the number before you hand over the keys.",
+    "title": "You know the price before you hand over the keys.",
+    "lede": "We work to a fixed quote. If something turns up along the way, we call you before we touch it.",
     "cta": "Request a quote",
     "from": "From",
     "duration": "Duration",
@@ -47,15 +48,15 @@
       },
       "dry-interior": {
         "name": "Dry interior clean",
-        "short": "Upholstery, trim and headliner treated dry. The car leaves ready to drive."
+        "short": "Upholstery, plastics and headlining cleaned dry. It leaves with no damp, so you can drive it straight away."
       },
       "paint-correction": {
         "name": "Paint and headlight correction",
-        "short": "We remove micro-scratches and holograms and bring back the mirror finish."
+        "short": "We take out the fine scratches and holograms left by roller washes, and bring the reflection back."
       },
       "ceramic-coating": {
         "name": "Ceramic coating",
-        "short": "A hard, hydrophobic layer that protects the colour for years."
+        "short": "A hard, water-repellent layer: rain slides off and dirt has a much harder time sticking."
       },
       "paint-protection-film": {
         "name": "Paint protection film",
@@ -112,7 +113,7 @@
     }
   },
   "cta": {
-    "title": "Your car is already waiting for this transformation.",
+    "title": "Tell us what you drive and we will find you a slot.",
     "book": "Book a slot",
     "call": "Call us"
   },
@@ -123,13 +124,13 @@
     "legal": "Legal notice",
     "rights": "All rights reserved.",
     "hours": "Opening hours",
-    "weekdays": "Monday to Friday",
-    "saturday": "Saturday"
+    "dailyWindow": "Open",
+    "hoursOnGoogle": "See today's hours on Google"
   },
   "meta": {
     "home": {
-      "title": "Vaporix — Detailing & Care",
-      "description": "Steam detailing studio. Touch-free washing, paint correction, ceramic coating and paint protection with a studio finish."
+      "title": "Vaporix · Steam detailing in Buñol, Valencia",
+      "description": "Steam detailing studio in Buñol. Contact-free washing, dry interiors, paint correction, ceramic coating and paint protection, all on a fixed quote."
     }
   },
   "vehicles": {
@@ -191,7 +192,7 @@
     "servicesIndex": {
       "label": "Services",
       "title": "Everything we do to your car.",
-      "lede": "Nine treatments. Each with its own time, its own products and a fixed price."
+      "lede": "Nine treatments, each with its own time and a fixed price."
     },
     "serviceDetail": {
       "label": "Service",
@@ -208,7 +209,7 @@
       "title": "A small workshop that works slowly.",
       "lede": "We are a short team and we like it that way.",
       "p1": "Vaporix started because we were tired of leaving a car somewhere and getting it back with no idea what had been done to it. We opened with one bay, one steam machine and a rule: never take on more work than fits in a day.",
-      "p2": "The rule still holds. We use steam because it uses ninety per cent less water than a hose and never scratches the paint. And we tell you exactly what went on your car, every time.",
+      "p2": "The rule still holds. We use steam because it takes far less water than a hose and cleans without rubbing the paint. And if you want to know what went on your car, we will tell you.",
       "valuesTitle": "How we work",
       "values": {
         "care": {
@@ -227,15 +228,15 @@
     },
     "pricing": {
       "label": "Pricing",
-      "title": "The full rate card, no small print.",
+      "title": "Here is what each thing costs.",
       "lede": "The price depends on the size of the vehicle and the service. Nothing else.",
       "note": "Prices include VAT. Vehicles with extreme soiling or pet hair may carry a supplement, which we tell you before we start.",
       "vehicle": "Vehicle"
     },
     "contact": {
       "label": "Contact",
-      "title": "Write to us and we will find you a slot.",
-      "lede": "We reply the same working day.",
+      "title": "Tell us what you drive.",
+      "lede": "Message us and we will tell you what is still free this week.",
       "name": "Your name",
       "phone": "Phone",
       "vehicle": "Vehicle",
@@ -244,7 +245,8 @@
       "findUs": "Where we are",
       "hours": "Opening hours",
       "callUs": "Call us",
-      "formNote": "This form does not send anything yet. Call or message us on WhatsApp in the meantime."
+      "formNote": "This form does not send anything yet. Call or message us on WhatsApp in the meantime.",
+      "mapTitle": "Map showing Vaporix in Buñol"
     },
     "book": {
       "label": "Book",
@@ -268,7 +270,7 @@
       "stampEarned": "Earned",
       "stampPending": "Pending",
       "visitsTitle": "Your visits",
-      "visitsLede": "What we did, when, and what it cost. No small print.",
+      "visitsLede": "What we did, when, and what it cost.",
       "included": "What was done",
       "bay": "Bay",
       "empty": "No visits on record yet.",
@@ -285,5 +287,14 @@
         "tyres": "Tyre dressing"
       }
     }
+  },
+  "map": {
+    "label": "Where we are",
+    "title": "This is where you drop the car.",
+    "hours": "Open",
+    "phone": "Phone",
+    "hoursNote": "Google keeps the day-by-day schedule, bank holidays included, and our listing is the version we update.",
+    "directions": "Get directions",
+    "iframeTitle": "Map showing the location of {name}"
   }
 }

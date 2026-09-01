@@ -10,14 +10,14 @@ export const THEME_KEY = "vaporix:theme";
  * cannot act early enough to prevent that, which is why the choice lives on
  * the element rather than in a provider.
  *
- * Dark is the default. The studio is a dark room and that is the brand; light
- * is a deliberate choice, so a stored preference is the only thing that turns
- * it on. Swap the fallback for `matchMedia("(prefers-color-scheme: light)")`
- * if the client would rather follow the operating system.
+ * A stored choice wins; otherwise the page follows the operating system, and
+ * falls back to dark if neither is readable. Only an explicit toggle writes
+ * to storage, so a visitor who has never touched it keeps tracking their
+ * system for as long as they never do.
  */
 export const themeScript = `try{var t=localStorage.getItem(${JSON.stringify(
   THEME_KEY,
-)});document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}`;
+)});if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="dark"}`;
 
 /**
  * Holds no React state on purpose: both icons are always in the DOM and CSS
