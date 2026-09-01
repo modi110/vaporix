@@ -7,6 +7,7 @@ import type { StaticPathname } from "@/i18n/routing";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { PillLink } from "@/components/ui/PillButton";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
@@ -14,6 +15,7 @@ const links: { href: StaticPathname; key: string }[] = [
   { href: "/about", key: "about" },
   { href: "/pricing", key: "pricing" },
   { href: "/contact", key: "contact" },
+  { href: "/account", key: "account" },
 ];
 
 export function Nav() {
@@ -50,7 +52,7 @@ export function Nav() {
           <Wordmark className="animate-flicker" />
         </Link>
 
-        <nav className="hidden items-center gap-0.5 rounded-pill border border-hairline bg-white/[0.06] p-1.5 lg:flex">
+        <nav className="hidden items-center gap-0.5 rounded-pill border border-hairline tint-weak p-1.5 lg:flex">
           {links.map((l) => {
             const active = pathname === l.href;
             return (
@@ -58,7 +60,7 @@ export function Nav() {
                 key={l.href}
                 href={l.href}
                 aria-current={active ? "page" : undefined}
-                className={`rounded-pill px-3.5 py-2.5 text-[0.8125rem] xl:px-4.5 font-medium uppercase tracking-[0.11em] transition-colors duration-300 ${
+                className={`whitespace-nowrap rounded-pill px-3.5 py-2.5 text-[0.8125rem] font-medium uppercase tracking-[0.11em] xl:px-4.5 transition-colors duration-300 ${
                   active
                     ? "bg-ink text-void"
                     : "text-muted hover:text-ink"
@@ -72,36 +74,7 @@ export function Nav() {
 
         <div className="flex items-center gap-2.5">
           <LocaleSwitcher />
-
-          {/*
-            The account lives beside the CTA rather than in the pill capsule:
-            it is a destination for people who have already bought, not another
-            marketing page, and the capsule is full at this width.
-          */}
-          <Link
-            href="/account"
-            aria-label={t("account")}
-            aria-current={pathname === "/account" ? "page" : undefined}
-            className={`grid size-10 place-items-center rounded-full border transition-colors duration-300 ${
-              pathname === "/account"
-                ? "border-ink bg-ink text-void"
-                : "border-hairline text-muted hover:border-ink hover:text-ink"
-            }`}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-              className="size-[1.05rem]"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={1.6}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="8.4" r="3.6" />
-              <path d="M4.8 19.4a7.4 7.4 0 0 1 14.4 0" />
-            </svg>
-          </Link>
+          <ThemeToggle />
 
           <PillLink href="/book" size="sm" className="hidden sm:inline-flex">
             {t("book")}
@@ -142,18 +115,11 @@ export function Nav() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="t-h2 border-b border-hairline py-4 transition-colors duration-300 hover:text-vapor"
+              className="t-h2 border-b border-hairline py-4 transition-colors duration-300 hover:text-vapor-ink-ink-ink"
             >
               {t(l.key)}
             </Link>
           ))}
-          <Link
-            href="/account"
-            onClick={() => setOpen(false)}
-            className="t-h2 border-b border-hairline py-4 transition-colors duration-300 hover:text-vapor"
-          >
-            {t("account")}
-          </Link>
           <PillLink
             href="/book"
             onClick={() => setOpen(false)}

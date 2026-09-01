@@ -125,7 +125,7 @@ function Account() {
                             year: "numeric",
                           })}
                         </time>
-                        <span className="font-mono tabular-nums text-vapor">
+                        <span className="font-mono tabular-nums text-vapor-ink">
                           {visit.price} €
                         </span>
                       </div>
@@ -138,7 +138,7 @@ function Account() {
                               key={task}
                               className="flex items-center gap-2 rounded-pill border border-hairline px-3.5 py-1.5 text-[0.8125rem] text-muted"
                             >
-                              <Tick className="size-3 shrink-0 text-vapor" />
+                              <Tick className="size-3 shrink-0 text-vapor-ink" />
                               {p(`tasks.${task}`)}
                             </li>
                           ))}
@@ -196,7 +196,7 @@ function StampCard({
     >
       <div className="flex items-baseline justify-between gap-4">
         <h2 className="t-label">{p("progressLabel")}</h2>
-        <p className="font-mono tabular-nums text-vapor">
+        <p className="font-mono tabular-nums text-vapor-ink">
           {earned}/{needed}
         </p>
       </div>
@@ -208,7 +208,7 @@ function StampCard({
         />
         <span
           aria-hidden="true"
-          className="absolute left-7 top-7 h-px -translate-y-1/2 bg-vapor transition-[width] duration-700"
+          className="absolute left-7 top-7 h-px -translate-y-1/2 bg-vapor-ink transition-[width] duration-700"
           style={{ width: `calc((100% - 3.5rem) * ${Math.max(fill, 0)})` }}
         />
 
@@ -244,7 +244,7 @@ function StampCard({
       </p>
 
       <div className="grid gap-2 border-t border-hairline pt-6">
-        <h3 className="t-label text-vapor">{p("rewardTitle")}</h3>
+        <h3 className="t-label text-vapor-ink">{p("rewardTitle")}</h3>
         <p className="text-sm text-muted">{p("rewardDesc")}</p>
       </div>
     </div>

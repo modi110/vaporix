@@ -57,7 +57,7 @@ function Contact() {
               <textarea
                 id="message"
                 rows={4}
-                className="resize-y border-b border-hairline bg-transparent pb-2 text-base outline-none transition-colors duration-300 focus:border-vapor"
+                className="resize-y border-b border-hairline bg-transparent pb-2 text-base outline-none transition-colors duration-300 focus:border-vapor-ink"
               />
             </div>
 
@@ -77,7 +77,7 @@ function Contact() {
               <p className="text-lg">{site.address}</p>
               <a
                 href={site.phoneHref}
-                className="font-mono text-lg text-vapor hover:underline"
+                className="font-mono text-lg text-vapor-ink hover:underline"
               >
                 {site.phone}
               </a>
@@ -108,8 +108,8 @@ function Contact() {
               aria-hidden="true"
               className="relative aspect-[4/3] overflow-hidden rounded-card border border-hairline bg-surface"
             >
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] bg-[size:38px_38px]" />
-              <div className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-vapor shadow-[0_0_28px_6px_rgba(47,210,255,.45)]" />
+              <div className="tint-grid absolute inset-0" />
+              <div className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-vapor shadow-[0_0_28px_6px_rgba(var(--vapor-rgb),.45)]" />
             </div>
           </aside>
         </div>
@@ -139,7 +139,7 @@ function Field({
         name={id}
         type={type}
         autoComplete={autoComplete}
-        className="border-b border-hairline bg-transparent pb-2 text-base outline-none transition-colors duration-300 focus:border-vapor"
+        className="border-b border-hairline bg-transparent pb-2 text-base outline-none transition-colors duration-300 focus:border-vapor-ink"
       />
     </div>
   );

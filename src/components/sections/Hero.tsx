@@ -1,12 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "@/components/ui/SplitText";
 import { PillLink } from "@/components/ui/PillButton";
-import { GrimeLayer } from "@/components/motion/GrimeLayer";
 import { CarStage } from "./CarStage";
 import { SocialIcon, type SocialIconId } from "@/components/ui/SocialIcon";
 import { site } from "@/content/site";
@@ -14,19 +13,14 @@ import { site } from "@/content/site";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * The hero opens dirty and you clean it.
+ * The car sits lit at the back of the stage, the copy in front of it.
  *
- * Layering matters here: the car and its light sit at the back, the grime
- * covers them, and every word sits above both. Text legibility therefore
- * never depends on how much a visitor has wiped — the effect is pure payoff,
- * not a gate on the content.
+ * A left-to-right scrim between the two means the text never depends on the
+ * artwork behind it for legibility, however far the car extends.
  */
 export function Hero() {
   const t = useTranslations("hero");
   const root = useRef<HTMLElement>(null);
-  const [clean, setClean] = useState(false);
-
-  const handleCleared = useCallback(() => setClean(true), []);
 
   useEffect(() => {
     const el = root.current;
@@ -98,31 +92,19 @@ export function Hero() {
       ref={root}
       className="relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-32"
     >
-      {/* what the grime is hiding */}
+      {/* the car under studio light */}
       <div
         aria-hidden="true"
         className="hero-stage absolute inset-0 z-0"
       >
         <div className="absolute inset-y-0 right-[-6%] flex w-[88%] items-center lg:w-[66%]">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_62%_54%_at_50%_50%,rgba(var(--vapor-rgb),.18),transparent_72%)]" />
-          <CarStage
-            className={`w-full transition-[filter,opacity] duration-[1200ms] ${
-              clean
-                ? "opacity-100 drop-shadow-[0_0_70px_rgba(47,210,255,0.26)]"
-                : "opacity-90"
-            }`}
-          />
+          <CarStage className="w-full drop-shadow-[0_0_70px_rgba(var(--vapor-rgb),0.26)]" />
         </div>
         {/* the copy always sits on solid ground, however far the car extends */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-void)_12%,rgba(0,0,0,.74)_38%,rgba(0,0,0,.16)_62%,transparent_84%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-void)_12%,rgba(var(--scrim-rgb),var(--scrim-a1))_38%,rgba(var(--scrim-rgb),var(--scrim-a2))_62%,transparent_84%)]" />
         <div className="absolute inset-x-0 bottom-0 h-1/4 bg-[linear-gradient(to_top,var(--color-void),transparent)]" />
       </div>
-
-      {/* the dirt itself */}
-      <GrimeLayer
-        className="absolute inset-0 z-[1] h-full w-full"
-        onCleared={handleCleared}
-      />
 
       {/* social rail */}
       <div className="absolute left-[var(--gutter)] top-1/2 z-[3] hidden -translate-y-1/2 flex-col gap-2.5 xl:flex">
@@ -138,10 +120,9 @@ export function Hero() {
         ))}
       </div>
 
-      {/* every word stays above the grime */}
       <div className="hero-copy wrap relative z-[2] grid max-w-2xl gap-7">
         <p className="flex items-center gap-3.5">
-          <span className="hero-rule h-px w-14 origin-left bg-vapor" />
+          <span className="hero-rule h-px w-14 origin-left bg-vapor-ink" />
           <span className="hero-eyebrow-text t-label">{t("eyebrow")}</span>
         </p>
 

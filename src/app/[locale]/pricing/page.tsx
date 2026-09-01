@@ -51,7 +51,7 @@ function Pricing() {
               className="grid gap-6 rounded-card border border-hairline bg-surface p-7 md:grid-cols-[0.42fr_1fr] md:items-center md:gap-10"
             >
               <div className="flex items-center gap-5">
-                <VehicleArt id={vehicle.id} className="h-16 w-28 shrink-0 text-vapor" />
+                <VehicleArt id={vehicle.id} className="h-16 w-28 shrink-0 text-vapor-ink" />
                 <div>
                   <h2 className="text-lg font-medium tracking-[-0.02em]">
                     {v(`items.${vehicle.id}.name`)}
@@ -69,7 +69,7 @@ function Pricing() {
                     className="flex items-baseline justify-between gap-4 border-b border-hairline py-3 last:border-b-0"
                   >
                     <dt className="text-sm">{v(`packages.${pkg.id}.name`)}</dt>
-                    <dd className="font-mono font-medium tabular-nums text-vapor">
+                    <dd className="font-mono font-medium tabular-nums text-vapor-ink">
                       {pkg.price} €
                     </dd>
                   </div>

@@ -41,10 +41,22 @@ export function VaporBeams() {
         if (!ctx) return;
 
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        const rgb =
-          getComputedStyle(document.documentElement)
-            .getPropertyValue("--vapor-rgb")
-            .trim() || "47,210,255";
+
+        /**
+         * The canvas paints outside CSS, so it reads the theme's own tokens
+         * instead of hardcoding a colour. The blend matters as much as the
+         * hue: additive light reads on a dark page and disappears on a pale
+         * one, where the beams have to darken what is behind them instead.
+         */
+        let rgb = "47,210,255";
+        let blend: GlobalCompositeOperation = "lighter";
+
+        const readTheme = () => {
+          const css = getComputedStyle(document.documentElement);
+          rgb = css.getPropertyValue("--vapor-rgb").trim() || rgb;
+          blend = (css.getPropertyValue("--beam-blend").trim() ||
+            "lighter") as GlobalCompositeOperation;
+        };
 
         let w = 0;
         let h = 0;
@@ -80,7 +92,7 @@ export function VaporBeams() {
           velocity *= 0.92;
 
           ctx.clearRect(0, 0, w, h);
-          ctx.globalCompositeOperation = "lighter";
+          ctx.globalCompositeOperation = blend;
 
           for (const s of streaks) {
             s.y += (s.sp + boost) * dpr;
@@ -103,13 +115,16 @@ export function VaporBeams() {
           }
         };
 
+        readTheme();
         size();
         window.addEventListener("resize", size);
+        window.addEventListener("vaporix:themechange", readTheme);
         gsap.ticker.add(render);
 
         return () => {
           gsap.ticker.remove(render);
           window.removeEventListener("resize", size);
+          window.removeEventListener("vaporix:themechange", readTheme);
           trigger.kill();
         };
       },

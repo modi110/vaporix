@@ -69,7 +69,7 @@ function ServiceDetail({ slug }: { slug: string }) {
           >
             <div className="flex items-baseline justify-between gap-4 border-b border-hairline pb-4">
               <span className="t-label">{d("priceFrom")}</span>
-              <span className="font-mono text-2xl font-medium tabular-nums text-vapor">
+              <span className="font-mono text-2xl font-medium tabular-nums text-vapor-ink">
                 {service.priceFrom} €
               </span>
             </div>
@@ -96,7 +96,7 @@ function ServiceDetail({ slug }: { slug: string }) {
                   href={{ pathname: "/services/[slug]", params: { slug: s.slug } }}
                   className="group flex h-full flex-col gap-3 rounded-card border border-hairline bg-surface p-6 transition-colors duration-400 hover:border-vapor/50"
                 >
-                  <h3 className="font-medium transition-colors duration-300 group-hover:text-vapor">
+                  <h3 className="font-medium transition-colors duration-300 group-hover:text-vapor-ink-ink-ink">
                     {t(`items.${s.slug}.name`)}
                   </h3>
                   <p className="t-lede text-sm">{t(`items.${s.slug}.short`)}</p>

@@ -60,7 +60,7 @@ export function Preloader() {
       const tl = gsap.timeline({ onComplete: release });
 
       if (reduce) {
-        tl.set(paths, { strokeDashoffset: 0, fill: "var(--color-vapor)" }).to(
+        tl.set(paths, { strokeDashoffset: 0, fill: "var(--color-vapor-ink)" }).to(
           el,
           { autoAlpha: 0, duration: 0.2 },
           "+=0.1",
@@ -74,7 +74,7 @@ export function Preloader() {
         ease: "power2.inOut",
         stagger: 0.08,
       })
-        .to(paths, { fill: "var(--color-vapor)", duration: 0.45 }, "-=0.25")
+        .to(paths, { fill: "var(--color-vapor-ink)", duration: 0.45 }, "-=0.25")
         .to(".preloader-word", { autoAlpha: 1, y: 0, duration: 0.5 }, "-=0.3")
         .to(
           ".preloader-bar-fill",
@@ -100,7 +100,7 @@ export function Preloader() {
       <div className="grid justify-items-center gap-8">
         <svg
           viewBox={MONOGRAM_VIEWBOX}
-          className="w-[min(240px,56vw)] drop-shadow-[0_0_18px_rgba(47,210,255,0.55)]"
+          className="w-[min(240px,56vw)] drop-shadow-[0_0_18px_rgba(var(--vapor-rgb),0.55)]"
         >
           <g transform="skewX(-8) translate(14,0)">
             {MONOGRAM_PATHS.map((d, i) => (
@@ -109,8 +109,8 @@ export function Preloader() {
                 d={d}
                 fillRule={i === 1 ? "evenodd" : undefined}
                 className="preloader-path"
-                fill="rgba(47,210,255,0)"
-                stroke="var(--color-vapor)"
+                fill="rgba(var(--vapor-rgb),0)"
+                stroke="var(--color-vapor-ink)"
                 strokeWidth={2.5}
                 strokeLinejoin="miter"
               />

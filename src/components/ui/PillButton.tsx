@@ -14,10 +14,10 @@ const base =
 
 const variants: Record<Variant, string> = {
   solid:
-    "bg-vapor text-on-accent hover:shadow-[0_0_46px_-8px_rgba(47,210,255,0.75)]",
+    "bg-vapor text-on-accent hover:shadow-[0_0_46px_-8px_rgba(var(--vapor-rgb),0.75)]",
   ghost:
     "border border-hairline-strong text-ink hover:border-vapor " +
-    "hover:shadow-[0_0_34px_-12px_rgba(47,210,255,0.6)]",
+    "hover:shadow-[0_0_34px_-12px_rgba(var(--vapor-rgb),0.6)]",
 };
 
 const sizes: Record<Size, string> = {
@@ -75,7 +75,7 @@ function Inner({ children }: { children: ReactNode }) {
         className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(180px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.55), transparent 65%)",
+            "radial-gradient(180px circle at var(--mx,50%) var(--my,50%), rgba(var(--sheen-rgb),.55), transparent 65%)",
         }}
       />
       {/* arc of light travelling the rim */}

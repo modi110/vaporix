@@ -96,7 +96,7 @@ export function Services() {
                   <VehicleArt
                     id={item.id}
                     className={`relative h-24 w-full transition-colors duration-400 ${
-                      on ? "text-vapor" : "text-muted group-hover:text-ink"
+                      on ? "text-vapor-ink" : "text-muted group-hover:text-ink"
                     }`}
                   />
 
@@ -114,7 +114,7 @@ export function Services() {
                     <span className="t-label">{v("from")}</span>
                     <span
                       className={`font-mono text-xl font-medium tabular-nums transition-colors duration-400 ${
-                        on ? "text-vapor" : "text-ink"
+                        on ? "text-vapor-ink" : "text-ink"
                       }`}
                     >
                       {startingPrice(item)} €
@@ -161,7 +161,7 @@ export function Services() {
                   <h3 className="text-lg font-medium tracking-[-0.02em]">
                     {v(`packages.${pkg.id}.name`)}
                   </h3>
-                  <b className="shrink-0 font-mono text-2xl font-medium tabular-nums text-vapor">
+                  <b className="shrink-0 font-mono text-2xl font-medium tabular-nums text-vapor-ink">
                     {pkg.price} €
                   </b>
                 </div>

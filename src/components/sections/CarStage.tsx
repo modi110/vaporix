@@ -79,9 +79,9 @@ export function CarStage({ className = "" }: { className?: string }) {
           <stop offset="100%" stopColor="#05090b" />
         </linearGradient>
         <linearGradient id="v-glass" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="rgba(47,210,255,.34)" />
-          <stop offset="60%" stopColor="rgba(47,210,255,.06)" />
-          <stop offset="100%" stopColor="rgba(47,210,255,.02)" />
+          <stop offset="0%" stopColor="rgba(var(--vapor-rgb),.34)" />
+          <stop offset="60%" stopColor="rgba(var(--vapor-rgb),.06)" />
+          <stop offset="100%" stopColor="rgba(var(--vapor-rgb),.02)" />
         </linearGradient>
         <linearGradient id="v-sheen" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="rgba(255,255,255,0)" />
@@ -90,13 +90,13 @@ export function CarStage({ className = "" }: { className?: string }) {
         </linearGradient>
         <radialGradient id="v-lamp" cx="50%" cy="50%">
           <stop offset="0%" stopColor="rgba(220,247,255,.75)" />
-          <stop offset="45%" stopColor="rgba(47,210,255,.22)" />
-          <stop offset="100%" stopColor="rgba(47,210,255,0)" />
+          <stop offset="45%" stopColor="rgba(var(--vapor-rgb),.22)" />
+          <stop offset="100%" stopColor="rgba(var(--vapor-rgb),0)" />
         </radialGradient>
         <radialGradient id="v-pool" cx="50%" cy="50%">
-          <stop offset="0%" stopColor="rgba(47,210,255,.30)" />
-          <stop offset="55%" stopColor="rgba(47,210,255,.07)" />
-          <stop offset="100%" stopColor="rgba(47,210,255,0)" />
+          <stop offset="0%" stopColor="rgba(var(--vapor-rgb),.30)" />
+          <stop offset="55%" stopColor="rgba(var(--vapor-rgb),.07)" />
+          <stop offset="100%" stopColor="rgba(var(--vapor-rgb),0)" />
         </radialGradient>
         <linearGradient id="v-fade" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#fff" stopOpacity=".30" />
@@ -133,7 +133,7 @@ export function CarStage({ className = "" }: { className?: string }) {
         <path
           d="M140 190 L330 162 L706 162 L792 170"
           fill="none"
-          stroke="rgba(47,210,255,.5)"
+          stroke="rgba(var(--vapor-rgb),.5)"
           strokeWidth="2"
         />
         {/* specular sweep down the flank */}
@@ -167,7 +167,7 @@ export function CarStage({ className = "" }: { className?: string }) {
       </g>
 
       {/* the floor line itself */}
-      <rect x="0" y="331" width="1000" height="1" fill="rgba(47,210,255,.28)" />
+      <rect x="0" y="331" width="1000" height="1" fill="rgba(var(--vapor-rgb),.28)" />
     </svg>
   );
 }

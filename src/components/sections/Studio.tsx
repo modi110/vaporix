@@ -45,16 +45,16 @@ function CarOutline() {
       <path
         d="M40 108 L44 84 Q52 62 84 56 L150 48 Q186 30 232 32 Q286 34 318 58 L352 66 Q380 74 380 96 L378 108 Z"
         fill="none"
-        stroke="rgba(255,255,255,.55)"
+        stroke="var(--color-ink)" strokeOpacity=".55"
         strokeWidth="2"
       />
       <path
         d="M150 50 L176 34 M232 33 L246 52"
-        stroke="rgba(255,255,255,.28)"
+        stroke="var(--color-ink)" strokeOpacity=".28"
         strokeWidth="2"
       />
-      <circle cx="116" cy="108" r="21" fill="none" stroke="rgba(255,255,255,.55)" strokeWidth="2" />
-      <circle cx="312" cy="108" r="21" fill="none" stroke="rgba(255,255,255,.55)" strokeWidth="2" />
+      <circle cx="116" cy="108" r="21" fill="none" stroke="var(--color-ink)" strokeOpacity=".55" strokeWidth="2" />
+      <circle cx="312" cy="108" r="21" fill="none" stroke="var(--color-ink)" strokeOpacity=".55" strokeWidth="2" />
     </svg>
   );
 }

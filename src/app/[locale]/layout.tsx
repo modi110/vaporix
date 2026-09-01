@@ -8,6 +8,7 @@ import { routing } from "@/i18n/routing";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { Preloader, preloadFlagScript } from "@/components/motion/Preloader";
+import { themeScript } from "@/components/layout/ThemeToggle";
 import { VaporBeams } from "@/components/motion/VaporBeams";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 import "../globals.css";
@@ -77,11 +78,13 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       className={`${onest.variable} ${dmMono.variable}`}
-      // The pre-paint script below stamps data-preloaded on this element.
+      // The pre-paint scripts below stamp data-theme and data-preloaded here.
       suppressHydrationWarning
     >
       <head>
-        {/* Runs before first paint so a repeat visit never flashes the curtain. */}
+        {/* Both run before first paint: one so a light-mode visitor never sees
+            a black flash, one so a repeat visit never replays the curtain. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script dangerouslySetInnerHTML={{ __html: preloadFlagScript }} />
       </head>
       <body>

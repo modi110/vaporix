@@ -51,7 +51,7 @@ function Book() {
             className="grid gap-6 rounded-card border border-vapor/40 bg-surface-2 p-8"
             data-reveal
           >
-            <p className="t-label text-vapor">{v("choose")}</p>
+            <p className="t-label text-vapor-ink">{v("choose")}</p>
             <p className="t-lede">{p("soon")}</p>
             <div className="flex flex-wrap gap-3">
               <PillAnchor href={site.phoneHref}>{p("call")}</PillAnchor>
@@ -77,7 +77,7 @@ function Book() {
                     {v(`items.${vehicle.id}.examples`)}
                   </p>
                 </div>
-                <span className="shrink-0 font-mono tabular-nums text-vapor">
+                <span className="shrink-0 font-mono tabular-nums text-vapor-ink">
                   {startingPrice(vehicle)} €
                 </span>
               </div>

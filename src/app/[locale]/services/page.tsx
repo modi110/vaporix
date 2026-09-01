@@ -51,13 +51,13 @@ function ServicesIndex() {
                 <span className="t-label">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h2 className="text-xl font-medium tracking-[-0.02em] transition-colors duration-300 group-hover:text-vapor">
+                <h2 className="text-xl font-medium tracking-[-0.02em] transition-colors duration-300 group-hover:text-vapor-ink-ink-ink">
                   {t(`items.${s.slug}.name`)}
                 </h2>
                 <p className="t-lede text-sm">{t(`items.${s.slug}.short`)}</p>
                 <span className="mt-auto flex items-baseline gap-2 border-t border-hairline pt-4">
                   <span className="t-label">{d("priceFrom")}</span>
-                  <span className="font-mono font-medium tabular-nums text-vapor">
+                  <span className="font-mono font-medium tabular-nums text-vapor-ink">
                     {s.priceFrom} €
                   </span>
                 </span>

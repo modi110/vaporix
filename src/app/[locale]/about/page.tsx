@@ -67,7 +67,7 @@ function About() {
                 style={{ transitionDelay: `${i * 70}ms` }}
                 className="grid gap-3 rounded-card border border-hairline bg-surface p-7"
               >
-                <span className="t-label text-vapor">
+                <span className="t-label text-vapor-ink">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="text-lg font-medium tracking-[-0.02em]">
