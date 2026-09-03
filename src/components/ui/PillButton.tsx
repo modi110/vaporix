@@ -24,7 +24,9 @@ const variants: Record<Variant, string> = {
 
 const sizes: Record<Size, string> = {
   md: "px-8 py-4",
-  sm: "px-5 py-3 text-[0.6875rem]",
+  // py-3.5 rather than py-3: the smaller label alone came in just under the
+  // 44px comfortable tap-target floor.
+  sm: "px-5 py-3.5 text-[0.6875rem]",
 };
 
 /**

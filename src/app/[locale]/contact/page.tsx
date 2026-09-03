@@ -31,6 +31,11 @@ export default async function ContactPage({
   return <Contact />;
 }
 
+/**
+ * No form: a phone number and a WhatsApp line answer faster than a contact
+ * form nobody checks in real time, so this page leads with those instead of
+ * asking for one more thing to be filled in.
+ */
 function Contact() {
   const p = useTranslations("pages.contact");
 
@@ -39,51 +44,32 @@ function Contact() {
       <PageHeader label={p("label")} title={p("title")} lede={p("lede")} />
 
       <section className="section-under-header">
-        <div className="wrap grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
-          {/*
-            The form is presentational until booking is built. It says so
-            plainly instead of pretending to submit, and points at the two
-            channels that do work today.
-          */}
-          <form className="grid gap-7" data-reveal>
-            <Field id="name" label={p("name")} type="text" autoComplete="name" />
-            <Field id="phone" label={p("phone")} type="tel" autoComplete="tel" />
-            <Field id="vehicle" label={p("vehicle")} type="text" />
-
-            <div className="grid gap-2">
-              <label htmlFor="message" className="t-label">
-                {p("message")}
-              </label>
-              <textarea
-                id="message"
-                rows={4}
-                className="resize-y border-b border-hairline bg-transparent pb-2 text-base outline-none transition-colors duration-300 focus:border-vapor-ink"
-              />
-            </div>
-
-            <p className="t-lede text-sm text-muted-dim">{p("formNote")}</p>
-
+        <div className="wrap grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-start">
+          <div
+            className="grid gap-6 rounded-card border border-vapor/40 bg-surface-2 p-8"
+            data-reveal
+          >
+            <p className="t-label text-vapor-ink">{p("findUs")}</p>
+            <p className="text-lg">{addressLine}</p>
             <div className="flex flex-wrap gap-3">
               <PillAnchor href={site.phoneHref}>{p("callUs")}</PillAnchor>
               <PillAnchor href={site.whatsapp} variant="ghost">
                 WhatsApp
               </PillAnchor>
             </div>
-          </form>
+          </div>
 
           <aside className="grid content-start gap-8" data-reveal>
-            <div className="grid gap-3">
-              <h2 className="t-label">{p("findUs")}</h2>
-              <p className="text-lg">{addressLine}</p>
+            <div className="-m-2 grid gap-1">
               <a
                 href={site.phoneHref}
-                className="font-mono text-lg text-vapor-ink hover:underline"
+                className="rounded-lg p-2 font-mono text-lg text-vapor-ink hover:underline"
               >
                 {site.phone}
               </a>
               <a
                 href={`mailto:${site.email}`}
-                className="text-muted hover:text-ink"
+                className="rounded-lg p-2 text-muted hover:text-ink"
               >
                 {site.email}
               </a>
@@ -93,50 +79,23 @@ function Contact() {
               <h2 className="t-label">{p("hours")}</h2>
               <HoursTable />
             </div>
-
-            <div className="group relative aspect-[4/3] overflow-hidden rounded-card border border-hairline">
-              <iframe
-                src={site.mapEmbedUrl}
-                title={p("mapTitle")}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="map-embed absolute inset-0 size-full border-0"
-              />
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[rgba(var(--vapor-rgb),0.12)] transition-opacity duration-500 group-hover:opacity-0"
-              />
-            </div>
           </aside>
+        </div>
+
+        <div className="group wrap relative mt-8 aspect-[16/9] overflow-hidden rounded-card border border-hairline lg:mt-10">
+          <iframe
+            src={site.mapEmbedUrl}
+            title={p("mapTitle")}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="map-embed absolute inset-0 size-full border-0"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[rgba(var(--vapor-rgb),0.12)] transition-opacity duration-500 group-hover:opacity-0"
+          />
         </div>
       </section>
     </>
-  );
-}
-
-function Field({
-  id,
-  label,
-  type,
-  autoComplete,
-}: {
-  id: string;
-  label: string;
-  type: string;
-  autoComplete?: string;
-}) {
-  return (
-    <div className="grid gap-2">
-      <label htmlFor={id} className="t-label">
-        {label}
-      </label>
-      <input
-        id={id}
-        name={id}
-        type={type}
-        autoComplete={autoComplete}
-        className="border-b border-hairline bg-transparent pb-2 text-base outline-none transition-colors duration-300 focus:border-vapor-ink"
-      />
-    </div>
   );
 }

@@ -1,12 +1,12 @@
 {
   "nav": {
     "home": "Home",
+    "about": "About",
     "contact": "Contact",
     "book": "Book",
     "menu": "Menu",
     "close": "Close",
     "language": "Language",
-    "account": "My account",
     "theme": "Switch theme",
     "gallery": "Gallery"
   },
@@ -34,7 +34,6 @@
   },
   "footer": {
     "main": "Main",
-    "more": "More",
     "privacy": "Privacy policy",
     "legal": "Legal notice",
     "rights": "All rights reserved.",
@@ -110,17 +109,11 @@
   "pages": {
     "contact": {
       "label": "Contact",
-      "title": "Tell us what you drive.",
-      "lede": "Message us and we will tell you what is still free this week.",
-      "name": "Your name",
-      "phone": "Phone",
-      "vehicle": "Vehicle",
-      "message": "What does your car need?",
-      "send": "Send",
+      "title": "Ask us anything.",
+      "lede": "Call us or message us on WhatsApp: we reply the same working day.",
       "findUs": "Where we are",
       "hours": "Opening hours",
       "callUs": "Call us",
-      "formNote": "This form does not send anything yet. Call or message us on WhatsApp in the meantime.",
       "mapTitle": "Map showing Vaporix in Buñol"
     },
     "book": {
@@ -130,37 +123,6 @@
       "call": "Call now",
       "whatsapp": "Message on WhatsApp",
       "note": "Prices include VAT. A car that arrives with extreme soiling or heavy pet hair may carry a supplement, which we tell you before we start."
-    },
-    "account": {
-      "label": "My account",
-      "title": "Your washes, and what stands between you and the reward.",
-      "lede": "Every visit earns a stamp. On the third, 25% off the service of your choice.",
-      "greeting": "Hello, {name}.",
-      "progressLabel": "Stamps",
-      "progressNote": "You are {earned} of {total} since your last reward.",
-      "progressDone": "Card full. Your discount is waiting at your next appointment.",
-      "rewardTitle": "Your reward",
-      "rewardDesc": "25% off the next service, whatever the vehicle.",
-      "stamp": "Stamp {n}",
-      "stampEarned": "Earned",
-      "stampPending": "Pending",
-      "visitsTitle": "Your visits",
-      "visitsLede": "What we did, when, and what it cost.",
-      "included": "What was done",
-      "bay": "Bay",
-      "empty": "No visits on record yet.",
-      "demoNote": "Sample view with placeholder data. Signing in to your own account arrives with online booking.",
-      "book": "Book the next one",
-      "tasks": {
-        "steam": "Contact-free steam wash",
-        "interior": "Vacuum and dry interior",
-        "wheels": "Wheels and wheel arches",
-        "glass": "Glass inside and out",
-        "handDry": "Hand-dried with microfibre",
-        "sealant": "Hydrophobic sealant",
-        "deodorise": "Steam deodorising",
-        "tyres": "Tyre dressing"
-      }
     },
     "gallery": {
       "label": "Gallery",
@@ -180,6 +142,12 @@
         "studioBay": "The Vaporix workshop in Buñol, a car in the middle of the floor under the roof lights.",
         "unitExterior": "The front of the unit with the VRK Vaporix sign lit at dusk."
       }
+    },
+    "about": {
+      "label": "About",
+      "title": "A small workshop that cares about the details.",
+      "lede": "We would rather do a few things well than many things half done.",
+      "body": "Every car gets the time it needs, without rushing or cutting corners. If you have questions about a service, call or message us and we will walk you through it."
     }
   },
   "map": {

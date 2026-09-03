@@ -15,9 +15,9 @@ export const routing = defineRouting({
       es: "/galeria",
       en: "/gallery",
     },
-    "/account": {
-      es: "/mi-cuenta",
-      en: "/account",
+    "/about": {
+      es: "/nosotros",
+      en: "/about",
     },
     "/contact": {
       es: "/contacto",

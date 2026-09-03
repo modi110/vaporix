@@ -1,12 +1,12 @@
 {
   "nav": {
     "home": "Inicio",
+    "about": "Nosotros",
     "contact": "Contacto",
     "book": "Reservar",
     "menu": "Menú",
     "close": "Cerrar",
     "language": "Idioma",
-    "account": "Mi cuenta",
     "theme": "Cambiar tema",
     "gallery": "Galería"
   },
@@ -34,7 +34,6 @@
   },
   "footer": {
     "main": "Principal",
-    "more": "Más",
     "privacy": "Política de privacidad",
     "legal": "Aviso legal",
     "rights": "Todos los derechos reservados.",
@@ -110,17 +109,11 @@
   "pages": {
     "contact": {
       "label": "Contacto",
-      "title": "Cuéntanos qué coche traes.",
-      "lede": "Escríbenos y te decimos qué huecos quedan esta semana.",
-      "name": "Tu nombre",
-      "phone": "Teléfono",
-      "vehicle": "Vehículo",
-      "message": "¿Qué necesita tu coche?",
-      "send": "Enviar",
+      "title": "Pregúntanos lo que quieras.",
+      "lede": "Llámanos o escríbenos por WhatsApp: respondemos el mismo día laborable.",
       "findUs": "Dónde estamos",
       "hours": "Horario",
       "callUs": "Llámanos",
-      "formNote": "Este formulario todavía no envía nada. Llámanos o escríbenos por WhatsApp mientras tanto.",
       "mapTitle": "Mapa con la ubicación de Vaporix en Buñol"
     },
     "book": {
@@ -130,37 +123,6 @@
       "call": "Llamar ahora",
       "whatsapp": "Escribir por WhatsApp",
       "note": "Precios con IVA incluido. Si el coche llega con suciedad extrema o mucho pelo de mascota, puede llevar un suplemento, y te lo decimos antes de empezar."
-    },
-    "account": {
-      "label": "Mi cuenta",
-      "title": "Tus lavados, y lo que falta para el premio.",
-      "lede": "Cada visita suma un sello. Al tercero, un 25 % de descuento en el servicio que elijas.",
-      "greeting": "Hola, {name}.",
-      "progressLabel": "Sellos",
-      "progressNote": "Llevas {earned} de {total} desde tu último premio.",
-      "progressDone": "Sellos completos. Tu descuento te espera en la próxima cita.",
-      "rewardTitle": "Tu premio",
-      "rewardDesc": "25 % de descuento en el próximo servicio, sea cual sea el vehículo.",
-      "stamp": "Sello {n}",
-      "stampEarned": "Conseguido",
-      "stampPending": "Pendiente",
-      "visitsTitle": "Tus visitas",
-      "visitsLede": "Qué hicimos, cuándo y qué costó.",
-      "included": "Qué se hizo",
-      "bay": "Bahía",
-      "empty": "Todavía no hay visitas registradas.",
-      "demoNote": "Vista de ejemplo con datos de muestra. El acceso con tu cuenta llega junto con la reserva online.",
-      "book": "Reservar la siguiente",
-      "tasks": {
-        "steam": "Lavado a vapor sin contacto",
-        "interior": "Aspirado e interior en seco",
-        "wheels": "Llantas y pasos de rueda",
-        "glass": "Cristales por dentro y por fuera",
-        "handDry": "Secado a mano con microfibra",
-        "sealant": "Sellado hidrofóbico",
-        "deodorise": "Desodorización con vapor",
-        "tyres": "Brillo en neumáticos"
-      }
     },
     "gallery": {
       "label": "Galería",
@@ -180,6 +142,12 @@
         "studioBay": "La nave de Vaporix en Buñol, con un coche en el centro bajo los lucernarios.",
         "unitExterior": "La fachada de la nave con el rótulo VRK Vaporix al anochecer."
       }
+    },
+    "about": {
+      "label": "Nosotros",
+      "title": "Un taller pequeño que cuida los detalles.",
+      "lede": "Preferimos hacer pocas cosas bien que muchas a medias.",
+      "body": "Cada coche recibe el tiempo que necesita, sin prisas ni atajos. Si tienes dudas sobre algún servicio, llámanos o escríbenos y te lo explicamos con calma."
     }
   },
   "map": {

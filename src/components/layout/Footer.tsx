@@ -6,15 +6,12 @@ import { SocialIcon, type SocialIconId } from "@/components/ui/SocialIcon";
 import { site, addressLine } from "@/content/site";
 import { HoursTable } from "@/components/ui/HoursTable";
 
-const main: { href: StaticPathname; key: string }[] = [
+const links: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
   { href: "/gallery", key: "gallery" },
+  { href: "/about", key: "about" },
   { href: "/contact", key: "contact" },
-];
-
-const more: { href: StaticPathname; key: string }[] = [
   { href: "/book", key: "book" },
-  { href: "/account", key: "account" },
 ];
 
 export function Footer() {
@@ -22,22 +19,14 @@ export function Footer() {
 
   return (
     <footer className="relative z-[2] border-t border-hairline">
-      <div className="wrap grid gap-12 py-16 md:grid-cols-[1.2fr_1fr_1fr_1.1fr]">
+      <div className="wrap grid gap-12 py-16 md:grid-cols-[1.2fr_1fr_1.1fr]">
         <div className="grid content-start gap-5">
           <Wordmark variant="stacked" className="justify-items-start" />
           <p className="t-lede max-w-[28ch] text-sm">{addressLine}</p>
         </div>
 
         <FooterCol title={t("footer.main")}>
-          {main.map((l) => (
-            <Link key={l.href} href={l.href} className="-my-1 py-1 hover:text-ink">
-              {t(`nav.${l.key}`)}
-            </Link>
-          ))}
-        </FooterCol>
-
-        <FooterCol title={t("footer.more")}>
-          {more.map((l) => (
+          {links.map((l) => (
             <Link key={l.href} href={l.href} className="-my-1 py-1 hover:text-ink">
               {t(`nav.${l.key}`)}
             </Link>
@@ -66,7 +55,13 @@ export function Footer() {
         <span>
           © {new Date().getFullYear()} {site.name}. {t("footer.rights")}
         </span>
-        <a href={site.phoneHref} className="-my-1 py-1 font-mono hover:text-ink">
+        {/* A phone number is a high-intent tap on a phone, so it gets more
+            room than the copyright text beside it: -my-2 py-2 rather than
+            the -my-1 py-1 every other inline link in the footer uses. */}
+        <a
+          href={site.phoneHref}
+          className="-my-2 py-2 font-mono hover:text-ink"
+        >
           {site.phone}
         </a>
       </div>

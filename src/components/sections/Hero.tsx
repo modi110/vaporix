@@ -34,8 +34,8 @@ export function Hero() {
           .timeline({ delay: 0.2 })
           .from(".hero-car-mobile", {
             opacity: 0,
-            y: 16,
-            duration: 0.7,
+            x: 64,
+            duration: 0.85,
             ease: "expo.out",
           })
           .from(
@@ -157,16 +157,18 @@ export function Hero() {
           <SplitText text={`${t("titleLine1")} ${t("titleLine2")}`} />
         </h1>
 
-        {/* phone only: the car, right under the headline */}
+        {/* phone only: the car, right under the headline — no frame around
+            it, so it reads as the same floating graphic the desktop stage
+            uses, just brought into the text column instead of the background */}
         <div
-          className="hero-car-mobile relative overflow-hidden rounded-card border border-hairline sm:hidden"
+          className="hero-car-mobile relative sm:hidden"
           style={{ aspectRatio: "1000 / 460" }}
         >
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(ellipse_62%_54%_at_50%_50%,rgba(var(--vapor-rgb),.22),transparent_72%),linear-gradient(160deg,var(--color-surface-2),var(--color-surface))]"
+            className="absolute inset-0 bg-[radial-gradient(ellipse_62%_54%_at_50%_50%,rgba(var(--vapor-rgb),.24),transparent_72%)]"
           />
-          <CarStage className="absolute inset-0 h-full w-full p-4" />
+          <CarStage className="absolute inset-0 h-full w-full drop-shadow-[0_0_40px_rgba(var(--vapor-rgb),0.22)]" />
         </div>
 
         <p className="hero-lede t-lede">{t("lede")}</p>
