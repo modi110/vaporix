@@ -12,7 +12,8 @@
     "language": "Idioma",
     "home_aria": "Vaporix, inicio",
     "account": "Mi cuenta",
-    "theme": "Cambiar tema"
+    "theme": "Cambiar tema",
+    "gallery": "Galería"
   },
   "hero": {
     "eyebrow": "Detailing & Care",
@@ -286,6 +287,25 @@
         "deodorise": "Desodorización con vapor",
         "tyres": "Brillo en neumáticos"
       }
+    },
+    "gallery": {
+      "label": "Galería",
+      "title": "Coches que han salido de aquí.",
+      "lede": "Fotos nuestras, hechas en la nave, sin retoque. Las matrículas van tapadas porque los coches son de nuestros clientes.",
+      "alt": {
+        "konaFront": "Hyundai Kona gris recién lavado, visto de frente al sol.",
+        "konaRear": "El mismo Kona de tres cuartos traseros, con la pintura seca sin marcas.",
+        "x4Interior": "Salpicadero y asientos de un BMW X4 después de la limpieza interior en seco.",
+        "x4Side": "BMW X4 negro de perfil dentro de la nave, con el lateral pulido.",
+        "x4Rear": "BMW X4 negro de tres cuartos traseros, con el reflejo limpio en la chapa.",
+        "corsaFront": "Opel Corsa blanco de frente en la bahía, recién terminado.",
+        "corsaSide": "Opel Corsa blanco de perfil delante de la pared de la nave.",
+        "poloFront": "Volkswagen Polo negro con el portón abierto durante el secado a mano.",
+        "leonFront": "Seat León blanco de frente, esperando su turno en la nave.",
+        "peugeotRear": "Peugeot 207 azul con las puertas abiertas sobre la lona de trabajo.",
+        "studioBay": "La nave de Vaporix en Buñol, con un coche en el centro bajo los lucernarios.",
+        "unitExterior": "La fachada de la nave con el rótulo VRK Vaporix al anochecer."
+      }
     }
   },
   "map": {
@@ -296,5 +316,16 @@
     "hoursNote": "El horario del día lo tienes siempre al día en nuestra ficha de Google, festivos incluidos.",
     "directions": "Cómo llegar",
     "iframeTitle": "Mapa con la ubicación de {name}"
+  },
+  "work": {
+    "label": "Trabajos",
+    "title": "Cuatro coches que salieron esta temporada.",
+    "all": "Ver la galería",
+    "alt": {
+      "konaFront": "Hyundai Kona gris recién lavado, visto de frente al sol.",
+      "x4Interior": "Salpicadero y asientos de un BMW X4 después de la limpieza interior en seco.",
+      "x4Side": "BMW X4 negro de perfil dentro de la nave, con el lateral pulido.",
+      "corsaFront": "Opel Corsa blanco de frente en la bahía, recién terminado."
+    }
   }
 }

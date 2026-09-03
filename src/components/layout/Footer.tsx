@@ -8,6 +8,7 @@ import { site, addressLine } from "@/content/site";
 const main: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
   { href: "/services", key: "services" },
+  { href: "/gallery", key: "gallery" },
   { href: "/about", key: "about" },
 ];
 

@@ -51,7 +51,7 @@ function ServicesIndex() {
                 <span className="t-label">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h2 className="text-xl font-medium tracking-[-0.02em] transition-colors duration-300 group-hover:text-vapor-ink-ink-ink">
+                <h2 className="text-xl font-medium tracking-[-0.02em] transition-colors duration-300 group-hover:text-vapor-ink">
                   {t(`items.${s.slug}.name`)}
                 </h2>
                 <p className="t-lede text-sm">{t(`items.${s.slug}.short`)}</p>

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { MONOGRAM_PATHS, MONOGRAM_VIEWBOX } from "@/components/brand/Monogram";
+import { BrandMark } from "@/components/brand/BrandMark";
 
 export const PRELOAD_KEY = "vaporix:preloaded";
 
@@ -17,7 +17,7 @@ export const preloadFlagScript = `try{if(sessionStorage.getItem(${JSON.stringify
 )})==="1")document.documentElement.dataset.preloaded="1"}catch(e){}`;
 
 /**
- * First paint: the VRK monogram draws itself, floods with cyan, and the
+ * First paint: the lockup wipes in from the left, the bar fills, and the
  * curtain lifts into the hero.
  *
  * Holds no React state — the element is always rendered so server and client
@@ -51,16 +51,10 @@ export function Preloader() {
         "(prefers-reduced-motion: reduce)",
       ).matches;
 
-      const paths = gsap.utils.toArray<SVGPathElement>(".preloader-path");
-      paths.forEach((p) => {
-        const len = p.getTotalLength();
-        gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
-      });
-
       const tl = gsap.timeline({ onComplete: release });
 
       if (reduce) {
-        tl.set(paths, { strokeDashoffset: 0, fill: "var(--color-vapor-ink)" }).to(
+        tl.set(".preloader-mark", { clipPath: "inset(0 0% 0 0)" }).to(
           el,
           { autoAlpha: 0, duration: 0.2 },
           "+=0.1",
@@ -68,18 +62,16 @@ export function Preloader() {
         return;
       }
 
-      tl.to(paths, {
-        strokeDashoffset: 0,
-        duration: 1,
-        ease: "power2.inOut",
-        stagger: 0.08,
-      })
-        .to(paths, { fill: "var(--color-vapor-ink)", duration: 0.45 }, "-=0.25")
-        .to(".preloader-word", { autoAlpha: 1, y: 0, duration: 0.5 }, "-=0.3")
+      tl.fromTo(
+        ".preloader-mark",
+        { clipPath: "inset(0 100% 0 0)" },
+        { clipPath: "inset(0 0% 0 0)", duration: 0.9, ease: "power3.inOut" },
+      )
+        .from(".preloader-tag", { autoAlpha: 0, y: 8, duration: 0.4 }, "-=0.3")
         .to(
           ".preloader-bar-fill",
           { scaleX: 1, duration: 0.7, ease: "power2.inOut" },
-          "-=0.85",
+          "-=0.75",
         )
         .to(el, { yPercent: -101, duration: 0.9, ease: "expo.inOut" }, "+=0.15");
     }, root);
@@ -97,33 +89,15 @@ export function Preloader() {
       aria-hidden="true"
       className="fixed inset-0 z-[100] grid place-items-center bg-void"
     >
-      <div className="grid justify-items-center gap-8">
-        <svg
-          viewBox={MONOGRAM_VIEWBOX}
-          className="w-[min(240px,56vw)] drop-shadow-[0_0_18px_rgba(var(--vapor-rgb),0.55)]"
-        >
-          <g transform="skewX(-8) translate(14,0)">
-            {MONOGRAM_PATHS.map((d, i) => (
-              <path
-                key={i}
-                d={d}
-                fillRule={i === 1 ? "evenodd" : undefined}
-                className="preloader-path"
-                fill="rgba(var(--vapor-rgb),0)"
-                stroke="var(--color-vapor-ink)"
-                strokeWidth={2.5}
-                strokeLinejoin="miter"
-              />
-            ))}
-          </g>
-        </svg>
+      <div className="grid w-[min(280px,66vw)] justify-items-center gap-7">
+        <BrandMark className="preloader-mark w-full text-vapor-ink drop-shadow-[0_0_18px_rgba(var(--vapor-rgb),0.55)]" />
 
-        <div className="preloader-word translate-y-2 text-[0.8125rem] font-bold tracking-[0.62em] indent-[0.62em] opacity-0">
-          VAPORIX
+        <div className="preloader-tag t-label text-[0.5625rem] tracking-[0.34em]">
+          Detailing &amp; Care
         </div>
 
-        <div className="h-0.5 w-[min(220px,52vw)] overflow-hidden bg-hairline">
-          <div className="preloader-bar-fill h-full origin-left scale-x-0 bg-vapor" />
+        <div className="h-0.5 w-full overflow-hidden bg-hairline">
+          <div className="preloader-bar-fill h-full origin-left scale-x-0 bg-vapor-ink" />
         </div>
       </div>
     </div>

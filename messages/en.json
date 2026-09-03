@@ -12,7 +12,8 @@
     "language": "Language",
     "home_aria": "Vaporix, home",
     "account": "My account",
-    "theme": "Switch theme"
+    "theme": "Switch theme",
+    "gallery": "Gallery"
   },
   "hero": {
     "eyebrow": "Detailing & Care",
@@ -286,6 +287,25 @@
         "deodorise": "Steam deodorising",
         "tyres": "Tyre dressing"
       }
+    },
+    "gallery": {
+      "label": "Gallery",
+      "title": "Cars that have come out of here.",
+      "lede": "Our own photographs, taken in the workshop, untouched. Number plates are covered because the cars belong to our customers.",
+      "alt": {
+        "konaFront": "Grey Hyundai Kona, freshly washed, seen head-on in the sun.",
+        "konaRear": "The same Kona from the rear three-quarter, paint dried without a mark.",
+        "x4Interior": "Dashboard and seats of a BMW X4 after the dry interior clean.",
+        "x4Side": "Black BMW X4 in profile inside the workshop, flank polished.",
+        "x4Rear": "Black BMW X4 from the rear three-quarter, reflection clean across the panels.",
+        "corsaFront": "White Opel Corsa head-on in the bay, just finished.",
+        "corsaSide": "White Opel Corsa in profile against the workshop wall.",
+        "poloFront": "Black Volkswagen Polo with the tailgate up during the hand dry.",
+        "leonFront": "White Seat León head-on, waiting its turn in the workshop.",
+        "peugeotRear": "Blue Peugeot 207 with the doors open on the work sheet.",
+        "studioBay": "The Vaporix workshop in Buñol, a car in the middle of the floor under the roof lights.",
+        "unitExterior": "The front of the unit with the VRK Vaporix sign lit at dusk."
+      }
     }
   },
   "map": {
@@ -296,5 +316,16 @@
     "hoursNote": "Google keeps the day-by-day schedule, bank holidays included, and our listing is the version we update.",
     "directions": "Get directions",
     "iframeTitle": "Map showing the location of {name}"
+  },
+  "work": {
+    "label": "Recent work",
+    "title": "Four cars that left this season.",
+    "all": "See the gallery",
+    "alt": {
+      "konaFront": "Grey Hyundai Kona, freshly washed, seen head-on in the sun.",
+      "x4Interior": "Dashboard and seats of a BMW X4 after the dry interior clean.",
+      "x4Side": "Black BMW X4 in profile inside the workshop, flank polished.",
+      "corsaFront": "White Opel Corsa head-on in the bay, just finished."
+    }
   }
 }

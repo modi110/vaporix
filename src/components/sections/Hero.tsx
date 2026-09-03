@@ -41,9 +41,19 @@ export function Hero() {
           );
       });
 
+      /**
+       * The car drives off on scroll at every width. A phone gets a shorter
+       * throw and no vertical drift, because the frame is narrow and the copy
+       * is already sitting on top of it; a wide screen can afford the full
+       * exit. Wheels turn in both.
+       */
       mm.add(
-        "(min-width: 900px) and (prefers-reduced-motion: no-preference)",
-        () => {
+        {
+          wide: "(min-width: 900px) and (prefers-reduced-motion: no-preference)",
+          narrow: "(max-width: 899px) and (prefers-reduced-motion: no-preference)",
+        },
+        (context) => {
+          const wide = Boolean(context.conditions?.wide);
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: el,
@@ -53,9 +63,17 @@ export function Hero() {
             },
           });
 
-          tl.to(".hero-copy", { yPercent: -12, opacity: 0, ease: "none" }, 0).to(
+          tl.to(
+            ".hero-copy",
+            { yPercent: wide ? -12 : -7, opacity: 0, ease: "none" },
+            0,
+          ).to(
             ".hero-stage",
-            { xPercent: -26, yPercent: -4, ease: "none" },
+            {
+              xPercent: wide ? -26 : -46,
+              yPercent: wide ? -4 : 0,
+              ease: "none",
+            },
             0,
           );
 
@@ -73,7 +91,7 @@ export function Hero() {
               tl.to(
                 wheel,
                 {
-                  rotation: 540,
+                  rotation: wide ? 540 : 760,
                   svgOrigin: `${wheel.dataset.spin} 300`,
                   ease: "none",
                 },
@@ -90,19 +108,23 @@ export function Hero() {
   return (
     <section
       ref={root}
-      className="relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-32"
+      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden pb-16 pt-28 sm:items-center sm:justify-center sm:pb-24 sm:pt-32"
     >
-      {/* the car under studio light */}
-      <div
-        aria-hidden="true"
-        className="hero-stage absolute inset-0 z-0"
-      >
-        <div className="absolute inset-y-0 right-[-6%] flex w-[88%] items-center lg:w-[66%]">
+      {/*
+        A phone stacks: the car takes the top of the frame, the copy sits
+        under it on solid ground. A wide screen puts them side by side, the
+        car filling the right, the copy on the left. Same two elements, two
+        arrangements, and the scrim between them turns with the layout.
+      */}
+      <div aria-hidden="true" className="hero-stage absolute inset-0 z-0">
+        <div className="absolute right-[-14%] top-[13%] flex h-[34%] w-[122%] items-center sm:inset-y-0 sm:right-[-6%] sm:top-auto sm:h-auto sm:w-[88%] lg:w-[66%]">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_62%_54%_at_50%_50%,rgba(var(--vapor-rgb),.18),transparent_72%)]" />
           <CarStage className="w-full drop-shadow-[0_0_70px_rgba(var(--vapor-rgb),0.26)]" />
         </div>
+
         {/* the copy always sits on solid ground, however far the car extends */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-void)_12%,rgba(var(--scrim-rgb),var(--scrim-a1))_38%,rgba(var(--scrim-rgb),var(--scrim-a2))_62%,transparent_84%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_28%,rgba(var(--scrim-rgb),var(--scrim-a2))_40%,rgba(var(--scrim-rgb),var(--scrim-a1))_50%,var(--color-void)_60%)] sm:hidden" />
+        <div className="absolute inset-0 hidden bg-[linear-gradient(to_right,var(--color-void)_12%,rgba(var(--scrim-rgb),var(--scrim-a1))_38%,rgba(var(--scrim-rgb),var(--scrim-a2))_62%,transparent_84%)] sm:block" />
         <div className="absolute inset-x-0 bottom-0 h-1/4 bg-[linear-gradient(to_top,var(--color-void),transparent)]" />
       </div>
 

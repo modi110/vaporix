@@ -106,8 +106,17 @@
     min-width: 0;
   }
 
+  /*
+    `clip` rather than `hidden`, and on both elements.
+    `overflow-x: hidden` turns the element into a scroll container, and on a
+    phone that let the decorative glows widen the layout viewport past
+    device-width: the page laid out at 645px inside a 390px screen and left a
+    black band down the right. `clip` throws the overflow away without
+    creating a scroll port, and without breaking `position: sticky`.
+  */
   html {
     -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
   }
 
   body {
@@ -115,7 +124,7 @@
     color: var(--color-ink);
     font-family: var(--font-display);
     line-height: 1.55;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -192,6 +201,11 @@
 
   /* ---------- the one glow utility ---------- */
   .glow-vapor {
+    /* Sizes are set in px by the utility beside this class. On a narrow
+       screen those px values are wider than the screen, so cap them here
+       rather than writing a breakpoint for every instance. */
+    max-width: 96vw;
+    max-height: 96vw;
     background: radial-gradient(
       circle,
       rgba(var(--vapor-rgb), 0.2) 0%,
@@ -377,6 +391,29 @@
   .text-outline {
     color: transparent;
     -webkit-text-stroke: 1px rgba(var(--tint-rgb), 0.12);
+  }
+
+  /* Horizontal rails scroll by swipe; the bar only steals height. */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* The logo painted as a mask, so the shape is the client's and the colour
+     is ours. Width or height plus the aspect ratio sizes it. */
+  .brand-mark {
+    display: block;
+    background-color: currentColor;
+    -webkit-mask-image: url("/images/logo-lockup.png");
+    mask-image: url("/images/logo-lockup.png");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
   }
 
   /* Translucent panel fill: a lift on dark, a shade on light. */
