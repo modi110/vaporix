@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { PillAnchor } from "@/components/ui/PillButton";
+import { HoursTable } from "@/components/ui/HoursTable";
 import { site, addressLine } from "@/content/site";
 
 export function generateStaticParams() {
@@ -32,7 +33,6 @@ export default async function ContactPage({
 
 function Contact() {
   const p = useTranslations("pages.contact");
-  const f = useTranslations("footer");
 
   return (
     <>
@@ -91,20 +91,7 @@ function Contact() {
 
             <div className="grid gap-3">
               <h2 className="t-label">{p("hours")}</h2>
-              <dl className="grid gap-2 text-sm">
-                <div className="flex justify-between gap-6 border-b border-hairline pb-2">
-                  <dt className="text-muted">{f("dailyWindow")}</dt>
-                  <dd className="font-mono tabular-nums">
-                    {site.hours.open} – {site.hours.close}
-                  </dd>
-                </div>
-              </dl>
-              <a
-                href={site.mapsUrl}
-                className="text-sm text-muted hover:text-ink"
-              >
-                {f("hoursOnGoogle")}
-              </a>
+              <HoursTable />
             </div>
 
             <div className="group relative aspect-[4/3] overflow-hidden rounded-card border border-hairline">

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "@/components/ui/SplitText";
-import { PillLink } from "@/components/ui/PillButton";
+import { PillLink, PillAnchor } from "@/components/ui/PillButton";
 import { CarStage } from "./CarStage";
 import { SocialIcon, type SocialIconId } from "@/components/ui/SocialIcon";
 import { site } from "@/content/site";
@@ -32,12 +32,16 @@ export function Hero() {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         gsap
           .timeline({ delay: 0.2 })
-          .from(".hero-rule", { scaleX: 0, duration: 0.8, ease: "expo.out" })
-          .from(".hero-eyebrow-text", { opacity: 0, x: -12, duration: 0.6 }, "-=0.5")
+          .from(".hero-car-mobile", {
+            opacity: 0,
+            y: 16,
+            duration: 0.7,
+            ease: "expo.out",
+          })
           .from(
             [".hero-lede", ".hero-actions", ".hero-meta"],
             { opacity: 0, y: 26, duration: 0.9, stagger: 0.09, ease: "expo.out" },
-            "-=0.35",
+            "-=0.4",
           );
       });
 
@@ -108,25 +112,31 @@ export function Hero() {
   return (
     <section
       ref={root}
-      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden pb-16 pt-28 sm:items-center sm:justify-center sm:pb-24 sm:pt-32"
+      className="relative overflow-hidden pb-16 pt-28 sm:flex sm:min-h-[100svh] sm:items-center sm:justify-center sm:pb-24 sm:pt-32"
     >
       {/*
-        A phone stacks: the car takes the top of the frame, the copy sits
-        under it on solid ground. A wide screen puts them side by side, the
-        car filling the right, the copy on the left. Same two elements, two
-        arrangements, and the scrim between them turns with the layout.
+        Two different compositions, not one scaled down. Wide screens put the
+        car full-bleed behind the copy, right side; a phone has no room for
+        that, so the car becomes a contained visual sitting in the text flow,
+        directly under the headline — nothing floats behind the words.
       */}
-      <div aria-hidden="true" className="hero-stage absolute inset-0 z-0">
-        <div className="absolute right-[-14%] top-[13%] flex h-[34%] w-[122%] items-center sm:inset-y-0 sm:right-[-6%] sm:top-auto sm:h-auto sm:w-[88%] lg:w-[66%]">
+      <div
+        aria-hidden="true"
+        className="hero-stage absolute inset-0 z-0 hidden sm:block"
+      >
+        <div className="absolute inset-y-0 right-[-6%] flex w-[88%] items-center lg:w-[66%]">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_62%_54%_at_50%_50%,rgba(var(--vapor-rgb),.18),transparent_72%)]" />
           <CarStage className="w-full drop-shadow-[0_0_70px_rgba(var(--vapor-rgb),0.26)]" />
         </div>
-
-        {/* the copy always sits on solid ground, however far the car extends */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_28%,rgba(var(--scrim-rgb),var(--scrim-a2))_40%,rgba(var(--scrim-rgb),var(--scrim-a1))_50%,var(--color-void)_60%)] sm:hidden" />
-        <div className="absolute inset-0 hidden bg-[linear-gradient(to_right,var(--color-void)_12%,rgba(var(--scrim-rgb),var(--scrim-a1))_38%,rgba(var(--scrim-rgb),var(--scrim-a2))_62%,transparent_84%)] sm:block" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-void)_12%,rgba(var(--scrim-rgb),var(--scrim-a1))_38%,rgba(var(--scrim-rgb),var(--scrim-a2))_62%,transparent_84%)]" />
         <div className="absolute inset-x-0 bottom-0 h-1/4 bg-[linear-gradient(to_top,var(--color-void),transparent)]" />
       </div>
+
+      {/* mobile: a quiet ambient glow, no background car to hide behind it */}
+      <div
+        aria-hidden="true"
+        className="glow-vapor pointer-events-none absolute -right-[20%] -top-[8%] size-[86vw] rounded-full opacity-80 sm:hidden"
+      />
 
       {/* social rail */}
       <div className="absolute left-[var(--gutter)] top-1/2 z-[3] hidden -translate-y-1/2 flex-col gap-2.5 xl:flex">
@@ -142,23 +152,32 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="hero-copy wrap relative z-[2] grid max-w-2xl gap-7">
-        <p className="flex items-center gap-3.5">
-          <span className="hero-rule h-px w-14 origin-left bg-vapor-ink" />
-          <span className="hero-eyebrow-text t-label">{t("eyebrow")}</span>
-        </p>
-
+      <div className="hero-copy wrap relative z-[2] grid gap-7 sm:max-w-2xl">
         <h1 className="t-h1 max-w-[15ch]" data-split>
           <SplitText text={`${t("titleLine1")} ${t("titleLine2")}`} />
         </h1>
+
+        {/* phone only: the car, right under the headline */}
+        <div
+          className="hero-car-mobile relative overflow-hidden rounded-card border border-hairline sm:hidden"
+          style={{ aspectRatio: "1000 / 460" }}
+        >
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[radial-gradient(ellipse_62%_54%_at_50%_50%,rgba(var(--vapor-rgb),.22),transparent_72%),linear-gradient(160deg,var(--color-surface-2),var(--color-surface))]"
+          />
+          <CarStage className="absolute inset-0 h-full w-full p-4" />
+        </div>
 
         <p className="hero-lede t-lede">{t("lede")}</p>
 
         <div className="hero-actions flex flex-wrap items-center gap-3">
           <PillLink href="/book">{t("ctaPrimary")}</PillLink>
-          <PillLink href="/services" variant="ghost">
+          {/* Services live on this page now, so this scrolls rather than
+              navigates — there is no separate services route any more. */}
+          <PillAnchor href="#services" variant="ghost">
             {t("ctaSecondary")}
-          </PillLink>
+          </PillAnchor>
         </div>
 
         <div className="hero-meta flex flex-wrap items-center gap-x-5 gap-y-2">

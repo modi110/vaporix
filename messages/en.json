@@ -1,22 +1,16 @@
 {
   "nav": {
     "home": "Home",
-    "studio": "Studio",
-    "services": "Services",
-    "about": "About",
-    "pricing": "Pricing",
     "contact": "Contact",
     "book": "Book",
     "menu": "Menu",
     "close": "Close",
     "language": "Language",
-    "home_aria": "Vaporix, home",
     "account": "My account",
     "theme": "Switch theme",
     "gallery": "Gallery"
   },
   "hero": {
-    "eyebrow": "Detailing & Care",
     "titleLine1": "We bring back",
     "titleLine2": "the first-day shine.",
     "lede": "We wash with steam, not a hose. Your car comes back clean inside and out, on a fraction of the water, with nothing rubbing against the paint.",
@@ -27,91 +21,11 @@
     "priceFrom": "From €15"
   },
   "studio": {
-    "label": "The studio",
     "title": "We do fewer services, and we do them better.",
-    "lede": "When we opened we decided two things: never take on more cars than fit in a day, and always tell you what we did to yours. That has not changed.",
-    "bay": "Our workshop in Buñol",
     "photoAlt": "The Vaporix workshop in Buñol, a car parked in the middle of the floor under the roof lights."
   },
   "services": {
-    "label": "Services",
-    "title": "You know the price before you hand over the keys.",
-    "lede": "We work to a fixed quote. If something turns up along the way, we call you before we touch it.",
-    "cta": "Request a quote",
-    "from": "From",
-    "duration": "Duration",
-    "minutes": "{count} min",
-    "all": "See every service",
-    "items": {
-      "steam-wash": {
-        "name": "Touch-free steam wash",
-        "short": "Pressure-controlled steam lifts dirt away without touching the paint."
-      },
-      "dry-interior": {
-        "name": "Dry interior clean",
-        "short": "Upholstery, plastics and headlining cleaned dry. It leaves with no damp, so you can drive it straight away."
-      },
-      "paint-correction": {
-        "name": "Paint and headlight correction",
-        "short": "We take out the fine scratches and holograms left by roller washes, and bring the reflection back."
-      },
-      "ceramic-coating": {
-        "name": "Ceramic coating",
-        "short": "A hard, water-repellent layer: rain slides off and dirt has a much harder time sticking."
-      },
-      "paint-protection-film": {
-        "name": "Paint protection film",
-        "short": "Clear film across the front end and impact zones, against stones and scratches."
-      },
-      "window-tint": {
-        "name": "Window tinting",
-        "short": "Heat control and privacy with fully road-legal film."
-      },
-      "decontamination": {
-        "name": "Iron decontamination",
-        "short": "We pull embedded metal particles out before any polishing starts."
-      },
-      "engine-bay": {
-        "name": "Engine bay clean",
-        "short": "Bay degreased and dressed, with every connector sealed first."
-      },
-      "trim-restoration": {
-        "name": "Trim restoration",
-        "short": "Faded mouldings and bumpers taken back to their original black."
-      }
-    }
-  },
-  "pricing": {
-    "label": "Rates",
-    "title": "A fixed price, before we start.",
-    "tiers": {
-      "essential": {
-        "name": "Essential"
-      },
-      "advanced": {
-        "name": "Advanced"
-      },
-      "extreme": {
-        "name": "Extreme"
-      }
-    },
-    "rows": {
-      "steamExterior": "Exterior steam wash",
-      "dryInterior": "Dry interior",
-      "wheels": "Wheels and arches",
-      "decontamination": "Iron decontamination",
-      "trim": "Trim dressing",
-      "steamFull": "Steam + full interior",
-      "onePass": "One-pass correction",
-      "headlights": "Headlight restoration",
-      "sealant": "6-month hydrophobic sealant",
-      "engineBay": "Engine bay clean",
-      "threePass": "Three-pass correction",
-      "ceramic": "5-year ceramic coating",
-      "ppfFront": "Front-end PPF",
-      "tint": "Window tinting",
-      "upholstery": "Deep upholstery clean"
-    }
+    "cta": "Request a quote"
   },
   "cta": {
     "title": "Tell us what you drive and we will find you a slot.",
@@ -124,9 +38,13 @@
     "privacy": "Privacy policy",
     "legal": "Legal notice",
     "rights": "All rights reserved.",
-    "hours": "Opening hours",
-    "dailyWindow": "Open",
-    "hoursOnGoogle": "See today's hours on Google"
+    "hours": "Opening hours"
+  },
+  "hours": {
+    "weekdays": "Monday to Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "closed": "Closed"
   },
   "meta": {
     "home": {
@@ -190,50 +108,6 @@
     }
   },
   "pages": {
-    "servicesIndex": {
-      "label": "Services",
-      "title": "Everything we do to your car.",
-      "lede": "Nine treatments, each with its own time and a fixed price."
-    },
-    "serviceDetail": {
-      "label": "Service",
-      "includes": "What it includes",
-      "duration": "Duration",
-      "priceFrom": "From",
-      "book": "Book this service",
-      "others": "Other services",
-      "back": "Back to services",
-      "pricingNote": "The final price depends on the size of the vehicle. See the full table on pricing."
-    },
-    "about": {
-      "label": "About",
-      "title": "A small workshop that works slowly.",
-      "lede": "We are a short team and we like it that way.",
-      "p1": "Vaporix started because we were tired of leaving a car somewhere and getting it back with no idea what had been done to it. We opened with one bay, one steam machine and a rule: never take on more work than fits in a day.",
-      "p2": "The rule still holds. We use steam because it takes far less water than a hose and cleans without rubbing the paint. And if you want to know what went on your car, we will tell you.",
-      "valuesTitle": "How we work",
-      "values": {
-        "care": {
-          "name": "No rushing",
-          "desc": "One car per bay, per slot. We never overlap jobs to squeeze another in."
-        },
-        "honesty": {
-          "name": "Fixed price",
-          "desc": "What we quote before we start is what you pay. If something turns up, we call you."
-        },
-        "steam": {
-          "name": "Steam, not a hose",
-          "desc": "Less water, no contact with the paint, and no harsh chemicals inside the cabin."
-        }
-      }
-    },
-    "pricing": {
-      "label": "Pricing",
-      "title": "Here is what each thing costs.",
-      "lede": "The price depends on the size of the vehicle and the service. Nothing else.",
-      "note": "Prices include VAT. Vehicles with extreme soiling or pet hair may carry a supplement, which we tell you before we start.",
-      "vehicle": "Vehicle"
-    },
     "contact": {
       "label": "Contact",
       "title": "Tell us what you drive.",
@@ -253,9 +127,9 @@
       "label": "Book",
       "title": "Book your slot.",
       "lede": "Choose a vehicle and a service, and we will confirm a time.",
-      "soon": "Online booking is coming shortly. For now, the fastest way to get a slot is by phone or WhatsApp.",
       "call": "Call now",
-      "whatsapp": "Message on WhatsApp"
+      "whatsapp": "Message on WhatsApp",
+      "note": "Prices include VAT. A car that arrives with extreme soiling or heavy pet hair may carry a supplement, which we tell you before we start."
     },
     "account": {
       "label": "My account",
@@ -311,21 +185,8 @@
   "map": {
     "label": "Where we are",
     "title": "This is where you drop the car.",
-    "hours": "Open",
     "phone": "Phone",
-    "hoursNote": "Google keeps the day-by-day schedule, bank holidays included, and our listing is the version we update.",
     "directions": "Get directions",
     "iframeTitle": "Map showing the location of {name}"
-  },
-  "work": {
-    "label": "Recent work",
-    "title": "Four cars that left this season.",
-    "all": "See the gallery",
-    "alt": {
-      "konaFront": "Grey Hyundai Kona, freshly washed, seen head-on in the sun.",
-      "x4Interior": "Dashboard and seats of a BMW X4 after the dry interior clean.",
-      "x4Side": "Black BMW X4 in profile inside the workshop, flank polished.",
-      "corsaFront": "White Opel Corsa head-on in the bay, just finished."
-    }
   }
 }

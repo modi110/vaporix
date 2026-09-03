@@ -4,17 +4,15 @@ import type { StaticPathname } from "@/i18n/routing";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { SocialIcon, type SocialIconId } from "@/components/ui/SocialIcon";
 import { site, addressLine } from "@/content/site";
+import { HoursTable } from "@/components/ui/HoursTable";
 
 const main: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
-  { href: "/services", key: "services" },
   { href: "/gallery", key: "gallery" },
-  { href: "/about", key: "about" },
+  { href: "/contact", key: "contact" },
 ];
 
 const more: { href: StaticPathname; key: string }[] = [
-  { href: "/pricing", key: "pricing" },
-  { href: "/contact", key: "contact" },
   { href: "/book", key: "book" },
   { href: "/account", key: "account" },
 ];
@@ -48,20 +46,7 @@ export function Footer() {
 
         <div className="grid content-start gap-5">
           <h3 className="t-label">{t("footer.hours")}</h3>
-          <dl className="grid gap-2 text-sm text-muted">
-            <div className="flex justify-between gap-4">
-              <dt>{t("footer.dailyWindow")}</dt>
-              <dd className="font-mono tabular-nums text-ink">
-                {site.hours.open} – {site.hours.close}
-              </dd>
-            </div>
-          </dl>
-          <a
-            href={site.mapsUrl}
-            className="-my-1 py-1 text-sm text-muted hover:text-ink"
-          >
-            {t("footer.hoursOnGoogle")}
-          </a>
+          <HoursTable />
           <div className="flex gap-2">
             {site.social.map((s) => (
               <a

@@ -3,7 +3,6 @@ import { Hero } from "@/components/sections/Hero";
 import { Studio } from "@/components/sections/Studio";
 import { Services } from "@/components/sections/Services";
 import { CtaBand } from "@/components/sections/CtaBand";
-import { Work } from "@/components/sections/Work";
 import { MapBand } from "@/components/sections/MapBand";
 
 export default async function HomePage({
@@ -20,7 +19,6 @@ export default async function HomePage({
       <Studio />
       <Services />
       <CtaBand />
-      <Work />
       <MapBand />
     </>
   );

@@ -15,7 +15,7 @@ export function Studio() {
       />
 
       <div className="wrap">
-        <div className="grid items-end gap-[clamp(2.5rem,5vw,5rem)] md:grid-cols-[0.85fr_1.15fr]">
+        <div className="grid items-center gap-[clamp(2.5rem,5vw,5rem)] md:grid-cols-[0.85fr_1.15fr]">
           <div
             data-clip
             className="relative overflow-hidden rounded-card border border-hairline"
@@ -28,26 +28,11 @@ export function Studio() {
               sizes="(min-width: 768px) 40vw, 92vw"
               className="object-cover"
             />
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgba(0,0,0,.75),transparent)]"
-            />
-            <p className="t-label absolute bottom-4 left-5 text-white">
-              {t("bay")}
-            </p>
           </div>
 
-          <div>
-            <p className="t-label mb-6" data-reveal>
-              {t("label")}
-            </p>
-            <h2 className="t-h2" data-split>
-              <SplitText text={t("title")} />
-            </h2>
-            <p className="t-lede mt-6" data-reveal>
-              {t("lede")}
-            </p>
-          </div>
+          <h2 className="t-h2" data-split>
+            <SplitText text={t("title")} />
+          </h2>
         </div>
       </div>
     </section>

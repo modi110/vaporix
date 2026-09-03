@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { PillAnchor } from "@/components/ui/PillButton";
+import { HoursTable } from "@/components/ui/HoursTable";
 import { site } from "@/content/site";
 
 /**
@@ -33,29 +34,18 @@ export function MapBand() {
               </p>
             </div>
 
-            <dl className="grid gap-2.5 border-t border-hairline pt-6 text-sm">
-              <div className="flex items-baseline justify-between gap-6">
-                <dt className="t-label">{t("hours")}</dt>
-                <dd className="font-mono tabular-nums text-ink">
-                  {site.hours.open} – {site.hours.close}
-                </dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-6">
-                <dt className="t-label">{t("phone")}</dt>
-                <dd>
-                  <a
-                    href={site.phoneHref}
-                    className="font-mono text-ink hover:text-vapor-ink"
-                  >
-                    {site.phone}
-                  </a>
-                </dd>
-              </div>
-            </dl>
-
-            {/* Google holds the live schedule; this says so rather than
-                freezing a week's worth of hours into the markup. */}
-            <p className="text-sm text-muted-dim">{t("hoursNote")}</p>
+            <div className="grid gap-4 border-t border-hairline pt-6">
+              <HoursTable />
+              <p className="flex items-baseline justify-between gap-6 text-sm">
+                <span className="t-label">{t("phone")}</span>
+                <a
+                  href={site.phoneHref}
+                  className="font-mono text-ink hover:text-vapor-ink"
+                >
+                  {site.phone}
+                </a>
+              </p>
+            </div>
 
             <div className="flex flex-wrap gap-3">
               <PillAnchor href={site.mapsUrl}>{t("directions")}</PillAnchor>

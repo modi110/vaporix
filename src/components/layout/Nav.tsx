@@ -12,10 +12,7 @@ import { site } from "@/content/site";
 
 const links: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
-  { href: "/services", key: "services" },
   { href: "/gallery", key: "gallery" },
-  { href: "/about", key: "about" },
-  { href: "/pricing", key: "pricing" },
   { href: "/contact", key: "contact" },
   { href: "/account", key: "account" },
 ];
@@ -70,7 +67,7 @@ export function Nav() {
             onClick={() => setOpen(false)}
             className="relative z-10 -my-2 py-2"
           >
-            <Wordmark className="animate-flicker" label={t("home_aria")} />
+            <Wordmark className="animate-flicker" />
           </Link>
 
           <nav className="hidden items-center gap-0.5 rounded-pill border border-hairline tint-weak p-1.5 lg:flex">

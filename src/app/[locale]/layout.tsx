@@ -10,6 +10,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Preloader, preloadFlagScript } from "@/components/motion/Preloader";
 import { themeScript } from "@/components/layout/ThemeToggle";
 import { VaporBeams } from "@/components/motion/VaporBeams";
+import { TransitionOverlay } from "@/components/motion/TransitionOverlay";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 import "../globals.css";
 
@@ -91,6 +92,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider>
           <Preloader />
           <VaporBeams />
+          <TransitionOverlay />
           <Nav />
           <SmoothScrollProvider>
             <main>{children}</main>

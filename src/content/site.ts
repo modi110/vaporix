@@ -11,8 +11,6 @@ const PHONE_E164 = "+34639876686";
 export const site = {
   name: "Vaporix",
   legalName: "Vaporix car wash",
-  tagline: "Detailing & Care",
-
   /**
    * One line, everywhere: the call link, the WhatsApp link and the number on
    * the page all come from here, so there is nothing to keep in sync.
@@ -46,12 +44,14 @@ export const site = {
     "https://maps.google.com/maps?q=Vaporix%20car%20wash%2C%20Ctra.%20Godelleta%2013%2C%2046360%20Bu%C3%B1ol&ll=39.4262003,-0.7799652&z=16&hl=es&output=embed",
 
   /**
-   * Google's public panel exposes only the current day, and it read
-   * 08:00–21:00. That window is therefore confirmed; which days it covers is
-   * not, so the site states the window and sends people to the listing for
-   * the day-by-day schedule. Replace with the full week once confirmed.
+   * The real weekly schedule, confirmed by the studio: open every day but
+   * Sunday, with Saturday running a shorter morning window.
    */
-  hours: { open: "08:00", close: "21:00" },
+  hours: {
+    weekdays: { open: "08:00", close: "21:00" },
+    saturday: { open: "08:00", close: "13:00" },
+    sunday: null,
+  },
 
   rating: 5.0,
 

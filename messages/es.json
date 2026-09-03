@@ -1,22 +1,16 @@
 {
   "nav": {
     "home": "Inicio",
-    "studio": "Estudio",
-    "services": "Servicios",
-    "about": "Nosotros",
-    "pricing": "Precios",
     "contact": "Contacto",
     "book": "Reservar",
     "menu": "Menú",
     "close": "Cerrar",
     "language": "Idioma",
-    "home_aria": "Vaporix, inicio",
     "account": "Mi cuenta",
     "theme": "Cambiar tema",
     "gallery": "Galería"
   },
   "hero": {
-    "eyebrow": "Detailing & Care",
     "titleLine1": "Devolvemos el brillo",
     "titleLine2": "del primer día.",
     "lede": "Lavamos con vapor, no con manguera. El coche vuelve limpio por dentro y por fuera, con mucha menos agua y sin que nada roce la pintura.",
@@ -27,91 +21,11 @@
     "priceFrom": "Desde 15 €"
   },
   "studio": {
-    "label": "El estudio",
     "title": "Hacemos menos servicios, y los hacemos mejor.",
-    "lede": "Cuando abrimos decidimos dos cosas: no aceptar más coches de los que caben en un día, y contarte siempre qué le hemos hecho al tuyo. Seguimos igual.",
-    "bay": "Nuestra nave en Buñol",
     "photoAlt": "La nave de Vaporix en Buñol, con un coche en el centro bajo los lucernarios."
   },
   "services": {
-    "label": "Servicios",
-    "title": "Sabes lo que cuesta antes de dejarnos las llaves.",
-    "lede": "Trabajamos con presupuesto cerrado. Si aparece algo por el camino, te llamamos antes de tocarlo.",
-    "cta": "Pedir presupuesto",
-    "from": "Desde",
-    "duration": "Duración",
-    "minutes": "{count} min",
-    "all": "Ver todos los servicios",
-    "items": {
-      "steam-wash": {
-        "name": "Lavado a vapor sin contacto",
-        "short": "Vapor a presión controlada que arrastra la suciedad sin tocar la pintura."
-      },
-      "dry-interior": {
-        "name": "Limpieza interior en seco",
-        "short": "Tapicería, plásticos y techo tratados en seco. Sale sin humedad, así que puedes conducirlo al salir."
-      },
-      "paint-correction": {
-        "name": "Pulido de carrocería y faros",
-        "short": "Quitamos las microrrayas y los hologramas que deja el lavado de rodillo, y recuperamos el reflejo."
-      },
-      "ceramic-coating": {
-        "name": "Tratamiento cerámico",
-        "short": "Capa dura e hidrófuga: el agua resbala y a la suciedad le cuesta mucho más agarrarse."
-      },
-      "paint-protection-film": {
-        "name": "Lámina de protección de pintura",
-        "short": "Film transparente en frontal y zonas de impacto contra piedras y arañazos."
-      },
-      "window-tint": {
-        "name": "Laminado de lunas",
-        "short": "Control solar y privacidad con láminas homologadas."
-      },
-      "decontamination": {
-        "name": "Descontaminación ferrosa",
-        "short": "Retiramos partículas metálicas incrustadas antes de cualquier pulido."
-      },
-      "engine-bay": {
-        "name": "Limpieza de motor",
-        "short": "Vano motor desengrasado y protegido, con los conectores sellados."
-      },
-      "trim-restoration": {
-        "name": "Restauración de plásticos",
-        "short": "Devolvemos el negro original a molduras y paragolpes descoloridos."
-      }
-    }
-  },
-  "pricing": {
-    "label": "Tarifas",
-    "title": "Precio cerrado, antes de empezar.",
-    "tiers": {
-      "essential": {
-        "name": "Esencial"
-      },
-      "advanced": {
-        "name": "Avanzado"
-      },
-      "extreme": {
-        "name": "Extremo"
-      }
-    },
-    "rows": {
-      "steamExterior": "Lavado a vapor exterior",
-      "dryInterior": "Interior en seco",
-      "wheels": "Llantas y pasos de rueda",
-      "decontamination": "Descontaminación ferrosa",
-      "trim": "Acabado de plásticos",
-      "steamFull": "Vapor + interior completo",
-      "onePass": "Pulido de un paso",
-      "headlights": "Faros restaurados",
-      "sealant": "Sellado hidrofóbico 6 meses",
-      "engineBay": "Limpieza de motor",
-      "threePass": "Pulido de tres pasos",
-      "ceramic": "Recubrimiento cerámico 5 años",
-      "ppfFront": "Lámina PPF frontal",
-      "tint": "Laminado de lunas",
-      "upholstery": "Tapicería en profundidad"
-    }
+    "cta": "Pedir presupuesto"
   },
   "cta": {
     "title": "Dinos qué coche traes y te buscamos hueco.",
@@ -124,9 +38,13 @@
     "privacy": "Política de privacidad",
     "legal": "Aviso legal",
     "rights": "Todos los derechos reservados.",
-    "hours": "Horario",
-    "dailyWindow": "Abrimos",
-    "hoursOnGoogle": "Ver el horario del día en Google"
+    "hours": "Horario"
+  },
+  "hours": {
+    "weekdays": "Lunes a viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo",
+    "closed": "Cerrado"
   },
   "meta": {
     "home": {
@@ -190,50 +108,6 @@
     }
   },
   "pages": {
-    "servicesIndex": {
-      "label": "Servicios",
-      "title": "Todo lo que le hacemos a tu coche.",
-      "lede": "Nueve tratamientos, cada uno con su tiempo y su precio cerrado."
-    },
-    "serviceDetail": {
-      "label": "Servicio",
-      "includes": "Qué incluye",
-      "duration": "Duración",
-      "priceFrom": "Desde",
-      "book": "Reservar este servicio",
-      "others": "Otros servicios",
-      "back": "Volver a servicios",
-      "pricingNote": "El precio final depende del tamaño del vehículo. Consulta la tabla completa en precios."
-    },
-    "about": {
-      "label": "Nosotros",
-      "title": "Un taller pequeño que trabaja despacio.",
-      "lede": "Somos un equipo corto y lo preferimos así.",
-      "p1": "Vaporix nació porque estábamos cansados de dejar el coche en sitios donde nadie te explica qué te han hecho. Abrimos con una sola bahía, una máquina de vapor y la norma de no aceptar más trabajo del que cabe en un día.",
-      "p2": "Seguimos con la misma norma. Usamos vapor porque gasta mucha menos agua que una manguera y limpia sin frotar la pintura. Y si quieres saber qué producto lleva tu coche, te lo decimos.",
-      "valuesTitle": "Cómo trabajamos",
-      "values": {
-        "care": {
-          "name": "Sin prisa",
-          "desc": "Un coche por bahía y por franja. Nunca solapamos trabajos para meter uno más."
-        },
-        "honesty": {
-          "name": "Precio cerrado",
-          "desc": "Lo que te decimos antes de empezar es lo que pagas. Si aparece algo, te llamamos."
-        },
-        "steam": {
-          "name": "Vapor, no manguera",
-          "desc": "Menos agua, sin contacto con la pintura y sin químicos agresivos en el interior."
-        }
-      }
-    },
-    "pricing": {
-      "label": "Precios",
-      "title": "Esto es lo que cuesta cada cosa.",
-      "lede": "El precio depende del tamaño del vehículo y del servicio. Nada más.",
-      "note": "Precios con IVA incluido. Los vehículos con suciedad extrema o pelo de mascota pueden llevar un suplemento, que te decimos antes de empezar.",
-      "vehicle": "Vehículo"
-    },
     "contact": {
       "label": "Contacto",
       "title": "Cuéntanos qué coche traes.",
@@ -253,9 +127,9 @@
       "label": "Reservar",
       "title": "Reserva tu cita.",
       "lede": "Elige vehículo y servicio, y te confirmamos la hora.",
-      "soon": "La reserva online llega en breve. De momento, la forma más rápida de coger cita es por teléfono o WhatsApp.",
       "call": "Llamar ahora",
-      "whatsapp": "Escribir por WhatsApp"
+      "whatsapp": "Escribir por WhatsApp",
+      "note": "Precios con IVA incluido. Si el coche llega con suciedad extrema o mucho pelo de mascota, puede llevar un suplemento, y te lo decimos antes de empezar."
     },
     "account": {
       "label": "Mi cuenta",
@@ -311,21 +185,8 @@
   "map": {
     "label": "Dónde estamos",
     "title": "Aquí es donde dejas el coche.",
-    "hours": "Abrimos",
     "phone": "Teléfono",
-    "hoursNote": "El horario del día lo tienes siempre al día en nuestra ficha de Google, festivos incluidos.",
     "directions": "Cómo llegar",
     "iframeTitle": "Mapa con la ubicación de {name}"
-  },
-  "work": {
-    "label": "Trabajos",
-    "title": "Cuatro coches que salieron esta temporada.",
-    "all": "Ver la galería",
-    "alt": {
-      "konaFront": "Hyundai Kona gris recién lavado, visto de frente al sol.",
-      "x4Interior": "Salpicadero y asientos de un BMW X4 después de la limpieza interior en seco.",
-      "x4Side": "BMW X4 negro de perfil dentro de la nave, con el lateral pulido.",
-      "corsaFront": "Opel Corsa blanco de frente en la bahía, recién terminado."
-    }
   }
 }
