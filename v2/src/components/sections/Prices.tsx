@@ -169,13 +169,10 @@ export function Prices() {
               </span>
             </div>
 
-            <p className="t-caption -mt-3 flex flex-wrap items-center gap-2">
-              {/* navy-on-giallo, not giallo text on marble — the latter
-                  fails AA at this size (4.1:1 vs the 4.5:1 caption text needs). */}
-              <span className="bg-giallo px-1.5 py-0.5 text-navy">
-                {v("discount")}
-              </span>
-              <span>{v(`items.${vehicle.id}.examples`)}</span>
+            {/* navy-on-giallo, not giallo text on marble — the latter
+                fails AA at this size (4.1:1 vs the 4.5:1 caption text needs). */}
+            <p className="t-caption -mt-3 inline-block w-fit bg-giallo px-1.5 py-0.5 text-navy">
+              {v("discount")}
             </p>
 
             <ButtonLink href="/book" className="self-start">

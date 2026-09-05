@@ -79,16 +79,13 @@
     "discount": "Descuento de septiembre",
     "items": {
       "small": {
-        "name": "Coche pequeño",
-        "examples": "Polo · Corsa · Fiesta · Mini"
+        "name": "Coche pequeño"
       },
       "suv": {
-        "name": "SUV",
-        "examples": "T-Roc · Q5 · Tucson · Qashqai"
+        "name": "SUV"
       },
       "van": {
-        "name": "Furgoneta",
-        "examples": "Transporter · Sprinter · Vito"
+        "name": "Furgoneta"
       }
     },
     "cta": "Reservar"

@@ -94,11 +94,8 @@ function Book() {
                 {/* A <p> here would be invalid inside a <dl> row: browsers
                     reparent it, React does not, and the mismatch can take
                     hydration down for the whole page. */}
-                <dd className="t-caption m-0 flex w-full flex-wrap items-center gap-2">
-                  <span className="bg-giallo px-1.5 py-0.5 text-navy">
-                    {v("discount")}
-                  </span>
-                  <span>{v(`items.${vehicle.id}.examples`)}</span>
+                <dd className="t-caption m-0 w-fit bg-giallo px-1.5 py-0.5 text-navy">
+                  {v("discount")}
                 </dd>
               </div>
             ))}

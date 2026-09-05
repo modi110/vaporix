@@ -79,16 +79,13 @@
     "discount": "September discount",
     "items": {
       "small": {
-        "name": "Small car",
-        "examples": "Polo · Corsa · Fiesta · Mini"
+        "name": "Small car"
       },
       "suv": {
-        "name": "SUV",
-        "examples": "T-Roc · Q5 · Tucson · Qashqai"
+        "name": "SUV"
       },
       "van": {
-        "name": "Van",
-        "examples": "Transporter · Sprinter · Vito"
+        "name": "Van"
       }
     },
     "cta": "Book"
