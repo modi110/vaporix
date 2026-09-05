@@ -1,0 +1,260 @@
+@import "tailwindcss";
+
+/* ============================================================
+   VAPORIX v2
+
+   Hard edges, one yellow, photographs doing the talking. The
+   page alternates dark stages and light editorial bands section
+   by section — that alternation is the only separation device
+   there is. No shadows, no radii, no glows.
+
+   Phone first. Every size below starts at a value that works at
+   390px and scales up; nothing is designed wide and shrunk.
+   ============================================================ */
+@theme {
+  /* --- surfaces --- */
+  --color-void: #000000;
+  /*
+    The dark surface is the navy-black of the studio's own VRK sign, not a
+    neutral grey. It still reads as black, and it ties every dark band on the
+    page to the board above the client's door.
+  */
+  --color-navy: #1a1f28;
+  --color-navy-lift: #222835;
+  --color-pearl: #ffffff;
+  --color-marble: #f5f5f5;
+
+  /* --- the one accent --- */
+  --color-giallo: #ffc000;
+  --color-giallo-deep: #917300;
+
+  /* --- ink --- */
+  --color-ink: #1a1f28;
+  --color-ink-invert: #ffffff;
+  /*
+    Secondary text is graphite, never steel or ash. #7d7d7d manages 4.0:1 on
+    white and #969696 manages 2.6:1 — both fail AA for text and are borders
+    only. #494949 clears it at 7.5:1.
+  */
+  --color-muted: #494949;
+  --color-muted-invert: #b8bec7;
+
+  /* --- rules --- */
+  --color-hairline: #969696;
+  --color-hairline-dark: #494949;
+  --color-steel: #7d7d7d;
+
+  --font-display: var(--font-barlow-condensed), "Arial Narrow", ui-sans-serif,
+    system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+
+  /*
+    Uniform across every size, from the 10px caption to the 120px display.
+    design.md is explicit that this is what makes the type read as engineered
+    rather than merely condensed.
+  */
+  --track: 0.023em;
+
+  --gutter: clamp(1.25rem, 5vw, 3.5rem);
+  --pad-section: clamp(3.5rem, 9vw, 5rem);
+  --maxw: 1440px;
+}
+
+@layer base {
+  * {
+    min-width: 0;
+  }
+
+  /*
+    `clip`, not `hidden`, and on both elements. `overflow-x: hidden` turns the
+    element into a scroll container, which on a phone lets a full-bleed section
+    widen the layout viewport past device-width and leaves a dead band down the
+    side. `clip` discards the overflow without creating a scroll port, and
+    without breaking `position: sticky`.
+  */
+  html {
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    background: var(--color-void);
+    color: var(--color-ink-invert);
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: var(--track);
+    line-height: 1.5;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-giallo);
+    color: var(--color-navy);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-giallo);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .wrap {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .section {
+    padding-block: var(--pad-section);
+    position: relative;
+  }
+
+  /* ---------- type scale ----------
+     design.md's sizes are desktop values; 120px overflows a 390px screen, so
+     each clamps from a phone-legible floor up to the documented size. The
+     line-heights and the tracking are the doc's, unchanged. */
+  .t-hero {
+    font-size: clamp(2.75rem, 9vw, 7.5rem);
+    line-height: 0.92;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .t-display-lg {
+    font-size: clamp(2.25rem, 6vw, 5rem);
+    line-height: 1;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .t-display {
+    font-size: clamp(1.875rem, 4.5vw, 3.375rem);
+    line-height: 1.13;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .t-heading {
+    font-size: clamp(1.375rem, 2.6vw, 2rem);
+    line-height: 1.38;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .t-sub {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+  .t-body {
+    font-size: 1rem;
+    line-height: 1.6;
+    /* Running prose is the one place the engineered tracking hurts: it is set
+       sentence case, and 0.023em on lowercase reads as loose rather than
+       deliberate. */
+    letter-spacing: 0;
+    max-width: 62ch;
+  }
+  .t-caption {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: var(--color-steel);
+  }
+}
+
+/* ============================================================
+   REVEALS
+   One device, used sparingly. `frontend-design` is direct that
+   a fade-and-slide on every section reads as generated, so this
+   is for the few blocks that earn it — never a default.
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s var(--ease-out-expo),
+    transform 0.8s var(--ease-out-expo);
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   THE CURTAIN
+
+   Driven entirely by CSS, on purpose. The first phone test of
+   v2 found the site unreachable behind it: the curtain is a
+   fixed, full-screen, z-100 overlay, and when the JavaScript
+   that was supposed to lift it did not finish, nothing below
+   was clickable — no menu, no carousel, no scroll.
+
+   So the lift is a keyframe animation now. It runs whether or
+   not any script does, which means a loading screen can no
+   longer take the site down with it. JavaScript is left with
+   only the two jobs it is actually needed for: remembering
+   that the curtain has played this session, and unlocking the
+   scroll it locked.
+   ============================================================ */
+[data-preloaded="1"] #preloader {
+  display: none;
+}
+
+#preloader {
+  animation: vaporix-curtain 1.45s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+#preloader .preloader-mark {
+  clip-path: inset(0 100% 0 0);
+  animation: vaporix-mark-wipe 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+}
+
+@keyframes vaporix-mark-wipe {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes vaporix-curtain {
+  0%,
+  66% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-101%);
+  }
+}
+
+/* Nothing to sit through if motion is unwelcome: the curtain is simply not
+   there, rather than playing quickly. */
+@media (prefers-reduced-motion: reduce) {
+  #preloader {
+    display: none;
+  }
+}
+
+/* Google's embed cannot be restyled, so a white map would sit on the navy
+   band like a hole. Inverting and rotating the hue is the only fix that needs
+   no API key. */
+.map-embed {
+  filter: invert(0.92) hue-rotate(180deg) saturate(0.78) brightness(0.95);
+}

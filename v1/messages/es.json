@@ -13,7 +13,7 @@
   "hero": {
     "titleLine1": "Devolvemos el brillo",
     "titleLine2": "del primer día.",
-    "lede": "Lavamos con vapor, no con manguera. El coche vuelve limpio por dentro y por fuera, con mucha menos agua y sin que nada roce la pintura.",
+    "lede": "El coche vuelve limpio por dentro y por fuera, hasta el último rincón, sin atajos.",
     "ctaPrimary": "Reservar cita",
     "ctaSecondary": "Ver servicios",
     "scroll": "Desliza",
@@ -21,7 +21,7 @@
     "priceFrom": "Desde 15 €"
   },
   "studio": {
-    "title": "Hacemos menos servicios, y los hacemos mejor.",
+    "title": "Lo hacemos bien, siempre.",
     "photoAlt": "La nave de Vaporix en Buñol, con un coche en el centro bajo los lucernarios."
   },
   "services": {
@@ -47,8 +47,8 @@
   },
   "meta": {
     "home": {
-      "title": "Vaporix · Detailing a vapor en Buñol, Valencia",
-      "description": "Estudio de detailing a vapor en Buñol. Lavado sin contacto, interior en seco, pulido, tratamiento cerámico y protección de pintura, con presupuesto cerrado."
+      "title": "Vaporix · Lavado y detailing en Buñol, Valencia",
+      "description": "Estudio de lavado y detailing en Buñol. Interior en seco, pulido, tratamiento cerámico y protección de pintura, con presupuesto cerrado."
     }
   },
   "vehicles": {
@@ -86,11 +86,11 @@
     "packages": {
       "interior": {
         "name": "Solo interior",
-        "desc": "Aspirado a fondo, tapicería y plásticos tratados en seco, cristales por dentro y desodorización con vapor."
+        "desc": "Aspirado a fondo, tapicería y plásticos tratados en seco, cristales por dentro y tratamiento anti-olores."
       },
       "exterior": {
         "name": "Solo exterior",
-        "desc": "Lavado a vapor sin contacto, llantas y pasos de rueda, secado a mano con microfibra y brillo en neumáticos."
+        "desc": "Lavado exterior, llantas y pasos de rueda, secado a mano con microfibra y brillo en neumáticos."
       },
       "full": {
         "name": "Interior + exterior",
@@ -98,7 +98,7 @@
       },
       "motoExterior": {
         "name": "Lavado completo",
-        "desc": "Vapor en carenado, llantas y cadena, secado a mano y brillo en gomas. Sin tocar la electrónica."
+        "desc": "Lavado cuidadoso en carenado, llantas y cadena, secado a mano y brillo en gomas. Sin tocar la electrónica."
       },
       "motoSealed": {
         "name": "Lavado + sellado",

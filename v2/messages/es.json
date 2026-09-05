@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "book": "Reservar",
+    "menu": "Menú",
+    "close": "Cerrar",
+    "language": "Idioma",
+    "gallery": "Galería"
+  },
+  "hero": {
+    "title": "Vaporix",
+    "cta": "Reservar",
+    "carouselLabel": "Trabajos del taller",
+    "goTo": "Ver la imagen {n}",
+    "slideOf": "Imagen {n} de {total}",
+    "slides": {
+      "seatExeo": "Seat Exeo ST rojo, terminado y reflejado en el suelo de resina",
+      "golfFront": "Volkswagen Golf GTI negro, visto de frente",
+      "audiQ5": "Audi Q5 negro en tres cuartos",
+      "miniJcw": "Mini John Cooper Works negro y rojo en tres cuartos"
+    }
+  },
+  "studio": {
+    "title": "Lo hacemos bien, siempre.",
+    "photoAlt": "La nave de Vaporix en Buñol, con un coche en el centro bajo los lucernarios."
+  },
+  "cta": {
+    "title": "Dinos qué coche traes y te buscamos hueco.",
+    "book": "Reservar cita",
+    "call": "Llamar"
+  },
+  "footer": {
+    "main": "Principal",
+    "privacy": "Política de privacidad",
+    "legal": "Aviso legal",
+    "rights": "Todos los derechos reservados.",
+    "hours": "Horario"
+  },
+  "hours": {
+    "weekdays": "Lunes a viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo",
+    "closed": "Cerrado"
+  },
+  "meta": {
+    "home": {
+      "title": "Vaporix · Lavado y detailing en Buñol, Valencia",
+      "description": "Estudio de lavado y detailing en Buñol. Interior en seco, pulido, tratamiento cerámico y protección de pintura, con presupuesto cerrado."
+    }
+  },
+  "vehicles": {
+    "label": "Tarifas",
+    "title": "Elige el tamaño de tu coche",
+    "lede": "Un precio por tamaño. Sin extras ni letra pequeña: el mismo lavado completo, por dentro y por fuera.",
+    "items": {
+      "small": {
+        "name": "Coche pequeño",
+        "examples": "Polo · Corsa · Fiesta · Mini"
+      },
+      "suv": {
+        "name": "SUV",
+        "examples": "T-Roc · Q5 · Tucson · Qashqai"
+      },
+      "van": {
+        "name": "Furgoneta",
+        "examples": "Transporter · Sprinter · Vito"
+      }
+    },
+    "cta": "Reservar"
+  },
+  "pages": {
+    "contact": {
+      "label": "Contacto",
+      "title": "Pregúntanos lo que quieras.",
+      "lede": "Llámanos o escríbenos por WhatsApp: respondemos el mismo día laborable.",
+      "findUs": "Dónde estamos",
+      "hours": "Horario",
+      "callUs": "Llámanos",
+      "mapTitle": "Mapa con la ubicación de Vaporix en Buñol"
+    },
+    "book": {
+      "label": "Reservar",
+      "title": "Reserva tu cita.",
+      "lede": "Elige vehículo y servicio, y te confirmamos la hora.",
+      "call": "Llamar ahora",
+      "whatsapp": "Escribir por WhatsApp",
+      "note": "Precios con IVA incluido. Si el coche llega con suciedad extrema o mucho pelo de mascota, puede llevar un suplemento, y te lo decimos antes de empezar."
+    },
+    "gallery": {
+      "label": "Galería",
+      "title": "Coches que han salido de aquí.",
+      "lede": "Fotos nuestras, hechas en la nave, sin retoque. Las matrículas van tapadas porque los coches son de nuestros clientes.",
+      "alt": {
+        "golfFront": "Volkswagen Golf GTI negro, visto de frente",
+        "miniJcw": "Mini John Cooper Works negro y rojo en tres cuartos",
+        "seatExeo": "Seat Exeo ST rojo, reflejado en el suelo de resina",
+        "bmwSerie3": "BMW Serie 3 gris con las puertas abiertas",
+        "audiA5": "Audi A5 negro, visto de frente",
+        "audiQ5": "Audi Q5 negro en tres cuartos"
+      }
+    },
+    "about": {
+      "label": "Nosotros",
+      "title": "Un taller que cuida los detalles.",
+      "lede": "Preferimos hacer pocas cosas bien que muchas a medias.",
+      "body": "Cada coche recibe el tiempo que necesita, sin prisas ni atajos. Si tienes dudas sobre algún servicio, llámanos o escríbenos y te lo explicamos con calma."
+    }
+  },
+  "map": {
+    "label": "Dónde estamos",
+    "title": "Aquí es donde dejas el coche.",
+    "phone": "Teléfono",
+    "directions": "Cómo llegar",
+    "iframeTitle": "Mapa con la ubicación de {name}"
+  },
+  "work": {
+    "label": "El trabajo",
+    "title": "Coches que salen de aquí",
+    "link": "Ver la galería"
+  }
+}
