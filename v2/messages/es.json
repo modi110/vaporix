@@ -76,6 +76,7 @@
     "label": "Tarifas",
     "title": "Elige el tamaño de tu coche",
     "lede": "Un precio por tamaño. Sin extras ni letra pequeña: el mismo lavado completo, por dentro y por fuera.",
+    "discount": "Descuento de septiembre",
     "items": {
       "small": {
         "name": "Coche pequeño",

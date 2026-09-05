@@ -83,14 +83,22 @@ function Book() {
                 className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-hairline py-6"
               >
                 <dt className="t-heading">{v(`items.${vehicle.id}.name`)}</dt>
-                <dd className="t-display-lg font-medium tabular-nums">
-                  {vehicle.price} €
+                <dd className="m-0 flex items-baseline gap-2.5">
+                  <span className="t-body text-steel line-through">
+                    {vehicle.price} €
+                  </span>
+                  <b className="t-display-lg font-medium tabular-nums">
+                    {vehicle.salePrice} €
+                  </b>
                 </dd>
                 {/* A <p> here would be invalid inside a <dl> row: browsers
                     reparent it, React does not, and the mismatch can take
                     hydration down for the whole page. */}
-                <dd className="t-caption m-0 w-full">
-                  {v(`items.${vehicle.id}.examples`)}
+                <dd className="t-caption m-0 flex w-full flex-wrap items-center gap-2">
+                  <span className="bg-giallo px-1.5 py-0.5 text-navy">
+                    {v("discount")}
+                  </span>
+                  <span>{v(`items.${vehicle.id}.examples`)}</span>
                 </dd>
               </div>
             ))}

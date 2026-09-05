@@ -159,12 +159,24 @@ export function Prices() {
 
             <div className="flex items-baseline justify-between gap-4">
               <h3 className="t-heading">{v(`items.${vehicle.id}.name`)}</h3>
-              <b className="t-display-lg font-medium tabular-nums">
-                {vehicle.price} €
-              </b>
+              <span className="flex items-baseline gap-2.5">
+                <span className="t-body text-steel line-through">
+                  {vehicle.price} €
+                </span>
+                <b className="t-display-lg font-medium tabular-nums">
+                  {vehicle.salePrice} €
+                </b>
+              </span>
             </div>
 
-            <p className="t-caption -mt-3">{v(`items.${vehicle.id}.examples`)}</p>
+            <p className="t-caption -mt-3 flex flex-wrap items-center gap-2">
+              {/* navy-on-giallo, not giallo text on marble — the latter
+                  fails AA at this size (4.1:1 vs the 4.5:1 caption text needs). */}
+              <span className="bg-giallo px-1.5 py-0.5 text-navy">
+                {v("discount")}
+              </span>
+              <span>{v(`items.${vehicle.id}.examples`)}</span>
+            </p>
 
             <ButtonLink href="/book" className="self-start">
               {v("cta")}

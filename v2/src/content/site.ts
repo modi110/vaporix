@@ -19,7 +19,7 @@ export const site = {
   phone: "+34 639 87 66 86",
   phoneHref: `tel:${PHONE_E164}`,
   whatsapp: `https://wa.me/${PHONE_E164.slice(1)}`,
-  email: "vaporixspain@gmail.com",
+  email: "Info@vaporix.net",
 
   address: {
     street: "Ctra. Godelleta, 13",
