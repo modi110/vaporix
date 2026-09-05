@@ -22,6 +22,28 @@
       "miniJcw": "Mini John Cooper Works negro y rojo en tres cuartos"
     }
   },
+  "highlights": {
+    "title": "Por qué reservar con nosotros.",
+    "lede": "Cuatro cosas que puedes esperar cada vez que traigas el coche.",
+    "items": {
+      "price": {
+        "title": "Precio cerrado",
+        "body": "Un precio por tamaño, sin sorpresas ni letra pequeña."
+      },
+      "reply": {
+        "title": "Respuesta rápida",
+        "body": "Escríbenos por WhatsApp y te respondemos el mismo día laborable."
+      },
+      "time": {
+        "title": "Sin prisas",
+        "body": "Cada coche recibe el tiempo que necesita, sin atajos."
+      },
+      "rating": {
+        "title": "5 estrellas",
+        "body": "Nuestra valoración de clientes en Google."
+      }
+    }
+  },
   "studio": {
     "title": "Lo hacemos bien, siempre.",
     "photoAlt": "La nave de Vaporix en Buñol, con un coche en el centro bajo los lucernarios."

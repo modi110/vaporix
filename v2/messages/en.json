@@ -22,6 +22,28 @@
       "miniJcw": "Black and red Mini John Cooper Works in three-quarter view"
     }
   },
+  "highlights": {
+    "title": "Why book with us.",
+    "lede": "Four things you can expect every time you bring the car in.",
+    "items": {
+      "price": {
+        "title": "Flat price",
+        "body": "One price by size, no surprises, no small print."
+      },
+      "reply": {
+        "title": "Quick reply",
+        "body": "Message us on WhatsApp and we reply the same working day."
+      },
+      "time": {
+        "title": "No rush",
+        "body": "Every car gets the time it needs, no shortcuts."
+      },
+      "rating": {
+        "title": "5 stars",
+        "body": "Our customer rating on Google."
+      }
+    }
+  },
   "studio": {
     "title": "We do it properly, every time.",
     "photoAlt": "The Vaporix workshop in Buñol, a car parked in the middle of the floor under the roof lights."
