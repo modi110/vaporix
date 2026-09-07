@@ -105,7 +105,16 @@ export function Hero() {
       // resolve `h-full` against, and every image reports height 0. An
       // explicit height gives the row a size that never depends on its
       // children, which is what makes their percentage heights resolve.
-      className="relative isolate flex h-[100svh] overflow-hidden bg-void"
+      //
+      // `dvh`, not `svh`. `svh` commits to the smallest possible viewport —
+      // toolbar fully expanded — but on some real phones (confirmed on a
+      // real device, not reproducible in an emulator) that snapshot ends up
+      // shorter than what's actually on screen at load, leaving the next
+      // section visible underneath before any scroll. `dvh` tracks the
+      // *current* viewport instead, at the cost of a small resize as the
+      // toolbar shows or hides — the safer trade, since a visible gap on
+      // load is worse than a barely-noticeable jump on scroll.
+      className="relative isolate flex h-[100dvh] overflow-hidden bg-void"
       // Vertical stays with the browser so the page still scrolls; horizontal
       // is ours, which is what stops a swipe being swallowed by the scroller.
       style={{ touchAction: "pan-y" }}
