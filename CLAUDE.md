@@ -1,4 +1,8 @@
-@AGENTS.md
+# Vaporix
+
+Single Next.js site, lives in `v2/`. Run all commands (`npm install`, `npm run dev`, `npm run build`, `npm run lint`) from inside `v2/`, not the repo root — `v2/` has its own `package.json`, `node_modules` and lockfile. `v2/AGENTS.md` is Next's auto-generated agent file; leave it as-is.
+
+`v1/` (the earlier rejected design) has been deleted. If you see references to it in old comments or docs, it's history, not a live folder.
 
 # CLAUDE.md
 
