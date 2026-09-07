@@ -126,6 +126,16 @@
       "title": "Un taller que cuida los detalles.",
       "lede": "Preferimos hacer pocas cosas bien que muchas a medias.",
       "body": "Cada coche recibe el tiempo que necesita, sin prisas ni atajos. Si tienes dudas sobre algún servicio, llámanos o escríbenos y te lo explicamos con calma."
+    },
+    "services": {
+      "label": "Más servicios",
+      "title": "Más servicios",
+      "lede": "Además del lavado, hacemos estos trabajos en el taller.",
+      "items": {
+        "oil": "Cambio de aceite y filtro",
+        "brakes": "Revisión y cambio de frenos",
+        "tyre": "Reparación de pinchazos"
+      }
     }
   },
   "map": {
@@ -138,6 +148,7 @@
   "work": {
     "label": "El trabajo",
     "title": "Coches que salen de aquí",
-    "link": "Ver la galería"
+    "link": "Ver la galería",
+    "moreServices": "Más servicios"
   }
 }

@@ -31,6 +31,26 @@ export function Nav() {
   const [open, setOpen] = useState(false);
 
   /**
+   * Only the home page has a full-bleed photo starting at y=0 under this bar
+   * — every other page sits its own navy header directly against it
+   * (`PageHeader`), so an opaque bar there is already seamless. Here it isn't:
+   * a solid bar across the top of the hero photo is exactly what stopped it
+   * reading as full-screen, so it stays transparent until the first scroll.
+   */
+  const isHome = pathname === "/";
+  const [scrolled, setScrolled] = useState(!isHome);
+
+  useEffect(() => {
+    if (!isHome) return;
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
+
+  const transparent = isHome && !scrolled;
+
+  /**
    * Locking the page behind the sheet takes both properties: `overflow` alone
    * leaves iOS rubber-banding the body underneath the overlay.
    */
@@ -57,7 +77,14 @@ export function Nav() {
   return (
     <>
       <header
-        className="fixed inset-x-0 top-0 z-50 bg-navy"
+        // Mobile-only: the desktop hero splits into navy/photo/Giallo panels,
+        // and a transparent bar over the right-hand yellow one leaves the
+        // outlined RESERVAR button all but unreadable — white on white,
+        // roughly. Desktop never had the "doesn't feel full-screen" problem
+        // this solves, so `md:` forces it back to a plain navy bar there.
+        className={`fixed inset-x-0 top-0 z-50 bg-navy transition-[background-color] duration-300 md:bg-navy md:bg-none ${
+          transparent ? "max-md:bg-transparent max-md:bg-[linear-gradient(to_bottom,rgba(0,0,0,.75)_0%,rgba(0,0,0,.4)_65%,transparent_100%)]" : ""
+        }`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
         <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center px-[var(--gutter)]">
@@ -109,7 +136,7 @@ export function Nav() {
         // Hidden from the tree when shut, so a swipe never lands on a link
         // that is merely invisible.
         inert={!open}
-        className={`fixed inset-0 z-40 flex flex-col overflow-y-auto overscroll-contain bg-void transition-[opacity,visibility] duration-300 ${
+        className={`fixed inset-0 z-40 flex flex-col overflow-y-auto overscroll-contain bg-navy transition-[opacity,visibility] duration-300 ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
         style={{

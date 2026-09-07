@@ -18,7 +18,7 @@ import { CtaBand } from "@/components/sections/CtaBand";
  *   work       white    photographs, large, on a light ground
  *   studio     marble   one quiet frame
  *   map        navy     where it is and when it opens
- *   cta        black    the last yellow on the page
+ *   cta        white    the last yellow on the page
  */
 export default async function HomePage({
   params,

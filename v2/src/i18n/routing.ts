@@ -27,6 +27,10 @@ export const routing = defineRouting({
       es: "/reservar",
       en: "/book",
     },
+    "/services": {
+      es: "/mas-servicios",
+      en: "/services",
+    },
   },
 });
 

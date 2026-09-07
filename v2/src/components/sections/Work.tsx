@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { shots } from "@/content/gallery";
+import { ButtonLink } from "@/components/ui/Button";
 
 /**
  * The answer to the client's first complaint: real photographs of real work,
@@ -59,6 +60,11 @@ export function Work() {
               </picture>
             </figure>
           ))}
+        </div>
+
+        {/* The wash grid's own accent — the only Giallo in this viewport. */}
+        <div className="mt-10 flex justify-center">
+          <ButtonLink href="/services">{t("moreServices")}</ButtonLink>
         </div>
       </div>
     </section>
