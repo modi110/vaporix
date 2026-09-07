@@ -122,7 +122,9 @@
       "items": {
         "oil": "Oil & filter change",
         "brakes": "Brake service",
-        "tyre": "Puncture repair"
+        "tyre": "Puncture repair",
+        "battery": "Battery change",
+        "boost": "Battery jump-start"
       }
     }
   },

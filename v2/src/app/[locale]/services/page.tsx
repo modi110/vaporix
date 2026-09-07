@@ -30,7 +30,7 @@ export default async function ServicesPage({
   return <Services />;
 }
 
-const items: ServiceIconId[] = ["oil", "brakes", "tyre"];
+const items: ServiceIconId[] = ["oil", "brakes", "tyre", "battery", "boost"];
 
 /**
  * No prices here, unlike `/reservar` — these are quoted per car once we've
@@ -45,7 +45,7 @@ function Services() {
       <PageHeader title={p("title")} lede={p("lede")} />
 
       <section className="section bg-pearl text-ink">
-        <div className="wrap grid gap-10 sm:grid-cols-3">
+        <div className="wrap grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((id) => (
             <div key={id}>
               <ServiceIcon id={id} className="mb-5 size-10" />

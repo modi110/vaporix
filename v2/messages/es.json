@@ -122,7 +122,9 @@
       "items": {
         "oil": "Cambio de aceite y filtro",
         "brakes": "Revisión y cambio de frenos",
-        "tyre": "Reparación de pinchazos"
+        "tyre": "Reparación de pinchazos",
+        "battery": "Cambio de batería",
+        "boost": "Servicio de arranque"
       }
     }
   },
