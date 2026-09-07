@@ -19,12 +19,25 @@ export const heroSlides: HeroSlide[] = [
     "alt": "audiQ5",
     "focus": "50% 50%",
     "portrait": {
-      "w": 672,
-      "h": 1195
+      "w": 821,
+      "h": 1460
     },
     "wide": {
-      "w": 609,
-      "h": 343
+      "w": 732,
+      "h": 412
+    }
+  },
+  {
+    "name": "bmw-serie5",
+    "alt": "bmwSerie5",
+    "focus": "50% 50%",
+    "portrait": {
+      "w": 619,
+      "h": 1100
+    },
+    "wide": {
+      "w": 739,
+      "h": 416
     }
   },
   {
@@ -32,38 +45,25 @@ export const heroSlides: HeroSlide[] = [
     "alt": "miniJcw",
     "focus": "50% 50%",
     "portrait": {
-      "w": 672,
-      "h": 1195
+      "w": 700,
+      "h": 1244
     },
     "wide": {
-      "w": 609,
-      "h": 343
+      "w": 738,
+      "h": 415
     }
   },
   {
-    "name": "golf-front",
-    "alt": "golfFront",
+    "name": "volvo-xc60",
+    "alt": "volvoXc60",
     "focus": "50% 50%",
     "portrait": {
-      "w": 672,
-      "h": 1195
+      "w": 700,
+      "h": 1244
     },
     "wide": {
-      "w": 609,
-      "h": 343
-    }
-  },
-  {
-    "name": "seat-exeo",
-    "alt": "seatExeo",
-    "focus": "50% 50%",
-    "portrait": {
-      "w": 1049,
-      "h": 1864
-    },
-    "wide": {
-      "w": 1468,
-      "h": 826
+      "w": 739,
+      "h": 416
     }
   }
 ];

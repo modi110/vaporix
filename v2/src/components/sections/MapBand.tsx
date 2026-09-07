@@ -33,12 +33,15 @@ export function MapBand() {
             </div>
 
             <div className="grid gap-5 border-t border-hairline-dark pt-6">
-              <HoursTable />
+              <HoursTable dark />
               <p className="flex items-baseline justify-between gap-6 text-sm uppercase">
                 <span className="text-steel">{t("phone")}</span>
                 <a
                   href={site.phoneHref}
-                  className="tabular-nums transition-colors hover:text-giallo"
+                  // Opacity, not a colour shift: this section is the accent
+                  // colour, so `hover:text-giallo` would step from white to
+                  // the same blue as the band behind it.
+                  className="tabular-nums transition-opacity hover:opacity-70"
                 >
                   {site.phone}
                 </a>

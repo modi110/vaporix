@@ -3,33 +3,42 @@
 /* ============================================================
    VAPORIX v2
 
-   Hard edges, one yellow, photographs doing the talking. The
-   page alternates dark stages and light editorial bands section
-   by section — that alternation is the only separation device
-   there is. No shadows, no radii, no glows.
+   Two colours, full stop: this blue and white, everywhere. Hard
+   edges, photographs doing the talking. The page alternates dark
+   stages and light editorial bands section by section — that
+   alternation is the only separation device there is. No
+   shadows, no radii, no glows.
+
+   Every token below still carries its old name (`--color-giallo`,
+   `--color-navy`...) even though the hue underneath it changed —
+   renaming every `bg-giallo`/`text-navy` across the codebase would
+   be a much bigger diff than a colour swap calls for, and the
+   names still describe the *role* each token plays, not a shade.
 
    Phone first. Every size below starts at a value that works at
    390px and scales up; nothing is designed wide and shrunk.
    ============================================================ */
 @theme {
   /* --- surfaces --- */
-  --color-void: #000000;
-  /*
-    The dark surface is the navy-black of the studio's own VRK sign, not a
-    neutral grey. It still reads as black, and it ties every dark band on the
-    page to the board above the client's door.
-  */
-  --color-navy: #1a1f28;
-  --color-navy-lift: #222835;
+  --color-void: #005fd3;
+  --color-navy: #005fd3;
+  /* A lighter tint for hover states on solid-blue panels — see
+     `--color-giallo-deep` below for the equivalent on the accent. */
+  --color-navy-lift: #1f72d8;
   --color-pearl: #ffffff;
-  --color-marble: #f5f5f5;
+  --color-marble: #ffffff;
 
   /* --- the one accent --- */
-  --color-giallo: #ffc000;
-  --color-giallo-deep: #917300;
+  /* Same hue as the surface, on purpose — the whole site is blue and white,
+     nothing else. Where an accent element would otherwise sit directly on a
+     blue surface (and so disappear against it), the component pairs it with
+     white instead; see the notes on `Button`'s `ghost` variant and the nav's
+     active link for where that rule actually bites. */
+  --color-giallo: #005fd3;
+  --color-giallo-deep: #003474;
 
   /* --- ink --- */
-  --color-ink: #1a1f28;
+  --color-ink: #005fd3;
   --color-ink-invert: #ffffff;
   /*
     Secondary text is graphite, never steel or ash. #7d7d7d manages 4.0:1 on
@@ -95,7 +104,7 @@
 
   ::selection {
     background: var(--color-giallo);
-    color: var(--color-navy);
+    color: var(--color-pearl);
   }
 
   :focus-visible {
@@ -158,11 +167,14 @@
     letter-spacing: 0;
     max-width: 62ch;
   }
+  /* No default colour — steel reads fine on the light sections, but on the
+     new bright-blue dark surface it's close to illegible (1.4:1). Every
+     usage sets `text-steel` or `text-muted-invert` explicitly instead, so
+     nothing here silently overrides the choice a call site makes. */
   .t-caption {
     font-size: 0.75rem;
     line-height: 1.5;
     text-transform: uppercase;
-    color: var(--color-steel);
   }
 }
 

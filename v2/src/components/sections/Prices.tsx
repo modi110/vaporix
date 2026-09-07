@@ -169,9 +169,10 @@ export function Prices() {
               </span>
             </div>
 
-            {/* navy-on-giallo, not giallo text on marble — the latter
-                fails AA at this size (4.1:1 vs the 4.5:1 caption text needs). */}
-            <p className="t-caption -mt-3 inline-block w-fit bg-giallo px-1.5 py-0.5 text-navy">
+            {/* White on the fill, not the accent colour on marble — giallo and
+                the site's blue are the same hue now, so text in it would
+                vanish against the surface behind the badge. */}
+            <p className="t-caption -mt-3 inline-block w-fit bg-giallo px-1.5 py-0.5 text-pearl">
               {v("discount")}
             </p>
 

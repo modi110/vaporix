@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import { shots } from "@/content/gallery";
-import { ButtonLink } from "@/components/ui/Button";
 
 /**
  * The answer to the client's first complaint: real photographs of real work,
@@ -21,24 +19,8 @@ export function Work() {
   return (
     <section className="section bg-pearl text-ink">
       <div className="wrap">
-        <header className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
+        <header className="mb-10">
           <h2 className="t-display">{t("title")}</h2>
-          <Link
-            href="/gallery"
-            className="group inline-flex min-h-11 items-center gap-2.5 text-xs uppercase transition-colors duration-150 hover:text-giallo-deep active:text-giallo-deep"
-          >
-            {t("link")}
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              className="size-3.5 transition-transform duration-150 group-hover:translate-x-1 group-active:translate-x-1 motion-reduce:transition-none"
-            >
-              <path d="M2 8h11M9 4l4 4-4 4" />
-            </svg>
-          </Link>
         </header>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -60,11 +42,6 @@ export function Work() {
               </picture>
             </figure>
           ))}
-        </div>
-
-        {/* The wash grid's own accent — the only Giallo in this viewport. */}
-        <div className="mt-10 flex justify-center">
-          <ButtonLink href="/services">{t("moreServices")}</ButtonLink>
         </div>
       </div>
     </section>

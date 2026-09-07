@@ -7,19 +7,20 @@
     "menu": "Menu",
     "close": "Close",
     "language": "Language",
-    "gallery": "Gallery"
+    "services": "More services"
   },
   "hero": {
     "title": "Vaporix",
+    "tagline": "Your car like new",
     "cta": "Book",
     "carouselLabel": "Work from the studio",
     "goTo": "View image {n}",
     "slideOf": "Image {n} of {total}",
     "slides": {
-      "seatExeo": "Red Seat Exeo ST, finished and reflected in the resin floor",
-      "golfFront": "Black Volkswagen Golf GTI, seen head on",
       "audiQ5": "Black Audi Q5 in three-quarter view",
-      "miniJcw": "Black and red Mini John Cooper Works in three-quarter view"
+      "miniJcw": "Black and red Mini John Cooper Works in three-quarter view",
+      "volvoXc60": "White Volvo XC60 in three-quarter view, the VRK sign behind it",
+      "bmwSerie5": "Grey BMW 5 Series with a door open, under the workshop's roof"
     }
   },
   "highlights": {
@@ -46,7 +47,7 @@
   },
   "studio": {
     "title": "We do it properly, every time.",
-    "photoAlt": "The Vaporix workshop in Buñol, a car parked in the middle of the floor under the roof lights."
+    "photoAlt": "The Vaporix workshop's exterior at dusk, cars parked out front"
   },
   "cta": {
     "title": "Tell us what you drive and we will find you a slot.",
@@ -108,19 +109,6 @@
       "whatsapp": "Message on WhatsApp",
       "note": "Prices include VAT. A car that arrives with extreme soiling or heavy pet hair may carry a supplement, which we tell you before we start."
     },
-    "gallery": {
-      "label": "Gallery",
-      "title": "Cars that have come out of here.",
-      "lede": "Our own photographs, taken in the workshop, untouched. Number plates are covered because the cars belong to our customers.",
-      "alt": {
-        "golfFront": "Black Volkswagen Golf GTI, seen head on",
-        "miniJcw": "Black and red Mini John Cooper Works in three-quarter view",
-        "seatExeo": "Red Seat Exeo ST reflected in the resin floor",
-        "bmwSerie3": "Grey BMW 3 Series with its doors open",
-        "audiA5": "Black Audi A5, seen head on",
-        "audiQ5": "Black Audi Q5 in three-quarter view"
-      }
-    },
     "about": {
       "label": "About",
       "title": "A workshop that cares about the details.",
@@ -148,7 +136,6 @@
   "work": {
     "label": "The work",
     "title": "Cars that leave here",
-    "link": "See the gallery",
     "moreServices": "More services"
   }
 }

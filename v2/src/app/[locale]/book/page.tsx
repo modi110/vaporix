@@ -53,7 +53,7 @@ function Book() {
           <div className="grid gap-3 sm:grid-cols-2">
             <a
               href={site.phoneHref}
-              className="group flex min-h-[7rem] flex-col justify-between gap-6 bg-giallo p-7 text-navy transition-colors duration-150 hover:bg-giallo-deep hover:text-pearl active:bg-giallo-deep active:text-pearl"
+              className="group flex min-h-[7rem] flex-col justify-between gap-6 bg-giallo p-7 text-pearl transition-colors duration-150 hover:bg-giallo-deep active:bg-giallo-deep"
             >
               <span className="t-heading">{p("call")}</span>
               <span className="flex items-center justify-between gap-4">
@@ -94,7 +94,7 @@ function Book() {
                 {/* A <p> here would be invalid inside a <dl> row: browsers
                     reparent it, React does not, and the mismatch can take
                     hydration down for the whole page. */}
-                <dd className="t-caption m-0 w-fit bg-giallo px-1.5 py-0.5 text-navy">
+                <dd className="t-caption m-0 w-fit bg-giallo px-1.5 py-0.5 text-pearl">
                   {v("discount")}
                 </dd>
               </div>

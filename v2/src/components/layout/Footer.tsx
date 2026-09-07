@@ -8,7 +8,6 @@ import { HoursTable } from "@/components/ui/HoursTable";
 
 const links: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
-  { href: "/gallery", key: "gallery" },
   { href: "/about", key: "about" },
   { href: "/contact", key: "contact" },
   { href: "/book", key: "book" },
@@ -18,8 +17,8 @@ const links: { href: StaticPathname; key: string }[] = [
  * The navy band again, closing the page the way the nav opened it.
  *
  * No accent down here — the closing CTA above it already spent the page's
- * last Giallo, and a yellow link in the footer would compete with it from
- * the same viewport.
+ * last Giallo, and an accent-coloured link in the footer would compete with
+ * it from the same viewport.
  */
 export function Footer() {
   const t = useTranslations();
@@ -35,7 +34,7 @@ export function Footer() {
         </div>
 
         <div className="grid content-start gap-5">
-          <h3 className="t-caption">{t("footer.main")}</h3>
+          <h3 className="t-caption text-muted-invert">{t("footer.main")}</h3>
           <nav className="grid text-sm uppercase">
             {links.map((l) => (
               <Link
@@ -50,8 +49,8 @@ export function Footer() {
         </div>
 
         <div className="grid content-start gap-5">
-          <h3 className="t-caption">{t("footer.hours")}</h3>
-          <HoursTable />
+          <h3 className="t-caption text-muted-invert">{t("footer.hours")}</h3>
+          <HoursTable dark />
           <div className="flex gap-2">
             {site.social.map((s) => (
               <a
@@ -67,7 +66,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="wrap flex flex-wrap items-center justify-between gap-4 border-t border-hairline-dark py-6 text-xs uppercase text-steel">
+      <div className="wrap flex flex-wrap items-center justify-between gap-4 border-t border-hairline-dark py-6 text-xs uppercase text-muted-invert">
         <span>
           © {new Date().getFullYear()} {site.name}. {t("footer.rights")}
         </span>

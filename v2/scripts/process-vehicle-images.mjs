@@ -26,7 +26,7 @@ const CAR_FRACTION = 0.82;
 const SOURCES = {
   small: "bwm m3.webp",
   suv: "suv bmw x5.webp",
-  van: "mercedes van.webp",
+  van: "new vann.png",
 };
 
 /** One source, two encodings, at a shared canvas size. */

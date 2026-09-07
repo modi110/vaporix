@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Highlights } from "@/components/sections/Highlights";
 import { Prices } from "@/components/sections/Prices";
 import { Work } from "@/components/sections/Work";
+import { MoreServices } from "@/components/sections/MoreServices";
 import { Studio } from "@/components/sections/Studio";
 import { MapBand } from "@/components/sections/MapBand";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -12,13 +13,14 @@ import { CtaBand } from "@/components/sections/CtaBand";
  * separation device the design system has — there are no shadows and no
  * radii to lean on.
  *
- *   hero       black    the studio's own work, full screen
- *   highlights white    four things every wash includes
- *   prices     marble   three sizes on a drag rail
- *   work       white    photographs, large, on a light ground
- *   studio     marble   one quiet frame
- *   map        navy     where it is and when it opens
- *   cta        white    the last yellow on the page
+ *   hero          black    the studio's own work, full screen
+ *   highlights    white    four things every wash includes
+ *   prices        marble   three sizes on a drag rail
+ *   work          white    photographs, large, on a light ground
+ *   more services navy     the workshop's other jobs, and a link to them
+ *   studio        marble   one quiet frame
+ *   map           navy     where it is and when it opens
+ *   cta           white    the last accent on the page
  */
 export default async function HomePage({
   params,
@@ -34,6 +36,7 @@ export default async function HomePage({
       <Highlights />
       <Prices />
       <Work />
+      <MoreServices />
       <Studio />
       <MapBand />
       <CtaBand />

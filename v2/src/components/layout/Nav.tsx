@@ -11,7 +11,7 @@ import { site } from "@/content/site";
 
 const links: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
-  { href: "/gallery", key: "gallery" },
+  { href: "/services", key: "services" },
   { href: "/about", key: "about" },
   { href: "/contact", key: "contact" },
 ];
@@ -154,9 +154,13 @@ export function Nav() {
                 onClick={() => setOpen(false)}
                 aria-current={active ? "page" : undefined}
                 style={{ transitionDelay: open ? `${80 + i * 45}ms` : "0ms" }}
+                // The current page used to pick up the accent colour, but the
+                // sheet itself is that same blue now — a colour swap here
+                // would be invisible against it, so weight carries the
+                // distinction instead: full white and dimmed white.
                 className={`t-display-lg border-b border-hairline-dark py-3 transition-[opacity,transform,color] duration-500 ${
                   open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-                } ${active ? "text-giallo" : "text-pearl"}`}
+                } ${active ? "text-pearl" : "text-muted-invert"}`}
               >
                 {t(l.key)}
               </Link>
@@ -168,16 +172,13 @@ export function Nav() {
           <LocaleSwitcher />
           <ButtonLink
             href="/book"
+            variant="white"
             onClick={() => setOpen(false)}
             className="w-full"
           >
             {t("book")}
           </ButtonLink>
-          <ButtonAnchor
-            href={site.whatsapp}
-            variant="outlined"
-            className="w-full text-pearl"
-          >
+          <ButtonAnchor href={site.whatsapp} variant="white" className="w-full">
             WhatsApp
           </ButtonAnchor>
           <a

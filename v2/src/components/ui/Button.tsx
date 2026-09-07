@@ -5,14 +5,15 @@ import type { StaticPathname } from "@/i18n/routing";
  * Three treatments, one shape: a hard rectangle, uppercase, engineered
  * tracking, arrow on the right.
  *
- * `giallo` is the only coloured element the design system allows, and only one
- * of them may share a viewport — on a phone that is a real constraint, which
- * is why the nav's booking button is `outlined` rather than yellow.
+ * `giallo` is the only filled, coloured button the design system allows, and
+ * only one of them may share a viewport — on a phone that is a real
+ * constraint, which is why the nav's booking button is `outlined` rather
+ * than filled.
  *
  * Every hover treatment has an `:active` twin. The primary device here has no
  * hover at all, so a hover-only effect would be invisible to most visitors.
  */
-type Variant = "giallo" | "ghost" | "outlined";
+type Variant = "giallo" | "ghost" | "outlined" | "white";
 
 const BASE =
   "group inline-flex min-h-11 items-center justify-center gap-2.5 whitespace-nowrap " +
@@ -20,13 +21,22 @@ const BASE =
   "transition-colors duration-150 ease-[cubic-bezier(0.22,1,0.36,1)]";
 
 const VARIANTS: Record<Variant, string> = {
-  // #1a1f28 on #ffc000 is 9.5:1. design.md specs white here, which is 1.9:1
-  // and fails AA outright.
+  // White throughout, not just on hover: the accent and the surface are the
+  // same blue now, so a navy ink label on this fill would vanish into it.
   giallo:
-    "bg-giallo text-navy hover:bg-giallo-deep hover:text-pearl active:bg-giallo-deep active:text-pearl",
-  ghost: "text-current hover:text-giallo active:text-giallo",
+    "bg-giallo text-pearl hover:bg-giallo-deep active:bg-giallo-deep",
+  // Opacity, not a colour swap: `hover:text-giallo` used to shift toward the
+  // one accent, but ghost is used via `text-current` in whatever context it
+  // lands in, and on a blue surface `text-giallo` is now the same colour as
+  // the text underneath it.
+  ghost: "text-current hover:opacity-70 active:opacity-70",
   outlined:
     "border border-steel text-current hover:border-current active:border-current",
+  // For a spot the giallo fill would otherwise disappear into — the mobile
+  // menu sheet is the one place on the site that's a solid blue surface with
+  // nothing else on it, so giallo and its own background are literally the
+  // same colour there.
+  white: "bg-pearl text-navy hover:opacity-90 active:opacity-90",
 };
 
 /** The arrow travels a few pixels on hover and press. That is the whole gesture. */

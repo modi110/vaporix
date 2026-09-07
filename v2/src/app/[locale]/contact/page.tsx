@@ -73,7 +73,7 @@ function Contact() {
             </div>
 
             <div className="grid gap-4">
-              <h2 className="t-caption">{p("hours")}</h2>
+              <h2 className="t-caption text-steel">{p("hours")}</h2>
               <HoursTable />
             </div>
           </aside>

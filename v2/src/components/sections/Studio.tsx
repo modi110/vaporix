@@ -17,11 +17,11 @@ export function Studio() {
         {/* A hairline border with a navy mat inside it — a frame, not a
             shadow, since the design system has no shadows to reach for. */}
         <div className="border border-hairline bg-navy p-3 md:p-4">
-          <div className="relative aspect-[4/3] w-full overflow-hidden">
+          <div className="relative aspect-[3/2] w-full overflow-hidden">
             <picture>
-              <source srcSet="/images/gallery/bmw-serie3.avif" type="image/avif" />
+              <source srcSet="/images/place.avif" type="image/avif" />
               <Image
-                src="/images/gallery/bmw-serie3.webp"
+                src="/images/place.webp"
                 alt={t("photoAlt")}
                 fill
                 sizes="(min-width: 768px) 55vw, 100vw"

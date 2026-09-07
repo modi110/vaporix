@@ -155,7 +155,8 @@ export function Hero() {
       */}
       <div className="hidden md:flex md:flex-1 md:items-end md:justify-start md:bg-navy md:transition-colors md:duration-150 md:hover:bg-navy-lift">
         <div className="wrap pb-[max(2.5rem,env(safe-area-inset-bottom))]">
-          <h1 className="t-hero mb-6 text-pearl">{t("title")}</h1>
+          <h1 className="t-hero text-pearl">{t("title")}</h1>
+          <p className="t-sub mb-6 text-pearl">{t("tagline")}</p>
           <ButtonLink href="/book">{t("cta")}</ButtonLink>
         </div>
       </div>
@@ -205,7 +206,8 @@ export function Hero() {
             className="absolute inset-x-0 bottom-0 z-[2] h-[58%] bg-[linear-gradient(to_top,rgba(0,0,0,.94)_16%,rgba(0,0,0,.58)_46%,transparent)]"
           />
           <div className="wrap pointer-events-auto absolute inset-x-0 bottom-0 z-[3] pb-[max(2.5rem,env(safe-area-inset-bottom))]">
-            <h1 className="t-hero mb-6 text-pearl">{t("title")}</h1>
+            <h1 className="t-hero text-pearl">{t("title")}</h1>
+            <p className="t-sub mb-6 text-pearl">{t("tagline")}</p>
             <ButtonLink href="/book">{t("cta")}</ButtonLink>
           </div>
         </div>

@@ -7,19 +7,20 @@
     "menu": "Menú",
     "close": "Cerrar",
     "language": "Idioma",
-    "gallery": "Galería"
+    "services": "Más servicios"
   },
   "hero": {
     "title": "Vaporix",
+    "tagline": "Tu coche como nuevo",
     "cta": "Reservar",
     "carouselLabel": "Trabajos del taller",
     "goTo": "Ver la imagen {n}",
     "slideOf": "Imagen {n} de {total}",
     "slides": {
-      "seatExeo": "Seat Exeo ST rojo, terminado y reflejado en el suelo de resina",
-      "golfFront": "Volkswagen Golf GTI negro, visto de frente",
       "audiQ5": "Audi Q5 negro en tres cuartos",
-      "miniJcw": "Mini John Cooper Works negro y rojo en tres cuartos"
+      "miniJcw": "Mini John Cooper Works negro y rojo en tres cuartos",
+      "volvoXc60": "Volvo XC60 blanco en tres cuartos, con el rótulo VRK detrás",
+      "bmwSerie5": "BMW Serie 5 gris con la puerta abierta, bajo la nave del taller"
     }
   },
   "highlights": {
@@ -46,7 +47,7 @@
   },
   "studio": {
     "title": "Lo hacemos bien, siempre.",
-    "photoAlt": "La nave de Vaporix en Buñol, con un coche en el centro bajo los lucernarios."
+    "photoAlt": "La fachada de la nave Vaporix al atardecer, con coches aparcados delante"
   },
   "cta": {
     "title": "Dinos qué coche traes y te buscamos hueco.",
@@ -108,19 +109,6 @@
       "whatsapp": "Escribir por WhatsApp",
       "note": "Precios con IVA incluido. Si el coche llega con suciedad extrema o mucho pelo de mascota, puede llevar un suplemento, y te lo decimos antes de empezar."
     },
-    "gallery": {
-      "label": "Galería",
-      "title": "Coches que han salido de aquí.",
-      "lede": "Fotos nuestras, hechas en la nave, sin retoque. Las matrículas van tapadas porque los coches son de nuestros clientes.",
-      "alt": {
-        "golfFront": "Volkswagen Golf GTI negro, visto de frente",
-        "miniJcw": "Mini John Cooper Works negro y rojo en tres cuartos",
-        "seatExeo": "Seat Exeo ST rojo, reflejado en el suelo de resina",
-        "bmwSerie3": "BMW Serie 3 gris con las puertas abiertas",
-        "audiA5": "Audi A5 negro, visto de frente",
-        "audiQ5": "Audi Q5 negro en tres cuartos"
-      }
-    },
     "about": {
       "label": "Nosotros",
       "title": "Un taller que cuida los detalles.",
@@ -148,7 +136,6 @@
   "work": {
     "label": "El trabajo",
     "title": "Coches que salen de aquí",
-    "link": "Ver la galería",
     "moreServices": "Más servicios"
   }
 }
