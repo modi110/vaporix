@@ -55,8 +55,10 @@ export const site = {
 
   rating: 5.0,
 
+  // No Instagram account yet. When there is one, add
+  //   { label: "Instagram", icon: "instagram", href: "https://instagram.com/..." }
+  // here — the footer icon and the JSON-LD `sameAs` both pick it up on their own.
   social: [
-    { label: "Instagram", icon: "instagram", href: "#" },
     {
       label: "WhatsApp",
       icon: "whatsapp",
@@ -67,3 +69,10 @@ export const site = {
 
 /** One-line address, the form used in body copy and link labels. */
 export const addressLine = `${site.address.street}, ${site.address.postcode} ${site.address.city}`;
+
+/**
+ * Absolute origin, no trailing slash. Canonicals, hreflang, the sitemap and
+ * the JSON-LD all resolve against it, so it has to be the live domain in
+ * production — set NEXT_PUBLIC_SITE_URL in the deploy environment.
+ */
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vaporix.net";

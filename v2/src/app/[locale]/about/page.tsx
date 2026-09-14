@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { routing } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
+import { alternatesFor } from "@/i18n/urls";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { CtaBand } from "@/components/sections/CtaBand";
 
@@ -12,11 +13,15 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pages.about" });
-  return { title: `${t("title")} — Vaporix`, description: t("lede") };
+  return {
+    title: `${t("title")} — Vaporix`,
+    description: t("lede"),
+    alternates: alternatesFor("/about", locale),
+  };
 }
 
 export default async function AboutPage({
