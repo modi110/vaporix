@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Barlow_Condensed } from "next/font/google";
+import Script from "next/script";
 
 import { routing } from "@/i18n/routing";
 import { Nav } from "@/components/layout/Nav";
@@ -85,6 +86,18 @@ export default async function LocaleLayout({
       <head>
         {/* Runs before first paint so a repeat visit never replays the curtain. */}
         <script dangerouslySetInnerHTML={{ __html: preloadFlagScript }} />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18451422598"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18451422598');
+          `}
+        </Script>
       </head>
       <body>
         <NextIntlClientProvider>
