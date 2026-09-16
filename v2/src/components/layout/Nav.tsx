@@ -118,12 +118,13 @@ export function Nav() {
             <Wordmark />
           </Link>
 
-          <div className="justify-self-end">
+          <div className="flex items-center gap-1.5 justify-self-end sm:gap-2">
+            <LocaleSwitcher />
             <ButtonLink
               href="/book"
               variant="outlined"
               arrow={false}
-              className="hidden text-pearl sm:inline-flex"
+              className="hidden text-pearl max-sm:px-3.5 max-sm:py-2 max-sm:text-[0.6875rem] sm:inline-flex"
             >
               {t("book")}
             </ButtonLink>
@@ -169,7 +170,6 @@ export function Nav() {
         </nav>
 
         <div className="wrap grid w-full gap-4 pt-2">
-          <LocaleSwitcher />
           <ButtonLink
             href="/book"
             variant="white"

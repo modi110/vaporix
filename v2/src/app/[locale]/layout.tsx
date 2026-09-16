@@ -6,7 +6,7 @@ import { Barlow_Condensed } from "next/font/google";
 import Script from "next/script";
 
 import { routing, type Locale } from "@/i18n/routing";
-import { siteUrl } from "@/content/site";
+import { site, siteUrl } from "@/content/site";
 import { alternatesFor, localizedPath } from "@/i18n/urls";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { Nav } from "@/components/layout/Nav";
@@ -52,7 +52,7 @@ export async function generateMetadata({
       type: "website",
       locale,
       url: localizedPath("/", locale),
-      siteName: "Vaporix",
+      siteName: site.name,
       title: t("title"),
       description: t("description"),
     },

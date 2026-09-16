@@ -15,8 +15,8 @@ const items: { key: string; icon: HighlightIconId }[] = [
  * rating in `site.rating`. This just surfaces them together, right after the
  * hero and before the price list gives the first of them a number.
  *
- * One row of four on a wide screen, one column on a phone — reading order
- * over a grid that would otherwise force two of them onto a half-empty row.
+ * One row of four on a wide screen, two by two on a phone — all four fit in
+ * one glance instead of a column you have to scroll through.
  */
 export function Highlights() {
   const t = useTranslations("highlights");
@@ -29,10 +29,10 @@ export function Highlights() {
           <p className="t-body text-muted">{t("lede")}</p>
         </header>
 
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
           {items.map(({ key, icon }) => (
             <div key={key}>
-              <HighlightIcon id={icon} className="mb-5 size-10" />
+              <HighlightIcon id={icon} className="mb-4 size-8 sm:mb-5 sm:size-10" />
               <h3 className="t-heading mb-2">{t(`items.${key}.title`)}</h3>
               <p className="t-body text-muted">{t(`items.${key}.body`)}</p>
             </div>

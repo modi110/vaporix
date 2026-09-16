@@ -58,7 +58,7 @@ function Book() {
           <div className="grid gap-3 sm:grid-cols-2">
             <a
               href={site.phoneHref}
-              className="group flex min-h-[7rem] flex-col justify-between gap-6 bg-giallo p-7 text-pearl transition-colors duration-150 hover:bg-giallo-deep active:bg-giallo-deep"
+              className="group flex min-h-[7rem] flex-col justify-between gap-6 rounded-2xl bg-giallo p-7 text-pearl transition-colors duration-150 hover:bg-giallo-deep active:bg-giallo-deep"
             >
               <span className="t-heading">{p("call")}</span>
               <span className="flex items-center justify-between gap-4">
@@ -71,7 +71,7 @@ function Book() {
 
             <a
               href={site.whatsapp}
-              className="group flex min-h-[7rem] flex-col justify-between gap-6 border border-ink p-7 transition-colors duration-150 hover:bg-ink hover:text-pearl active:bg-ink active:text-pearl"
+              className="group flex min-h-[7rem] flex-col justify-between gap-6 rounded-2xl border border-ink p-7 transition-colors duration-150 hover:bg-ink hover:text-pearl active:bg-ink active:text-pearl"
             >
               <span className="t-heading">{p("whatsapp")}</span>
               <span className="flex items-center justify-between gap-4">
@@ -89,24 +89,25 @@ function Book() {
               >
                 <dt className="t-heading">{v(`items.${vehicle.id}.name`)}</dt>
                 <dd className="m-0 flex items-baseline gap-2.5">
-                  <span className="t-body text-steel line-through">
+                  <span className="text-[clamp(1.25rem,2.6vw,1.75rem)] leading-none text-muted line-through decoration-2 tabular-nums">
                     {vehicle.price} €
                   </span>
-                  <b className="t-display-lg font-medium tabular-nums">
+                  <b className="text-[clamp(2.75rem,7vw,5.5rem)] font-medium leading-none tabular-nums">
                     {vehicle.salePrice} €
                   </b>
                 </dd>
-                {/* A <p> here would be invalid inside a <dl> row: browsers
-                    reparent it, React does not, and the mismatch can take
-                    hydration down for the whole page. */}
-                <dd className="t-caption m-0 w-fit bg-giallo px-1.5 py-0.5 text-pearl">
-                  {v("discount")}
+                {/* Full-basis row so the badge always sits on its own line,
+                    whatever the name's length. A <p> here would be invalid
+                    inside a <dl> row: browsers reparent it, React does not,
+                    and the mismatch can take hydration down for the page. */}
+                <dd className="m-0 basis-full">
+                  <span className="t-caption inline-block bg-giallo px-1.5 py-0.5 text-pearl">
+                    {v("discount")}
+                  </span>
                 </dd>
               </div>
             ))}
           </dl>
-
-          <p className="t-body text-muted">{p("note")}</p>
         </div>
       </section>
     </>

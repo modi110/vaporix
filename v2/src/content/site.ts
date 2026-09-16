@@ -9,7 +9,7 @@
 const PHONE_E164 = "+34639876686";
 
 export const site = {
-  name: "Vaporix",
+  name: "Vaporix Car Wash - Fast Mechanics & Batteries",
   legalName: "Vaporix car wash",
   /**
    * One line, everywhere: the call link, the WhatsApp link and the number on

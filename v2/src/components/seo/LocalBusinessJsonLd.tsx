@@ -27,7 +27,8 @@ export function LocalBusinessJsonLd({
 
   const data = {
     "@context": "https://schema.org",
-    "@type": "AutoWash",
+    // Both: the wash and the mechanics side are one business at one address.
+    "@type": ["AutoWash", "AutoRepair"],
     "@id": `${siteUrl}/#business`,
     name: site.name,
     legalName: site.legalName,

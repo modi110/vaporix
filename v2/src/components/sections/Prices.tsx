@@ -4,10 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ButtonLink } from "@/components/ui/Button";
+import { useDragRail } from "@/components/ui/useDragRail";
 import { vehicles, DEFAULT_VEHICLE } from "@/content/vehicles";
-
-/** Past this a pointer gesture was a drag, and the click underneath is suppressed. */
-const DRAG_SLOP = 6;
 
 /**
  * The price list as a rail you drag, opening on the middle card.
@@ -25,6 +23,7 @@ const DRAG_SLOP = 6;
 export function Prices() {
   const v = useTranslations("vehicles");
   const rail = useRef<HTMLDivElement>(null);
+  const dragHandlers = useDragRail(rail);
   const [active, setActive] = useState(
     vehicles.findIndex((x) => x.id === DEFAULT_VEHICLE),
   );
@@ -72,8 +71,6 @@ export function Prices() {
     };
   }, []);
 
-  const drag = useRef({ down: false, startX: 0, startScroll: 0, moved: 0 });
-
   return (
     <section id="prices" className="section bg-marble text-ink">
       <div className="wrap">
@@ -95,37 +92,7 @@ export function Prices() {
         // so reading it here would have left the cursor stuck on "grab".
         className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         style={{ paddingInline: "max(var(--gutter), calc((100% - 30rem) / 2))" }}
-        onPointerDown={(e) => {
-          const el = rail.current;
-          if (!el || e.pointerType === "touch") return;
-          drag.current = {
-            down: true,
-            startX: e.clientX,
-            startScroll: el.scrollLeft,
-            moved: 0,
-          };
-        }}
-        onPointerMove={(e) => {
-          const el = rail.current;
-          if (!el || !drag.current.down) return;
-          const dx = e.clientX - drag.current.startX;
-          drag.current.moved = Math.max(drag.current.moved, Math.abs(dx));
-          el.scrollLeft = drag.current.startScroll - dx;
-        }}
-        onPointerUp={() => {
-          drag.current.down = false;
-        }}
-        onPointerLeave={() => {
-          drag.current.down = false;
-        }}
-        // A drag that ends over the booking button must not also book.
-        onClickCapture={(e) => {
-          if (drag.current.moved > DRAG_SLOP) {
-            e.preventDefault();
-            e.stopPropagation();
-            drag.current.moved = 0;
-          }
-        }}
+        {...dragHandlers}
       >
         {vehicles.map((vehicle) => (
           <article
@@ -133,14 +100,12 @@ export function Prices() {
             className="flex w-[min(78vw,26rem)] shrink-0 snap-center flex-col gap-5"
           >
             {/*
-              The dark frame is the artwork's own ground, not a border drawn
-              around it: the vehicle is composited onto #1a1f28 upstream, so
-              image and frame meet with no seam. A cut-out edge also reads
-              badly on a light surface and barely at all on this one.
+              No frame fill: the vehicle artwork is on its own white ground,
+              which meets the white section with no seam.
             */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy">
+            <div className="relative aspect-[16/9] w-full overflow-hidden">
               <div className="absolute inset-0 grid place-items-center">
-                <picture>
+                <picture className="block w-full">
                   <source
                     srcSet={`/images/vehicles/${vehicle.id}.avif`}
                     type="image/avif"
@@ -157,13 +122,15 @@ export function Prices() {
               </div>
             </div>
 
-            <div className="flex items-baseline justify-between gap-4">
+            {/* Prices get their own row under the name: at this size they no
+                longer share one line with it on a phone-width card. */}
+            <div className="grid gap-1">
               <h3 className="t-heading">{v(`items.${vehicle.id}.name`)}</h3>
-              <span className="flex items-baseline gap-2.5">
-                <span className="t-body text-steel line-through">
+              <span className="flex items-baseline gap-3">
+                <span className="text-[clamp(1.25rem,2.6vw,1.75rem)] leading-none text-muted line-through decoration-2 tabular-nums">
                   {vehicle.price} €
                 </span>
-                <b className="t-display-lg font-medium tabular-nums">
+                <b className="text-[clamp(2.75rem,7vw,5.5rem)] font-medium leading-none tabular-nums">
                   {vehicle.salePrice} €
                 </b>
               </span>

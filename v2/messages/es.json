@@ -6,7 +6,7 @@
     "book": "Reservar",
     "menu": "Menú",
     "close": "Cerrar",
-    "language": "Idioma",
+    "switchLocale": "View in English",
     "services": "Más servicios"
   },
   "hero": {
@@ -50,7 +50,7 @@
     "photoAlt": "La fachada de la nave Vaporix al atardecer, con coches aparcados delante"
   },
   "cta": {
-    "title": "Dinos qué coche traes y te buscamos hueco.",
+    "title": "Contáctanos ahora y te atendemos hoy.",
     "book": "Reservar cita",
     "call": "Llamar"
   },
@@ -69,8 +69,8 @@
   },
   "meta": {
     "home": {
-      "title": "Vaporix · Lavado y detailing en Buñol, Valencia",
-      "description": "Estudio de lavado y detailing en Buñol. Interior en seco, pulido, tratamiento cerámico y protección de pintura, con presupuesto cerrado."
+      "title": "Vaporix Car Wash - Fast Mechanics & Batteries · Buñol",
+      "description": "Lavado de coches y mecánica rápida en Buñol: cambio de batería en menos de una hora, reparaciones rápidas y servicio móvil en tu casa o trabajo."
     }
   },
   "vehicles": {
@@ -106,8 +106,7 @@
       "title": "Reserva tu cita.",
       "lede": "Elige vehículo y servicio, y te confirmamos la hora.",
       "call": "Llamar ahora",
-      "whatsapp": "Escribir por WhatsApp",
-      "note": "Precios con IVA incluido. Si el coche llega con suciedad extrema o mucho pelo de mascota, puede llevar un suplemento, y te lo decimos antes de empezar."
+      "whatsapp": "Escribir por WhatsApp"
     },
     "about": {
       "label": "Nosotros",
@@ -118,12 +117,16 @@
     "services": {
       "label": "Más servicios",
       "title": "Más servicios",
-      "lede": "Además del lavado, hacemos estos trabajos en el taller.",
+      "lede": "Además del lavado, hacemos estos trabajos, en el taller o donde estés.",
       "items": {
+        "battery": "Cambio de batería en menos de una hora",
+        "repairs": "Reparaciones mecánicas rápidas",
+        "mobile": "Vamos a ti, a tu casa o a tu trabajo",
+        "inspection": "Revisión rápida del vehículo",
+        "bulbs": "Cambio de bombillas y fusibles",
         "oil": "Cambio de aceite y filtro",
         "brakes": "Revisión y cambio de frenos",
         "tyre": "Reparación de pinchazos",
-        "battery": "Cambio de batería",
         "boost": "Servicio de arranque"
       }
     }
@@ -139,5 +142,10 @@
     "label": "El trabajo",
     "title": "Coches que salen de aquí",
     "moreServices": "Más servicios"
+  },
+  "mechanics": {
+    "label": "Vaporix",
+    "title": "Mecánica rápida y baterías",
+    "tagline": "En tu casa, en tu trabajo, donde estés"
   }
 }

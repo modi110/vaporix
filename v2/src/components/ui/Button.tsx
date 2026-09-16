@@ -2,8 +2,8 @@ import { Link } from "@/i18n/navigation";
 import type { StaticPathname } from "@/i18n/routing";
 
 /**
- * Three treatments, one shape: a hard rectangle, uppercase, engineered
- * tracking, arrow on the right.
+ * Three treatments, one shape: a pill, uppercase, engineered tracking, arrow
+ * on the right.
  *
  * `giallo` is the only filled, coloured button the design system allows, and
  * only one of them may share a viewport — on a phone that is a real
@@ -17,7 +17,7 @@ type Variant = "giallo" | "ghost" | "outlined" | "white";
 
 const BASE =
   "group inline-flex min-h-11 items-center justify-center gap-2.5 whitespace-nowrap " +
-  "rounded-none px-5 py-3.5 text-xs font-medium uppercase tracking-[0.023em] " +
+  "rounded-full px-6 py-3.5 text-xs font-medium uppercase tracking-[0.023em] " +
   "transition-colors duration-150 ease-[cubic-bezier(0.22,1,0.36,1)]";
 
 const VARIANTS: Record<Variant, string> = {

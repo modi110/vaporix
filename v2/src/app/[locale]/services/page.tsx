@@ -5,7 +5,8 @@ import { routing, type Locale } from "@/i18n/routing";
 import { alternatesFor } from "@/i18n/urls";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { CtaBand } from "@/components/sections/CtaBand";
-import { ServiceIcon, type ServiceIconId } from "@/components/ui/ServiceIcon";
+import { ServiceIcon } from "@/components/ui/ServiceIcon";
+import { services } from "@/content/services";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -35,8 +36,6 @@ export default async function ServicesPage({
   return <Services />;
 }
 
-const items: ServiceIconId[] = ["oil", "brakes", "tyre", "battery", "boost"];
-
 /**
  * No prices here, unlike `/reservar` — these are quoted per car once we've
  * seen it, not flat like the wash. The page exists to say the workshop does
@@ -51,7 +50,7 @@ function Services() {
 
       <section className="section bg-pearl text-ink">
         <div className="wrap grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((id) => (
+          {services.map((id) => (
             <div key={id}>
               <ServiceIcon id={id} className="mb-5 size-10" />
               <h2 className="t-heading">{p(`items.${id}`)}</h2>

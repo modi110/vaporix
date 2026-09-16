@@ -6,7 +6,7 @@
     "book": "Book",
     "menu": "Menu",
     "close": "Close",
-    "language": "Language",
+    "switchLocale": "Ver en español",
     "services": "More services"
   },
   "hero": {
@@ -50,7 +50,7 @@
     "photoAlt": "The Vaporix workshop's exterior at dusk, cars parked out front"
   },
   "cta": {
-    "title": "Tell us what you drive and we will find you a slot.",
+    "title": "Contact us now and we will see you today.",
     "book": "Book a slot",
     "call": "Call us"
   },
@@ -69,8 +69,8 @@
   },
   "meta": {
     "home": {
-      "title": "Vaporix · Car wash & detailing in Buñol, Valencia",
-      "description": "Car wash and detailing studio in Buñol. Dry interiors, paint correction, ceramic coating and paint protection, all on a fixed quote."
+      "title": "Vaporix Car Wash - Fast Mechanics & Batteries · Buñol",
+      "description": "Car wash and fast mechanics in Buñol: battery replacement in under an hour, quick repairs, and a mobile service at your home or work."
     }
   },
   "vehicles": {
@@ -106,8 +106,7 @@
       "title": "Book your slot.",
       "lede": "Choose a vehicle and a service, and we will confirm a time.",
       "call": "Call now",
-      "whatsapp": "Message on WhatsApp",
-      "note": "Prices include VAT. A car that arrives with extreme soiling or heavy pet hair may carry a supplement, which we tell you before we start."
+      "whatsapp": "Message on WhatsApp"
     },
     "about": {
       "label": "About",
@@ -118,12 +117,16 @@
     "services": {
       "label": "More services",
       "title": "More services",
-      "lede": "Beyond the wash, we also do these jobs in the workshop.",
+      "lede": "Beyond the wash, we also do these jobs, at the workshop or wherever you are.",
       "items": {
+        "battery": "Battery replacement in under an hour",
+        "repairs": "Quick mechanical repairs",
+        "mobile": "We come to you, home or work",
+        "inspection": "Quick vehicle inspection",
+        "bulbs": "Bulb & fuse replacement",
         "oil": "Oil & filter change",
         "brakes": "Brake service",
         "tyre": "Puncture repair",
-        "battery": "Battery change",
         "boost": "Battery jump-start"
       }
     }
@@ -139,5 +142,10 @@
     "label": "The work",
     "title": "Cars that leave here",
     "moreServices": "More services"
+  },
+  "mechanics": {
+    "label": "Vaporix",
+    "title": "Fast mechanics & batteries",
+    "tagline": "At your home, your work, wherever you are"
   }
 }
