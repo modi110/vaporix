@@ -11,7 +11,7 @@
   },
   "hero": {
     "title": "Vaporix",
-    "tagline": "Your car like new",
+    "tagline": "Car Wash - Fast Mechanics & Batteries",
     "cta": "Book",
     "carouselLabel": "Work from the studio",
     "goTo": "View image {n}",
@@ -76,6 +76,7 @@
   "vehicles": {
     "label": "Prices",
     "title": "Pick your car's size",
+    "subtitle": "Interior and exterior wash",
     "lede": "One price per size. No extras, no small print: the same full clean, inside and out.",
     "discount": "September discount",
     "items": {
@@ -141,6 +142,7 @@
   "work": {
     "label": "The work",
     "title": "Cars that leave here",
+    "lede": "Your car like new",
     "moreServices": "More services"
   },
   "mechanics": {

@@ -28,6 +28,7 @@ export function Work() {
       <div className="wrap">
         <header className="mb-10">
           <h2 className="t-display">{t("title")}</h2>
+          <p className="t-sub mt-2">{t("lede")}</p>
         </header>
       </div>
 

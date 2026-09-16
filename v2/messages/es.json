@@ -11,7 +11,7 @@
   },
   "hero": {
     "title": "Vaporix",
-    "tagline": "Tu coche como nuevo",
+    "tagline": "Lavado de Coches - Mecánica Rápida y Baterías",
     "cta": "Reservar",
     "carouselLabel": "Trabajos del taller",
     "goTo": "Ver la imagen {n}",
@@ -76,6 +76,7 @@
   "vehicles": {
     "label": "Tarifas",
     "title": "Elige el tamaño de tu coche",
+    "subtitle": "Lavado interior y exterior",
     "lede": "Un precio por tamaño. Sin extras ni letra pequeña: el mismo lavado completo, por dentro y por fuera.",
     "discount": "Descuento de septiembre",
     "items": {
@@ -141,6 +142,7 @@
   "work": {
     "label": "El trabajo",
     "title": "Coches que salen de aquí",
+    "lede": "Tu coche como nuevo",
     "moreServices": "Más servicios"
   },
   "mechanics": {

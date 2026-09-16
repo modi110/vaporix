@@ -75,7 +75,10 @@ export function Prices() {
     <section id="prices" className="section bg-marble text-ink">
       <div className="wrap">
         <header className="mb-10 grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
-          <h2 className="t-display max-w-[16ch]">{v("title")}</h2>
+          <div>
+            <h2 className="t-display max-w-[16ch]">{v("title")}</h2>
+            <p className="t-sub mt-2">{v("subtitle")}</p>
+          </div>
           <p className="t-body text-muted">{v("lede")}</p>
         </header>
       </div>
