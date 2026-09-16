@@ -26,15 +26,11 @@ const CAR_FRACTION = 0.82;
 const SOURCES = {
   small: "bwm m3.webp",
   suv: "suv bmw x5.webp",
-  // The van's source carries its ground shadow inside its own bounding box,
-  // so scaling it to the same width as the others left the vehicle itself
-  // reading smaller than the hatchback. `scale` buys that margin back.
-  van: { file: "van ed.jpeg", scale: 1.18 },
+  van: "new new vann.png",
 };
 
 /** One source, two encodings, at a shared canvas size. */
-async function build(name, source) {
-  const { file, scale = 1 } = typeof source === "string" ? { file: source } : source;
+async function build(name, file) {
   const input = path.join(DIR, file);
 
   // All three sources are real cutouts with their own alpha channel already
@@ -50,7 +46,7 @@ async function build(name, source) {
   // (a tall three-quarter shot, say) would otherwise scale past CANVAS_H
   // once stretched to the target width, and sharp refuses to composite
   // anything larger than its canvas.
-  const carW = Math.round(CANVAS_W * CAR_FRACTION * scale);
+  const carW = Math.round(CANVAS_W * CAR_FRACTION);
   const carHMax = CANVAS_H - 40;
   const resized = await sharp(trimmed)
     .resize({ width: carW, height: carHMax, fit: "inside", withoutEnlargement: false })
