@@ -25,7 +25,6 @@
   },
   "highlights": {
     "title": "Por qué reservar con nosotros.",
-    "lede": "Cuatro cosas que puedes esperar cada vez que traigas el coche.",
     "items": {
       "price": {
         "title": "Precio cerrado",
@@ -39,9 +38,9 @@
         "title": "Sin prisas",
         "body": "Cada coche recibe el tiempo que necesita, sin atajos."
       },
-      "rating": {
-        "title": "5 estrellas",
-        "body": "Nuestra valoración de clientes en Google."
+      "everyday": {
+        "title": "Abierto cada día",
+        "body": "De lunes a viernes hasta las 21 h y fines de semana hasta las 14 h, también domingos."
       }
     }
   },
@@ -65,12 +64,12 @@
     "weekdays": "Lunes a viernes",
     "saturday": "Sábado",
     "sunday": "Domingo",
-    "closed": "Cerrado"
+    "everyday": "Abrimos todos los días de la semana, domingos incluidos."
   },
   "meta": {
     "home": {
       "title": "Vaporix Car Wash - Fast Mechanics & Batteries · Buñol",
-      "description": "Lavado de coches y mecánica rápida en Buñol: cambio de batería en menos de una hora, reparaciones rápidas y servicio móvil en tu casa o trabajo."
+      "description": "Lavado y cuidado profesional de vehículos en Buñol, con limpieza interior y exterior y servicios de detailing. También ofrecemos sustitución de baterías en menos de 1 hora, arranque de emergencia, mecánica rápida, cambio de bombillas y fusibles, inspección del vehículo y servicio móvil a domicilio, en el trabajo o donde lo necesites."
     }
   },
   "vehicles": {
@@ -149,5 +148,12 @@
     "label": "Vaporix",
     "title": "Mecánica rápida y baterías",
     "tagline": "En tu casa, en tu trabajo, donde estés"
+  },
+  "reviews": {
+    "title": "Lo que dicen los clientes.",
+    "lede": "Opiniones publicadas en nuestra ficha de Google, tal y como se escribieron.",
+    "anonymous": "Opinión en Google",
+    "stars": "{n} sobre 5",
+    "railLabel": "Opiniones de clientes"
   }
 }

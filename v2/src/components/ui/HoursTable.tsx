@@ -17,23 +17,36 @@ export function HoursTable({
   dark?: boolean;
 }) {
   const t = useTranslations("hours");
-  const { weekdays, saturday } = site.hours;
+  const { weekdays, saturday, sunday } = site.hours;
   const mutedClass = dark ? "text-muted-invert" : "text-steel";
 
   return (
-    <dl className={`grid gap-2 text-sm uppercase ${className}`}>
-      <Row
-        label={t("weekdays")}
-        value={`${weekdays.open} – ${weekdays.close}`}
-        mutedClass={mutedClass}
-      />
-      <Row
-        label={t("saturday")}
-        value={`${saturday.open} – ${saturday.close}`}
-        mutedClass={mutedClass}
-      />
-      <Row label={t("sunday")} value={t("closed")} mutedClass={mutedClass} muted />
-    </dl>
+    <div className={`grid gap-3 ${className}`}>
+      <dl className="grid gap-2 text-sm uppercase">
+        <Row
+          label={t("weekdays")}
+          value={`${weekdays.open} – ${weekdays.close}`}
+          mutedClass={mutedClass}
+        />
+        <Row
+          label={t("saturday")}
+          value={`${saturday.open} – ${saturday.close}`}
+          mutedClass={mutedClass}
+        />
+        <Row
+          label={t("sunday")}
+          value={`${sunday.open} – ${sunday.close}`}
+          mutedClass={mutedClass}
+        />
+      </dl>
+
+      {/*
+        The one line the schedule cannot say by itself. Row by row, three open
+        windows read as three separate facts; a visitor scanning for "are they
+        open on a Sunday" needs the answer stated, not inferred.
+      */}
+      <p className={`text-sm ${mutedClass}`}>{t("everyday")}</p>
+    </div>
   );
 }
 
@@ -41,19 +54,15 @@ function Row({
   label,
   value,
   mutedClass,
-  muted = false,
 }: {
   label: string;
   value: string;
   mutedClass: string;
-  muted?: boolean;
 }) {
   return (
     <div className="flex items-baseline justify-between gap-4 border-b border-hairline-dark pb-2 last:border-0">
       <dt className={mutedClass}>{label}</dt>
-      <dd className={`tabular-nums ${muted ? mutedClass : "text-current"}`}>
-        {value}
-      </dd>
+      <dd className="tabular-nums text-current">{value}</dd>
     </div>
   );
 }

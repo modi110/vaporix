@@ -44,13 +44,15 @@ export const site = {
     "https://maps.google.com/maps?q=Vaporix%20car%20wash%2C%20Ctra.%20Godelleta%2013%2C%2046360%20Bu%C3%B1ol&ll=39.4262003,-0.7799652&z=16&hl=es&output=embed",
 
   /**
-   * The real weekly schedule, confirmed by the studio: open every day but
-   * Sunday, with Saturday running a shorter morning window.
+   * The real weekly schedule, confirmed by the studio and matching the Google
+   * listing: open seven days a week, with the weekend running a shorter
+   * morning window. Nothing here is ever `null` — the studio does not close
+   * on any day, and the page says so out loud in `hours.everyday`.
    */
   hours: {
     weekdays: { open: "08:00", close: "21:00" },
-    saturday: { open: "08:00", close: "13:00" },
-    sunday: null,
+    saturday: { open: "08:00", close: "14:00" },
+    sunday: { open: "08:00", close: "14:00" },
   },
 
   rating: 5.0,

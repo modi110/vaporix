@@ -25,7 +25,6 @@
   },
   "highlights": {
     "title": "Why book with us.",
-    "lede": "Four things you can expect every time you bring the car in.",
     "items": {
       "price": {
         "title": "Flat price",
@@ -39,9 +38,9 @@
         "title": "No rush",
         "body": "Every car gets the time it needs, no shortcuts."
       },
-      "rating": {
-        "title": "5 stars",
-        "body": "Our customer rating on Google."
+      "everyday": {
+        "title": "Open every day",
+        "body": "Monday to Friday until 9 pm, weekends until 2 pm — Sundays too."
       }
     }
   },
@@ -65,12 +64,12 @@
     "weekdays": "Monday to Friday",
     "saturday": "Saturday",
     "sunday": "Sunday",
-    "closed": "Closed"
+    "everyday": "Open every day of the week, Sundays included."
   },
   "meta": {
     "home": {
       "title": "Vaporix Car Wash - Fast Mechanics & Batteries · Buñol",
-      "description": "Car wash and fast mechanics in Buñol: battery replacement in under an hour, quick repairs, and a mobile service at your home or work."
+      "description": "Professional car washing and care in Buñol, with interior and exterior cleaning and detailing services. We also replace batteries in under 1 hour, jump-start your car, do fast mechanics, change bulbs and fuses, inspect your vehicle, and come to you at home, at work or wherever you need us."
     }
   },
   "vehicles": {
@@ -149,5 +148,12 @@
     "label": "Vaporix",
     "title": "Fast mechanics & batteries",
     "tagline": "At your home, your work, wherever you are"
+  },
+  "reviews": {
+    "title": "What customers say.",
+    "lede": "Reviews left on our Google listing, in the words they were written in.",
+    "anonymous": "Google review",
+    "stars": "{n} out of 5",
+    "railLabel": "Customer reviews"
   }
 }

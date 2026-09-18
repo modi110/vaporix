@@ -3,7 +3,7 @@
  * same hairline weight as `SocialIcon` — flat, no fill, nothing borrowed from
  * the one accent colour.
  */
-export type HighlightIconId = "price" | "chat" | "clock" | "star";
+export type HighlightIconId = "price" | "chat" | "clock" | "calendar";
 
 export function HighlightIcon({
   id,
@@ -36,7 +36,13 @@ export function HighlightIcon({
           <path d="M12 7.5V12l3.2 2" />
         </>
       ) : (
-        <path d="M12 3.5 14.5 9.3 20.8 9.9 16.1 14.1 17.5 20.3 12 17 6.5 20.3 7.9 14.1 3.2 9.9 9.5 9.3Z" />
+        /* A week with every day marked — the point of the card is that none of
+           the seven is missing, so the row of marks runs edge to edge. */
+        <>
+          <rect x="3" y="5.5" width="18" height="15" />
+          <path d="M3 10.5h18M8 3.2v4.4M16 3.2v4.4" />
+          <path d="M6.6 14.3h1.2M11.4 14.3h1.2M16.2 14.3h1.2M6.6 17.6h1.2M11.4 17.6h1.2M16.2 17.6h1.2" />
+        </>
       )}
     </svg>
   );

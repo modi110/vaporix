@@ -69,6 +69,12 @@ export function LocalBusinessJsonLd({
         opens: hours.saturday.open,
         closes: hours.saturday.close,
       },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Sunday",
+        opens: hours.sunday.open,
+        closes: hours.sunday.close,
+      },
     ],
     // The towns people actually drive in from, which is what "near me"
     // searches in the valley resolve to.
