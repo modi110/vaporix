@@ -77,13 +77,12 @@ export function Nav() {
   return (
     <>
       <header
-        // Mobile-only: the desktop hero splits into navy/photo/Giallo panels,
-        // and a transparent bar over the right-hand yellow one leaves the
-        // outlined RESERVAR button all but unreadable — white on white,
-        // roughly. Desktop never had the "doesn't feel full-screen" problem
-        // this solves, so `md:` forces it back to a plain navy bar there.
-        className={`fixed inset-x-0 top-0 z-50 bg-navy transition-[background-color] duration-300 md:bg-navy md:bg-none ${
-          transparent ? "max-md:bg-transparent max-md:bg-[linear-gradient(to_bottom,rgba(0,0,0,.75)_0%,rgba(0,0,0,.4)_65%,transparent_100%)]" : ""
+        // Both heroes are full-bleed photographs now (the cars on a phone,
+        // the studio at dusk from `md` up), so the bar is transparent over
+        // either, with a dark fade keeping the white controls readable
+        // against a bright sky.
+        className={`fixed inset-x-0 top-0 z-50 bg-navy transition-[background-color] duration-300 ${
+          transparent ? "bg-transparent bg-[linear-gradient(to_bottom,rgba(0,0,0,.75)_0%,rgba(0,0,0,.4)_65%,transparent_100%)]" : ""
         }`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >

@@ -1,60 +1,110 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 
+import { Monogram } from "@/components/brand/Monogram";
+
+function uncover(
+  el: HTMLDivElement | null,
+  covering: { current: boolean },
+) {
+  if (!el || !covering.current) return;
+  covering.current = false;
+
+  gsap.to(el, {
+    yPercent: -100,
+    duration: 0.55,
+    ease: "power3.inOut",
+    delay: 0.05,
+    onComplete: () => gsap.set(el, { visibility: "hidden" }),
+  });
+}
+
 /**
- * A quiet cross-fade over every route change, on phone and desktop alike.
+ * A blue panel that sweeps up over the page on every internal link click,
+ * navigates while the screen is covered, then lifts off the new page.
  *
- * Mounted once in the layout — never remounted, unlike `template.tsx` — so it
- * can watch `usePathname()` across the whole session and tell a real
- * navigation from the first render. It has to sit outside
+ * Mounted once in the layout — never remounted, unlike `template.tsx` — so
+ * it survives the route swap it is covering. It has to sit outside
  * `SmoothScrollProvider`: that provider gives its content wrapper a
  * `transform` on desktop, and a transformed ancestor becomes the containing
  * block for any `position: fixed` descendant, which would pin this overlay
  * to the scrolling content instead of the viewport.
  *
- * The App Router swaps a route's content in one commit, with no exit phase
- * to animate — so this covers immediately on the pathname change already
- * having happened, then wipes away, which reads as a deliberate transition
- * rather than a raw swap. `template.tsx` handles the incoming page's own
- * rise-and-settle underneath it.
+ * The App Router has no exit phase, so this makes one: a capture-phase click
+ * listener calls `preventDefault()` on same-origin link clicks, which makes
+ * Next's `<Link>` skip its own navigation while still running the link's
+ * `onClick` (the mobile menu still closes). Once covered, it pushes the
+ * route itself. Back/forward never pass through here and swap instantly,
+ * with `template.tsx`'s rise as the only motion.
  */
 export function TransitionOverlay() {
   const ref = useRef<HTMLDivElement>(null);
-  const prevPathname = useRef<string | null>(null);
-
+  const covering = useRef(false);
+  const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
-    // First render: nothing has navigated yet, so there is nothing to wipe.
-    if (prevPathname.current === null) {
-      prevPathname.current = pathname;
-      return;
-    }
-    if (prevPathname.current === pathname) return;
-    prevPathname.current = pathname;
-
-    const el = ref.current;
-    if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    gsap.set(el, { visibility: "visible", opacity: 1 });
-    gsap.to(el, {
-      opacity: 0,
-      duration: 0.25,
-      ease: "power2.out",
-      onComplete: () => gsap.set(el, { visibility: "hidden" }),
-    });
+    function onClick(e: MouseEvent) {
+      if (e.defaultPrevented || e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      const a = (e.target as Element).closest("a");
+      if (!a || a.hasAttribute("download")) return;
+      if (a.target && a.target !== "_self") return;
+
+      const url = new URL(a.href, location.href);
+      if (url.origin !== location.origin) return;
+      // Same page (a hash jump, or the link to where you already are):
+      // nothing is being replaced, so there is nothing to cover.
+      if (url.pathname === location.pathname) return;
+
+      const el = ref.current;
+      if (!el || covering.current) return;
+
+      e.preventDefault();
+      covering.current = true;
+
+      gsap.killTweensOf(el);
+      gsap.fromTo(
+        el,
+        { yPercent: 100, visibility: "visible" },
+        {
+          yPercent: 0,
+          duration: 0.45,
+          ease: "power3.inOut",
+          onComplete: () => {
+            router.push(url.pathname + url.search + url.hash);
+            // If the route never changes (an error, a redirect back here),
+            // never leave the site stuck behind the panel.
+            window.setTimeout(() => uncover(el, covering), 2500);
+          },
+        },
+      );
+    }
+
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, [router]);
+
+  useEffect(() => {
+    uncover(ref.current, covering);
   }, [pathname]);
 
   return (
     <div
       ref={ref}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[95] bg-navy opacity-0"
+      className="pointer-events-none fixed inset-0 z-[95] grid place-items-center bg-navy"
       style={{ visibility: "hidden" }}
-    />
+    >
+      <span className="block w-20">
+        <Monogram />
+      </span>
+    </div>
   );
 }

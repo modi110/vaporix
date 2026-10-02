@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
-import { ButtonLink } from "@/components/ui/Button";
+import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { heroSlides } from "@/content/hero";
+import { site } from "@/content/site";
 
 const DWELL_MS = 3000;
 /** Below this a horizontal drag was a tap, not a swipe. */
@@ -33,12 +34,14 @@ function useReducedMotion() {
 }
 
 /**
- * The opener: on a phone, a full-screen photograph with the name and the
- * booking button stacked low over a deep fade. From `md` up the photograph
- * stops stretching and holds its own phone-like proportions instead — it
- * sits centred, navy fills the space to its left and Giallo the space to its
- * right, and the name and button move onto that navy rather than riding on
- * the picture.
+ * The opener. On a phone: a full-screen carousel of the studio's work, with
+ * the name and the booking button stacked low over a deep fade. From `md`
+ * up the carousel gives way to one still: the studio itself at dusk, full
+ * bleed, settling slowly out of a zoom. A deep-blue fade from the left
+ * carries a single column — name, booking and WhatsApp, then the address
+ * and hours — and leaves the building clear on the right. The car shots are
+ * portrait phone photos and stretch poorly across a desktop; the studio
+ * photograph is landscape and holds up at that width.
  *
  * It advances on its own, it takes a swipe, and it holds while a finger is
  * down — put your thumb on a photograph you like and it stays there. That
@@ -48,6 +51,9 @@ function useReducedMotion() {
  */
 export function Hero() {
   const t = useTranslations("hero");
+  const studio = useTranslations("studio");
+  const hours = useTranslations("hours");
+  const { weekdays, saturday, sunday } = site.hours;
   const [index, setIndex] = useState(0);
   const [held, setHeld] = useState(false);
 
@@ -146,27 +152,64 @@ export function Hero() {
         if (e.key === "ArrowLeft") goTo(index - 1);
       }}
     >
-      {/*
-        Left panel: navy, and — from `md` up only — where the name and the
-        booking button actually live. Collapsed to nothing on a phone, where
-        the photograph is full-bleed and there is no panel to speak of.
-        The hover tint is desktop-only for the obvious reason: touch has no
-        hover, and a `:hover` left stuck after a tap reads as a visual bug.
-      */}
-      <div className="hidden md:flex md:flex-1 md:items-end md:justify-start md:bg-navy md:transition-colors md:duration-150 md:hover:bg-navy-lift">
-        <div className="wrap pb-[max(2.5rem,env(safe-area-inset-bottom))]">
-          <h1 className="t-hero text-pearl">{t("title")}</h1>
-          <p className="t-sub mb-6 text-pearl">{t("tagline")}</p>
-          <ButtonLink href="/book">{t("cta")}</ButtonLink>
+      {/* Desktop: the studio at dusk. */}
+      <div className="relative hidden h-full w-full overflow-hidden md:block">
+        <picture className="absolute inset-0 block h-full w-full">
+          <source srcSet="/images/place.avif" type="image/avif" />
+          <Image
+            src="/images/place.webp"
+            alt={studio("photoAlt")}
+            fill
+            sizes="100vw"
+            className="hero-dusk object-cover"
+            style={{ objectPosition: "50% 42%" }}
+            draggable={false}
+          />
+        </picture>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,30,72,.92)_0%,rgba(0,52,116,.7)_32%,rgba(0,52,116,0)_58%)]"
+        />
+        <div className="absolute left-[var(--gutter)] top-1/2 max-w-[30rem] -translate-y-[42%]">
+          <h1 className="hero-rise t-hero text-pearl">{t("title")}</h1>
+          <div className="hero-fade">
+            <p className="t-heading mb-8 mt-3 text-pearl">{t("tagline")}</p>
+            <div className="flex gap-3">
+              <ButtonLink href="/book" variant="white">
+                {t("cta")}
+              </ButtonLink>
+              <ButtonAnchor
+                href={site.whatsapp}
+                variant="outlined"
+                arrow={false}
+                className="border-pearl/70 text-pearl"
+              >
+                WhatsApp
+              </ButtonAnchor>
+            </div>
+            <div className="t-caption mt-12 flex gap-12 border-t border-pearl/35 pt-5 text-pearl">
+              <address className="not-italic">
+                {site.address.street}
+                <br />
+                {site.address.postcode} {site.address.city},{" "}
+                {site.address.region}
+              </address>
+              <p>
+                {hours("weekdays")} {weekdays.open}–{weekdays.close}
+                <br />
+                {hours("saturday")} {saturday.open}–{saturday.close}
+                <br />
+                {hours("sunday")} {sunday.open}–{sunday.close}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
       {/*
-        Centre: the photograph. One crop everywhere — on a phone it fills the
-        screen edge to edge; from `md` up it holds its own phone-like
-        proportions instead of stretching to fill the space either side of it.
+        Phone: the carousel, edge to edge. Not rendered from `md` up.
       */}
-      <div className="relative h-full w-full shrink-0 overflow-hidden md:aspect-[9/16] md:w-auto">
+      <div className="relative h-full w-full shrink-0 overflow-hidden md:hidden">
         {heroSlides.map((slide, i) => (
           <div
             key={slide.name}
@@ -187,7 +230,7 @@ export function Hero() {
                 // is the LCP element and the rest are a few seconds away.
                 priority={i === 0}
                 loading={i === 0 ? "eager" : "lazy"}
-                sizes="(min-width: 768px) 56vh, 100vw"
+                sizes="100vw"
                 className="object-cover transition-transform duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none md:group-hover/photo:scale-[1.04]"
                 style={{ objectPosition: slide.focus }}
                 // A drag starting on the photograph must swipe, not lift the
@@ -216,12 +259,6 @@ export function Hero() {
             the photograph is the pause. Stays on the photo at every width. */}
         {pips}
       </div>
-
-      {/*
-        Right panel: Giallo, empty but for the hover. `md`-only for the same
-        reason the left one is — no equivalent on a phone, nothing to hover.
-      */}
-      <div className="hidden md:block md:flex-1 md:bg-giallo md:transition-colors md:duration-150 md:hover:bg-giallo-deep" />
 
       {/* Announces the change for anyone who cannot see it happen. */}
       <p aria-live="polite" className="sr-only">

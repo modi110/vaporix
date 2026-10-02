@@ -13,6 +13,7 @@ import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { Preloader, preloadFlagScript } from "@/components/motion/Preloader";
 import { TransitionOverlay } from "@/components/motion/TransitionOverlay";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import "../globals.css";
 
 /**
@@ -102,6 +103,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider>
           <Preloader />
           <TransitionOverlay />
+          <ScrollReveal />
           <Nav />
           <main>{children}</main>
           <Footer />

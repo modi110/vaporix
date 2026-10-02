@@ -16,7 +16,7 @@ import type { StaticPathname } from "@/i18n/routing";
 type Variant = "giallo" | "ghost" | "outlined" | "white";
 
 const BASE =
-  "group inline-flex min-h-11 items-center justify-center gap-2.5 whitespace-nowrap " +
+  "btn group inline-flex min-h-11 items-center justify-center gap-2.5 whitespace-nowrap " +
   "rounded-full px-6 py-3.5 text-xs font-medium uppercase tracking-[0.023em] " +
   "transition-colors duration-150 ease-[cubic-bezier(0.22,1,0.36,1)]";
 
@@ -24,34 +24,54 @@ const VARIANTS: Record<Variant, string> = {
   // White throughout, not just on hover: the accent and the surface are the
   // same blue now, so a navy ink label on this fill would vanish into it.
   giallo:
-    "bg-giallo text-pearl hover:bg-giallo-deep active:bg-giallo-deep",
+    "btn-shine bg-giallo text-pearl [--btn-fill:var(--color-giallo-deep)]",
   // Opacity, not a colour swap: `hover:text-giallo` used to shift toward the
   // one accent, but ghost is used via `text-current` in whatever context it
   // lands in, and on a blue surface `text-giallo` is now the same colour as
   // the text underneath it.
   ghost: "text-current hover:opacity-70 active:opacity-70",
   outlined:
-    "border border-steel text-current hover:border-current active:border-current",
+    "border border-steel text-current hover:border-current active:border-current " +
+    "[--btn-fill:color-mix(in_srgb,currentColor_14%,transparent)]",
   // For a spot the giallo fill would otherwise disappear into — the mobile
   // menu sheet is the one place on the site that's a solid blue surface with
   // nothing else on it, so giallo and its own background are literally the
   // same colour there.
-  white: "bg-pearl text-navy hover:opacity-90 active:opacity-90",
+  white:
+    "bg-pearl text-navy [--btn-fill:color-mix(in_srgb,var(--color-navy)_14%,white)]",
 };
 
-/** The arrow travels a few pixels on hover and press. That is the whole gesture. */
-function Arrow() {
+/**
+ * The label rolls: a second copy waits below and slides up as the first
+ * leaves. Motion lives in globals.css under BUTTONS.
+ */
+function Label({ children }: { children: React.ReactNode }) {
   return (
-    <svg
-      viewBox="0 0 16 16"
-      aria-hidden="true"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      className="size-3.5 shrink-0 transition-transform duration-150 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-active:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
-    >
-      <path d="M2 8h11M9 4l4 4-4 4" />
-    </svg>
+    <span className="btn-roll">
+      <span>{children}</span>
+      <span aria-hidden="true">{children}</span>
+    </span>
+  );
+}
+
+/** Two arrows in a clipped box: one exits right as the next enters left. */
+function Arrow() {
+  const path = <path d="M2 8h11M9 4l4 4-4 4" />;
+  return (
+    <span className="btn-arrow" aria-hidden="true">
+      {[0, 1].map((i) => (
+        <svg
+          key={i}
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          className="size-3.5"
+        >
+          {path}
+        </svg>
+      ))}
+    </span>
   );
 }
 
@@ -77,7 +97,7 @@ export function ButtonLink({
       onClick={onClick}
       className={`${BASE} ${VARIANTS[variant]} ${className}`}
     >
-      {children}
+      <Label>{children}</Label>
       {arrow ? <Arrow /> : null}
     </Link>
   );
@@ -92,8 +112,9 @@ export function ButtonAnchor({
 }: CommonProps & { href: string }) {
   return (
     <a href={href} className={`${BASE} ${VARIANTS[variant]} ${className}`}>
-      {children}
+      <Label>{children}</Label>
       {arrow ? <Arrow /> : null}
     </a>
   );
 }
+
