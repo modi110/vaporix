@@ -118,3 +118,29 @@ export function ButtonAnchor({
   );
 }
 
+/** The same shape for a real <button> — form submits and in-page actions. */
+export function Button({
+  children,
+  variant = "giallo",
+  className = "",
+  arrow = true,
+  type = "button",
+  disabled = false,
+  onClick,
+}: CommonProps & {
+  type?: "button" | "submit";
+  disabled?: boolean;
+  onClick?: () => void;
+}) {
+  return (
+    <button
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      className={`${BASE} ${VARIANTS[variant]} disabled:pointer-events-none disabled:opacity-50 ${className}`}
+    >
+      <Label>{children}</Label>
+      {arrow ? <Arrow /> : null}
+    </button>
+  );
+}

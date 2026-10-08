@@ -13,11 +13,24 @@ next-env.d.ts
 # Never commit credentials
 *passwords*.pdf
 
+# Wallet signing material. Apple hands out .p12/.cer/.p8 certificates and keys,
+# Google a service-account JSON. Any of them in a public repo lets a stranger
+# mint Vaporix loyalty passes, so they stay on the server and in Vercel's
+# environment variables only.
+*.p12
+*.cer
+*.p8
+*-service-account*.json
+*.pkpass
+
 # typescript incremental build cache
 *.tsbuildinfo
 
 # local Claude Code config, not project content
 .claude/
+
+# design-review scratch output, regenerated on demand
+.impeccable/
 
 # debug output from scripts/process-images.mjs --centres / --contact
 v2/centre-grid.jpg

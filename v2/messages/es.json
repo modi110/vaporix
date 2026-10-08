@@ -7,7 +7,8 @@
     "menu": "Menú",
     "close": "Cerrar",
     "switchLocale": "View in English",
-    "services": "Más servicios"
+    "services": "Más servicios",
+    "loyalty": "Fidelidad"
   },
   "hero": {
     "title": "Vaporix",
@@ -70,6 +71,10 @@
     "home": {
       "title": "Vaporix Car Wash - Fast Mechanics & Batteries · Buñol",
       "description": "Lavado y cuidado profesional de vehículos en Buñol, con limpieza interior y exterior y servicios de detailing. También ofrecemos sustitución de baterías en menos de 1 hora, arranque de emergencia, mecánica rápida, cambio de bombillas y fusibles, inspección del vehículo y servicio móvil a domicilio, en el trabajo o donde lo necesites."
+    },
+    "loyalty": {
+      "title": "Programa de fidelización — Vaporix",
+      "description": "Apúntate al programa de fidelización de Vaporix: cinco lavados y el quinto es tu recompensa."
     }
   },
   "vehicles": {
@@ -148,6 +153,43 @@
     "label": "Vaporix",
     "title": "Mecánica rápida y baterías",
     "tagline": "En tu casa, en tu trabajo, donde estés"
+  },
+  "loyalty": {
+    "label": "Fidelidad",
+    "title": "Cinco lavados. El quinto, {reward}.",
+    "lede": "Apúntate una vez y lleva tu tarjeta en el móvil. Sin plásticos, sin sellos que se pierden.",
+    "howTitle": "Cómo funciona",
+    "step1": "Te apuntas con tu nombre y tu teléfono.",
+    "step2": "Recibes tu tarjeta con un código QR.",
+    "step3": "Enseñas el QR en cada visita y te la sellamos.",
+    "step4": "En el quinto lavado, la recompensa es tuya.",
+    "formTitle": "Únete al programa",
+    "name": "Nombre",
+    "namePlaceholder": "Carlos García",
+    "phone": "Teléfono",
+    "phonePlaceholder": "600 11 22 33",
+    "email": "Email (opcional)",
+    "emailPlaceholder": "carlos@ejemplo.com",
+    "submit": "Crear mi tarjeta",
+    "submitting": "Creando…",
+    "errorName": "Escribe tu nombre completo.",
+    "errorPhone": "Ese teléfono no parece válido. Nueve dígitos, o con prefijo +34.",
+    "errorEmail": "Ese email no parece válido.",
+    "errorGeneric": "No hemos podido crear la tarjeta. Inténtalo de nuevo en un momento.",
+    "existingNotice": "Ya tenías una tarjeta con este teléfono. Aquí la tienes.",
+    "privacy": "Usamos tu teléfono solo para identificar tu tarjeta. Nada más."
+  },
+  "card": {
+    "washesLabel": "Tus lavados",
+    "customerLabel": "N.º de cliente",
+    "remainingOne": "¡Te falta <b>1</b> lavado para conseguir tu <b>{reward}</b>!",
+    "remainingMany": "¡Te faltan <b>{count}</b> lavados para conseguir tu <b>{reward}</b>!",
+    "ready": "¡Tu <b>{reward}</b> te está esperando!",
+    "saveHint": "Guarda esta página en tu pantalla de inicio para tenerla siempre a mano.",
+    "inactive": "Esta tarjeta ya no está activa. Pregunta en el taller.",
+    "notFoundTitle": "Tarjeta no encontrada",
+    "notFoundBody": "Este enlace no corresponde a ninguna tarjeta. Comprueba el enlace o vuelve a apuntarte.",
+    "joinAgain": "Apuntarme"
   },
   "reviews": {
     "title": "Lo que dicen los clientes.",

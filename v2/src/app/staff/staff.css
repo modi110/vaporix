@@ -1,0 +1,309 @@
+/* ------------------------------------------------------------------
+   The staff tool.
+
+   Operate, not persuade. This gets used forty times a day, outdoors, by
+   someone holding a phone in one wet hand while a customer waits. So:
+   large targets, one decision per screen, state legible at arm's length,
+   and no decoration competing with the thing that has to be tapped.
+
+   It borrows the card's palette so the two obviously belong together,
+   but not its shape language — nothing here is a souvenir.
+   ------------------------------------------------------------------ */
+
+.staff-body {
+  --blue: #0d51c4;
+  --blue-deep: #062a6b;
+  --cyan: #5fe3ff;
+  --ink: #0f2340;
+  --ink-soft: #4f6480;
+  --ground: #eef2f8;
+  --surface: #ffffff;
+  --rule: #d2dcea;
+  --warn: #8a4a00;
+  --warn-bg: #fff2e0;
+  --stop: #9a1b1b;
+  --stop-bg: #ffeaea;
+
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 100svh;
+}
+
+.staff-body ::selection {
+  background: var(--cyan);
+  color: #033254;
+}
+.staff-body :focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.staff-shell {
+  display: grid;
+  gap: 24px;
+  margin: 0 auto;
+  max-width: 460px;
+  padding: calc(env(safe-area-inset-top) + 28px) 20px
+    calc(env(safe-area-inset-bottom) + 40px);
+}
+
+.staff-head {
+  align-items: baseline;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.staff-wordmark {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.staff-who {
+  color: var(--ink-soft);
+  font-size: 0.8125rem;
+  margin: 0;
+}
+
+/* Sign-out is a POST, so it has to be a button. It should still read as the
+   quiet text link it is. */
+.staff-linkish {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 6px 2px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.staff-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.staff-lede {
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.staff-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+
+/* --- controls --------------------------------------------------------- */
+
+/* 56px tall: this is tapped outdoors, by someone not looking carefully. */
+.staff-button {
+  align-items: center;
+  background: var(--blue);
+  border: 0;
+  border-radius: 14px;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-weight: 800;
+  gap: 8px;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0 20px;
+  transition: background-color 140ms ease-out;
+  width: 100%;
+}
+.staff-button:hover,
+.staff-button:active {
+  background: var(--blue-deep);
+}
+.staff-button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.staff-button--quiet {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  min-height: 48px;
+}
+.staff-button--quiet:hover,
+.staff-button--quiet:active {
+  background: #e6ecf6;
+}
+
+.staff-field {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  color: var(--ink);
+  font: inherit;
+  min-height: 56px;
+  padding: 0 16px;
+  width: 100%;
+}
+.staff-field::placeholder {
+  color: #7b8ca3;
+}
+
+.staff-label {
+  color: var(--ink-soft);
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+/* Wide tracking and a large size: a PIN is read back digit by digit. */
+.staff-pin {
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.35em;
+  text-align: center;
+}
+
+.staff-people {
+  display: grid;
+  gap: 8px;
+}
+
+.staff-person {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-weight: 700;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 0 18px;
+  text-align: left;
+  width: 100%;
+}
+.staff-person[aria-pressed="true"] {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #ffffff;
+}
+
+/* --- messages --------------------------------------------------------- */
+
+.staff-note {
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  margin: 0;
+  padding: 12px 14px;
+}
+.staff-note--warn {
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+.staff-note--stop {
+  background: var(--stop-bg);
+  color: var(--stop);
+}
+.staff-note--ok {
+  background: #e4f7ff;
+  color: #04405e;
+}
+
+/* --- the scanned customer --------------------------------------------- */
+
+.staff-customer {
+  display: grid;
+  gap: 6px;
+}
+
+.staff-name {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.staff-count {
+  align-items: baseline;
+  display: flex;
+  font-variant-numeric: tabular-nums;
+  gap: 6px;
+  margin: 0;
+}
+.staff-count b {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+.staff-count em {
+  color: var(--ink-soft);
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* --- the camera ------------------------------------------------------- */
+
+.staff-viewport {
+  aspect-ratio: 1;
+  background: #0b1a2e;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.staff-viewport video {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* A frame to aim with, not a decoration: it marks where the code goes. */
+.staff-reticle {
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  border-radius: 14px;
+  inset: 18%;
+  pointer-events: none;
+  position: absolute;
+}
+
+.staff-divider {
+  align-items: center;
+  color: var(--ink-soft);
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 800;
+  gap: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.staff-divider::before,
+.staff-divider::after {
+  background: var(--rule);
+  content: "";
+  flex: 1;
+  height: 1px;
+}

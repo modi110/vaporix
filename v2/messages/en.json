@@ -7,7 +7,8 @@
     "menu": "Menu",
     "close": "Close",
     "switchLocale": "Ver en español",
-    "services": "More services"
+    "services": "More services",
+    "loyalty": "Loyalty"
   },
   "hero": {
     "title": "Vaporix",
@@ -70,6 +71,10 @@
     "home": {
       "title": "Vaporix Car Wash - Fast Mechanics & Batteries · Buñol",
       "description": "Professional car washing and care in Buñol, with interior and exterior cleaning and detailing services. We also replace batteries in under 1 hour, jump-start your car, do fast mechanics, change bulbs and fuses, inspect your vehicle, and come to you at home, at work or wherever you need us."
+    },
+    "loyalty": {
+      "title": "Loyalty programme — Vaporix",
+      "description": "Join the Vaporix loyalty programme: five washes, and the fifth is your reward."
     }
   },
   "vehicles": {
@@ -148,6 +153,43 @@
     "label": "Vaporix",
     "title": "Fast mechanics & batteries",
     "tagline": "At your home, your work, wherever you are"
+  },
+  "loyalty": {
+    "label": "Loyalty",
+    "title": "Five washes. The fifth, {reward}.",
+    "lede": "Sign up once and keep your card on your phone. No plastic, no stamps to lose.",
+    "howTitle": "How it works",
+    "step1": "Sign up with your name and phone number.",
+    "step2": "You get a card with a QR code.",
+    "step3": "Show the QR on each visit and we stamp it.",
+    "step4": "On the fifth wash, the reward is yours.",
+    "formTitle": "Join the programme",
+    "name": "Name",
+    "namePlaceholder": "Carlos García",
+    "phone": "Phone",
+    "phonePlaceholder": "600 11 22 33",
+    "email": "Email (optional)",
+    "emailPlaceholder": "carlos@example.com",
+    "submit": "Create my card",
+    "submitting": "Creating…",
+    "errorName": "Please enter your full name.",
+    "errorPhone": "That phone number does not look right. Nine digits, or with a +34 prefix.",
+    "errorEmail": "That email does not look right.",
+    "errorGeneric": "We could not create the card. Please try again in a moment.",
+    "existingNotice": "You already had a card on this number. Here it is.",
+    "privacy": "We use your number only to identify your card. Nothing else."
+  },
+  "card": {
+    "washesLabel": "Your washes",
+    "customerLabel": "Customer no.",
+    "remainingOne": "<b>1</b> more wash and your <b>{reward}</b> is yours!",
+    "remainingMany": "<b>{count}</b> more washes and your <b>{reward}</b> is yours!",
+    "ready": "Your <b>{reward}</b> is waiting!",
+    "saveHint": "Add this page to your home screen to keep it handy.",
+    "inactive": "This card is no longer active. Please ask us in the shop.",
+    "notFoundTitle": "Card not found",
+    "notFoundBody": "This link does not match any card. Check the link or sign up again.",
+    "joinAgain": "Sign up"
   },
   "reviews": {
     "title": "What customers say.",

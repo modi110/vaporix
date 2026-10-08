@@ -1,0 +1,240 @@
+/* ------------------------------------------------------------------
+   The loyalty card — five washes, the fifth free.
+
+   The artwork is the owner's own. `/images/card/plate.jpg` is their
+   reference file with only the per-customer content removed: the
+   photograph, the logo, the navy sweep and the grey watermark are their
+   pixels, not a rebuild. Everything below is positioned in percentages
+   measured off that 1024x1536 original, so the live card lands on the
+   same spots their design did.
+
+   Type is sized in cqw — 1% of the card's own width — against a
+   container query on `.pass`. The card therefore scales as one piece
+   from a phone to a review grid, and a narrower column shrinks the
+   numerals with the artwork instead of letting them drift out of place.
+
+   Scoped to this file rather than added to the global @theme: the site
+   is two colours and hard edges, and a wallet card is a physical object
+   with its own rules.
+   ------------------------------------------------------------------ */
+
+.pass-scope {
+  font-family: var(--font-card), ui-sans-serif, system-ui, sans-serif;
+
+  --blue: #1189fb;
+  --ink: #0b1b36;
+  --ink-soft: #46566f;
+
+  --r-card: 14px;
+}
+
+.pass {
+  aspect-ratio: 1024 / 1536;
+  background-image: url("/images/card/plate.jpg");
+  background-size: 100% 100%;
+  border-radius: var(--r-card);
+  box-shadow:
+    0 14px 30px -14px rgba(6, 20, 39, 0.45),
+    0 2px 6px -2px rgba(6, 20, 39, 0.2);
+  /* Every child sizes itself from the card's width, not the viewport. */
+  container-type: inline-size;
+  margin: 0 auto;
+  max-width: 340px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.pass > * {
+  margin: 0;
+  position: absolute;
+}
+
+/* The owner's own logo, lifted from their file and nudged right of where
+   it sat, per the brief. An opaque crop on white paper, so it needs no
+   mask — the plate's logo area was cleared to paper underneath it. */
+.pass__logo {
+  aspect-ratio: 400 / 168;
+  background-image: url("/images/card/logo-vrk.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  left: 8.3%;
+  top: 10.3%;
+  width: 39.06%;
+}
+
+.pass__name {
+  color: #fff;
+  font-size: 7.42cqw;
+  font-weight: 700;
+  left: 7.03%;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  /* A long name must not run under the count. */
+  max-width: 58%;
+  overflow-wrap: anywhere;
+  top: 30.2%;
+}
+
+.pass__eyebrow {
+  color: #fff;
+  font-size: 2.93cqw;
+  font-weight: 600;
+  left: 7.03%;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  text-transform: uppercase;
+  top: 38.4%;
+}
+
+.pass__score {
+  align-items: baseline;
+  display: flex;
+  gap: 0.14em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  right: 7.2%;
+  top: 31.4%;
+}
+.pass__score b {
+  color: var(--blue);
+  font-size: 10cqw;
+  font-weight: 700;
+}
+.pass__score span {
+  color: #fff;
+  font-size: 6.2cqw;
+  font-weight: 600;
+}
+
+/* --- the stamps -------------------------------------------------------- */
+
+.pass__stamps {
+  display: grid;
+  gap: 4.1cqw;
+  grid-template-columns: repeat(var(--stamp-count, 5), 1fr);
+  left: 7.81%;
+  list-style: none;
+  padding: 0;
+  top: 42.3%;
+  width: 84.77%;
+}
+
+/* The owner's own icons, lifted from their file as round sprites rather
+   than redrawn — redrawing them was what made an earlier pass read as a
+   different card. */
+.stamp {
+  aspect-ratio: 1;
+  background-image: url("/images/card/stamp-off.png");
+  background-size: 100% 100%;
+}
+.stamp--on {
+  background-image: url("/images/card/stamp-on.png");
+}
+
+.pass__rule {
+  background: rgba(255, 255, 255, 0.4);
+  height: 1px;
+  left: 7.03%;
+  top: 54%;
+  width: 85.74%;
+}
+
+.pass__status {
+  color: #fff;
+  font-size: 3.32cqw;
+  font-weight: 500;
+  left: 14%;
+  line-height: 1.32;
+  text-align: center;
+  top: 55.5%;
+  width: 72%;
+}
+.pass__status b {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+/* --- the code ---------------------------------------------------------- */
+
+/* No white plate behind it: the watermark it sits on is about 88% luma,
+   so a black code still clears the contrast a scanner needs, and a plate
+   would punch a white box back into the mark. */
+.pass__qr {
+  left: 37.4%;
+  top: 65.4%;
+  width: 25.6%;
+}
+.pass__qr svg {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.pass__custlabel {
+  color: var(--ink-soft);
+  font-size: 2.54cqw;
+  font-weight: 500;
+  left: 0;
+  text-align: center;
+  top: 83.4%;
+  width: 100%;
+}
+.pass__custnum {
+  color: var(--ink);
+  font-size: 4cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  left: 0;
+  letter-spacing: 0.01em;
+  text-align: center;
+  top: 85.2%;
+  width: 100%;
+}
+
+/* --- the progress track, used by the staff screen ---------------------- */
+
+.track {
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(var(--track-count, 5), 1fr);
+}
+.track i {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  display: block;
+  height: 6px;
+}
+.track i.is-on {
+  background: var(--blue, #1189fb);
+}
+
+/* On a light surface — the staff screen — the same component inverts. */
+.track--ink i {
+  background: rgba(17, 137, 251, 0.18);
+}
+.track--ink i.is-on {
+  background: #1189fb;
+}
+
+/* --- the page the card sits on ----------------------------------------- */
+
+.pass-page {
+  align-content: start;
+  background: #dfe6ef;
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+  min-height: 100svh;
+  padding: calc(env(safe-area-inset-top) + 96px) 20px
+    calc(env(safe-area-inset-bottom) + 48px);
+}
+
+.pass-page__hint {
+  color: #5a6b84;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 340px;
+  text-align: center;
+}
