@@ -1,11 +1,12 @@
 import { readStaffSession } from "@/lib/auth/session";
-import { getCardState, registerVisit } from "@/lib/loyalty/service";
+import { lookUpCard, registerVisit } from "@/lib/loyalty/service";
 
 /**
  * Look up a scanned code, and record a visit against it.
  *
- * GET resolves a token to its current state so staff can see who they are
- * about to serve; POST is the one that writes. Splitting them is what puts a
+ * GET resolves a code — a scanned token, or the number printed on the card
+ * when staff type it by hand — to its current state so they can see who they
+ * are about to serve; POST is the one that writes. Splitting them is what puts a
  * human confirmation between "the camera saw a code" and "the customer has
  * another visit" — a scanner pointed at a wallet in a queue would otherwise
  * count everything in front of it.
@@ -24,7 +25,7 @@ export async function GET(request: Request) {
   const token = new URL(request.url).searchParams.get("token");
   if (!token) return Response.json({ code: "INVALID_TOKEN" }, { status: 400 });
 
-  const state = await getCardState(token);
+  const state = await lookUpCard(token);
   if (!state) return Response.json({ code: "INVALID_TOKEN" }, { status: 404 });
 
   return Response.json({ code: "OK", state });

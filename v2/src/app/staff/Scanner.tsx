@@ -189,14 +189,18 @@ export function Scanner() {
           >
             <div>
               <label className="staff-label" htmlFor="manual">
-                Código de la tarjeta
+                N.º de cliente
               </label>
+              {/* The seven digits printed under the QR. `inputMode` only asks
+                  the phone for a number pad — the field still takes a pasted
+                  token, which is what a tester with a copied link will use. */}
               <input
                 id="manual"
                 className="staff-field"
                 value={manual}
                 onChange={(event) => setManual(event.target.value)}
-                placeholder="VPR_…"
+                placeholder="1234567"
+                inputMode="numeric"
                 autoComplete="off"
                 spellCheck={false}
               />
@@ -279,11 +283,17 @@ function Customer({
           </p>
         ) : null}
 
-        {settled ? null : state.rewardAvailable ? (
+        {/* Redeeming stays offered on the confirmation screen, because the
+            visit that fills the card is the visit the free wash belongs to —
+            sending staff back to scan the same card again, at the one moment
+            the customer is owed something, is where a reward gets forgotten.
+            After a redemption the card is back to zero and `rewardAvailable`
+            is false, so this collapses to no button at all. */}
+        {state.rewardAvailable ? (
           <button className="staff-button" onClick={onRedeem} disabled={busy}>
             {busy ? "Canjeando…" : "Canjear recompensa"}
           </button>
-        ) : (
+        ) : settled ? null : (
           <button className="staff-button" onClick={onVisit} disabled={busy}>
             {busy ? "Registrando…" : "Registrar visita"}
           </button>

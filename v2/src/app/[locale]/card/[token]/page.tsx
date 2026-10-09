@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { LoyaltyPass } from "@/components/loyalty/LoyaltyPass";
-import { getCardState } from "@/lib/loyalty/service";
+import { getCardState, isCelebrating } from "@/lib/loyalty/service";
 import { renderQrSvg } from "@/lib/loyalty/qr";
 
 /**
@@ -57,8 +57,16 @@ export default async function CardPage({
   // translation and not in a sentence stitched together here.
   const emphasis = { b: (chunks: React.ReactNode) => <b>{chunks}</b> };
 
+  // Only worth asking once the card is back at zero: any other count means
+  // the customer has already started the next cycle, and the finished row
+  // would be a lie.
+  const celebrating =
+    state.visits === 0 && !state.rewardAvailable && (await isCelebrating(token));
+
   let status: React.ReactNode;
-  if (state.rewardAvailable) {
+  if (celebrating) {
+    status = t.rich("congrats", emphasis);
+  } else if (state.rewardAvailable) {
     status = t.rich("ready", { ...emphasis, reward });
   } else if (remaining === 1) {
     status = t.rich("remainingOne", { ...emphasis, reward });
@@ -71,18 +79,14 @@ export default async function CardPage({
       <LoyaltyPass
         state={state}
         qrSvg={qrSvg}
+        celebrating={celebrating}
         copy={{
           washesLabel: t("washesLabel"),
           status,
           customerLabel: t("customerLabel"),
         }}
       />
-      {/* TODO(wallet): "add this to your home screen" is the right advice
-          only while the web page IS the card. Once the Google and Apple
-          Wallet buttons ship, this line must be replaced by them — telling
-          someone to bookmark a page when they could hold a real pass is
-          worse than saying nothing. See `card.saveHint` in messages/. */}
-      <p className="pass-page__hint">{t("saveHint")}</p>
+      {/* TODO(wallet): the Google and Apple Wallet buttons go here. */}
     </div>
   );
 }

@@ -3,6 +3,21 @@
 Two things can change: **how many washes** are needed, and **what the reward is**.
 They behave very differently, and that difference is the whole point of this page.
 
+## What the number means
+
+`loyalty_config.visits_required` is **the washes the customer pays for**, not the
+washes on the card. The card draws that many car stamps **plus one gift slot**, so
+the current value of `4` reads as "five washes, the fifth free".
+
+| `visits_required` | The offer | The card |
+|---|---|---|
+| 4 | five washes, the fifth free | 4 cars + gift, counter `2 / 4` |
+| 5 | six washes, the sixth free | 5 cars + gift, counter `2 / 5` |
+
+Getting this backwards is the mistake this programme already made once: when the
+number meant "washes on the card", the reward unlocked *after* the fifth paid wash
+and the free one was the sixth.
+
 ---
 
 ## The reward — one edit, nothing else
@@ -17,32 +32,35 @@ update public.reward_definitions
  where active;
 ```
 
-No code change. No deploy. Done.
+No code change. No deploy. Done — **except** for `card.ready` and `card.congrats`
+in both message files, which spell out "gratis"/"free" rather than using the
+placeholder. See the second table in §2.
 
 ---
 
-## The number of washes — one row, then four sentences
+## The number of washes — one row, then the words
 
-The **behaviour** is one row. The **words** are four sentences that have to be
-rewritten by hand, because Spanish and English ordinals (quinto, sexto / fifth,
+The **behaviour** is one row. The **words** are a handful of sentences that have to
+be rewritten by hand, because Spanish and English ordinals (quinto, sexto / fifth,
 sixth) cannot be generated from a number without more machinery than this is worth.
 
 ### 1. The row that governs everything
 
 ```sql
-update public.loyalty_config set visits_required = 6 where id;
+-- six washes, the sixth free
+update public.loyalty_config set visits_required = 5 where id;
 ```
 
-That alone changes: the number of stamps on the card, the `2 / 5` counter, the
-"te faltan 3 lavados" line, and when the reward unlocks. All of it, instantly,
-with no deploy.
+That alone changes: the number of car stamps on the card, the `2 / 4` counter, the
+"te faltan 2 lavados" line, and when the reward unlocks. All of it, instantly,
+with no deploy. The gift slot is always drawn on top, so the row grows by one.
 
 **Check the ceiling first.** `loyalty_cards.visits` is constrained to 0–50 and
 `visits.visit_number` to 1–50. Anything under 50 is fine as is.
 
 **On its own, this moves the finish line for people already running.** Someone
-sitting at 4/5 becomes 4/6 and needs one more wash than they were promised.
-Lowering the target is worse: a card at 5/6 dropped to a target of 4 is already
+sitting at 3/4 becomes 3/5 and needs one more wash than they were promised.
+Lowering the target is worse: a card at 4/5 dropped to a target of 3 is already
 past it, and the next scan grants the reward.
 
 **So do not run this statement by itself.** Use the transaction in 1a below, which
@@ -51,25 +69,16 @@ programme has a single live card.
 
 ### 1a. Changing the target without penalising existing customers
 
-> **Not built yet.** This is the chosen approach, designed and agreed, but the
-> column and the three function changes have not been applied. Build it before the
-> first time the target actually changes, not during.
+> **Built and applied** — `supabase/migrations/20261008000000_per_card_target.sql`.
+> The column exists and all three functions read the effective target, so the
+> transaction below is ready to run as written.
 
 A customer who signed up under "five washes" should finish under five washes. The
 way to guarantee that is to let a card remember the target it was issued under,
 instead of every card reading one global number.
 
-**The column**
-
-```sql
-alter table public.loyalty_cards
-  add column visits_required smallint
-    check (visits_required is null or visits_required between 1 and 50);
-```
-
-`null` means "follow `loyalty_config`". Every existing and future card is `null`
-until a target change freezes one onto it, so adding the column changes nothing on
-its own.
+**The column** — `loyalty_cards.visits_required`, nullable. `null` means "follow
+`loyalty_config`", which is every card until a target change freezes one onto it.
 
 **The effective target**, everywhere one is read:
 
@@ -77,14 +86,14 @@ its own.
 coalesce(card.visits_required, config.visits_required)
 ```
 
-**Changing 5 → 6**, in one transaction:
+**Changing 4 → 5** (five washes becoming six), in one transaction:
 
 ```sql
 begin;
 -- freeze the old target onto everyone mid-cycle
-update public.loyalty_cards set visits_required = 5 where active;
+update public.loyalty_cards set visits_required = 4 where active;
 -- the new target, for cards issued from now on
-update public.loyalty_config set visits_required = 6 where id;
+update public.loyalty_config set visits_required = 5 where id;
 commit;
 ```
 
@@ -97,9 +106,9 @@ meant to prevent.
 
 | | Their target |
 |---|---|
-| Mid-cycle when the change ran | 5 — frozen on their card |
-| Signed up after the change | 6 — card is `null`, follows config |
-| Mid-cycle customer, after they redeem | 6 — redemption clears the frozen value |
+| Mid-cycle when the change ran | 4 — frozen on their card |
+| Signed up after the change | 5 — card is `null`, follows config |
+| Mid-cycle customer, after they redeem | 5 — redemption clears the frozen value |
 
 **The three functions to change**
 
@@ -118,10 +127,10 @@ window there is no single answer to "how many washes is the programme?" — it
 depends on the customer. That is the honest cost of not moving anyone's number.
 
 **Lowering the target** uses the same mechanism and is the only safe way to do it:
-freezing the old value on existing cards is what stops a card at 5/6 suddenly
-being past a new target of 4.
+freezing the old value on existing cards is what stops a card at 4/5 suddenly
+being past a new target of 3.
 
-### 2. The four sentences that do not follow
+### 2. The sentences that do not follow
 
 These are plain text in the translation files. Nothing warns you if they go stale,
 so the site would advertise one offer while the card delivers another.
@@ -137,6 +146,17 @@ so the site would advertise one offer while the card delivers another.
 
 `{reward}` is filled from the database — leave it as a placeholder.
 
+**Two more that go stale when the *reward* changes, not the number.** These say
+"free" in so many words, because "tu próximo lavado es Lavado GRATIS" is not a
+sentence. If the reward ever stops being a free wash, rewrite them:
+
+| File | Key | Current text |
+|---|---|---|
+| `messages/es.json` | `card.ready` | ¡Tu próximo lavado es gratis! |
+| `messages/es.json` | `card.congrats` | ¡Felicidades! Has disfrutado tu lavado gratis. |
+| `messages/en.json` | `card.ready` | Your next wash is free! |
+| `messages/en.json` | `card.congrats` | Congratulations! You have enjoyed your free wash. |
+
 Everything else on the card and the landing page is already driven by the number
 in the database and needs no attention.
 
@@ -148,6 +168,23 @@ npm run build          # from inside v2/
 
 Then open `/dev/card` and confirm the gallery shows the new number of states, and
 `/es/fidelidad` and `/en/loyalty` to confirm the headline matches.
+
+---
+
+## The congratulations window
+
+Redemption resets the count immediately — it has to, or the next scan would hand
+out a second reward. Without anything else, the customer's card would snap to an
+empty `0 / 4` while they are still standing at the counter.
+
+So for **three hours** after the free wash is given, the card keeps showing the
+finished row: every car lit, the gift gold, and "¡Felicidades!". After that it is
+`0 / 4` and the next cycle has begun.
+
+Nothing is stored for this. `isCelebrating()` in `src/lib/loyalty/service.ts` reads
+`rewards.redeemed_at`, which the database already records, so the congratulations
+cannot disagree with what was actually handed over. The window is the constant
+`CELEBRATION_MS` in that same file — the only place to change it.
 
 ---
 

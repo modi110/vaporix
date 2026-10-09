@@ -14,6 +14,7 @@ export function LoyaltyPass({
   state,
   qrSvg,
   copy,
+  celebrating = false,
 }: {
   state: LoyaltyState;
   /** Pre-rendered on the server by `renderQrSvg`. */
@@ -24,7 +25,19 @@ export function LoyaltyPass({
     status: React.ReactNode;
     customerLabel: string;
   };
+  /**
+   * The free wash has just been given. The card is already back to zero in
+   * the database, but it keeps showing the finished row for a few hours so
+   * the customer sees what they earned instead of an empty card.
+   */
+  celebrating?: boolean;
 }) {
+  // The last slot is the free wash, so the row is one longer than the number
+  // of washes the customer pays for.
+  const slots = state.visitsRequired + 1;
+  const filled = celebrating ? state.visitsRequired : state.visits;
+  const giftLit = celebrating || state.rewardAvailable;
+
   return (
     <div className={`pass-scope ${cardFont.variable}`}>
       <article className="pass">
@@ -33,20 +46,18 @@ export function LoyaltyPass({
         <h1 className="pass__name">{state.customerName}</h1>
         <p className="pass__eyebrow">{copy.washesLabel}</p>
         <p className="pass__score">
-          <b>{state.visits}</b>
+          <b>{filled}</b>
           <span>/ {state.visitsRequired}</span>
         </p>
 
-        <ol
-          className="pass__stamps"
-          style={{ ["--stamp-count" as string]: state.visitsRequired }}
-        >
+        <ol className="pass__stamps" style={{ ["--stamp-count" as string]: slots }}>
           {Array.from({ length: state.visitsRequired }, (_, index) => (
             <li
               key={index}
-              className={`stamp ${index < state.visits ? "stamp--on" : ""}`}
+              className={`stamp ${index < filled ? "stamp--on" : ""}`}
             />
           ))}
+          <li className={`stamp stamp--gift ${giftLit ? "stamp--gift-on" : ""}`} />
         </ol>
 
         <div className="pass__rule" />

@@ -110,6 +110,70 @@ export async function getCardState(
   return toState(data as StateRow | null);
 }
 
+/**
+ * How long a card keeps showing its finished row after the free wash is
+ * given. Redemption resets the count immediately — it has to, or the next
+ * scan would hand out a second reward — so without this the customer's card
+ * would snap to an empty 0/4 while they are still standing there. Three
+ * hours covers the visit and is gone by the next one.
+ */
+const CELEBRATION_MS = 3 * 60 * 60 * 1000;
+
+/**
+ * Was this card's reward given out in the last few hours?
+ *
+ * Read from `rewards.redeemed_at`, which the database already records, so
+ * this needs nothing added to the schema and cannot drift from what was
+ * actually handed over.
+ */
+export async function isCelebrating(qrToken: string): Promise<boolean> {
+  const db = serviceClient();
+
+  const { data: card } = await db
+    .from("loyalty_cards")
+    .select("id")
+    .eq("qr_token", qrToken)
+    .maybeSingle();
+
+  if (!card) return false;
+
+  const { data: reward } = await db
+    .from("rewards")
+    .select("id")
+    .eq("loyalty_card_id", card.id)
+    .eq("status", "redeemed")
+    .gte("redeemed_at", new Date(Date.now() - CELEBRATION_MS).toISOString())
+    .limit(1)
+    .maybeSingle();
+
+  return Boolean(reward);
+}
+
+/**
+ * Resolves whatever staff typed into the scanner's manual box.
+ *
+ * Seven digits is the customer number printed on the card; anything else is
+ * treated as a QR token. The number exists because the token is deliberately
+ * not printed anywhere readable, which left a camera that will not start with
+ * no fallback at all. It is a lookup key only — the write still goes through
+ * the `qrToken` on the state this returns, so nothing can be recorded against
+ * a card that was not found first.
+ */
+export async function lookUpCard(code: string): Promise<LoyaltyState | null> {
+  if (!/^[0-9]{7}$/.test(code)) return getCardState(code);
+
+  const { data, error } = await serviceClient()
+    .from("loyalty_cards")
+    .select("qr_token")
+    .eq("card_number", code)
+    .maybeSingle();
+
+  if (error) throw new Error(`card number lookup failed: ${error.message}`);
+  if (!data) return null;
+
+  return getCardState(data.qr_token as string);
+}
+
 export async function registerVisit(
   qrToken: string,
   staffId: string,

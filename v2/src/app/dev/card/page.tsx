@@ -13,17 +13,26 @@ import type { LoyaltyState } from "@/lib/loyalty/types";
  */
 export const dynamic = "force-dynamic";
 
-const TOTAL = 5;
+/** Washes paid for. The card draws this many cars plus the gift slot. */
+const TOTAL = 4;
 const REWARD_ES = "Lavado GRATIS";
 
 /** Mirrors the copy the real card page builds from next-intl. */
-function status(visits: number) {
+function status(visits: number, celebrating = false) {
   const left = TOTAL - visits;
+
+  if (celebrating) {
+    return (
+      <>
+        ¡Felicidades! Has disfrutado tu <b>lavado gratis</b>.
+      </>
+    );
+  }
 
   if (left === 0) {
     return (
       <>
-        ¡Tu <b>{REWARD_ES}</b> te está esperando!
+        ¡Tu próximo lavado es <b>gratis</b>!
       </>
     );
   }
@@ -71,8 +80,11 @@ export default async function DevCardPage() {
         padding: "40px 24px 80px",
       }}
     >
-      {Array.from({ length: TOTAL + 1 }, (_, visits) => (
-        <div key={visits} style={{ display: "grid", gap: "12px" }}>
+      {/* 0…TOTAL, then the few hours after the free wash is given. */}
+      {[...Array.from({ length: TOTAL + 1 }, (_, visits) => ({ visits, celebrating: false })),
+        { visits: 0, celebrating: true },
+      ].map(({ visits, celebrating }) => (
+        <div key={celebrating ? "done" : visits} style={{ display: "grid", gap: "12px" }}>
           <p
             style={{
               color: "#5a6b84",
@@ -82,15 +94,17 @@ export default async function DevCardPage() {
               textTransform: "uppercase",
             }}
           >
-            {visits} / {TOTAL}
-            {visits === TOTAL ? " · recompensa lista" : ""}
+            {celebrating
+              ? "recién canjeada"
+              : `${visits} / ${TOTAL}${visits === TOTAL ? " · recompensa lista" : ""}`}
           </p>
           <LoyaltyPass
             state={fakeState(visits)}
             qrSvg={qrSvg}
+            celebrating={celebrating}
             copy={{
               washesLabel: "Tus lavados",
-              status: status(visits),
+              status: status(visits, celebrating),
               customerLabel: "N.º de cliente",
             }}
           />

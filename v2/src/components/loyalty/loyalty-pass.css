@@ -21,6 +21,13 @@
 .pass-scope {
   font-family: var(--font-card), ui-sans-serif, system-ui, sans-serif;
 
+  /* The card is `width: 100%` of this wrapper, and this wrapper is a grid
+     item under `justify-items: center` — without a width of its own it
+     shrink-wraps to its content, the card's 100% resolves against 0, and
+     the whole card collapses. */
+  max-width: 340px;
+  width: 100%;
+
   --blue: #1189fb;
   --ink: #0b1b36;
   --ink-soft: #46566f;
@@ -130,6 +137,16 @@
 }
 .stamp--on {
   background-image: url("/images/card/stamp-on.png");
+}
+
+/* The last slot is the free wash, so it is a gift rather than another car,
+   and gold rather than blue — the row has to read as "four of these, then
+   that" at a glance. */
+.stamp--gift {
+  background-image: url("/images/card/gift-off.png");
+}
+.stamp--gift-on {
+  background-image: url("/images/card/gift-on.png");
 }
 
 .pass__rule {
