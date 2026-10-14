@@ -76,7 +76,7 @@ After the free wash is given, the card keeps showing the finished row for
 - Staff login at `/staff/login` (per-person PIN, scrypt, throttled)
 - Scanner at `/staff` — camera first, then manual entry by the 7-digit customer
   number printed on the card
-- Visit registration with a 120-second duplicate-scan cooldown
+- Visit registration. The duplicate-scan cooldown is **off** (`loyalty_config.cooldown_seconds = 0`, owner's choice, 14 October); set it to 120 to bring it back
 - Reward redemption, offered on the confirmation screen of the visit that fills
   the card
 - **Admin dashboard at `/admin`** — counters, customer lookup, visit history,
