@@ -157,8 +157,8 @@
   },
   "loyalty": {
     "label": "Fidelidad",
-    "title": "Cada lavado suma. <b>El quinto, gratis.</b>",
-    "lede": "Apúntate en un minuto con tu nombre y tu teléfono. Tu tarjeta va en el móvil: sin app, sin cartón, sin sellos que se pierden.",
+    "title": "Únete. <b>Disfruta de lavados gratis.</b>",
+    "lede": "Cada lavado suma un sello y el quinto es gratis. Apúntate en un minuto con tu nombre y tu teléfono: tu tarjeta va en el móvil, sin app y sin cartón.",
     "ctaJoin": "Quiero mi tarjeta",
     "ctaHow": "Cómo funciona",
     "howTitle": "Así de fácil.",
@@ -205,8 +205,8 @@
     }
   },
   "loyaltyBand": {
-    "title": "Tu quinto lavado corre de nuestra cuenta.",
-    "body": "Únete a nuestra tarjeta de fidelidad: la llevas en el móvil y cada lavado suma un sello.",
+    "title": "¡Únete y disfruta de lavados gratis!",
+    "body": "Tu tarjeta de fidelidad va en el móvil: cada lavado suma un sello y el quinto es gratis.",
     "cta": "Quiero mi tarjeta"
   },
   "card": {

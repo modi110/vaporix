@@ -142,10 +142,10 @@ The sample card on both pages also counts to a fixed four (`TARGET` in
 
 | File | Key | Current text (es) |
 |---|---|---|
-| `messages/*.json` | `loyalty.title` | Cada lavado suma. El quinto, gratis. |
+| `messages/*.json` | `loyalty.lede` | Cada lavado suma un sello y el quinto es gratis… |
 | `messages/*.json` | `loyalty.steps.show.body` | …Cuatro lavados, cuatro sellos. |
 | `messages/*.json` | `loyalty.steps.free.title` | El quinto va por nuestra cuenta |
-| `messages/*.json` | `loyaltyBand.title` | Tu quinto lavado corre de nuestra cuenta. |
+| `messages/*.json` | `loyaltyBand.body` | …cada lavado suma un sello y el quinto es gratis. |
 | `messages/*.json` | `meta.loyalty.description` | …cada lavado suma un sello y el quinto es gratis. |
 | `src/components/loyalty/DemoPass.tsx` | `TARGET` | 4 |
 

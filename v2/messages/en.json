@@ -157,8 +157,8 @@
   },
   "loyalty": {
     "label": "Loyalty",
-    "title": "Every wash counts. <b>The fifth is free.</b>",
-    "lede": "Sign up in a minute with your name and phone number. Your card lives on your phone: no app, no paper, no stamps to lose.",
+    "title": "Join. <b>Enjoy free washes.</b>",
+    "lede": "Every wash earns a stamp and the fifth is free. Sign up in a minute with your name and phone number: your card lives on your phone, no app, no paper.",
     "ctaJoin": "Get my card",
     "ctaHow": "How it works",
     "howTitle": "That's all it takes.",
@@ -205,8 +205,8 @@
     }
   },
   "loyaltyBand": {
-    "title": "Your fifth wash is on us.",
-    "body": "Join our loyalty card: it lives on your phone and every wash adds a stamp.",
+    "title": "Join and enjoy free washes!",
+    "body": "Your loyalty card lives on your phone: every wash earns a stamp, and the fifth is free.",
     "cta": "Get my card"
   },
   "card": {
