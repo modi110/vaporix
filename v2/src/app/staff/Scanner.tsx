@@ -51,6 +51,7 @@ export function Scanner() {
   // while it stays in frame.
   const lookingUp = useRef(false);
   const lastFailure = useRef<{ token: string; at: number } | null>(null);
+  const cameraQueue = useRef<Promise<void>>(Promise.resolve());
 
   const lookUp = useCallback(async (token: string) => {
     if (lookingUp.current) return;
@@ -87,26 +88,46 @@ export function Scanner() {
     let controls: { stop: () => void } | undefined;
     let cancelled = false;
 
-    reader
-      .decodeFromVideoDevice(undefined, videoRef.current ?? undefined, (result) => {
-        if (!result) return;
-        const token = result.getText();
-        const failed = lastFailure.current;
-        if (failed && failed.token === token && Date.now() - failed.at < RETRY_AFTER_MS) {
+    // Each start waits for the previous one to finish stopping. Both share the
+    // one <video>, and a stop that lands after the next start would clear the
+    // new stream and abort its playback — which is what a quick remount (and
+    // React's double mount in development) produced: a camera that never
+    // showed.
+    const run = cameraQueue.current.then(async () => {
+      if (cancelled) return;
+      try {
+        const c = await reader.decodeFromVideoDevice(
+          undefined,
+          videoRef.current ?? undefined,
+          (result) => {
+            if (!result) return;
+            const token = result.getText();
+            const failed = lastFailure.current;
+            if (failed && failed.token === token && Date.now() - failed.at < RETRY_AFTER_MS) {
+              return;
+            }
+            void lookUp(token);
+          },
+        );
+        if (cancelled) {
+          c.stop();
           return;
         }
-        void lookUp(token);
-      })
-      .then((c) => {
-        if (cancelled) c.stop();
-        else controls = c;
-      })
-      .catch(() => {
+        controls = c;
+        // The library's own play() can be cut off on iOS, leaving a frozen
+        // frame with a play button over it and nothing being read. Asking
+        // again once the stream is attached is harmless if it is already
+        // playing.
+        await videoRef.current?.play().catch(() => {});
+      } catch {
+        if (cancelled) return;
         setNotice({
           text: "No hay acceso a la cámara. Escribe el código a mano.",
           tone: "warn",
         });
-      });
+      }
+    });
+    cameraQueue.current = run;
 
     return () => {
       cancelled = true;
@@ -184,8 +205,9 @@ export function Scanner() {
           </div>
 
           <div className="staff-viewport">
-            {/* muted + playsInline, or iOS refuses to start the preview. */}
-            <video ref={videoRef} muted playsInline />
+            {/* autoPlay + muted + playsInline, or iOS shows a paused frame
+                with a play button instead of a live preview. */}
+            <video ref={videoRef} autoPlay muted playsInline />
             <div className="staff-reticle" />
           </div>
 
