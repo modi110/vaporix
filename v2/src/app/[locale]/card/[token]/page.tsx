@@ -16,9 +16,10 @@ import { renderQrSvg } from "@/lib/loyalty/qr";
 export const dynamic = "force-dynamic";
 
 /**
- * The URL carries the QR token, so it is a bearer link — anyone holding it
- * sees this page. That is acceptable (the token can only ever *earn* visits;
- * redeeming one needs authenticated staff), but it must never be indexed.
+ * The URL carries the QR token, so it is a bearer link: anyone holding it
+ * holds the card, free wash included, because showing the QR at the counter
+ * is all redeeming takes. It is only ever handed out once, at registration,
+ * and must never be indexed.
  */
 export const metadata: Metadata = {
   robots: { index: false, follow: false },

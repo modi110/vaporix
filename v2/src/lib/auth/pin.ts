@@ -5,10 +5,10 @@ import { randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 /**
  * Staff PIN hashing.
  *
- * A PIN is a tiny secret — six digits is a million possibilities — so the
+ * A PIN is a tiny secret — four digits is ten thousand possibilities — so the
  * stored form has to be slow to test. scrypt from Node's standard library is
- * deliberately memory-hard; combined with the five-attempt lockout in
- * `record_staff_login_attempt`, guessing is not a practical attack.
+ * deliberately memory-hard; the five-attempt lockout in `begin_staff_login`
+ * is what keeps guessing online down to five tries every five minutes.
  *
  * No dependency needed for this, so none is taken.
  */

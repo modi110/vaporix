@@ -44,7 +44,9 @@ export function LoginForm({ staff }: { staff: StaffSummary[] }) {
       setError(
         body.reason === "LOCKED"
           ? "Demasiados intentos. Espera cinco minutos."
-          : "PIN incorrecto.",
+          : body.reason === "ERROR"
+            ? "Algo ha fallado en el servidor. Inténtalo otra vez."
+            : "PIN incorrecto.",
       );
       setPin("");
     } catch {

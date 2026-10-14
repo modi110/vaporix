@@ -42,6 +42,11 @@ export async function joinLoyalty(
   let token: string;
   try {
     const result = await registerCustomer({ name, phoneE164, email });
+    // Never hand back the existing card. Its URL is the QR, and the QR is
+    // what earns and redeems washes — redirecting here would give anyone who
+    // knows a customer's phone number that customer's card. The owner finds
+    // it again from /admin, by phone, with the customer standing there.
+    if (result.code === "EXISTING") return { error: "errorExisting" };
     if (!result.state) return { error: "errorGeneric" };
     token = result.state.qrToken;
   } catch {

@@ -1,0 +1,188 @@
+/* ------------------------------------------------------------------
+   The admin view.
+
+   Same palette and components as the staff tool — they are one product
+   and the owner uses both — but a different shape. The scanner is one
+   decision at arm's length on a phone; this is a page someone reads
+   sitting down, so it gets width, tables and small type.
+
+   Everything here sits on top of staff.css rather than beside it: the
+   tokens, the card, the buttons and the fields are already defined
+   there, and a second definition would drift.
+   ------------------------------------------------------------------ */
+
+.admin-shell {
+  display: grid;
+  gap: 28px;
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: calc(env(safe-area-inset-top) + 28px) 20px
+    calc(env(safe-area-inset-bottom) + 56px);
+}
+
+.admin-section {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-h2 {
+  font-family: var(--font-barlow-condensed), ui-sans-serif, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* --- the numbers ------------------------------------------------------ */
+
+.admin-stats {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.admin-stat {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  display: grid;
+  gap: 2px;
+  padding: 14px 16px;
+}
+
+.admin-stat b {
+  font-family: var(--font-barlow-condensed), ui-sans-serif, sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.admin-stat span {
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* A number that means someone is owed something gets the accent; the
+   rest are just counts. */
+.admin-stat--owed b {
+  color: var(--blue);
+}
+
+/* --- tables ----------------------------------------------------------- */
+
+/* The wrapper scrolls, not the page: on a phone a wide table would
+   otherwise push the whole layout sideways. */
+.admin-scroll {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  overflow-x: auto;
+}
+
+.admin-table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  min-width: 100%;
+  white-space: nowrap;
+}
+
+.admin-table th {
+  color: var(--ink-soft);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 10px 16px;
+}
+
+.admin-table tbody tr {
+  border-top: 1px solid var(--rule);
+}
+
+.admin-table td b {
+  font-weight: 600;
+}
+
+.admin-num {
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-muted {
+  color: var(--ink-soft);
+}
+
+.admin-empty {
+  color: var(--ink-soft);
+  padding: 18px 16px;
+}
+
+/* --- the lookup ------------------------------------------------------- */
+
+.admin-lookup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.admin-lookup .staff-field {
+  flex: 1 1 180px;
+}
+
+/* The staff button is full-width by default, which is right under a thumb
+   and wrong next to a seven-digit field. */
+.admin-lookup .staff-button {
+  flex: 0 0 auto;
+  padding-inline: 32px;
+  width: auto;
+}
+
+/* Phone and email appear only here, so the block that carries them is
+   marked out rather than blending into the page. */
+.admin-detail {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-detail dt {
+  color: var(--ink-soft);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.admin-detail dd {
+  margin: 0 0 8px;
+}
+
+/* Handing a lost card back: the card's link as a QR the customer scans. */
+.admin-handback {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.admin-handback p {
+  flex: 1 1 200px;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.admin-qr {
+  flex: 0 0 auto;
+  width: 160px;
+}
+
+.admin-qr svg {
+  display: block;
+  height: auto;
+  width: 100%;
+}

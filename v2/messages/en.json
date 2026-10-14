@@ -176,8 +176,8 @@
     "errorPhone": "That phone number does not look right. Nine digits, or with a +34 prefix.",
     "errorEmail": "That email does not look right.",
     "errorGeneric": "We could not create the card. Please try again in a moment.",
-    "existingNotice": "You already had a card on this number. Here it is.",
-    "privacy": "We use your number only to identify your card. Nothing else."
+    "errorExisting": "This number already has a card. Ask us in the shop and we will give it back to you.",
+    "privacy": "We keep your name, your phone number and, if you give it, your email only to run your card. We do not share them or send you advertising. If you want them deleted, just ask us in the shop."
   },
   "card": {
     "washesLabel": "Your washes",

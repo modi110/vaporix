@@ -30,7 +30,12 @@ export type ScanCode =
   | "STAFF_INVALID";
 
 /** Outcomes of `redeem_reward` in the database. */
-export type RedeemCode = "OK" | "INVALID_TOKEN" | "NO_REWARD" | "STAFF_INVALID";
+export type RedeemCode =
+  | "OK"
+  | "INVALID_TOKEN"
+  | "CARD_INACTIVE"
+  | "NO_REWARD"
+  | "STAFF_INVALID";
 
 export type ScanResult = {
   code: ScanCode;

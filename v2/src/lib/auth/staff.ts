@@ -33,40 +33,39 @@ export type PinCheck =
 export async function verifyStaffPin(
   staffId: string,
   pin: string,
+  trustedDevice: boolean,
 ): Promise<PinCheck> {
   const supabase = serviceClient();
 
-  const { data, error } = await supabase
-    .from("staff")
-    .select("id, pin_hash, role, active, locked_until")
-    .eq("id", staffId)
-    .maybeSingle();
+  // The attempt is counted, under a row lock, before the PIN is looked at.
+  // Checking first and counting after let parallel requests all slip past the
+  // lockout together. Unknown and deactivated accounts come back as INVALID,
+  // exactly like a wrong PIN, so the login cannot enumerate who works here.
+  const { data, error } = await supabase.rpc("begin_staff_login", {
+    p_staff_id: staffId,
+    p_trusted: trustedDevice,
+  });
 
-  if (error) throw new Error(`verifyStaffPin failed: ${error.message}`);
+  if (error) throw new Error(`begin_staff_login failed: ${error.message}`);
 
-  // An unknown or deactivated account is reported exactly like a wrong PIN, so
-  // the login screen cannot be used to enumerate who works here.
-  if (!data || !data.active) return { ok: false, reason: "INVALID" };
+  const attempt = data as
+    | { ok: false; reason: "INVALID" | "LOCKED" }
+    | { ok: true; pin_hash: string; role: StaffRole; locks: boolean };
 
-  if (data.locked_until && new Date(data.locked_until) > new Date()) {
-    return { ok: false, reason: "LOCKED" };
+  if (!attempt.ok) return { ok: false, reason: attempt.reason };
+
+  if (!verifyPin(pin, attempt.pin_hash)) {
+    return { ok: false, reason: attempt.locks ? "LOCKED" : "INVALID" };
   }
 
-  const matches = verifyPin(pin, data.pin_hash);
+  const { error: resetError } = await supabase.rpc("record_staff_login_attempt", {
+    p_staff_id: staffId,
+    p_success: true,
+  });
 
-  const { data: attempt, error: attemptError } = await supabase.rpc(
-    "record_staff_login_attempt",
-    { p_staff_id: staffId, p_success: matches },
-  );
-
-  if (attemptError) {
-    throw new Error(`record_staff_login_attempt failed: ${attemptError.message}`);
+  if (resetError) {
+    throw new Error(`record_staff_login_attempt failed: ${resetError.message}`);
   }
 
-  if (!matches) {
-    const locked = (attempt as { locked?: boolean } | null)?.locked === true;
-    return { ok: false, reason: locked ? "LOCKED" : "INVALID" };
-  }
-
-  return { ok: true, staffId: data.id, role: data.role as StaffRole };
+  return { ok: true, staffId, role: attempt.role };
 }

@@ -176,8 +176,8 @@
     "errorPhone": "Ese teléfono no parece válido. Nueve dígitos, o con prefijo +34.",
     "errorEmail": "Ese email no parece válido.",
     "errorGeneric": "No hemos podido crear la tarjeta. Inténtalo de nuevo en un momento.",
-    "existingNotice": "Ya tenías una tarjeta con este teléfono. Aquí la tienes.",
-    "privacy": "Usamos tu teléfono solo para identificar tu tarjeta. Nada más."
+    "errorExisting": "Este teléfono ya tiene una tarjeta. Pásate por el taller y te la volvemos a dar.",
+    "privacy": "Guardamos tu nombre, tu teléfono y, si nos lo das, tu email solo para llevar tu tarjeta. No los compartimos ni te enviamos publicidad. Si quieres que los borremos, pídelo en el taller."
   },
   "card": {
     "washesLabel": "Tus lavados",

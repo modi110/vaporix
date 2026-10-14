@@ -18,39 +18,56 @@ function unauthorized() {
   return Response.json({ code: "UNAUTHENTICATED" }, { status: 401 });
 }
 
+/**
+ * JSON either way, so the scanner says "server error" rather than misreading
+ * an HTML error page as a lost connection.
+ */
+function serverError(error: unknown) {
+  console.error(error);
+  return Response.json({ code: "SERVER_ERROR" }, { status: 500 });
+}
+
 export async function GET(request: Request) {
-  const session = await readStaffSession();
-  if (!session) return unauthorized();
+  try {
+    const session = await readStaffSession();
+    if (!session) return unauthorized();
 
-  const token = new URL(request.url).searchParams.get("token");
-  if (!token) return Response.json({ code: "INVALID_TOKEN" }, { status: 400 });
+    const token = new URL(request.url).searchParams.get("token");
+    if (!token) return Response.json({ code: "INVALID_TOKEN" }, { status: 400 });
 
-  const state = await lookUpCard(token);
-  if (!state) return Response.json({ code: "INVALID_TOKEN" }, { status: 404 });
+    const state = await lookUpCard(token);
+    if (!state) return Response.json({ code: "INVALID_TOKEN" }, { status: 404 });
 
-  return Response.json({ code: "OK", state });
+    return Response.json({ code: "OK", state });
+  } catch (error) {
+    return serverError(error);
+  }
 }
 
 export async function POST(request: Request) {
-  const session = await readStaffSession();
-  if (!session) return unauthorized();
-
-  let body: unknown;
   try {
-    body = await request.json();
-  } catch {
-    return Response.json({ code: "INVALID_TOKEN" }, { status: 400 });
+    const session = await readStaffSession();
+    if (!session) return unauthorized();
+
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return Response.json({ code: "INVALID_TOKEN" }, { status: 400 });
+    }
+
+    const { qrToken } = (body ?? {}) as { qrToken?: string };
+    if (typeof qrToken !== "string" || qrToken === "") {
+      return Response.json({ code: "INVALID_TOKEN" }, { status: 400 });
+    }
+
+    const result = await registerVisit(qrToken, session.staffId);
+
+    // A refusal is a real answer, not a failure: the staff screen shows
+    // "already counted" or "reward pending" from these codes.
+    const status = result.code === "OK" || result.state ? 200 : 404;
+    return Response.json(result, { status });
+  } catch (error) {
+    return serverError(error);
   }
-
-  const { qrToken } = (body ?? {}) as { qrToken?: string };
-  if (typeof qrToken !== "string" || qrToken === "") {
-    return Response.json({ code: "INVALID_TOKEN" }, { status: 400 });
-  }
-
-  const result = await registerVisit(qrToken, session.staffId);
-
-  // A refusal is a real answer, not a failure: the staff screen shows
-  // "already counted" or "reward pending" from these codes.
-  const status = result.code === "OK" || result.state ? 200 : 404;
-  return Response.json(result, { status });
 }

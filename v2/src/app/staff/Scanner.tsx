@@ -31,7 +31,14 @@ const MESSAGES: Record<string, { text: string; tone: Tone }> = {
   },
   NO_REWARD: { text: "Esta tarjeta no tiene ninguna recompensa pendiente.", tone: "warn" },
   UNAUTHENTICATED: { text: "Tu sesión ha caducado. Vuelve a entrar.", tone: "stop" },
+  SERVER_ERROR: { text: "Algo ha fallado en el servidor. Inténtalo otra vez.", tone: "stop" },
 };
+
+/**
+ * How long a code that just failed is ignored by the camera. It stays in frame,
+ * and without this every video frame would send the same doomed lookup.
+ */
+const RETRY_AFTER_MS = 3000;
 
 export function Scanner() {
   const [screen, setScreen] = useState<Screen>({ kind: "scanning" });
@@ -43,6 +50,7 @@ export function Scanner() {
   // Guards against the camera firing the same code dozens of times a second
   // while it stays in frame.
   const lookingUp = useRef(false);
+  const lastFailure = useRef<{ token: string; at: number } | null>(null);
 
   const lookUp = useCallback(async (token: string) => {
     if (lookingUp.current) return;
@@ -56,11 +64,14 @@ export function Scanner() {
       const body = (await response.json()) as { code: string; state?: LoyaltyState };
 
       if (response.ok && body.state) {
+        lastFailure.current = null;
         setScreen({ kind: "found", state: body.state });
       } else {
+        lastFailure.current = { token, at: Date.now() };
         setNotice(MESSAGES[body.code] ?? MESSAGES.INVALID_TOKEN);
       }
     } catch {
+      lastFailure.current = { token, at: Date.now() };
       setNotice({ text: "Sin conexión. Comprueba el wifi.", tone: "stop" });
     } finally {
       lookingUp.current = false;
@@ -78,7 +89,13 @@ export function Scanner() {
 
     reader
       .decodeFromVideoDevice(undefined, videoRef.current ?? undefined, (result) => {
-        if (result) void lookUp(result.getText());
+        if (!result) return;
+        const token = result.getText();
+        const failed = lastFailure.current;
+        if (failed && failed.token === token && Date.now() - failed.at < RETRY_AFTER_MS) {
+          return;
+        }
+        void lookUp(token);
       })
       .then((c) => {
         if (cancelled) c.stop();
@@ -123,7 +140,7 @@ export function Scanner() {
             endpoint === "redeem"
               ? "Recompensa canjeada. La tarjeta vuelve a empezar."
               : full
-                ? "Visita registrada. ¡Ya tiene la recompensa!"
+                ? "Visita registrada. Su próximo lavado es gratis."
                 : "Visita registrada.",
           tone: "ok",
         });
@@ -220,7 +237,14 @@ export function Scanner() {
           notice={notice}
           busy={busy}
           onVisit={() => void act("scan", screen.state.qrToken)}
-          onRedeem={() => void act("redeem", screen.state.qrToken)}
+          onRedeem={() => {
+            const { customerName, rewardLabelEs, qrToken } = screen.state;
+            // A native dialog on purpose: it swallows a stray second tap,
+            // and a reward given by mistake cannot be taken back.
+            if (window.confirm(`¿Dar ${rewardLabelEs} a ${customerName}? No se puede deshacer.`)) {
+              void act("redeem", qrToken);
+            }
+          }}
           onBack={() => {
             setNotice(null);
             setManual("");
@@ -283,17 +307,16 @@ function Customer({
           </p>
         ) : null}
 
-        {/* Redeeming stays offered on the confirmation screen, because the
-            visit that fills the card is the visit the free wash belongs to —
-            sending staff back to scan the same card again, at the one moment
-            the customer is owed something, is where a reward gets forgotten.
-            After a redemption the card is back to zero and `rewardAvailable`
-            is false, so this collapses to no button at all. */}
-        {state.rewardAvailable ? (
+        {/* Nothing to press once an action has gone through. The fourth paid
+            wash fills the card, and the free one is the *next* visit — so
+            redeeming is offered only when the card is scanned again, never
+            on the screen that confirms the wash that filled it, where a late
+            second tap on the same spot would give the reward away. */}
+        {settled ? null : state.rewardAvailable ? (
           <button className="staff-button" onClick={onRedeem} disabled={busy}>
             {busy ? "Canjeando…" : "Canjear recompensa"}
           </button>
-        ) : settled ? null : (
+        ) : (
           <button className="staff-button" onClick={onVisit} disabled={busy}>
             {busy ? "Registrando…" : "Registrar visita"}
           </button>
