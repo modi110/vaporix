@@ -6,8 +6,8 @@ import { site } from "@/content/site";
  * contact page so the three never say three different things.
  *
  * `dark` swaps the de-emphasised grey for the one that reads on a dark
- * surface — steel manages 1.4:1 against the site's blue and is close to
- * illegible there, but 4.0:1 on the light sections this also renders on.
+ * surface. Neither is steel: it manages 1.4:1 on the site's blue and 4.0:1
+ * on white, short of AA on both.
  */
 export function HoursTable({
   className = "",
@@ -18,7 +18,7 @@ export function HoursTable({
 }) {
   const t = useTranslations("hours");
   const { weekdays, saturday, sunday } = site.hours;
-  const mutedClass = dark ? "text-muted-invert" : "text-steel";
+  const mutedClass = dark ? "text-muted-invert" : "text-muted";
 
   return (
     <div className={`grid gap-3 ${className}`}>

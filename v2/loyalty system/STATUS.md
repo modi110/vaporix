@@ -122,8 +122,8 @@ Supabase project **vaporix**, ref `rmwhhouespvfwfwtvxjd`, eu-west-3, free tier.
 **The free tier pauses the project after about a week with no activity, and a
 request does not wake it** — it has to be restored by hand in the Supabase
 dashboard, which takes a few minutes. Open the dashboard the day before the
-client demo, and before any deploy: `/fidelidad` is prerendered from the
-database, so a paused project fails the build.
+client demo. (`/fidelidad` no longer reads the database, so a paused project
+no longer fails the build.)
 
 Every table has RLS on with **zero policies**, so only the service-role key can
 read or write. The browser never talks to Supabase.

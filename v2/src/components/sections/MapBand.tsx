@@ -35,7 +35,7 @@ export function MapBand() {
             <div className="grid gap-5 border-t border-hairline-dark pt-6">
               <HoursTable dark />
               <p className="flex items-baseline justify-between gap-6 text-sm uppercase">
-                <span className="text-steel">{t("phone")}</span>
+                <span className="text-muted-invert">{t("phone")}</span>
                 <a
                   href={site.phoneHref}
                   // Opacity, not a colour shift: this section is the accent

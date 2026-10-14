@@ -209,6 +209,47 @@
   width: 100%;
 }
 
+/* --- the sample card on the marketing pages ----------------------------- */
+
+/* The same card, filling itself in. Each stamp lands with a small press —
+   the moment a wash is counted — and the gift answers the fourth with a
+   longer swell, so the row reads as a sequence and the free wash as its
+   payoff. Only `DemoPass` adds `.pass-live`; the customer's real card never
+   animates. */
+.pass-live .stamp--on {
+  animation: stamp-press 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.pass-live .stamp--gift-on {
+  animation: gift-swell 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes stamp-press {
+  0% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(0.92);
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes gift-swell {
+  0% {
+    transform: scale(0.6) rotate(-12deg);
+    filter: brightness(1);
+  }
+  55% {
+    transform: scale(1.22) rotate(4deg);
+    filter: brightness(1.25) drop-shadow(0 0 6px rgba(255, 196, 64, 0.7));
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+
 /* --- the progress track, used by the staff screen ---------------------- */
 
 .track {

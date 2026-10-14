@@ -11,8 +11,19 @@ import { registerCustomer } from "./service";
  *
  * `error` is a message key, not a sentence: the form is rendered in two
  * locales and the server has no business deciding which language to answer in.
+ *
+ * A refusal hands back what was typed and which field is wrong. React resets
+ * a form after its action runs, so without `values` one mistyped digit would
+ * wipe the name and phone along with it — on a phone, that is the visitor
+ * typing everything again.
  */
-export type JoinState = { error: string | null };
+export type JoinField = "name" | "phone" | "email";
+
+export type JoinState = {
+  error: string | null;
+  field?: JoinField;
+  values?: { name: string; phone: string; email: string };
+};
 
 const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
@@ -24,19 +35,26 @@ export async function joinLoyalty(
   const phoneInput = String(formData.get("phone") ?? "");
   const emailInput = String(formData.get("email") ?? "").trim();
 
+  const values = { name, phone: phoneInput, email: emailInput };
+  const refuse = (error: string, field?: JoinField): JoinState => ({
+    error,
+    field,
+    values,
+  });
+
   if (name.length < 2 || name.length > 80) {
-    return { error: "errorName" };
+    return refuse("errorName", "name");
   }
 
   // Normalized here so "600112233" and "+34 600 11 22 33" are the same person.
   const phoneE164 = normalizePhone(phoneInput);
   if (!phoneE164) {
-    return { error: "errorPhone" };
+    return refuse("errorPhone", "phone");
   }
 
   const email = emailInput === "" ? null : emailInput;
   if (email !== null && !EMAIL.test(email)) {
-    return { error: "errorEmail" };
+    return refuse("errorEmail", "email");
   }
 
   let token: string;
@@ -46,13 +64,13 @@ export async function joinLoyalty(
     // what earns and redeems washes — redirecting here would give anyone who
     // knows a customer's phone number that customer's card. The owner finds
     // it again from /admin, by phone, with the customer standing there.
-    if (result.code === "EXISTING") return { error: "errorExisting" };
-    if (!result.state) return { error: "errorGeneric" };
+    if (result.code === "EXISTING") return refuse("errorExisting", "phone");
+    if (!result.state) return refuse("errorGeneric");
     token = result.state.qrToken;
   } catch {
     // The reason is for the server log, never for the visitor: a database
     // message in the UI is an information leak.
-    return { error: "errorGeneric" };
+    return refuse("errorGeneric");
   }
 
   const locale = await getLocale();

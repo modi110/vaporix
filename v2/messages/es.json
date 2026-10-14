@@ -8,7 +8,8 @@
     "close": "Cerrar",
     "switchLocale": "View in English",
     "services": "Más servicios",
-    "loyalty": "Fidelidad"
+    "loyalty": "Fidelidad",
+    "loyaltyCard": "Tarjeta de fidelidad"
   },
   "hero": {
     "title": "Vaporix",
@@ -74,7 +75,7 @@
     },
     "loyalty": {
       "title": "Programa de fidelización — Vaporix",
-      "description": "Apúntate al programa de fidelización de Vaporix: cinco lavados y el quinto es tu recompensa."
+      "description": "Únete a la tarjeta de fidelidad de Vaporix en Buñol: cada lavado suma un sello y el quinto es gratis."
     }
   },
   "vehicles": {
@@ -156,28 +157,57 @@
   },
   "loyalty": {
     "label": "Fidelidad",
-    "title": "Cinco lavados. El quinto, {reward}.",
-    "lede": "Apúntate una vez y lleva tu tarjeta en el móvil. Sin plásticos, sin sellos que se pierden.",
-    "howTitle": "Cómo funciona",
-    "step1": "Te apuntas con tu nombre y tu teléfono.",
-    "step2": "Recibes tu tarjeta con un código QR.",
-    "step3": "Enseñas el QR en cada visita y te la sellamos.",
-    "step4": "En el quinto lavado, la recompensa es tuya.",
-    "formTitle": "Únete al programa",
+    "title": "Cada lavado suma. <b>El quinto, gratis.</b>",
+    "lede": "Apúntate en un minuto con tu nombre y tu teléfono. Tu tarjeta va en el móvil: sin app, sin cartón, sin sellos que se pierden.",
+    "ctaJoin": "Quiero mi tarjeta",
+    "ctaHow": "Cómo funciona",
+    "howTitle": "Así de fácil.",
+    "steps": {
+      "join": {
+        "title": "Apúntate",
+        "body": "Nombre y teléfono. Tu tarjeta aparece al momento, lista para usar."
+      },
+      "show": {
+        "title": "Enséñala en cada lavado",
+        "body": "Escaneamos tu código QR y sumas un sello. Cuatro lavados, cuatro sellos."
+      },
+      "free": {
+        "title": "El quinto va por nuestra cuenta",
+        "body": "Con la tarjeta llena, tu siguiente lavado es gratis. Y vuelta a empezar."
+      }
+    },
+    "formTitle": "Crea tu tarjeta.",
+    "formLede": "Gratis, y en menos de un minuto.",
+    "perks": {
+      "free": "Gratis, siempre",
+      "noApp": "Sin descargar nada",
+      "instant": "Tu tarjeta al momento"
+    },
     "name": "Nombre",
     "namePlaceholder": "Carlos García",
     "phone": "Teléfono",
     "phonePlaceholder": "600 11 22 33",
+    "phoneHint": "9 cifras, o con +34 delante.",
     "email": "Email (opcional)",
     "emailPlaceholder": "carlos@ejemplo.com",
     "submit": "Crear mi tarjeta",
     "submitting": "Creando…",
-    "errorName": "Escribe tu nombre completo.",
-    "errorPhone": "Ese teléfono no parece válido. Nueve dígitos, o con prefijo +34.",
-    "errorEmail": "Ese email no parece válido.",
+    "errorName": "Escribe tu nombre.",
+    "errorPhone": "Este teléfono no parece válido. Prueba con 9 cifras, por ejemplo 600 11 22 33.",
+    "errorEmail": "Revisa el email: falta algo, como la @.",
     "errorGeneric": "No hemos podido crear la tarjeta. Inténtalo de nuevo en un momento.",
     "errorExisting": "Este teléfono ya tiene una tarjeta. Pásate por el taller y te la volvemos a dar.",
-    "privacy": "Guardamos tu nombre, tu teléfono y, si nos lo das, tu email solo para llevar tu tarjeta. No los compartimos ni te enviamos publicidad. Si quieres que los borremos, pídelo en el taller."
+    "privacy": "Guardamos tu nombre, tu teléfono y, si nos lo das, tu email solo para llevar tu tarjeta. No los compartimos ni te enviamos publicidad. Si quieres que los borremos, pídelo en el taller.",
+    "demo": {
+      "name": "Tu nombre",
+      "reward": "lavado gratis",
+      "alt": "Ejemplo de tarjeta de fidelidad Vaporix llenándose de sellos hasta el lavado gratis."
+    }
+  },
+  "loyaltyBand": {
+    "title": "Tu quinto lavado corre de nuestra cuenta.",
+    "body": "Únete a nuestra tarjeta de fidelidad: la llevas en el móvil y cada lavado suma un sello.",
+    "cta": "Quiero mi tarjeta"
   },
   "card": {
     "washesLabel": "Tus lavados",

@@ -15,6 +15,7 @@ export function LoyaltyPass({
   qrSvg,
   copy,
   celebrating = false,
+  nameTag: Name = "h1",
 }: {
   state: LoyaltyState;
   /** Pre-rendered on the server by `renderQrSvg`. */
@@ -31,6 +32,12 @@ export function LoyaltyPass({
    * the customer sees what they earned instead of an empty card.
    */
   celebrating?: boolean;
+  /**
+   * The customer's own card is the page, so its name is the page's heading.
+   * A sample card on a marketing page is an illustration and must not add a
+   * second <h1> to that page's outline.
+   */
+  nameTag?: "h1" | "p";
 }) {
   // The last slot is the free wash, so the row is one longer than the number
   // of washes the customer pays for.
@@ -43,7 +50,7 @@ export function LoyaltyPass({
       <article className="pass">
         <div className="pass__logo" role="img" aria-label="Vaporix" />
 
-        <h1 className="pass__name">{state.customerName}</h1>
+        <Name className="pass__name">{state.customerName}</Name>
         <p className="pass__eyebrow">{copy.washesLabel}</p>
         <p className="pass__score">
           <b>{filled}</b>

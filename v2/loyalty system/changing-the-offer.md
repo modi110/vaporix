@@ -135,16 +135,19 @@ being past a new target of 3.
 These are plain text in the translation files. Nothing warns you if they go stale,
 so the site would advertise one offer while the card delivers another.
 
-| File | Key | Current text |
-|---|---|---|
-| `messages/es.json` | `loyalty.title` | Cinco lavados. El quinto, {reward}. |
-| `messages/es.json` | `loyalty.step4` | En el quinto lavado, la recompensa es tuya. |
-| `messages/es.json` | `meta.loyalty.description` | …cinco lavados y el quinto es tu recompensa. |
-| `messages/en.json` | `loyalty.title` | Five washes. The fifth, {reward}. |
-| `messages/en.json` | `loyalty.step4` | On the fifth wash, the reward is yours. |
-| `messages/en.json` | `meta.loyalty.description` | …five washes, and the fifth is your reward. |
+Since the October redesign the loyalty page and the home-page band do not read
+the database at all (they stay static), so every one of these is hand-written.
+The sample card on both pages also counts to a fixed four (`TARGET` in
+`src/components/loyalty/DemoPass.tsx`).
 
-`{reward}` is filled from the database — leave it as a placeholder.
+| File | Key | Current text (es) |
+|---|---|---|
+| `messages/*.json` | `loyalty.title` | Cada lavado suma. El quinto, gratis. |
+| `messages/*.json` | `loyalty.steps.show.body` | …Cuatro lavados, cuatro sellos. |
+| `messages/*.json` | `loyalty.steps.free.title` | El quinto va por nuestra cuenta |
+| `messages/*.json` | `loyaltyBand.title` | Tu quinto lavado corre de nuestra cuenta. |
+| `messages/*.json` | `meta.loyalty.description` | …cada lavado suma un sello y el quinto es gratis. |
+| `src/components/loyalty/DemoPass.tsx` | `TARGET` | 4 |
 
 **Two more that go stale when the *reward* changes, not the number.** These say
 "free" in so many words, because "tu próximo lavado es Lavado GRATIS" is not a
@@ -157,8 +160,9 @@ sentence. If the reward ever stops being a free wash, rewrite them:
 | `messages/en.json` | `card.ready` | Your next wash is free! |
 | `messages/en.json` | `card.congrats` | Congratulations! You have enjoyed your free wash. |
 
-Everything else on the card and the landing page is already driven by the number
-in the database and needs no attention.
+Also `loyalty.demo.reward` ("lavado gratis"), the reward named on the sample
+card. Everything on the customer's real card is driven by the database and
+needs no attention.
 
 ### 3. Verify
 

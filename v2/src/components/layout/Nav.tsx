@@ -88,27 +88,39 @@ export function Nav() {
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
         <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center px-[var(--gutter)]">
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="site-menu"
-            className="flex h-11 items-center gap-2.5 justify-self-start text-xs uppercase text-pearl"
-          >
-            <span aria-hidden="true" className="relative block h-3 w-4">
-              <span
-                className={`absolute inset-x-0 top-0 h-px bg-pearl transition-transform duration-300 ${
-                  open ? "translate-y-1.5 rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`absolute inset-x-0 bottom-0 h-px bg-pearl transition-transform duration-300 ${
-                  open ? "-translate-y-1.5 -rotate-45" : ""
-                }`}
-              />
-            </span>
-            {open ? t("close") : t("menu")}
-          </button>
+          <div className="flex items-center gap-1 justify-self-start">
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="site-menu"
+              className="flex h-11 items-center gap-2.5 text-xs uppercase text-pearl"
+            >
+              <span aria-hidden="true" className="relative block h-3 w-4">
+                <span
+                  className={`absolute inset-x-0 top-0 h-px bg-pearl transition-transform duration-300 ${
+                    open ? "translate-y-1.5 rotate-45" : ""
+                  }`}
+                />
+                <span
+                  className={`absolute inset-x-0 bottom-0 h-px bg-pearl transition-transform duration-300 ${
+                    open ? "-translate-y-1.5 -rotate-45" : ""
+                  }`}
+                />
+              </span>
+              {open ? t("close") : t("menu")}
+            </button>
+            {/* On a phone the right side has no room for a third control
+                beside the language and booking buttons, so the card sits by
+                the menu instead. From `sm` up it moves beside the language
+                button. */}
+            <LoyaltyLink
+              active={pathname === "/loyalty"}
+              label={t("loyaltyCard")}
+              onClick={() => setOpen(false)}
+              className="sm:hidden"
+            />
+          </div>
 
           <Link
             href="/"
@@ -119,6 +131,12 @@ export function Nav() {
           </Link>
 
           <div className="flex items-center gap-1.5 justify-self-end sm:gap-2">
+            <LoyaltyLink
+              active={pathname === "/loyalty"}
+              label={t("loyaltyCard")}
+              onClick={() => setOpen(false)}
+              className="max-sm:hidden"
+            />
             <LocaleSwitcher />
             <ButtonLink
               href="/book"
@@ -157,11 +175,12 @@ export function Nav() {
                 style={{ transitionDelay: open ? `${80 + i * 45}ms` : "0ms" }}
                 // The current page used to pick up the accent colour, but the
                 // sheet itself is that same blue now — a colour swap here
-                // would be invisible against it, so weight carries the
-                // distinction instead: full white and dimmed white.
+                // would be invisible against it, so brightness carries the
+                // distinction instead: full white and dimmed white. 60% white
+                // still clears 3:1, which is the bar for type this large.
                 className={`t-display-lg border-b border-hairline-dark py-3 transition-[opacity,transform,color] duration-500 ${
                   open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-                } ${active ? "text-pearl" : "text-muted-invert"}`}
+                } ${active ? "text-pearl" : "text-pearl/60"}`}
               >
                 {t(l.key)}
               </Link>
@@ -190,5 +209,60 @@ export function Nav() {
         </div>
       </div>
     </>
+  );
+}
+
+/**
+ * The loyalty card, one tap from anywhere: the programme was only reachable
+ * through the menu, and a visitor who never opened the menu never learned it
+ * existed. Same ring as the language button, so the bar gains a control, not
+ * a new shape.
+ */
+function LoyaltyLink({
+  active,
+  label,
+  onClick,
+  className = "",
+}: {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+  className?: string;
+}) {
+  return (
+    <Link
+      href="/loyalty"
+      onClick={onClick}
+      aria-label={label}
+      title={label}
+      aria-current={active ? "page" : undefined}
+      className={`group grid min-h-11 min-w-11 place-items-center text-pearl ${className}`}
+    >
+      <span
+        className={`grid size-9 place-items-center rounded-full border transition-colors duration-150 group-hover:border-pearl group-active:border-pearl ${
+          active ? "border-pearl" : "border-steel"
+        }`}
+      >
+        <GiftIcon />
+      </span>
+    </Link>
+  );
+}
+
+/** A wrapped gift: the reward the loyalty card earns. */
+function GiftIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="size-4"
+    >
+      <path d="M3.5 9.5h13v7h-13zM2.5 6.5h15v3h-15zM10 6.5v10" />
+      <path d="M10 6.5C8.8 3.6 5.6 3.4 5.6 5.1c0 1.1 1.9 1.4 4.4 1.4zM10 6.5c1.2-2.9 4.4-3.1 4.4-1.4 0 1.1-1.9 1.4-4.4 1.4z" />
+    </svg>
   );
 }

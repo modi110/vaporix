@@ -81,24 +81,6 @@ export async function registerCustomer(input: {
   return { code: payload.code, state: toState(payload.state) };
 }
 
-/**
- * The offer currently on sale, for the pages that advertise it.
- *
- * The landing page used to state the reward in its own copy, which meant
- * changing the offer in the database left the marketing page promising the
- * old one. One source, read at build/revalidate time.
- */
-export async function getActiveReward(): Promise<{ es: string; en: string }> {
-  const { data, error } = await serviceClient()
-    .from("reward_definitions")
-    .select("label_es, label_en")
-    .eq("active", true)
-    .single();
-
-  if (error) throw new Error(`getActiveReward failed: ${error.message}`);
-  return { es: data.label_es as string, en: data.label_en as string };
-}
-
 export async function getCardState(
   qrToken: string,
 ): Promise<LoyaltyState | null> {

@@ -8,7 +8,8 @@
     "close": "Close",
     "switchLocale": "Ver en español",
     "services": "More services",
-    "loyalty": "Loyalty"
+    "loyalty": "Loyalty",
+    "loyaltyCard": "Loyalty card"
   },
   "hero": {
     "title": "Vaporix",
@@ -74,7 +75,7 @@
     },
     "loyalty": {
       "title": "Loyalty programme — Vaporix",
-      "description": "Join the Vaporix loyalty programme: five washes, and the fifth is your reward."
+      "description": "Join the Vaporix loyalty card in Buñol: every wash earns a stamp and the fifth is free."
     }
   },
   "vehicles": {
@@ -156,28 +157,57 @@
   },
   "loyalty": {
     "label": "Loyalty",
-    "title": "Five washes. The fifth, {reward}.",
-    "lede": "Sign up once and keep your card on your phone. No plastic, no stamps to lose.",
-    "howTitle": "How it works",
-    "step1": "Sign up with your name and phone number.",
-    "step2": "You get a card with a QR code.",
-    "step3": "Show the QR on each visit and we stamp it.",
-    "step4": "On the fifth wash, the reward is yours.",
-    "formTitle": "Join the programme",
+    "title": "Every wash counts. <b>The fifth is free.</b>",
+    "lede": "Sign up in a minute with your name and phone number. Your card lives on your phone: no app, no paper, no stamps to lose.",
+    "ctaJoin": "Get my card",
+    "ctaHow": "How it works",
+    "howTitle": "That's all it takes.",
+    "steps": {
+      "join": {
+        "title": "Sign up",
+        "body": "Name and phone number. Your card appears straight away, ready to use."
+      },
+      "show": {
+        "title": "Show it every wash",
+        "body": "We scan your QR code and you get a stamp. Four washes, four stamps."
+      },
+      "free": {
+        "title": "The fifth is on us",
+        "body": "Card full? Your next wash is free. Then it starts again."
+      }
+    },
+    "formTitle": "Create your card.",
+    "formLede": "Free, and done in under a minute.",
+    "perks": {
+      "free": "Always free",
+      "noApp": "Nothing to download",
+      "instant": "Your card instantly"
+    },
     "name": "Name",
     "namePlaceholder": "Carlos García",
     "phone": "Phone",
     "phonePlaceholder": "600 11 22 33",
+    "phoneHint": "9 digits, or with +34 in front.",
     "email": "Email (optional)",
     "emailPlaceholder": "carlos@example.com",
     "submit": "Create my card",
     "submitting": "Creating…",
-    "errorName": "Please enter your full name.",
-    "errorPhone": "That phone number does not look right. Nine digits, or with a +34 prefix.",
-    "errorEmail": "That email does not look right.",
+    "errorName": "Please enter your name.",
+    "errorPhone": "That number doesn't look right. Try 9 digits, like 600 11 22 33.",
+    "errorEmail": "Check the email: something's missing, like the @.",
     "errorGeneric": "We could not create the card. Please try again in a moment.",
     "errorExisting": "This number already has a card. Ask us in the shop and we will give it back to you.",
-    "privacy": "We keep your name, your phone number and, if you give it, your email only to run your card. We do not share them or send you advertising. If you want them deleted, just ask us in the shop."
+    "privacy": "We keep your name, your phone number and, if you give it, your email only to run your card. We do not share them or send you advertising. If you want them deleted, just ask us in the shop.",
+    "demo": {
+      "name": "Your name",
+      "reward": "free wash",
+      "alt": "Sample Vaporix loyalty card filling with stamps up to the free wash."
+    }
+  },
+  "loyaltyBand": {
+    "title": "Your fifth wash is on us.",
+    "body": "Join our loyalty card: it lives on your phone and every wash adds a stamp.",
+    "cta": "Get my card"
   },
   "card": {
     "washesLabel": "Your washes",
