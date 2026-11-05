@@ -13,7 +13,7 @@ export type VehicleId = "small" | "suv" | "van";
 export type Vehicle = {
   id: VehicleId;
   price: number;
-  /** September's discounted price. Remove this field (and `price` reverts to
+  /** October's discounted price. Remove this field (and `price` reverts to
    *  showing alone) once the offer ends. */
   salePrice: number;
 };
