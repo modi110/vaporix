@@ -16,8 +16,8 @@ export function Studio() {
       <div className="wrap grid items-center gap-10 md:grid-cols-[1.15fr_0.85fr] md:gap-14">
         {/* A hairline border with a navy mat inside it — a frame, not a
             shadow, since the design system has no shadows to reach for. */}
-        <div className="border border-hairline bg-navy p-3 md:p-4">
-          <div className="relative aspect-[3/2] w-full overflow-hidden">
+        <div className="rounded-[28px] border border-hairline bg-navy p-3 md:p-4">
+          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[18px]">
             <picture>
               <source srcSet="/images/place.avif" type="image/avif" />
               <Image

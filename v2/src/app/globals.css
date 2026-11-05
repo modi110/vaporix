@@ -209,6 +209,63 @@
     opacity: 1 !important;
     transform: none !important;
   }
+  /* The panel still shows; the item just stays where it is. */
+  .lift {
+    translate: none !important;
+  }
+}
+
+/* ============================================================
+   LIFT
+   Any item in a list — a card, a price, a service, a photo —
+   rises onto a soft panel under the mouse or finger. Add the
+   `lift` class to opt in; nothing else is needed on new pages.
+   The panel is tinted from the text colour, so it reads as
+   white on the blue bands and blue on the white ones.
+   Desktop uses :hover; a phone gets `is-touched` from
+   `LiftTouch` while a finger is on the item, since a phone's
+   own hover sticks after the finger has gone.
+   `translate`, not `transform`, so the scroll reveal's own
+   transform on the same element is never overridden.
+   ============================================================ */
+.lift {
+  position: relative;
+  isolation: isolate;
+  transition: translate 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.lift::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  z-index: -1;
+  border-radius: 22px;
+  background: color-mix(in srgb, currentColor 9%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, currentColor 35%, transparent),
+    0 22px 40px -20px rgb(0 30 80 / 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.lift.is-touched,
+.lift:has(:focus-visible) {
+  translate: 0 -8px;
+}
+
+.lift.is-touched::before,
+.lift:has(:focus-visible)::before {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .lift:hover {
+    translate: 0 -8px;
+  }
+  .lift:hover::before {
+    opacity: 1;
+  }
 }
 
 /* ============================================================
