@@ -111,6 +111,29 @@
     outline: 2px solid var(--color-giallo);
     outline-offset: 3px;
   }
+
+  /*
+    Our own arrow: white with a blue edge, so it shows on both the blue bands
+    and the white ones. Over anything clickable it flips to blue with a white
+    edge. Mouse only — a touch screen has no cursor to draw.
+  */
+  @media (pointer: fine) {
+    html {
+      cursor: url("/cursors/arrow.svg") 5 3, auto;
+    }
+    a,
+    button,
+    [role="button"],
+    label,
+    summary {
+      cursor: url("/cursors/arrow-link.svg") 5 3, pointer;
+    }
+    input,
+    textarea,
+    [contenteditable="true"] {
+      cursor: text;
+    }
+  }
 }
 
 @layer utilities {
@@ -212,6 +235,18 @@
   /* The panel still shows; the item just stays where it is. */
   .lift {
     translate: none !important;
+  }
+}
+
+/* The drag rails' cursor, in the same style as the site's arrow: the arrow
+   with a blue "‹ ›" tag, inverted while held. Unlayered so it beats the
+   `cursor-grab` / `active:cursor-grabbing` utilities on the rails. */
+@media (pointer: fine) {
+  .cursor-grab {
+    cursor: url("/cursors/drag.svg") 5 3, grab;
+  }
+  .cursor-grab:active {
+    cursor: url("/cursors/dragging.svg") 5 3, grabbing;
   }
 }
 
