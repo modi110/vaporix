@@ -179,9 +179,14 @@ design from the wallet blockers; the accounts and phones below still apply.
   count, 0–4). `LoyaltyPass.tsx` picks the picture; a longer programme needs more
   pictures. The old stamp sprites in `public/images/card/` are still used by the
   loyalty page's "how it works" icons.
-- "Add to Apple Wallet" / "Add to Google Wallet" buttons show on the card page
-  (`WalletButtons.tsx`) but do nothing yet except say "coming soon". Wire them to
-  the pass routes when the accounts exist, and swap in the official badges.
+- The product direction is wallet-only: the card should live in Apple Wallet and
+  Google Wallet, not on the site. Signup now lands on a "your card is ready" page
+  (`/es/tarjeta/<token>`) with the two badges (`WalletButtons.tsx`, pictures only
+  for now) and a **temporary third button, "Ver mi tarjeta"**, that opens the web
+  card (`?card=1`). Once the passes work: wire the badges to the pass routes,
+  swap in the official artwork, and delete the third button and the `?card=1`
+  branch in `card/[token]/page.tsx`. The same badges sit in the loyalty page hero.
+  Until then the web card is the only working card, since the QR is what staff scan.
 - Privacy policy page at `/es/privacidad` and `/en/privacy`, linked from the
   footer and the signup form. Text lives in `src/content/privacy.ts`. The NIF
   prints as "[to be completed]" until `site.taxId` in `src/content/site.ts` is

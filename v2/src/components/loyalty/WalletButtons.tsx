@@ -19,25 +19,21 @@ import { useTranslations } from "next-intl";
 export function WalletButtons({
   row = false,
   className = "",
+  children,
 }: {
-  /** Side by side, with no heading: for the marketing page's hero. */
+  /** Side by side: for the marketing page's hero. */
   row?: boolean;
   className?: string;
+  /** Extra items after the two badges, in the same grid. */
+  children?: React.ReactNode;
 }) {
   const t = useTranslations("card");
 
   return (
     <section
-      aria-label={row ? t("walletTitle") : undefined}
-      aria-labelledby={row ? undefined : "wallet-title"}
+      aria-label={t("walletTitle")}
       className={`grid w-full gap-3 ${row ? "" : "max-w-[360px]"} ${className}`}
     >
-      {row ? null : (
-        <h2 id="wallet-title" className="text-center text-sm font-semibold text-[#2b3a52]">
-          {t("walletTitle")}
-        </h2>
-      )}
-
       <div className={`grid gap-3 ${row ? "sm:grid-cols-2" : ""}`}>
         <Badge small={t("walletAddTo")} big="Apple Wallet">
           <AppleWalletIcon />
@@ -45,6 +41,7 @@ export function WalletButtons({
         <Badge small={t("walletAddTo")} big="Google Wallet">
           <GoogleWalletIcon />
         </Badge>
+        {children}
       </div>
     </section>
   );

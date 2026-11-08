@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { Link } from "@/i18n/navigation";
 import { LoyaltyPass } from "@/components/loyalty/LoyaltyPass";
 import { WalletButtons } from "@/components/loyalty/WalletButtons";
 import { getCardState, isCelebrating } from "@/lib/loyalty/service";
@@ -28,10 +29,13 @@ export const metadata: Metadata = {
 
 export default async function CardPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string; token: string }>;
+  searchParams: Promise<{ card?: string }>;
 }) {
   const { locale, token } = await params;
+  const { card: showCard } = await searchParams;
   setRequestLocale(locale);
 
   const state = await getCardState(token);
@@ -43,6 +47,30 @@ export default async function CardPage({
     return (
       <div className="pass-page">
         <p className="pass-page__hint">{t("inactive")}</p>
+      </div>
+    );
+  }
+
+  // The card is meant to live in Apple Wallet and Google Wallet, not on the
+  // site, so signup lands here: the two wallet badges first, and a third
+  // button that opens the web card. TEMPORARY: the passes are not built yet,
+  // so the web card is the only working card. Once they are, delete the
+  // `view` button and the `?card=1` branch below.
+  if (!showCard) {
+    return (
+      <div className="pass-page">
+        <div className="grid max-w-[360px] gap-2 text-center">
+          <h1 className="text-2xl font-bold text-[#0b1b36]">{t("readyTitle")}</h1>
+          <p className="text-base text-[#2b3a52]">{t("readyBody")}</p>
+        </div>
+        <WalletButtons>
+          <Link
+            href={{ pathname: "/card/[token]", params: { token }, query: { card: "1" } }}
+            className="flex min-h-14 items-center justify-center rounded-xl border border-[#005fd3] bg-white px-4 py-2 text-[1.05rem] font-semibold tracking-normal text-[#005fd3] transition-transform duration-150 hover:-translate-y-0.5 active:translate-y-0"
+          >
+            {t("viewCard")}
+          </Link>
+        </WalletButtons>
       </div>
     );
   }
@@ -88,7 +116,6 @@ export default async function CardPage({
           customerLabel: t("customerLabel"),
         }}
       />
-      <WalletButtons />
     </div>
   );
 }
