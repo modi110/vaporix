@@ -17,24 +17,16 @@ import { useTranslations } from "next-intl";
  * link to the pass route.
  */
 export function WalletButtons({
-  row = false,
-  className = "",
   children,
 }: {
-  /** Side by side: for the marketing page's hero. */
-  row?: boolean;
-  className?: string;
   /** Extra items after the two badges, in the same grid. */
   children?: React.ReactNode;
 }) {
   const t = useTranslations("card");
 
   return (
-    <section
-      aria-label={t("walletTitle")}
-      className={`grid w-full gap-3 ${row ? "" : "max-w-[360px]"} ${className}`}
-    >
-      <div className={`grid gap-3 ${row ? "sm:grid-cols-2" : ""}`}>
+    <section aria-label={t("walletTitle")} className="grid w-full max-w-[360px] gap-3">
+      <div className="grid gap-3">
         <Badge small={t("walletAddTo")} big="Apple Wallet">
           <AppleWalletIcon />
         </Badge>

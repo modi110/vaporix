@@ -7,7 +7,6 @@ import { absoluteUrl, alternatesFor } from "@/i18n/urls";
 import { ButtonAnchor } from "@/components/ui/Button";
 import { DemoPass } from "@/components/loyalty/DemoPass";
 import { JoinForm } from "@/components/loyalty/JoinForm";
-import { WalletButtons } from "@/components/loyalty/WalletButtons";
 import { renderQrSvg } from "@/lib/loyalty/qr";
 
 export function generateStaticParams() {
@@ -112,7 +111,6 @@ export default async function LoyaltyPage({
                 {t("ctaHow")}
               </ButtonAnchor>
             </div>
-            <WalletButtons row className="mt-8 max-w-[500px]" />
           </div>
 
           <div className="-mb-44 justify-self-center lg:-mb-40 lg:self-end lg:justify-self-end">
