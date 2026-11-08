@@ -4,6 +4,19 @@ Single Next.js site, lives in `v2/`. Run all commands (`npm install`, `npm run d
 
 `v1/` (the earlier rejected design) has been deleted. If you see references to it in old comments or docs, it's history, not a live folder.
 
+## The loyalty system
+
+Read `v2/loyalty system/STATUS.md` before touching anything loyalty-related. It
+says what is built, what is deployed (nothing yet), which branch the work lives
+on, the state of the database, and what is blocked on whom. The other files in
+that folder: `changing-the-offer.md` to change the number of washes or the
+reward, `wallets-and-admin.md` for the parts not built, `loyaltysystem.md` for
+the original spec.
+
+The loyalty work sits on the `loyalty` branch, which deliberately has **no
+upstream** so it cannot be pushed by reflex. It goes live only when the owner
+says the client has approved.
+
 # CLAUDE.md
 
 Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
