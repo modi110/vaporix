@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
 import { readStaffSession } from "@/lib/auth/session";
@@ -10,6 +11,7 @@ import {
   lookUpCustomer,
 } from "@/lib/loyalty/admin";
 import { renderQrSvg } from "@/lib/loyalty/qr";
+import { StaffBrand } from "../staff/StaffBrand";
 
 /**
  * What the owner sees.
@@ -76,12 +78,17 @@ export default async function AdminPage({
   return (
     <main className="admin-shell">
       <div className="staff-head">
-        <p className="staff-wordmark">Vaporix</p>
-        <form action="/api/staff/logout" method="post">
-          <button className="staff-who staff-linkish" type="submit">
-            Salir
-          </button>
-        </form>
+        <StaffBrand />
+        <div className="staff-head__actions">
+          <Link className="staff-who staff-linkish" href="/staff">
+            Escanear
+          </Link>
+          <form action="/api/staff/logout" method="post">
+            <button className="staff-who staff-linkish" type="submit">
+              Salir
+            </button>
+          </form>
+        </div>
       </div>
 
       <h1 className="staff-title">Administración</h1>

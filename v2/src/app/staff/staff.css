@@ -85,6 +85,12 @@
   text-transform: uppercase;
 }
 
+.staff-head__actions {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+}
+
 .staff-who {
   color: var(--soft-blue);
   font-size: 0.8125rem;

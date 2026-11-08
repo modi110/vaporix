@@ -10,5 +10,5 @@ export default async function StaffPage() {
   const session = await readStaffSession();
   if (!session) redirect("/staff/login");
 
-  return <Scanner />;
+  return <Scanner isAdmin={session.role === "admin"} />;
 }

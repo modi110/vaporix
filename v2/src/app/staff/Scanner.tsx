@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BrowserQRCodeReader } from "@zxing/browser";
 
@@ -41,7 +42,7 @@ const MESSAGES: Record<string, { text: string; tone: Tone }> = {
  */
 const RETRY_AFTER_MS = 3000;
 
-export function Scanner() {
+export function Scanner({ isAdmin = false }: { isAdmin?: boolean }) {
   const [screen, setScreen] = useState<Screen>({ kind: "scanning" });
   const [notice, setNotice] = useState<{ text: string; tone: Tone } | null>(null);
   const [manual, setManual] = useState("");
@@ -191,11 +192,19 @@ export function Scanner() {
     <main className="staff-shell">
       <div className="staff-head">
         <StaffBrand />
-        <form action="/api/staff/logout" method="post">
-          <button className="staff-who staff-linkish" type="submit">
-            Salir
-          </button>
-        </form>
+        <div className="staff-head__actions">
+          {/* Only the manager has the history and customer screen. */}
+          {isAdmin ? (
+            <Link className="staff-who staff-linkish" href="/admin">
+              Panel
+            </Link>
+          ) : null}
+          <form action="/api/staff/logout" method="post">
+            <button className="staff-who staff-linkish" type="submit">
+              Salir
+            </button>
+          </form>
+        </div>
       </div>
 
       {screen.kind === "scanning" ? (
