@@ -39,7 +39,7 @@ export function Highlights() {
 
         <div className="grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
           {items.map(({ key, icon }) => (
-            <div key={key}>
+            <div key={key} className="lift">
               <HighlightIcon id={icon} className="mb-4 size-8 sm:mb-5 sm:size-10" />
               <h3 className="t-heading mb-2">{t(`items.${key}.title`)}</h3>
               <p className="t-body text-muted-invert">{t(`items.${key}.body`)}</p>

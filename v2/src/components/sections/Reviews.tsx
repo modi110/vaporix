@@ -138,7 +138,7 @@ export function Reviews() {
       <div
         ref={rail}
         aria-label={t("railLabel")}
-        className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain -mt-8 -mb-10 pt-8 pb-12 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         style={{ paddingInline: "max(var(--gutter), calc((100% - 30rem) / 2))" }}
         {...dragHandlers}
         // Spread after the drag handlers, not before: these wrap the ones that
@@ -162,7 +162,7 @@ export function Reviews() {
         {reviews.map((review) => (
           <figure
             key={review.id}
-            className="flex w-[min(80vw,25rem)] shrink-0 snap-center flex-col gap-6 rounded-[1.75rem] bg-navy p-7 text-pearl sm:p-8"
+            className="lift flex w-[min(80vw,25rem)] shrink-0 snap-center flex-col gap-6 rounded-[1.75rem] bg-navy p-7 text-pearl sm:p-8"
           >
             <blockquote className="text-[1.0625rem] leading-[1.65] tracking-normal sm:text-[1.1875rem]">
               {review.quote}

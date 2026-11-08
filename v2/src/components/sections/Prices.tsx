@@ -5,10 +5,11 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ButtonLink } from "@/components/ui/Button";
 import { useDragRail } from "@/components/ui/useDragRail";
-import { vehicles, DEFAULT_VEHICLE } from "@/content/vehicles";
+import { vehicles } from "@/content/vehicles";
 
 /**
- * The price list as a rail you drag, opening on the middle card.
+ * The price list as a rail you drag, opening on the first card, lined up
+ * with the heading above it.
  *
  * Native scroll-snap does the work rather than a JS-driven track: it gives
  * real momentum and a real snap on a phone, it stays interruptible, and it
@@ -24,23 +25,7 @@ export function Prices() {
   const v = useTranslations("vehicles");
   const rail = useRef<HTMLDivElement>(null);
   const dragHandlers = useDragRail(rail);
-  const [active, setActive] = useState(
-    vehicles.findIndex((x) => x.id === DEFAULT_VEHICLE),
-  );
-
-  /**
-   * Open centred on the middle card, before paint. `useLayoutEffect` would be
-   * the instinct, but it warns during SSR — and because the rail is a scroll
-   * container the browser has not painted a scrolled frame yet, so setting
-   * `scrollLeft` here is not visible as a jump.
-   */
-  useEffect(() => {
-    const el = rail.current;
-    if (!el) return;
-    const card = el.children[active] as HTMLElement | undefined;
-    if (!card) return;
-    el.scrollLeft = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2;
-  }, [active]);
+  const [active, setActive] = useState(0);
 
   // Keep the indicator honest while the rail is scrolled by any means.
   useEffect(() => {
@@ -50,12 +35,18 @@ export function Prices() {
     const onScroll = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        const mid = el.scrollLeft + el.clientWidth / 2;
+        // The last card can't reach the left edge, so the end of the rail
+        // counts as reaching it.
+        if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 1) {
+          setActive(el.children.length - 1);
+          return;
+        }
+        const first = (el.children[0] as HTMLElement).offsetLeft;
         let nearest = 0;
         let best = Infinity;
         [...el.children].forEach((child, i) => {
           const c = child as HTMLElement;
-          const d = Math.abs(c.offsetLeft + c.clientWidth / 2 - mid);
+          const d = Math.abs(c.offsetLeft - first - el.scrollLeft);
           if (d < best) {
             best = d;
             nearest = i;
@@ -93,14 +84,21 @@ export function Prices() {
         ref={rail}
         // The grab cursor is CSS, not state: a ref cannot drive a re-render,
         // so reading it here would have left the cursor stuck on "grab".
-        className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        style={{ paddingInline: "max(var(--gutter), calc((100% - 30rem) / 2))" }}
+        className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain -mt-8 -mb-10 pt-8 pb-12 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        // Same left edge as `.wrap`'s content, so the first card sits under
+        // the heading at every width.
+        style={{
+          paddingInline:
+            "max(var(--gutter), calc((100% - var(--maxw)) / 2 + var(--gutter)))",
+          scrollPaddingInline:
+            "max(var(--gutter), calc((100% - var(--maxw)) / 2 + var(--gutter)))",
+        }}
         {...dragHandlers}
       >
         {vehicles.map((vehicle) => (
           <article
             key={vehicle.id}
-            className="flex w-[min(78vw,26rem)] shrink-0 snap-center flex-col gap-5"
+            className="lift flex w-[min(78vw,26rem)] shrink-0 snap-start flex-col gap-5"
           >
             {/*
               No frame fill: the vehicle artwork is on its own white ground,
@@ -153,7 +151,7 @@ export function Prices() {
         ))}
       </div>
 
-      {/* Which of the three is centred. Mirrors the hero's pips. */}
+      {/* Which of the three is at the front. Mirrors the hero's pips. */}
       <div className="wrap mt-8 flex gap-2.5">
         {vehicles.map((vehicle, i) => (
           <span

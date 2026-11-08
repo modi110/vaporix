@@ -13,7 +13,7 @@ export type VehicleId = "small" | "suv" | "van";
 export type Vehicle = {
   id: VehicleId;
   price: number;
-  /** September's discounted price. Remove this field (and `price` reverts to
+  /** October's discounted price. Remove this field (and `price` reverts to
    *  showing alone) once the offer ends. */
   salePrice: number;
 };
@@ -23,6 +23,3 @@ export const vehicles: Vehicle[] = [
   { id: "suv", price: 50, salePrice: 40 },
   { id: "van", price: 60, salePrice: 50 },
 ];
-
-/** The rail opens here: the middle card, with one peeking either side. */
-export const DEFAULT_VEHICLE: VehicleId = "suv";

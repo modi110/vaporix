@@ -51,7 +51,7 @@ function Services() {
       <section className="section bg-pearl text-ink">
         <div className="wrap grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((id) => (
-            <div key={id}>
+            <div key={id} className="lift">
               <ServiceIcon id={id} className="mb-5 size-10" />
               <h2 className="t-heading">{p(`items.${id}`)}</h2>
             </div>

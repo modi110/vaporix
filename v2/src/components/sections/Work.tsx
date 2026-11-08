@@ -42,7 +42,7 @@ export function Work() {
         tabIndex={0}
         role="group"
         aria-label={t("title")}
-        className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain -mt-8 -mb-10 pt-8 pb-12 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         style={{
           paddingInline: "max(var(--gutter), calc((100% - var(--maxw)) / 2 + var(--gutter)))",
           scrollPaddingInline: "max(var(--gutter), calc((100% - var(--maxw)) / 2 + var(--gutter)))",
@@ -52,7 +52,7 @@ export function Work() {
         {shots.map((shot) => (
           <figure
             key={shot.name}
-            className="relative m-0 aspect-[3/4] w-[min(78vw,26rem)] shrink-0 snap-start overflow-hidden"
+            className="lift m-0 aspect-[3/4] w-[min(78vw,26rem)] shrink-0 snap-start"
           >
             <picture>
               <source

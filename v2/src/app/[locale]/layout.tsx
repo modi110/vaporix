@@ -14,6 +14,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Preloader, preloadFlagScript } from "@/components/motion/Preloader";
 import { TransitionOverlay } from "@/components/motion/TransitionOverlay";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { LiftTouch } from "@/components/motion/LiftTouch";
 import "../globals.css";
 
 /**
@@ -104,6 +105,7 @@ export default async function LocaleLayout({
           <Preloader />
           <TransitionOverlay />
           <ScrollReveal />
+          <LiftTouch />
           <Nav />
           <main>{children}</main>
           <Footer />

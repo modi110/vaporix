@@ -29,7 +29,7 @@ export function MoreServices() {
 
         <ul className="mb-12 grid grid-cols-3 gap-x-4 gap-y-8 md:grid-cols-5 lg:grid-cols-9">
           {services.map((id) => (
-            <li key={id} className="flex flex-col items-start gap-3">
+            <li key={id} className="lift flex flex-col items-start gap-3">
               <ServiceIcon id={id} className="size-9" />
               {/* Not `t-caption`: 12px of condensed uppercase is under the
                   legible floor for a name someone actually has to read. */}
