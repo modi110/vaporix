@@ -194,7 +194,6 @@ export default async function AdminPage({
       </section>
 
       <section className="admin-section">
-        <h2 className="admin-h2">Todo lo que ha pasado en el taller</h2>
         <div className="admin-stats">
           <Stat value={totals.customers} label="Clientes" />
           <Stat value={totals.activeCards} label="Tarjetas activas" />
