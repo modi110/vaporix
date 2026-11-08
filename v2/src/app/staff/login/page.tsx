@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 
 import { listActiveStaff } from "@/lib/auth/staff";
 import { readStaffSession } from "@/lib/auth/session";
+import { StaffBrand } from "../StaffBrand";
 import { LoginForm } from "./LoginForm";
 
 /** Reads the staff table and the session cookie, so never prerendered. */
@@ -18,7 +19,7 @@ export default async function StaffLoginPage() {
   return (
     <main className="staff-shell">
       <div className="staff-head">
-        <p className="staff-wordmark">Vaporix</p>
+        <StaffBrand />
       </div>
 
       <div>

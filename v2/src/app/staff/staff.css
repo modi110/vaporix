@@ -11,14 +11,15 @@
    ------------------------------------------------------------------ */
 
 .staff-body {
-  --blue: #0d51c4;
-  --blue-deep: #062a6b;
-  --cyan: #5fe3ff;
-  --ink: #0f2340;
-  --ink-soft: #4f6480;
-  --ground: #eef2f8;
+  /* The site's own palette: one blue and white, with its greys. */
+  --blue: #005fd3;
+  --blue-deep: #003474;
+  --soft-blue: #dce8f8;
+  --ink: #1f1f1f;
+  --ink-soft: #494949;
+  --ground: #ffffff;
   --surface: #ffffff;
-  --rule: #d2dcea;
+  --rule: #cfdcee;
   --warn: #8a4a00;
   --warn-bg: #fff2e0;
   --stop: #9a1b1b;
@@ -35,8 +36,8 @@
 }
 
 .staff-body ::selection {
-  background: var(--cyan);
-  color: #033254;
+  background: var(--soft-blue);
+  color: var(--blue-deep);
 }
 .staff-body :focus-visible {
   outline: 2px solid var(--blue);
@@ -52,11 +53,27 @@
     calc(env(safe-area-inset-bottom) + 40px);
 }
 
+/* The blue bar with the mark and name, like the top of the customer's card. */
 .staff-head {
-  align-items: baseline;
+  align-items: center;
+  background: var(--blue);
+  border-radius: 18px;
+  color: #ffffff;
   display: flex;
   gap: 12px;
   justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.staff-brand {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+.staff-brand__mark {
+  display: block;
+  height: 38px;
+  width: 38px;
 }
 
 .staff-wordmark {
@@ -69,7 +86,7 @@
 }
 
 .staff-who {
-  color: var(--ink-soft);
+  color: var(--soft-blue);
   font-size: 0.8125rem;
   margin: 0;
 }
@@ -88,6 +105,7 @@
 }
 
 .staff-title {
+  color: var(--blue);
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -145,7 +163,7 @@
 }
 .staff-button--quiet:hover,
 .staff-button--quiet:active {
-  background: #e6ecf6;
+  background: var(--soft-blue);
 }
 
 .staff-field {
@@ -159,7 +177,7 @@
   width: 100%;
 }
 .staff-field::placeholder {
-  color: #7b8ca3;
+  color: #6b6b6b;
 }
 
 .staff-label {
@@ -223,8 +241,8 @@
   color: var(--stop);
 }
 .staff-note--ok {
-  background: #e4f7ff;
-  color: #04405e;
+  background: var(--soft-blue);
+  color: var(--blue-deep);
 }
 
 /* --- the scanned customer --------------------------------------------- */
@@ -235,6 +253,7 @@
 }
 
 .staff-name {
+  color: var(--blue);
   font-family: var(--font-display);
   font-size: 1.875rem;
   font-weight: 600;
@@ -268,7 +287,7 @@
 
 .staff-viewport {
   aspect-ratio: 1;
-  background: #0b1a2e;
+  background: var(--blue-deep);
   border-radius: 18px;
   overflow: hidden;
   position: relative;

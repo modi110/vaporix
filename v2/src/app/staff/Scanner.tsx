@@ -5,6 +5,7 @@ import { BrowserQRCodeReader } from "@zxing/browser";
 
 import { ProgressTrack } from "@/components/loyalty/ProgressTrack";
 import type { LoyaltyState } from "@/lib/loyalty/types";
+import { StaffBrand } from "./StaffBrand";
 
 /**
  * The staff screen.
@@ -189,7 +190,7 @@ export function Scanner() {
   return (
     <main className="staff-shell">
       <div className="staff-head">
-        <p className="staff-wordmark">Vaporix</p>
+        <StaffBrand />
         <form action="/api/staff/logout" method="post">
           <button className="staff-who staff-linkish" type="submit">
             Salir
