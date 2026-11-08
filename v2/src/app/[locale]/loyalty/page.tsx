@@ -38,35 +38,38 @@ const STEPS = [
   { key: "free", icon: "/images/card/gauge/strip-4.png" },
 ] as const;
 
-/**
- * The step's picture: a blue strip in the shape of the wallet card's own
- * gauge strip. Steps two and three show that strip itself; step one has the
- * wallet on the same blue.
- */
+/** The step's picture, on a disc of the card's blue. */
 function StepIcon({ icon }: { icon: string }) {
-  const isWallet = icon === "wallet";
+  if (icon === "wallet") {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        className="size-9 text-pearl"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M3.5 7.5a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v2" />
+        <path d="M3.5 7.5v10a2 2 0 0 0 2 2h13a1 1 0 0 0 1-1v-3" />
+        <path d="M20.5 9.5h-4a2.5 2.5 0 0 0 0 5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5Z" />
+      </svg>
+    );
+  }
+  // The gauge strip is a wide picture of a dial on the right; this crops it to
+  // the dial so it fits the disc.
   return (
     <span
       aria-hidden="true"
-      className="grid aspect-[375/144] w-full max-w-[17rem] place-items-center overflow-hidden rounded-xl bg-navy bg-cover bg-center"
-      style={isWallet ? undefined : { backgroundImage: `url(${icon})` }}
-    >
-      {isWallet ? (
-        <svg
-          viewBox="0 0 24 24"
-          className="size-14 text-pearl"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M3.5 7.5a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v2" />
-          <path d="M3.5 7.5v10a2 2 0 0 0 2 2h13a1 1 0 0 0 1-1v-3" />
-          <path d="M20.5 9.5h-4a2.5 2.5 0 0 0 0 5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5Z" />
-        </svg>
-      ) : null}
-    </span>
+      className="size-full rounded-full bg-no-repeat"
+      style={{
+        backgroundImage: `url(${icon})`,
+        backgroundPosition: "114.8% 47%",
+        backgroundSize: "150% auto",
+      }}
+    />
   );
 }
 
@@ -166,10 +169,21 @@ export default async function LoyaltyPage({
         <div className="wrap">
           <h2 className="t-display max-w-[16ch]">{t("howTitle")}</h2>
 
-          <ol className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
+          <ol className="relative mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
+            {/* One rail through all three stamps: the steps are a sequence,
+                and the line says so without numbering them. */}
+            <span
+              aria-hidden="true"
+              className="absolute bottom-9 left-9 top-9 w-px bg-hairline md:bottom-auto md:left-9 md:right-9 md:top-9 md:h-px md:w-auto"
+            />
             {STEPS.map(({ key, icon }) => (
-              <li key={key} className="grid content-start gap-6">
-                <StepIcon icon={icon} />
+              <li
+                key={key}
+                className="relative grid grid-cols-[4.5rem_1fr] items-start gap-5 md:grid-cols-1 md:gap-7"
+              >
+                <span className="grid size-[4.5rem] place-items-center overflow-hidden rounded-full bg-navy">
+                  <StepIcon icon={icon} />
+                </span>
                 <div>
                   <h3 className="t-heading">{t(`steps.${key}.title`)}</h3>
                   <p className="t-body mt-2 text-muted">
