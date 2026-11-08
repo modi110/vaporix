@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 
 import { readStaffSession } from "@/lib/auth/session";
 import {
@@ -50,9 +50,8 @@ export default async function AdminPage({
   const session = await readStaffSession();
   if (!session) redirect("/staff/login");
 
-  // 404 rather than a redirect or a message. A staff member who is logged in
-  // but not an admin should not learn that this page exists at all.
-  if (session.role !== "admin") notFound();
+  // Every signed-in staff member can open this page: the owner wants workers
+  // to see customers and history too. Only the sign-in is required.
 
   const { c } = await searchParams;
   const query = c?.trim() ?? "";

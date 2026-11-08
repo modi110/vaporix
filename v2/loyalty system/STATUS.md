@@ -80,13 +80,16 @@ After the free wash is given, the card keeps showing the finished row for
 - Reward redemption, offered on the confirmation screen of the visit that fills
   the card
 - **Admin dashboard at `/admin`** — counters, customer lookup, visit history,
-  reward history, per-staff activity. Gated on `role = 'admin'`; a logged-in
-  staff member gets a 404, not a redirect
+  reward history, per-staff activity. Open to **every signed-in staff member**
+  (the owner's decision, 9 November): the scan screen has a "Panel" link to it.
+  It used to be admin-only, with a 404 for workers. Signed-out visitors are
+  still sent to the login
 - Card gallery for design review at `/dev/card` (dev only)
 
 Verified by hand: the full cycle on a real phone, the cooldown refusing a
-rescan, the role separation (staff → 404, admin → 200, tampered cookie →
-rejected), and no phone or email anywhere on the dashboard outside a lookup.
+rescan, the tampered cookie being rejected, and no phone or email anywhere on
+the dashboard outside a lookup. (The staff-vs-admin 404 was checked before the
+page was opened to all staff.)
 
 ---
 
