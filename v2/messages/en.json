@@ -165,11 +165,11 @@
     "steps": {
       "join": {
         "title": "Sign up",
-        "body": "Name and phone number. Your card appears straight away, ready to use."
+        "body": "Name and phone number. Save your card to Apple Wallet or Google Wallet in a moment."
       },
       "show": {
         "title": "Show it every wash",
-        "body": "We scan your QR code and you get a stamp. Four washes, four stamps."
+        "body": "We scan your QR code and the dial moves up. Four washes, four stamps."
       },
       "free": {
         "title": "The fifth is on us",

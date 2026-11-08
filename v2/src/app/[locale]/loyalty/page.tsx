@@ -27,12 +27,51 @@ export async function generateMetadata({
   };
 }
 
-/** The three steps, each drawn with the card's own sprite for that moment. */
+/**
+ * The three steps, each drawn with the card's own artwork for that moment:
+ * the wallet it goes into, then the gauge at two washes, then the gauge with
+ * the gold free-wash segment lit.
+ */
 const STEPS = [
-  { key: "join", image: "/images/card/stamp-off.png" },
-  { key: "show", image: "/images/card/stamp-on.png" },
-  { key: "free", image: "/images/card/gift-on.png" },
+  { key: "join", icon: "wallet" },
+  { key: "show", icon: "/images/card/gauge/strip-2.png" },
+  { key: "free", icon: "/images/card/gauge/strip-4.png" },
 ] as const;
+
+/** The step's picture, on a disc of the card's blue. */
+function StepIcon({ icon }: { icon: string }) {
+  if (icon === "wallet") {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        className="size-9 text-pearl"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M3.5 7.5a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v2" />
+        <path d="M3.5 7.5v10a2 2 0 0 0 2 2h13a1 1 0 0 0 1-1v-3" />
+        <path d="M20.5 9.5h-4a2.5 2.5 0 0 0 0 5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5Z" />
+      </svg>
+    );
+  }
+  // The gauge strip is a wide picture of a dial on the right; this crops it to
+  // the dial so it fits the disc.
+  return (
+    <span
+      aria-hidden="true"
+      className="size-full rounded-full bg-no-repeat"
+      style={{
+        backgroundImage: `url(${icon})`,
+        backgroundPosition: "114.8% 47%",
+        backgroundSize: "150% auto",
+      }}
+    />
+  );
+}
 
 function Check() {
   return (
@@ -137,21 +176,13 @@ export default async function LoyaltyPage({
               aria-hidden="true"
               className="absolute bottom-9 left-9 top-9 w-px bg-hairline md:bottom-auto md:left-9 md:right-9 md:top-9 md:h-px md:w-auto"
             />
-            {STEPS.map(({ key, image }) => (
+            {STEPS.map(({ key, icon }) => (
               <li
                 key={key}
                 className="relative grid grid-cols-[4.5rem_1fr] items-start gap-5 md:grid-cols-1 md:gap-7"
               >
-                {/* The card's sprites are drawn for its blue, so each sits on
-                    a disc of that blue rather than on the white page. */}
-                <span className="grid size-[4.5rem] place-items-center rounded-full bg-navy">
-                  <Image
-                    src={image}
-                    alt=""
-                    width={140}
-                    height={140}
-                    className="size-12"
-                  />
+                <span className="grid size-[4.5rem] place-items-center overflow-hidden rounded-full bg-navy">
+                  <StepIcon icon={icon} />
                 </span>
                 <div>
                   <h3 className="t-heading">{t(`steps.${key}.title`)}</h3>

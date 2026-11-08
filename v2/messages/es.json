@@ -165,11 +165,11 @@
     "steps": {
       "join": {
         "title": "Apúntate",
-        "body": "Nombre y teléfono. Tu tarjeta aparece al momento, lista para usar."
+        "body": "Nombre y teléfono. Guarda tu tarjeta en Apple Wallet o Google Wallet en un momento."
       },
       "show": {
         "title": "Enséñala en cada lavado",
-        "body": "Escaneamos tu código QR y sumas un sello. Cuatro lavados, cuatro sellos."
+        "body": "Escaneamos tu código QR y la aguja sube. Cuatro lavados, cuatro sellos."
       },
       "free": {
         "title": "El quinto va por nuestra cuenta",
