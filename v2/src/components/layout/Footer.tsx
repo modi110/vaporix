@@ -57,7 +57,7 @@ export function Footer() {
                 key={s.label}
                 href={s.href}
                 aria-label={s.label}
-                className="grid size-11 place-items-center border border-hairline-dark text-muted-invert transition-colors duration-150 hover:border-pearl hover:text-pearl active:border-pearl"
+                className="grid size-11 place-items-center rounded-full border border-hairline-dark text-muted-invert transition-colors duration-150 hover:border-pearl hover:text-pearl active:border-pearl"
               >
                 <SocialIcon id={s.icon as SocialIconId} className="size-4" />
               </a>

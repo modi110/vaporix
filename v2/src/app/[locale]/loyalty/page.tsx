@@ -167,8 +167,8 @@ export default async function LoyaltyPage({
 
       <section id="join" className="scroll-mt-16 bg-pearl pb-[var(--pad-section)] text-ink">
         <div className="wrap">
-          <div className="grid border border-hairline/40 lg:grid-cols-[0.85fr_1.15fr]">
-            <div className="band-grain relative px-6 py-10 text-pearl sm:px-10 lg:px-12 lg:py-14">
+          <div className="grid rounded-3xl border border-hairline/40 lg:grid-cols-[0.85fr_1.15fr]">
+            <div className="band-grain relative rounded-t-3xl px-6 lg:rounded-l-3xl lg:rounded-tr-none py-10 text-pearl sm:px-10 lg:px-12 lg:py-14">
               <h2 className="t-display">{t("formTitle")}</h2>
               <p className="mt-3 text-lg tracking-normal text-muted-invert">
                 {t("formLede")}
@@ -193,7 +193,7 @@ export default async function LoyaltyPage({
               />
             </div>
 
-            <div className="bg-pearl px-6 py-10 sm:px-10 lg:px-12 lg:py-14">
+            <div className="rounded-b-3xl bg-pearl px-6 py-10 sm:px-10 lg:rounded-r-3xl lg:rounded-bl-none lg:px-12 lg:py-14">
               <JoinForm />
             </div>
           </div>
