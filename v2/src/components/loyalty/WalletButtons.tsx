@@ -16,16 +16,29 @@ import { useTranslations } from "next-intl";
  * Developer Program, Google's is a free download) and turn it into a real
  * link to the pass route.
  */
-export function WalletButtons() {
+export function WalletButtons({
+  row = false,
+  className = "",
+}: {
+  /** Side by side, with no heading: for the marketing page's hero. */
+  row?: boolean;
+  className?: string;
+}) {
   const t = useTranslations("card");
 
   return (
-    <section aria-labelledby="wallet-title" className="grid w-full max-w-[360px] gap-3">
-      <h2 id="wallet-title" className="text-center text-sm font-semibold text-[#2b3a52]">
-        {t("walletTitle")}
-      </h2>
+    <section
+      aria-label={row ? t("walletTitle") : undefined}
+      aria-labelledby={row ? undefined : "wallet-title"}
+      className={`grid w-full gap-3 ${row ? "" : "max-w-[360px]"} ${className}`}
+    >
+      {row ? null : (
+        <h2 id="wallet-title" className="text-center text-sm font-semibold text-[#2b3a52]">
+          {t("walletTitle")}
+        </h2>
+      )}
 
-      <div className="grid gap-3">
+      <div className={`grid gap-3 ${row ? "sm:grid-cols-2" : ""}`}>
         <Badge small={t("walletAddTo")} big="Apple Wallet">
           <AppleWalletIcon />
         </Badge>
@@ -50,12 +63,12 @@ function Badge({
     <div
       role="img"
       aria-label={`${small} ${big}`}
-      className="flex min-h-14 select-none items-center justify-center gap-3.5 rounded-xl border border-[#a6a6a6] bg-black px-5 py-2 text-left text-white"
+      className="flex min-h-14 select-none items-center justify-center gap-3 rounded-xl border border-[#a6a6a6] bg-black px-4 py-2 text-left text-white"
     >
       {children}
       <span aria-hidden="true" className="grid leading-none">
         <span className="text-[0.8rem] tracking-normal text-white/90">{small}</span>
-        <span className="mt-1 text-[1.4rem] font-medium tracking-normal">{big}</span>
+        <span className="mt-1 text-[1.25rem] font-medium tracking-normal">{big}</span>
       </span>
     </div>
   );
