@@ -2,13 +2,17 @@ import { cardFont } from "@/lib/fonts";
 import type { LoyaltyState } from "@/lib/loyalty/types";
 import "./loyalty-pass.css";
 
+/** The gauge artwork exists for 0 to 4 paid washes, one image per count. */
+const GAUGE_MAX = 4;
+
 /**
- * The customer's loyalty card.
+ * The customer's loyalty card: the "Redline Gauge" design, the same artwork
+ * as the Apple and Google Wallet passes (`loyalty system/wallet-design/`).
  *
- * The artwork underneath is the owner's own file; this component draws only
- * the parts that change. Every one of those values comes from `state`, which
- * comes from the database — nothing here is computed in the browser, which is
- * the whole reason a customer cannot award themselves a wash.
+ * The dial is one picture per count, so this component only chooses which
+ * picture to show and prints the numbers around it. Every value comes from
+ * `state`, which comes from the database — nothing here is computed in the
+ * browser, which is the whole reason a customer cannot award themselves a wash.
  */
 export function LoyaltyPass({
   state,
@@ -28,7 +32,7 @@ export function LoyaltyPass({
   };
   /**
    * The free wash has just been given. The card is already back to zero in
-   * the database, but it keeps showing the finished row for a few hours so
+   * the database, but it keeps showing the finished dial for a few hours so
    * the customer sees what they earned instead of an empty card.
    */
   celebrating?: boolean;
@@ -39,43 +43,54 @@ export function LoyaltyPass({
    */
   nameTag?: "h1" | "p";
 }) {
-  // The last slot is the free wash, so the row is one longer than the number
-  // of washes the customer pays for.
-  const slots = state.visitsRequired + 1;
   const filled = celebrating ? state.visitsRequired : state.visits;
-  const giftLit = celebrating || state.rewardAvailable;
+  // The artwork stops at four washes. A longer programme would need more dial
+  // images; until they exist the dial stays at its last picture.
+  const gauge = Math.min(Math.max(filled, 0), GAUGE_MAX);
+  const base = `/images/card/gauge/strip-${gauge}`;
 
   return (
     <div className={`pass-scope ${cardFont.variable}`}>
       <article className="pass">
-        <div className="pass__logo" role="img" aria-label="Vaporix" />
+        <header className="pass__head">
+          <div className="pass__brand">
+            {/* eslint-disable-next-line @next/next/no-img-element -- fixed 150px mark, already optimised */}
+            <img src="/images/card/gauge/mark.png" alt="" width={150} height={150} />
+            <span>VAPORIX</span>
+          </div>
+          <div className="pass__count">
+            <span>{copy.washesLabel}</span>
+            <b>
+              {filled}/{state.visitsRequired}
+            </b>
+          </div>
+        </header>
 
-        <Name className="pass__name">{state.customerName}</Name>
-        <p className="pass__eyebrow">{copy.washesLabel}</p>
-        <p className="pass__score">
-          <b>{filled}</b>
-          <span>/ {state.visitsRequired}</span>
-        </p>
+        {/* `key` restarts the fade when a wash is counted. */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- the dial is a fixed pair of files per count */}
+        <img
+          key={gauge}
+          className="pass__gauge"
+          src={`${base}.png`}
+          srcSet={`${base}.png 1x, ${base}@3x.png 1.5x`}
+          alt=""
+          width={750}
+          height={288}
+        />
 
-        <ol className="pass__stamps" style={{ ["--stamp-count" as string]: slots }}>
-          {Array.from({ length: state.visitsRequired }, (_, index) => (
-            <li
-              key={index}
-              className={`stamp ${index < filled ? "stamp--on" : ""}`}
-            />
-          ))}
-          <li className={`stamp stamp--gift ${giftLit ? "stamp--gift-on" : ""}`} />
-        </ol>
+        <div className="pass__body">
+          <Name className="pass__name">{state.customerName}</Name>
+          <p className="pass__status">{copy.status}</p>
+        </div>
 
-        <div className="pass__rule" />
-        <p className="pass__status">{copy.status}</p>
-
-        {/* Server-rendered SVG: crisp at any size, no image request, and no
-            client JavaScript to draw it. */}
-        <div className="pass__qr" dangerouslySetInnerHTML={{ __html: qrSvg }} />
-
-        <p className="pass__custlabel">{copy.customerLabel}</p>
-        <p className="pass__custnum">{state.cardNumber}</p>
+        <div className="pass__code">
+          {/* Server-rendered SVG: crisp at any size, no image request, and no
+              client JavaScript to draw it. White plate behind it: a scanner
+              needs a black code on a light ground. */}
+          <div className="pass__qr" dangerouslySetInnerHTML={{ __html: qrSvg }} />
+          <p className="pass__custlabel">{copy.customerLabel}</p>
+          <p className="pass__custnum">{state.cardNumber}</p>
+        </div>
       </article>
     </div>
   );

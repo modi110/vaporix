@@ -1,186 +1,158 @@
 /* ------------------------------------------------------------------
-   The loyalty card — five washes, the fifth free.
+   The loyalty card: the "Redline Gauge" design, in Vaporix blue.
 
-   The artwork is the owner's own. `/images/card/plate.jpg` is their
-   reference file with only the per-customer content removed: the
-   photograph, the logo, the navy sweep and the grey watermark are their
-   pixels, not a rebuild. Everything below is positioned in percentages
-   measured off that 1024x1536 original, so the live card lands on the
-   same spots their design did.
+   The same artwork as the Apple and Google Wallet passes, so a customer
+   who saves the card to their phone sees the card they signed up with.
+   The dial is one picture per count (`/images/card/gauge/strip-N.png`,
+   from `loyalty system/wallet-design/apple/`); everything else is text
+   and the QR, laid out in normal flow.
 
-   Type is sized in cqw — 1% of the card's own width — against a
-   container query on `.pass`. The card therefore scales as one piece
-   from a phone to a review grid, and a narrower column shrinks the
-   numerals with the artwork instead of letting them drift out of place.
+   Type is sized in cqw, 1% of the card's own width, against a container
+   query on `.pass`. The card therefore scales as one piece from a phone to
+   a marketing grid.
 
    Scoped to this file rather than added to the global @theme: the site
-   is two colours and hard edges, and a wallet card is a physical object
-   with its own rules.
+   is blue and white with hard edges, and a wallet card is a physical
+   object with its own rules.
    ------------------------------------------------------------------ */
 
 .pass-scope {
   font-family: var(--font-card), ui-sans-serif, system-ui, sans-serif;
 
   /* The card is `width: 100%` of this wrapper, and this wrapper is a grid
-     item under `justify-items: center` — without a width of its own it
+     item under `justify-items: center`: without a width of its own it
      shrink-wraps to its content, the card's 100% resolves against 0, and
      the whole card collapses. */
-  max-width: 340px;
+  max-width: 360px;
   width: 100%;
 
-  --blue: #1189fb;
-  --ink: #0b1b36;
-  --ink-soft: #46566f;
-
-  --r-card: 14px;
+  --blue: #005fd3;
+  --soft: #dce8f8;
 }
 
 .pass {
-  aspect-ratio: 1024 / 1536;
-  background-image: url("/images/card/plate.jpg");
-  background-size: 100% 100%;
-  border-radius: var(--r-card);
+  background: var(--blue);
+  border-radius: 20px;
+  /* The card is the same blue as the hero it sits on, so a faint light
+     ring keeps its edge readable there. */
   box-shadow:
-    0 14px 30px -14px rgba(6, 20, 39, 0.45),
-    0 2px 6px -2px rgba(6, 20, 39, 0.2);
+    0 0 0 1px rgba(255, 255, 255, 0.28),
+    0 22px 40px -16px rgba(0, 20, 70, 0.6),
+    0 2px 6px -2px rgba(0, 30, 80, 0.25);
+  color: #fff;
   /* Every child sizes itself from the card's width, not the viewport. */
   container-type: inline-size;
   margin: 0 auto;
-  max-width: 340px;
+  max-width: 360px;
   overflow: hidden;
-  position: relative;
   width: 100%;
 }
 
 .pass > * {
   margin: 0;
-  position: absolute;
 }
 
-/* The owner's own logo, lifted from their file and nudged right of where
-   it sat, per the brief. An opaque crop on white paper, so it needs no
-   mask — the plate's logo area was cleared to paper underneath it. */
-.pass__logo {
-  aspect-ratio: 400 / 168;
-  background-image: url("/images/card/logo-vrk.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  left: 8.3%;
-  top: 10.3%;
-  width: 39.06%;
+/* --- header: the mark, and the count ------------------------------------ */
+
+.pass__head {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 5.5cqw 6cqw 3.5cqw;
+}
+
+.pass__brand {
+  align-items: center;
+  display: flex;
+  gap: 2.8cqw;
+}
+.pass__brand img {
+  display: block;
+  height: 10.5cqw;
+  width: 10.5cqw;
+}
+.pass__brand span {
+  font-size: 4cqw;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.pass__count {
+  display: grid;
+  justify-items: end;
+}
+.pass__count span {
+  color: var(--soft);
+  font-size: 2.6cqw;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.pass__count b {
+  font-size: 7.4cqw;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+/* --- the dial ------------------------------------------------------------ */
+
+.pass__gauge {
+  animation: gauge-in 0.45s ease both;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+@keyframes gauge-in {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- name and status ----------------------------------------------------- */
+
+.pass__body {
+  padding: 4.5cqw 6cqw 0;
 }
 
 .pass__name {
-  color: #fff;
-  font-size: 7.42cqw;
+  font-size: 7.4cqw;
   font-weight: 700;
-  left: 7.03%;
-  letter-spacing: -0.015em;
-  line-height: 1;
-  /* A long name must not run under the count. */
-  max-width: 58%;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin: 0;
+  /* A long name must wrap, not push the card wider. */
   overflow-wrap: anywhere;
-  top: 30.2%;
-}
-
-.pass__eyebrow {
-  color: #fff;
-  font-size: 2.93cqw;
-  font-weight: 600;
-  left: 7.03%;
-  letter-spacing: 0.07em;
-  line-height: 1;
-  text-transform: uppercase;
-  top: 38.4%;
-}
-
-.pass__score {
-  align-items: baseline;
-  display: flex;
-  gap: 0.14em;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-  right: 7.2%;
-  top: 31.4%;
-}
-.pass__score b {
-  color: var(--blue);
-  font-size: 10cqw;
-  font-weight: 700;
-}
-.pass__score span {
-  color: #fff;
-  font-size: 6.2cqw;
-  font-weight: 600;
-}
-
-/* --- the stamps -------------------------------------------------------- */
-
-.pass__stamps {
-  display: grid;
-  gap: 4.1cqw;
-  grid-template-columns: repeat(var(--stamp-count, 5), 1fr);
-  left: 7.81%;
-  list-style: none;
-  padding: 0;
-  top: 42.3%;
-  width: 84.77%;
-}
-
-/* The owner's own icons, lifted from their file as round sprites rather
-   than redrawn — redrawing them was what made an earlier pass read as a
-   different card. */
-.stamp {
-  aspect-ratio: 1;
-  background-image: url("/images/card/stamp-off.png");
-  background-size: 100% 100%;
-}
-.stamp--on {
-  background-image: url("/images/card/stamp-on.png");
-}
-
-/* The last slot is the free wash, so it is a gift rather than another car,
-   and gold rather than blue — the row has to read as "four of these, then
-   that" at a glance. */
-.stamp--gift {
-  background-image: url("/images/card/gift-off.png");
-}
-.stamp--gift-on {
-  background-image: url("/images/card/gift-on.png");
-}
-
-.pass__rule {
-  background: rgba(255, 255, 255, 0.4);
-  height: 1px;
-  left: 7.03%;
-  top: 54%;
-  width: 85.74%;
 }
 
 .pass__status {
-  color: #fff;
-  font-size: 3.32cqw;
+  color: var(--soft);
+  font-size: 3.8cqw;
   font-weight: 500;
-  left: 14%;
-  line-height: 1.32;
-  text-align: center;
-  top: 55.5%;
-  width: 72%;
+  line-height: 1.35;
+  margin: 1.6cqw 0 0;
 }
 .pass__status b {
-  color: var(--blue);
+  color: #fff;
   font-weight: 700;
 }
 
-/* --- the code ---------------------------------------------------------- */
+/* --- the code ------------------------------------------------------------ */
 
-/* No white plate behind it: the watermark it sits on is about 88% luma,
-   so a black code still clears the contrast a scanner needs, and a plate
-   would punch a white box back into the mark. */
+.pass__code {
+  display: grid;
+  justify-items: center;
+  padding: 5cqw 6cqw 6cqw;
+}
+
 .pass__qr {
-  left: 37.4%;
-  top: 65.4%;
-  width: 25.6%;
+  background: #fff;
+  border-radius: 3.4cqw;
+  padding: 3cqw;
+  width: 46cqw;
 }
 .pass__qr svg {
   display: block;
@@ -189,64 +161,24 @@
 }
 
 .pass__custlabel {
-  color: var(--ink-soft);
-  font-size: 2.54cqw;
-  font-weight: 500;
-  left: 0;
-  text-align: center;
-  top: 83.4%;
-  width: 100%;
+  color: var(--soft);
+  font-size: 2.6cqw;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  margin: 3.4cqw 0 0;
+  text-transform: uppercase;
 }
 .pass__custnum {
-  color: var(--ink);
-  font-size: 4cqw;
-  font-weight: 700;
+  font-size: 4.4cqw;
   font-variant-numeric: tabular-nums;
-  left: 0;
-  letter-spacing: 0.01em;
-  text-align: center;
-  top: 85.2%;
-  width: 100%;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0.6cqw 0 0;
 }
 
-/* --- the sample card on the marketing pages ----------------------------- */
-
-/* The same card, filling itself in. Each stamp lands with a small press —
-   the moment a wash is counted — and the gift answers the fourth with a
-   longer swell, so the row reads as a sequence and the free wash as its
-   payoff. Only `DemoPass` adds `.pass-live`; the customer's real card never
-   animates. */
-.pass-live .stamp--on {
-  animation: stamp-press 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.pass-live .stamp--gift-on {
-  animation: gift-swell 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-@keyframes stamp-press {
-  0% {
-    transform: scale(1.45);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(0.92);
-    opacity: 1;
-  }
-  100% {
-    transform: none;
-  }
-}
-@keyframes gift-swell {
-  0% {
-    transform: scale(0.6) rotate(-12deg);
-    filter: brightness(1);
-  }
-  55% {
-    transform: scale(1.22) rotate(4deg);
-    filter: brightness(1.25) drop-shadow(0 0 6px rgba(255, 196, 64, 0.7));
-  }
-  100% {
-    transform: none;
-    filter: none;
+@media (prefers-reduced-motion: reduce) {
+  .pass__gauge {
+    animation: none;
   }
 }
 
@@ -264,15 +196,15 @@
   height: 6px;
 }
 .track i.is-on {
-  background: var(--blue, #1189fb);
+  background: var(--blue, #005fd3);
 }
 
 /* On a light surface — the staff screen — the same component inverts. */
 .track--ink i {
-  background: rgba(17, 137, 251, 0.18);
+  background: rgba(0, 95, 211, 0.18);
 }
 .track--ink i.is-on {
-  background: #1189fb;
+  background: #005fd3;
 }
 
 /* --- the page the card sits on ----------------------------------------- */

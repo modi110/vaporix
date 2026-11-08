@@ -31,6 +31,10 @@ export const routing = defineRouting({
       es: "/fidelidad",
       en: "/loyalty",
     },
+    "/privacy": {
+      es: "/privacidad",
+      en: "/privacy",
+    },
     // The customer's own card, addressed by its QR token. Dynamic, so it is
     // excluded from StaticPathname below and cannot be passed to <Link> as a
     // bare string.

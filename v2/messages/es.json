@@ -198,6 +198,7 @@
     "errorGeneric": "No hemos podido crear la tarjeta. Inténtalo de nuevo en un momento.",
     "errorExisting": "Este teléfono ya tiene una tarjeta. Pásate por el taller y te la volvemos a dar.",
     "privacy": "Guardamos tu nombre, tu teléfono y, si nos lo das, tu email solo para llevar tu tarjeta. No los compartimos ni te enviamos publicidad. Si quieres que los borremos, pídelo en el taller.",
+    "privacyLink": "Lee la política de privacidad.",
     "demo": {
       "name": "Tu nombre",
       "reward": "lavado gratis",
@@ -216,6 +217,10 @@
     "remainingMany": "¡Te faltan <b>{count}</b> lavados para conseguir tu <b>{reward}</b>!",
     "ready": "¡Tu próximo lavado es <b>gratis</b>!",
     "congrats": "¡Felicidades! Has disfrutado tu <b>lavado gratis</b>.",
+    "walletTitle": "Lleva tu tarjeta en el móvil",
+    "walletApple": "Añadir a Apple Wallet",
+    "walletGoogle": "Añadir a Google Wallet",
+    "walletSoon": "Muy pronto. Mientras tanto, guarda esta página: es tu tarjeta.",
     "inactive": "Esta tarjeta ya no está activa. Pregunta en el taller.",
     "notFoundTitle": "Tarjeta no encontrada",
     "notFoundBody": "Este enlace no corresponde a ninguna tarjeta. Comprueba el enlace o vuelve a apuntarte.",

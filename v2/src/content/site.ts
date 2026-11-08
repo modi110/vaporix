@@ -12,6 +12,13 @@ export const site = {
   name: "Vaporix Car Wash - Fast Mechanics & Batteries",
   legalName: "Vaporix car wash",
   /**
+   * The business's NIF/CIF, which the privacy policy must state. Not known
+   * yet: while it is `null` the policy prints a visible "to be completed"
+   * marker so it cannot go live by accident. Replace with the real number
+   * (and `legalName` with the registered name, if it differs).
+   */
+  taxId: null as string | null,
+  /**
    * One line, everywhere: the call link, the WhatsApp link and the number on
    * the page all come from here, so there is nothing to keep in sync.
    * Displayed in the Spanish grouping; the href stays E.164.

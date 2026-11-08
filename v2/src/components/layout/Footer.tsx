@@ -67,8 +67,16 @@ export function Footer() {
       </div>
 
       <div className="wrap flex flex-wrap items-center justify-between gap-4 border-t border-hairline-dark py-6 text-xs uppercase text-muted-invert">
-        <span>
-          © {new Date().getFullYear()} {site.name}. {t("footer.rights")}
+        <span className="flex flex-wrap items-center gap-x-5">
+          <span>
+            © {new Date().getFullYear()} {site.name}. {t("footer.rights")}
+          </span>
+          <Link
+            href="/privacy"
+            className="flex min-h-11 items-center underline-offset-4 transition-colors hover:text-pearl hover:underline"
+          >
+            {t("footer.privacy")}
+          </Link>
         </span>
         <a
           href={site.phoneHref}

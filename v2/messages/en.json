@@ -198,6 +198,7 @@
     "errorGeneric": "We could not create the card. Please try again in a moment.",
     "errorExisting": "This number already has a card. Ask us in the shop and we will give it back to you.",
     "privacy": "We keep your name, your phone number and, if you give it, your email only to run your card. We do not share them or send you advertising. If you want them deleted, just ask us in the shop.",
+    "privacyLink": "Read the privacy policy.",
     "demo": {
       "name": "Your name",
       "reward": "free wash",
@@ -216,6 +217,10 @@
     "remainingMany": "<b>{count}</b> more washes and your <b>{reward}</b> is yours!",
     "ready": "Your next wash is <b>free</b>!",
     "congrats": "Congratulations! You have enjoyed your <b>free wash</b>.",
+    "walletTitle": "Keep your card on your phone",
+    "walletApple": "Add to Apple Wallet",
+    "walletGoogle": "Add to Google Wallet",
+    "walletSoon": "Coming very soon. For now, keep this page: it is your card.",
     "inactive": "This card is no longer active. Please ask us in the shop.",
     "notFoundTitle": "Card not found",
     "notFoundBody": "This link does not match any card. Check the link or sign up again.",

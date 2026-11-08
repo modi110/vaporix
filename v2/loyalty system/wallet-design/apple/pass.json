@@ -1,0 +1,43 @@
+{
+  "formatVersion": 1,
+  "passTypeIdentifier": "pass.net.vaporix.loyalty",
+  "teamIdentifier": "TEAM_ID_FROM_APPLE_DEVELOPER",
+  "serialNumber": "CARD_NUMBER",
+  "organizationName": "Vaporix",
+  "description": "Tarjeta de fidelidad Vaporix",
+  "logoText": "VAPORIX",
+  "backgroundColor": "rgb(0, 95, 211)",
+  "foregroundColor": "rgb(255, 255, 255)",
+  "labelColor": "rgb(220, 232, 248)",
+  "webServiceURL": "https://vaporix.net/api/wallet/apple",
+  "authenticationToken": "PER_PASS_SECRET_AT_LEAST_16_CHARS",
+  "storeCard": {
+    "headerFields": [
+      { "key": "lavados", "label": "LAVADOS", "value": "3/4" }
+    ],
+    "primaryFields": [
+      { "key": "progreso", "label": "PARA TU LAVADO GRATIS", "value": "1 más" }
+    ],
+    "secondaryFields": [
+      { "key": "socio", "label": "SOCIO", "value": "CUSTOMER_NAME" }
+    ],
+    "auxiliaryFields": [
+      { "key": "premio", "label": "PREMIO", "value": "5º lavado gratis" }
+    ],
+    "backFields": [
+      { "key": "como", "label": "Cómo funciona", "value": "Paga 4 lavados y el 5º es gratis. Enseña este código al personal después de cada lavado." },
+      { "key": "numero", "label": "Número de cliente", "value": "CARD_NUMBER" },
+      { "key": "web", "label": "Web", "value": "https://vaporix.net" },
+      { "key": "contacto", "label": "Contacto", "value": "TELÉFONO · DIRECCIÓN, Buñol (Valencia)" },
+      { "key": "privacidad", "label": "Privacidad", "value": "PRIVACY_POLICY_URL" }
+    ]
+  },
+  "barcodes": [
+    {
+      "format": "PKBarcodeFormatQR",
+      "message": "QR_TOKEN",
+      "messageEncoding": "iso-8859-1",
+      "altText": "CARD_NUMBER"
+    }
+  ]
+}

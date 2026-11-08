@@ -1,0 +1,22 @@
+{
+  "id": "ISSUER_ID.vpx_CARD_NUMBER",
+  "classId": "ISSUER_ID.vaporix_club",
+  "state": "ACTIVE",
+  "accountId": "CARD_NUMBER",
+  "accountName": "CUSTOMER_NAME",
+  "heroImage": {
+    "sourceUri": { "uri": "https://vaporix.net/wallet/google/hero_3.png" },
+    "contentDescription": { "defaultValue": { "language": "es", "value": "Progreso: 3 de 4 lavados" } }
+  },
+  "textModulesData": [
+    { "id": "lavados", "header": "Lavados", "body": "3/4" },
+    { "id": "restantes", "header": "Hasta lavado gratis", "body": "1 más" },
+    { "id": "socio", "header": "Socio", "body": "CUSTOMER_NAME" },
+    { "id": "premio", "header": "Premio", "body": "5º gratis" }
+  ],
+  "barcode": {
+    "type": "QR_CODE",
+    "value": "QR_TOKEN",
+    "alternateText": "CARD_NUMBER"
+  }
+}

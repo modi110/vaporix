@@ -165,11 +165,36 @@ tables. Or just open `/admin`, which is the same information without the SQL.
 
 ---
 
+## Wallet pass design — ready, 8 November
+
+The Apple and Google pass design is approved (Spanish only, Vaporix blue,
+rev-gauge progress). Every image, `pass.json`, and the Google class/object
+JSON are in `wallet-design/`, with a README of the five states. This removes
+design from the wallet blockers; the accounts and phones below still apply.
+
+**On the site (9 November, local on `loyalty`):**
+
+- The web card is now the same Redline Gauge design: the dial pictures live in
+  `public/images/card/gauge/` (copied from `wallet-design/apple/`, one per
+  count, 0–4). `LoyaltyPass.tsx` picks the picture; a longer programme needs more
+  pictures. The old stamp sprites in `public/images/card/` are still used by the
+  loyalty page's "how it works" icons.
+- "Add to Apple Wallet" / "Add to Google Wallet" buttons show on the card page
+  (`WalletButtons.tsx`) but do nothing yet except say "coming soon". Wire them to
+  the pass routes when the accounts exist, and swap in the official badges.
+- Privacy policy page at `/es/privacidad` and `/en/privacy`, linked from the
+  footer and the signup form. Text lives in `src/content/privacy.ts`. The NIF
+  prints as "[to be completed]" until `site.taxId` in `src/content/site.ts` is
+  set; check `site.legalName` against the registered name too. Have the client
+  read it before launch.
+
+---
+
 ## Blocked, and on whom
 
 | Item | Waiting on |
 |---|---|
-| A privacy policy page | the client's legal name, address and NIF/CIF. Spanish law (RGPD/LOPDGDD) wants the data controller named; the site has no privacy page at all yet (a "Política de privacidad" string sits unused in `messages/*.json`) |
+| The privacy page's NIF/CIF | the client. The page is written and linked; it shows "[to be completed]" in place of the NIF until `site.taxId` is set (Spanish law, RGPD/LOPDGDD, wants the data controller named) |
 | Deploy to Vercel | the owner's go-ahead |
 | Deleting the test rows | the client demo happening first |
 | Supabase paid tier | the client saying yes |

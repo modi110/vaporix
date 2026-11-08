@@ -1,0 +1,46 @@
+{
+  "id": "ISSUER_ID.vaporix_club",
+  "issuerName": "VAPORIX",
+  "programName": "Vaporix Club",
+  "programLogo": {
+    "sourceUri": { "uri": "https://vaporix.net/wallet/google/program-logo.png" },
+    "contentDescription": { "defaultValue": { "language": "es", "value": "Logotipo de Vaporix" } }
+  },
+  "wideProgramLogo": {
+    "sourceUri": { "uri": "https://vaporix.net/wallet/google/wide-program-logo.png" },
+    "contentDescription": { "defaultValue": { "language": "es", "value": "Logotipo de Vaporix" } }
+  },
+  "hexBackgroundColor": "#005FD3",
+  "reviewStatus": "UNDER_REVIEW",
+  "countryCode": "ES",
+  "classTemplateInfo": {
+    "cardTemplateOverride": {
+      "cardRowTemplateInfos": [
+        {
+          "twoItems": {
+            "startItem": { "firstValue": { "fields": [{ "fieldPath": "object.textModulesData['lavados']" }] } },
+            "endItem": { "firstValue": { "fields": [{ "fieldPath": "object.textModulesData['restantes']" }] } }
+          }
+        },
+        {
+          "twoItems": {
+            "startItem": { "firstValue": { "fields": [{ "fieldPath": "object.textModulesData['socio']" }] } },
+            "endItem": { "firstValue": { "fields": [{ "fieldPath": "object.textModulesData['premio']" }] } }
+          }
+        }
+      ]
+    }
+  },
+  "textModulesData": [
+    {
+      "id": "como",
+      "header": "Cómo funciona",
+      "body": "Paga 4 lavados y el 5º es gratis. Enseña este código al personal después de cada lavado."
+    }
+  ],
+  "linksModuleData": {
+    "uris": [
+      { "id": "web", "uri": "https://vaporix.net", "description": "Web de Vaporix" }
+    ]
+  }
+}

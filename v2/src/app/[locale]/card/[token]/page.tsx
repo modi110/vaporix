@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { LoyaltyPass } from "@/components/loyalty/LoyaltyPass";
+import { WalletButtons } from "@/components/loyalty/WalletButtons";
 import { getCardState, isCelebrating } from "@/lib/loyalty/service";
 import { renderQrSvg } from "@/lib/loyalty/qr";
 
@@ -87,7 +88,7 @@ export default async function CardPage({
           customerLabel: t("customerLabel"),
         }}
       />
-      {/* TODO(wallet): the Google and Apple Wallet buttons go here. */}
+      <WalletButtons />
     </div>
   );
 }

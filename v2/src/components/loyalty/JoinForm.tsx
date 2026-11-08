@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { useTranslations } from "next-intl";
 
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import {
   joinLoyalty,
@@ -141,7 +142,10 @@ export function JoinForm() {
       {/* Sentence case and the readable grey: this is the one paragraph on
           the form a careful visitor actually reads. */}
       <p className="max-w-[52ch] text-sm leading-relaxed tracking-normal text-muted">
-        {t("privacy")}
+        {t("privacy")}{" "}
+        <Link href="/privacy" className="underline underline-offset-4 hover:text-ink">
+          {t("privacyLink")}
+        </Link>
       </p>
     </form>
   );
