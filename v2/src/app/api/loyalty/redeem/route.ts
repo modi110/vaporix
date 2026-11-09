@@ -1,5 +1,8 @@
+import { after } from "next/server";
+
 import { readStaffSession } from "@/lib/auth/session";
 import { redeemReward } from "@/lib/loyalty/service";
+import { syncWallets } from "@/lib/wallet/sync";
 
 /**
  * Redeems a waiting reward and resets the cycle to 0.
@@ -29,6 +32,12 @@ export async function POST(request: Request) {
     }
 
     const result = await redeemReward(qrToken, session.staffId);
+
+    // Committed; refresh the wallet pass afterwards (see the scan route).
+    if (result.code === "OK" && result.state) {
+      const state = result.state;
+      after(() => syncWallets(state, true));
+    }
     const status = result.code === "OK" || result.state ? 200 : 404;
     return Response.json(result, { status });
   } catch (error) {

@@ -18,9 +18,12 @@ import { useTranslations } from "next-intl";
  */
 export function WalletButtons({
   children,
+  googleHref,
 }: {
   /** Extra items after the two badges, in the same grid. */
   children?: React.ReactNode;
+  /** When set, the Google badge is a real link that saves the pass. */
+  googleHref?: string;
 }) {
   const t = useTranslations("card");
 
@@ -30,7 +33,7 @@ export function WalletButtons({
         <Badge small={t("walletAddTo")} big="Apple Wallet">
           <AppleWalletIcon />
         </Badge>
-        <Badge small={t("walletAddTo")} big="Google Wallet">
+        <Badge small={t("walletAddTo")} big="Google Wallet" href={googleHref}>
           <GoogleWalletIcon />
         </Badge>
         {children}
@@ -43,22 +46,36 @@ function Badge({
   small,
   big,
   children,
+  href,
 }: {
   small: string;
   big: string;
   children: React.ReactNode;
+  href?: string;
 }) {
+  const className =
+    "flex min-h-14 select-none items-center justify-center gap-3 rounded-xl border border-[#a6a6a6] bg-black px-4 py-2 text-left text-white";
+  const label = (
+    <span aria-hidden="true" className="grid leading-none">
+      <span className="text-[0.8rem] tracking-normal text-white/90">{small}</span>
+      <span className="mt-1 text-[1.25rem] font-medium tracking-normal">{big}</span>
+    </span>
+  );
+
+  // A plain <a>, not next/link: the target is an API route that redirects to
+  // Google, so there is no page for the router to prefetch.
+  if (href) {
+    return (
+      <a href={href} aria-label={`${small} ${big}`} className={className}>
+        {children}
+        {label}
+      </a>
+    );
+  }
   return (
-    <div
-      role="img"
-      aria-label={`${small} ${big}`}
-      className="flex min-h-14 select-none items-center justify-center gap-3 rounded-xl border border-[#a6a6a6] bg-black px-4 py-2 text-left text-white"
-    >
+    <div role="img" aria-label={`${small} ${big}`} className={className}>
       {children}
-      <span aria-hidden="true" className="grid leading-none">
-        <span className="text-[0.8rem] tracking-normal text-white/90">{small}</span>
-        <span className="mt-1 text-[1.25rem] font-medium tracking-normal">{big}</span>
-      </span>
+      {label}
     </div>
   );
 }

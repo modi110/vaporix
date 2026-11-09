@@ -7,6 +7,7 @@ import { LoyaltyPass } from "@/components/loyalty/LoyaltyPass";
 import { WalletButtons } from "@/components/loyalty/WalletButtons";
 import { getCardState, isCelebrating } from "@/lib/loyalty/service";
 import { renderQrSvg } from "@/lib/loyalty/qr";
+import { googleWallet } from "@/lib/wallet/google";
 
 /**
  * The customer's card.
@@ -63,7 +64,13 @@ export default async function CardPage({
           <h1 className="text-2xl font-bold text-[#0b1b36]">{t("readyTitle")}</h1>
           <p className="text-base text-[#2b3a52]">{t("readyBody")}</p>
         </div>
-        <WalletButtons>
+        <WalletButtons
+          googleHref={
+            googleWallet.isConfigured()
+              ? `/api/wallet/google?token=${encodeURIComponent(token)}`
+              : undefined
+          }
+        >
           <Link
             href={{ pathname: "/card/[token]", params: { token }, query: { card: "1" } }}
             className="flex min-h-14 items-center justify-center rounded-xl border border-[#005fd3] bg-white px-4 py-2 text-[1.05rem] font-semibold tracking-normal text-[#005fd3] transition-transform duration-150 hover:-translate-y-0.5 active:translate-y-0"

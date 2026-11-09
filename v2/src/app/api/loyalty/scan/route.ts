@@ -1,5 +1,8 @@
+import { after } from "next/server";
+
 import { readStaffSession } from "@/lib/auth/session";
 import { lookUpCard, registerVisit } from "@/lib/loyalty/service";
+import { syncWallets } from "@/lib/wallet/sync";
 
 /**
  * Look up a scanned code, and record a visit against it.
@@ -62,6 +65,13 @@ export async function POST(request: Request) {
     }
 
     const result = await registerVisit(qrToken, session.staffId);
+
+    // The visit is committed. Update the customer's wallet pass after the
+    // response goes out; a failure there must never reach the staff screen.
+    if (result.code === "OK" && result.state) {
+      const state = result.state;
+      after(() => syncWallets(state));
+    }
 
     // A refusal is a real answer, not a failure: the staff screen shows
     // "already counted" or "reward pending" from these codes.
