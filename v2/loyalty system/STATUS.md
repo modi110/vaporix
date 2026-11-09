@@ -206,20 +206,54 @@ design from the wallet blockers; the accounts and phones below still apply.
 | Deploy to Vercel | the owner's go-ahead |
 | Deleting the test rows | the client demo happening first |
 | Supabase paid tier | the client saying yes |
-| **Google Wallet** | the owner creating a Google Cloud service account and a Pay & Wallet issuer account — **and owning an Android phone**, see below |
+| **Google Wallet** | built; waits on Google's production approval, the official badge artwork, and a deploy for the image address. See below |
 | **Apple Wallet** | €99/yr Developer Program, and a decision that it is worth it |
 
-### Google Wallet needs an Android phone
+### Google Wallet — built, 9 November (local on `loyalty`, not deployed)
 
-There is no Google Wallet app on iPhone — Google withdrew it, and the Android
-app needs Android 9 or later. A laptop can open the save link and park a pass in
-a Google account, which is enough to check the link works, but the pass is only
-visible on Android.
+**Code:**
 
-**With no Android device to test on, do not start Google Wallet.** iPhone
-customers already have the web card, which works.
+- `src/lib/wallet/google.ts` — the Google adapter. No SDK: RS256 JWTs signed with
+  `node:crypto`, calls through `fetch`. Creates the "Add to Google Wallet" link
+  and updates a saved pass. `types.ts` maps a card to the five states
+  (`toPassView`) and defines `WalletAdapter`; `sync.ts` pushes the new state.
+- `src/app/api/wallet/google/route.ts` — `/api/wallet/google?token=<qr_token>`
+  redirects to Google's save page.
+- `scan` and `redeem` routes call `syncWallets` inside `after()`, once the
+  database write has committed. A wallet failure is logged and never fails a visit
+  or a redemption.
+- The Google badge in `WalletButtons.tsx` is a real link only when the credentials
+  are configured; otherwise it stays a picture.
+- `scripts/google-wallet-setup.mjs` — creates the loyalty class, or updates it with
+  PUT (so removed fields really go away). It reads
+  `wallet-design/google/loyalty-class.json`, so the design hand-off is the source.
 
-Full step-by-step setup in `wallets-and-admin.md`.
+**Design (v2 hand-off):** no `wideProgramLogo` (it would replace the round logo and
+"VAPORIX" on Android-style layouts, which the web also uses now); program name
+"Tarjeta de fidelidad"; hero images drawn for the slot below the QR code. Assets
+are in `public/wallet/google/`.
+
+**Configuration** (`.env.local`; in production, Vercel env vars):
+`GOOGLE_WALLET_ISSUER_ID`, `GOOGLE_WALLET_KEY_FILE` (path to the service-account
+JSON, kept outside the repo and OneDrive) or `GOOGLE_WALLET_KEY_JSON` in
+production, and optionally `GOOGLE_WALLET_ASSET_BASE_URL` (defaults to
+`<site>/wallet/google`).
+
+**Push the class to Google:**
+`node --env-file=.env.local scripts/google-wallet-setup.mjs`
+Google fetches the images itself, so `GOOGLE_WALLET_ASSET_BASE_URL` must be a
+public HTTPS address (a tunnel while testing, the live site later).
+
+**Tested:** the save link opened on a laptop and the saved pass showed name, card
+number, QR, rows and the gauge. **Not tested yet:** the pass updating after a scan
+and after a redemption, the 4/4 notification message (sent with a blank body, which
+Google may reject), an Android phone, and the new v2 design on a pass.
+
+**Still open:** Google's production approval (until then the pass says
+"[TEST ONLY]" and only test accounts can save it); the official Google badge
+artwork; deploying so the images have a permanent address.
+
+Setup history and the plan are in `wallets-and-admin.md`.
 
 ---
 
@@ -234,5 +268,6 @@ Full step-by-step setup in `wallets-and-admin.md`.
    - add a Vercel Firewall rate-limit rule on `POST /api/staff/login` and on
      `POST` to `/es/fidelidad` and `/en/loyalty` (signup has no bot check of
      its own)
-4. Google Wallet, if there is an Android phone to test on.
+4. Google Wallet: test the update after a scan and a redemption, then ask Google
+   for production access.
 5. Apple Wallet, only if the client asks and accepts the yearly cost.

@@ -19,7 +19,7 @@ The wallets themselves are still blocked on accounts (see `../STATUS.md`).
 | QR code + number under it | Wallet draws it | Apple `barcodes[0]`, Google `barcode`. Value = the bare `qr_token` (exactly what the web card's QR holds, so the existing scanner reads it), text = the 7-digit `card_number` |
 | Customer name | Wallet shows our text | Apple field `socio`, Google `textModulesData['socio']` (+ `accountName`) |
 | Washes count, "1 más", reward | Wallet shows our text | the fields in the state table below |
-| Logo | **We supply the image** | Apple `logo.png`, Google `program-logo.png` / `wide-program-logo.png` |
+| Logo | **We supply the image** | Apple `logo.png`, Google `program-logo.png` |
 | "VAPORIX" next to the logo | Wallet shows our text | Apple `logoText`, Google `issuerName` |
 | Gauge artwork | **We supply the image, one per state** | Apple `strip_N.png`, Google `hero_N.png` |
 
@@ -68,7 +68,7 @@ back to "5º lavado gratis", never "Canjeado".
 | `icon.png`, `@2x`, `@3x` | 38 × 38 pt (38 / 76 / 114 px) | Required on every pass. Square, no rounded corners: the system rounds them |
 | `logo.png`, `@2x`, `@3x` | 50 × 50 pt (50 / 100 / 150 px) | Round VRX mark, transparent outside the circle. Top-left corner |
 | `strip_N.png`, `@2x`, `@3x` | 375 × 144 pt (375 / 750 / 1125 px) | **Rename to `strip.png` / `strip@2x.png` / `strip@3x.png`** inside the pass for state N |
-| `pass.json` | — | Template, shown at state 3. `CAPITALS_LIKE_THIS` are values the server fills in: `QR_TOKEN` and `CARD_NUMBER` come from the card row |
+| `pass.json` | — | Template, shown at state 3. `CAPITALS_LIKE_THIS` are values the server fills in |
 
 Colours: background `rgb(0, 95, 211)`, values `rgb(255, 255, 255)`, labels
 `rgb(220, 232, 248)`.
@@ -86,8 +86,7 @@ is built.
 | File | Size | Notes |
 |---|---|---|
 | `program-logo.png` | 660 × 660 px | Full square, white, **not pre-cut into a circle**. Google masks it; the mark sits inside the 15% safe margin |
-| `wide-program-logo.png` | 1280 × 400 px | Transparent, white VRX. Replaces logo + "VAPORIX" on Android |
-| `hero_N.png` | 1032 × 812 px | Transparent background, so the card's `#005FD3` shows through. 20dp clear at top and bottom. Set per customer in `object.heroImage` |
+| `hero_N.png` | 1032 × 812 px | Transparent background, so the card's `#005FD3` shows through. 20dp clear at top and bottom. Set per customer in `object.heroImage`. Drawn for the Android position: **below the QR code** (the barcode section's bottom slot) |
 | `loyalty-class.json` | — | Created once. Two card rows: Lavados / Hasta lavado gratis, then Socio / Premio |
 | `loyalty-object.example.json` | — | One per customer, shown at state 3 |
 
@@ -108,6 +107,14 @@ is built.
   image near the barcode.
 
 ---
+
+## Google layout: design for Android
+
+Google's template page shows two layouts. The Android one (`…android_expressive_passes_NewUX`) is also what the web shows today; the "Web" diagrams are the old design (`…OldUX`). Tested on 9 November: the pass renders the Android way on a computer too.
+
+- **No `wideProgramLogo`.** When it is set, Android replaces the round logo and "VAPORIX" with the wide image. Removed on purpose, so the header is round logo + VAPORIX + program name, like Apple.
+- **The hero image sits below the QR code**, in the barcode section's bottom slot, not between the rows. The gauge images are drawn large and centred for that spot.
+- **"[TEST ONLY]"** under the header is added by Google while the issuer is in demo mode. It disappears with production access.
 
 ## How the pass ties to the existing card
 
