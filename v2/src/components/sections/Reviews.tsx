@@ -42,12 +42,14 @@ export function Reviews() {
     const onScroll = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        const mid = el.scrollLeft + el.clientWidth / 2;
+        // Cards snap to the start edge, so the active one is the card
+        // nearest the rail's left padding.
+        const start = el.scrollLeft + parseFloat(getComputedStyle(el).paddingLeft);
         let nearest = 0;
         let best = Infinity;
         [...el.children].forEach((child, i) => {
           const c = child as HTMLElement;
-          const d = Math.abs(c.offsetLeft + c.clientWidth / 2 - mid);
+          const d = Math.abs(c.offsetLeft - start);
           if (d < best) {
             best = d;
             nearest = i;
@@ -103,13 +105,18 @@ export function Reviews() {
         ref={rail}
         aria-label={t("railLabel")}
         className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain -mt-8 -mb-10 pt-8 pb-12 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        style={{ paddingInline: "max(var(--gutter), calc((100% - 30rem) / 2))" }}
+        // First card lines up with the heading, not centred: no empty run
+        // on the left (owner's choice, 10 November 2026). Same as `Work`.
+        style={{
+          paddingInline: "max(var(--gutter), calc((100% - var(--maxw)) / 2 + var(--gutter)))",
+          scrollPaddingInline: "max(var(--gutter), calc((100% - var(--maxw)) / 2 + var(--gutter)))",
+        }}
         {...dragHandlers}
       >
         {reviews.map((review) => (
           <figure
             key={review.id}
-            className="lift flex w-[min(80vw,25rem)] shrink-0 snap-center flex-col gap-6 rounded-[1.75rem] bg-navy p-7 text-pearl sm:p-8"
+            className="lift flex w-[min(80vw,25rem)] shrink-0 snap-start flex-col gap-6 rounded-[1.75rem] bg-navy p-7 text-pearl sm:p-8"
           >
             <blockquote className="text-[1.0625rem] leading-[1.65] tracking-normal sm:text-[1.1875rem]">
               {review.quote}
@@ -125,7 +132,7 @@ export function Reviews() {
         ))}
       </div>
 
-      {/* Which card is centred. The same indicator the price rail uses. */}
+      {/* Which card is first in view. The same indicator the price rail uses. */}
       <div className="wrap mt-8 flex gap-2.5">
         {reviews.map((review, i) => (
           <span
