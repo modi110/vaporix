@@ -6,9 +6,6 @@ import { useDragRail } from "@/components/ui/useDragRail";
 import { reviews } from "@/content/reviews";
 import { site } from "@/content/site";
 
-/** How long a review holds before the rail moves itself on to the next one. */
-const DWELL_MS = 5600;
-
 /**
  * What customers wrote on the Google listing, on the same drag rail the price
  * list uses — the site already has one carousel idiom and a second one would
@@ -35,14 +32,6 @@ export function Reviews() {
   const rail = useRef<HTMLDivElement>(null);
   const dragHandlers = useDragRail(rail);
   const [active, setActive] = useState(0);
-  const [held, setHeld] = useState(false);
-  /*
-    The same index as `active`, readable without re-subscribing: the advance
-    interval needs to know where the rail is, and depending on the state would
-    tear the timer down and start it again on every scroll frame — the rail
-    would then never sit still long enough to advance.
-  */
-  const activeRef = useRef(0);
 
   // Keep the indicator honest however the rail is scrolled — drag, swipe,
   // keyboard or scrollbar.
@@ -64,7 +53,6 @@ export function Reviews() {
             nearest = i;
           }
         });
-        activeRef.current = nearest;
         setActive(nearest);
       });
     };
@@ -75,32 +63,8 @@ export function Reviews() {
     };
   }, []);
 
-  /**
-   * It moves on by itself, and it stops the moment anyone touches it —
-   * hovering, dragging, or tabbing into it all count. That press is the pause
-   * control, which is why there is no button for one.
-   *
-   * `scrollTo` rather than a transform: the rail is a real scroll container,
-   * so this is the same motion a swipe produces and a swipe mid-animation
-   * interrupts it instead of fighting it.
-   */
-  useEffect(() => {
-    const el = rail.current;
-    if (!el || held) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const id = window.setInterval(() => {
-      const next = (activeRef.current + 1) % reviews.length;
-      const card = el.children[next] as HTMLElement | undefined;
-      if (!card) return;
-      el.scrollTo({
-        left: card.offsetLeft - (el.clientWidth - card.clientWidth) / 2,
-        behavior: "smooth",
-      });
-    }, DWELL_MS);
-
-    return () => window.clearInterval(id);
-  }, [held]);
+  // No auto-advance: the rail moves only when the visitor swipes or drags it
+  // (owner's choice, 10 November 2026).
 
   const rating = site.rating.toLocaleString(locale, {
     minimumFractionDigits: 1,
@@ -141,23 +105,6 @@ export function Reviews() {
         className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain -mt-8 -mb-10 pt-8 pb-12 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         style={{ paddingInline: "max(var(--gutter), calc((100% - 30rem) / 2))" }}
         {...dragHandlers}
-        // Spread after the drag handlers, not before: these wrap the ones that
-        // share a name rather than replacing them.
-        onPointerEnter={() => setHeld(true)}
-        onPointerDown={(e) => {
-          dragHandlers.onPointerDown(e);
-          setHeld(true);
-        }}
-        onPointerUp={() => {
-          dragHandlers.onPointerUp();
-          setHeld(false);
-        }}
-        onPointerLeave={() => {
-          dragHandlers.onPointerLeave();
-          setHeld(false);
-        }}
-        onFocusCapture={() => setHeld(true)}
-        onBlurCapture={() => setHeld(false)}
       >
         {reviews.map((review) => (
           <figure
