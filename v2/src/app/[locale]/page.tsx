@@ -17,9 +17,9 @@ import { CtaBand } from "@/components/sections/CtaBand";
  *
  *   hero          black    the studio's own work, full screen
  *   highlights    navy     four things every wash includes
- *   prices        marble   three sizes on a drag rail
  *   loyalty       navy     the card, stamping itself full, rising over the
- *                          edge into the prices above
+ *                          edge into the band above
+ *   prices        marble   three sizes on a drag rail
  *   work          white    photographs, large, on a light ground
  *   reviews       white    what customers wrote on Google, on a drag rail
  *   more services navy     the workshop's other jobs, and a link to them
@@ -39,8 +39,8 @@ export default async function HomePage({
     <>
       <Hero />
       <Highlights />
-      <Prices />
       <LoyaltyBand />
+      <Prices />
       <Work />
       <Reviews />
       <MoreServices />

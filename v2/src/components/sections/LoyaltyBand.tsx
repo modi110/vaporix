@@ -8,17 +8,13 @@ import { DemoPass } from "@/components/loyalty/DemoPass";
 import { renderQrSvg } from "@/lib/loyalty/qr";
 
 /**
- * The loyalty card on the home page, right after the prices — the moment a
- * visitor has just read what a wash costs is the moment "the fifth is free"
- * means something.
+ * The loyalty card on the home page, after the highlights and before the
+ * prices (owner's choice, 10 November 2026).
  *
- * The card is the picture, and it does not stay inside the band: on a wide
- * screen it rises over the top edge into the white above, so the home page
- * stops reading as a stack of same-width boxes. It stamps itself full when
- * scrolled to, once.
- *
- * Blue with grain between two white sections (prices, the work), which is
- * also the break that run of white needed.
+ * The card used to rise over the top edge into the white prices band above.
+ * The band above is now the navy highlights, where it would cover their text,
+ * so the card stays inside its own band. It stamps itself full when scrolled
+ * to, once.
  */
 export async function LoyaltyBand() {
   const locale = (await getLocale()) as Locale;
@@ -28,7 +24,7 @@ export async function LoyaltyBand() {
   return (
     <section className="band-grain section relative text-pearl">
       <div className="wrap grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-        <div className="relative justify-self-center lg:-mt-[calc(var(--pad-section)+10.5rem)]">
+        <div className="relative justify-self-center">
           <DemoPass
             qrSvg={qrSvg}
             className="w-[min(72vw,300px)] rotate-[4deg] lg:w-[330px]"
