@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { absoluteUrl } from "@/i18n/urls";
 import { ButtonLink } from "@/components/ui/Button";
+import { ComingSoonStamp } from "@/components/loyalty/ComingSoonStamp";
 import { DemoPass } from "@/components/loyalty/DemoPass";
 import { renderQrSvg } from "@/lib/loyalty/qr";
 
@@ -27,10 +28,14 @@ export async function LoyaltyBand() {
   return (
     <section className="band-grain section relative text-pearl">
       <div className="wrap grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-        <div className="justify-self-center lg:-mt-[calc(var(--pad-section)+10.5rem)]">
+        <div className="relative justify-self-center lg:-mt-[calc(var(--pad-section)+10.5rem)]">
           <DemoPass
             qrSvg={qrSvg}
             className="w-[min(72vw,300px)] rotate-[4deg] lg:w-[330px]"
+          />
+          <ComingSoonStamp
+            label={t("soon")}
+            className="absolute -left-4 top-[38%] bg-giallo-deep/85 shadow-[0_10px_24px_rgba(0,25,70,0.35)] sm:-left-8"
           />
         </div>
 

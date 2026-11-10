@@ -203,12 +203,15 @@
       "name": "Your name",
       "reward": "free wash",
       "alt": "Sample Vaporix loyalty card filling with stamps up to the free wash."
-    }
+    },
+    "soon": "Coming soon",
+    "soonForm": "Very soon you'll be able to create your card here."
   },
   "loyaltyBand": {
     "title": "Join and enjoy free washes!",
     "body": "Your loyalty card lives on your phone: every wash earns a stamp, and the fourth is free.",
-    "cta": "Get my card"
+    "cta": "Get my card",
+    "soon": "Coming soon"
   },
   "card": {
     "washesLabel": "Your washes",

@@ -203,12 +203,15 @@
       "name": "Tu nombre",
       "reward": "lavado gratis",
       "alt": "Ejemplo de tarjeta de fidelidad Vaporix llenándose de sellos hasta el lavado gratis."
-    }
+    },
+    "soon": "Próximamente",
+    "soonForm": "Muy pronto podrás crear aquí tu tarjeta."
   },
   "loyaltyBand": {
     "title": "¡Únete y disfruta de lavados gratis!",
     "body": "Tu tarjeta de fidelidad va en el móvil: cada lavado suma un sello y el cuarto es gratis.",
-    "cta": "Quiero mi tarjeta"
+    "cta": "Quiero mi tarjeta",
+    "soon": "Próximamente"
   },
   "card": {
     "washesLabel": "Tus lavados",

@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 import { absoluteUrl, alternatesFor } from "@/i18n/urls";
 import { ButtonAnchor } from "@/components/ui/Button";
+import { ComingSoonStamp } from "@/components/loyalty/ComingSoonStamp";
 import { DemoPass } from "@/components/loyalty/DemoPass";
 import { JoinForm } from "@/components/loyalty/JoinForm";
 import { renderQrSvg } from "@/lib/loyalty/qr";
@@ -152,10 +153,14 @@ export default async function LoyaltyPage({
             </div>
           </div>
 
-          <div className="-mb-44 justify-self-center lg:-mb-40 lg:self-end lg:justify-self-end">
+          <div className="relative -mb-44 justify-self-center lg:-mb-40 lg:self-end lg:justify-self-end">
             <DemoPass
               qrSvg={qrSvg}
               className="w-[min(76vw,340px)] -rotate-[5deg] lg:w-[360px]"
+            />
+            <ComingSoonStamp
+              label={t("soon")}
+              className="absolute -left-4 top-[38%] bg-giallo-deep/85 shadow-[0_10px_24px_rgba(0,25,70,0.35)] sm:-left-8"
             />
           </div>
         </div>
@@ -224,8 +229,19 @@ export default async function LoyaltyPage({
               />
             </div>
 
-            <div className="rounded-b-3xl bg-pearl px-6 py-10 sm:px-10 lg:rounded-r-3xl lg:rounded-bl-none lg:px-12 lg:py-14">
-              <JoinForm />
+            <div className="relative rounded-b-3xl bg-pearl px-6 py-10 sm:px-10 lg:rounded-r-3xl lg:rounded-bl-none lg:px-12 lg:py-14">
+              {/* Signups are not open yet: the form stays visible so visitors
+                  see how little it asks, but it cannot be used. Remove the
+                  overlay and `inert` to open the programme. */}
+              <div inert aria-hidden="true" className="select-none opacity-40 blur-[1.5px]">
+                <JoinForm />
+              </div>
+              <div className="absolute inset-0 grid place-items-center rounded-b-3xl bg-pearl/45 px-6 lg:rounded-r-3xl lg:rounded-bl-none">
+                <div className="grid justify-items-center gap-5 text-center">
+                  <ComingSoonStamp label={t("soon")} tone="navy" className="bg-pearl" />
+                  <p className="t-sub max-w-[26ch] text-giallo-deep">{t("soonForm")}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
