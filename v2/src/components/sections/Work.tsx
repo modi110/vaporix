@@ -15,8 +15,9 @@ import { shots } from "@/content/gallery";
  * is the same portrait crop so the row reads as a set, and the next one
  * peeks in from the edge to say there is more.
  *
- * The light ground is doing real work too. v1 put these same photographs on
- * black, where they disappeared into it.
+ * Blue band: after the hero the home page alternates white and blue (owner's
+ * choice, 10 November 2026). v1 put these photographs on black, where they
+ * disappeared; the brand blue still lets them stand out.
  */
 export function Work() {
   const t = useTranslations("work");
@@ -24,7 +25,7 @@ export function Work() {
   const dragHandlers = useDragRail(ref);
 
   return (
-    <section className="section bg-pearl text-ink">
+    <section className="section bg-navy text-pearl">
       <div className="wrap">
         <header className="mb-10">
           <h2 className="t-display">{t("title")}</h2>

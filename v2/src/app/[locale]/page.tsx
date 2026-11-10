@@ -16,11 +16,11 @@ import { CtaBand } from "@/components/sections/CtaBand";
  * radii to lean on.
  *
  *   hero          black    the studio's own work, full screen
- *   highlights    navy     four things every wash includes
+ *   highlights    white    four things every wash includes
  *   loyalty       navy     the card, stamping itself full, rising over the
  *                          edge into the band above
  *   prices        marble   three sizes on a drag rail
- *   work          white    photographs, large, on a light ground
+ *   work          navy     photographs, large, on the brand blue
  *   reviews       white    what customers wrote on Google, on a drag rail
  *   more services navy     the workshop's other jobs, and a link to them
  *   studio        marble   one quiet frame

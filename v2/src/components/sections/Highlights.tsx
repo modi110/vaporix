@@ -20,9 +20,9 @@ const items: { key: string; icon: HighlightIconId }[] = [
  * so the slot went to the fact a visitor cannot get anywhere else on this
  * screen: that Sunday is a working day here.
  *
- * Blue band, white type. It is the first thing under the hero photograph, and
- * on white it read as preamble; on the accent it reads as the site's own
- * voice, and it hands the page back to white at the price list.
+ * White band, blue type: after the hero the home page alternates white and
+ * blue section by section (owner's choice, 10 November 2026), and this is the
+ * first white one.
  *
  * One row of four on a wide screen, two by two on a phone — all four fit in
  * one glance instead of a column you have to scroll through.
@@ -31,7 +31,7 @@ export function Highlights() {
   const t = useTranslations("highlights");
 
   return (
-    <section id="highlights" className="section bg-navy text-pearl">
+    <section id="highlights" className="section bg-pearl text-ink">
       <div className="wrap">
         <header className="mb-12 max-w-[44ch]">
           <h2 className="t-display">{t("title")}</h2>
@@ -42,7 +42,7 @@ export function Highlights() {
             <div key={key} className="lift">
               <HighlightIcon id={icon} className="mb-4 size-8 sm:mb-5 sm:size-10" />
               <h3 className="t-heading mb-2">{t(`items.${key}.title`)}</h3>
-              <p className="t-body text-muted-invert">{t(`items.${key}.body`)}</p>
+              <p className="t-body text-muted">{t(`items.${key}.body`)}</p>
             </div>
           ))}
         </div>
