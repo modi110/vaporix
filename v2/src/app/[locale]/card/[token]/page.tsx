@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
-import { LoyaltyPass } from "@/components/loyalty/LoyaltyPass";
+import { LoyaltyPass, dialCopy } from "@/components/loyalty/LoyaltyPass";
 import { WalletButtons } from "@/components/loyalty/WalletButtons";
 import { getCardState, isCelebrating } from "@/lib/loyalty/service";
 import { renderQrSvg } from "@/lib/loyalty/qr";
@@ -121,6 +121,7 @@ export default async function CardPage({
           washesLabel: t("washesLabel"),
           status,
           customerLabel: t("customerLabel"),
+          dial: dialCopy(t, state, celebrating),
         }}
       />
     </div>

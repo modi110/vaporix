@@ -228,7 +228,12 @@
     "inactive": "This card is no longer active. Please ask us in the shop.",
     "notFoundTitle": "Card not found",
     "notFoundBody": "This link does not match any card. Check the link or sign up again.",
-    "joinAgain": "Sign up"
+    "joinAgain": "Sign up",
+    "dialMore": "{count} more",
+    "dialMoreLabel": "To your free wash",
+    "dialFree": "Free",
+    "dialFreeLabel": "Your next wash is free!",
+    "dialDoneLabel": "Free wash redeemed"
   },
   "reviews": {
     "title": "What customers say.",

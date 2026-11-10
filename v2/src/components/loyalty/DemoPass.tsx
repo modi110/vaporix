@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
-import { LoyaltyPass } from "./LoyaltyPass";
+import { LoyaltyPass, dialCopy } from "./LoyaltyPass";
 
 /** Paid washes on the sample, matching the live programme's three. */
 const TARGET = 3;
@@ -106,6 +106,11 @@ export function DemoPass({
           washesLabel: t("washesLabel"),
           status,
           customerLabel: t("customerLabel"),
+          dial: dialCopy(t, {
+            visits,
+            visitsRequired: TARGET,
+            rewardAvailable: full,
+          }),
         }}
       />
     </div>

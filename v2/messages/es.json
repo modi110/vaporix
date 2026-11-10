@@ -228,7 +228,12 @@
     "inactive": "Esta tarjeta ya no está activa. Pregunta en el taller.",
     "notFoundTitle": "Tarjeta no encontrada",
     "notFoundBody": "Este enlace no corresponde a ninguna tarjeta. Comprueba el enlace o vuelve a apuntarte.",
-    "joinAgain": "Apuntarme"
+    "joinAgain": "Apuntarme",
+    "dialMore": "{count} más",
+    "dialMoreLabel": "Para tu lavado gratis",
+    "dialFree": "Gratis",
+    "dialFreeLabel": "¡Tu próximo lavado es gratis!",
+    "dialDoneLabel": "Lavado gratis canjeado"
   },
   "reviews": {
     "title": "Lo que dicen los clientes.",

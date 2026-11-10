@@ -6,6 +6,25 @@ import "./loyalty-pass.css";
 const GAUGE_MAX = 3;
 
 /**
+ * The words on the left of the dial, for a given state. `t` is the "card"
+ * namespace, from `useTranslations` or `getTranslations` alike.
+ */
+export function dialCopy(
+  t: (key: string, values?: Record<string, number>) => string,
+  state: { visits: number; visitsRequired: number; rewardAvailable: boolean },
+  celebrating = false,
+): { value: string; label: string } {
+  if (celebrating) return { value: t("dialFree"), label: t("dialDoneLabel") };
+  if (state.rewardAvailable || state.visits >= state.visitsRequired) {
+    return { value: t("dialFree"), label: t("dialFreeLabel") };
+  }
+  return {
+    value: t("dialMore", { count: state.visitsRequired - state.visits }),
+    label: t("dialMoreLabel"),
+  };
+}
+
+/**
  * The customer's loyalty card: the "Redline Gauge" design, the same artwork
  * as the Apple and Google Wallet passes (`loyalty system/wallet-design/`).
  *
@@ -29,6 +48,13 @@ export function LoyaltyPass({
     /** Already localized, with the emphasis markup resolved by the caller. */
     status: React.ReactNode;
     customerLabel: string;
+    /**
+     * The big line on the empty left of the dial, as on the wallet passes:
+     * "2 más · Para tu lavado gratis", or "Gratis · ¡Tu próximo lavado es
+     * gratis!" once the reward is unlocked. Built by the caller with
+     * `dialCopy`.
+     */
+    dial?: { value: string; label: string };
   };
   /**
    * The free wash has just been given. The card is already back to zero in
@@ -66,17 +92,25 @@ export function LoyaltyPass({
           </div>
         </header>
 
-        {/* `key` restarts the fade when a wash is counted. */}
-        {/* eslint-disable-next-line @next/next/no-img-element -- the dial is a fixed pair of files per count */}
-        <img
-          key={gauge}
-          className="pass__gauge"
-          src={`${base}.png`}
-          srcSet={`${base}.png 1x, ${base}@3x.png 1.5x`}
-          alt=""
-          width={750}
-          height={288}
-        />
+        <div className="pass__dial">
+          {/* `key` restarts the fade when a wash is counted. */}
+          {/* eslint-disable-next-line @next/next/no-img-element -- the dial is a fixed pair of files per count */}
+          <img
+            key={gauge}
+            className="pass__gauge"
+            src={`${base}.png`}
+            srcSet={`${base}.png 1x, ${base}@3x.png 1.5x`}
+            alt=""
+            width={750}
+            height={288}
+          />
+          {copy.dial ? (
+            <p className="pass__dialtext">
+              <span className="pass__dialvalue">{copy.dial.value}</span>
+              <span className="pass__diallabel">{copy.dial.label}</span>
+            </p>
+          ) : null}
+        </div>
 
         <div className="pass__body">
           <Name className="pass__name">{state.customerName}</Name>

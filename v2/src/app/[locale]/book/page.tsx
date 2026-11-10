@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { routing, type Locale } from "@/i18n/routing";
 import { alternatesFor } from "@/i18n/urls";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { vehicles } from "@/content/vehicles";
 import { site } from "@/content/site";
 
 export function generateStaticParams() {
@@ -37,17 +36,15 @@ export default async function BookPage({
 
 /**
  * Real scheduling is its own build. Rather than ship a date picker that cannot
- * confirm a slot, this hands over the two channels that do work today — and
- * puts them first, above the prices, because someone who has reached this page
- * has already decided. Making them scroll past a price list to find the phone
- * number would be asking them to decide twice.
+ * confirm a slot, this hands over the two channels that do work today. No
+ * price list here (owner's choice, 10 November 2026): someone who has reached
+ * this page has already decided, and the prices live on the home page.
  *
  * Both actions are full-width and oversized: on a phone these are the only two
  * things on the page that matter, and a thumb should not have to aim.
  */
 function Book() {
   const p = useTranslations("pages.book");
-  const v = useTranslations("vehicles");
 
   return (
     <>
@@ -80,34 +77,6 @@ function Book() {
               </span>
             </a>
           </div>
-
-          <dl className="grid gap-0 border-t border-hairline">
-            {vehicles.map((vehicle) => (
-              <div
-                key={vehicle.id}
-                className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-hairline py-6"
-              >
-                <dt className="t-heading">{v(`items.${vehicle.id}.name`)}</dt>
-                <dd className="m-0 flex items-baseline gap-2.5">
-                  <span className="text-[clamp(1.25rem,2.6vw,1.75rem)] leading-none text-muted line-through decoration-2 tabular-nums">
-                    {vehicle.price} €
-                  </span>
-                  <b className="text-[clamp(2.75rem,7vw,5.5rem)] font-medium leading-none tabular-nums">
-                    {vehicle.salePrice} €
-                  </b>
-                </dd>
-                {/* Full-basis row so the badge always sits on its own line,
-                    whatever the name's length. A <p> here would be invalid
-                    inside a <dl> row: browsers reparent it, React does not,
-                    and the mismatch can take hydration down for the page. */}
-                <dd className="m-0 basis-full">
-                  <span className="t-caption inline-block bg-giallo px-1.5 py-0.5 text-pearl">
-                    {v("discount")}
-                  </span>
-                </dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
     </>

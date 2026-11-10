@@ -106,6 +106,11 @@ export default async function DevCardPage() {
               washesLabel: "Tus lavados",
               status: status(visits, celebrating),
               customerLabel: "N.º de cliente",
+              dial: celebrating
+                ? { value: "Gratis", label: "Lavado gratis canjeado" }
+                : visits >= TOTAL
+                  ? { value: "Gratis", label: "¡Tu próximo lavado es gratis!" }
+                  : { value: `${TOTAL - visits} más`, label: "Para tu lavado gratis" },
             }}
           />
         </div>
