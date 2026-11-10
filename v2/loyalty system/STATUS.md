@@ -14,6 +14,14 @@ The three documents in this folder do different jobs:
 
 ---
 
+## Deployed 10 November 2026
+
+`loyalty` merged into `main` and live on vaporix.net (Vercel project `vaporix-v2`).
+The programme is shown as **coming soon**: a stamp on the sample cards and an
+overlay over the join form (`ComingSoonStamp.tsx`, `loyalty/page.tsx`). Vercel has
+**no environment variables yet**, so `/staff`, `/admin`, card pages and wallet links
+fail live until they are added.
+
 ## In one line
 
 **The programme works end to end and has been tested on a real phone. Nothing
