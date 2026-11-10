@@ -1,6 +1,6 @@
 # Where the loyalty system is
 
-Last updated **14 October 2026**. Update this file when any of it stops being
+Last updated **10 November 2026**. Update this file when any of it stops being
 true — it is the first thing to read in a new session.
 
 The three documents in this folder do different jobs:
@@ -22,10 +22,24 @@ overlay over the join form (`ComingSoonStamp.tsx`, `loyalty/page.tsx`). Vercel h
 **no environment variables yet**, so `/staff`, `/admin`, card pages and wallet links
 fail live until they are added.
 
+**How to deploy from now on:** commit on `loyalty`, ask the owner, then
+fast-forward `main` to `loyalty` and push; Vercel builds `vaporix-v2` from
+`main`. The old `vaporix` Vercel project is set to skip builds (Ignored Build
+Step `exit 0`); ignore its "Canceled" entries.
+
+**To open signups:** in `src/app/[locale]/loyalty/page.tsx` remove the `inert`
+wrapper and the overlay around `<JoinForm />`, and drop the `ComingSoonStamp`
+from that page and `src/components/sections/LoyaltyBand.tsx`.
+
+**Card dial text** (`dialCopy` in `LoyaltyPass.tsx`, strings `card.dial*` in
+`messages/*.json`) is worked out from the count, so it needs no edit when the
+offer changes.
+
 ## In one line
 
-**The programme works end to end and has been tested on a real phone. Nothing
-is deployed.** It waits on the client saying yes.
+**The programme works end to end and is deployed, but shown as coming soon.**
+Signup stays locked until the owner removes the overlay; the staff side needs
+the Vercel env vars first.
 
 > **Still to check by hand, signed in:** the scanner (visit, then redeem on the
 > next scan, with the confirm dialog) and `/admin` (lookup by phone, the
