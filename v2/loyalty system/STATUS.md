@@ -57,15 +57,19 @@ PIN length stays 4–12 digits — the owner's decision.
 
 ## The offer
 
-**Four paid washes, the fifth free.** The card shows four car stamps plus a
-gift slot — five slots, counter reads `2 / 4`.
+**Three paid washes, the fourth free** (changed 10 November 2026, was 4 + 1).
+The card shows three gauge segments plus a gift segment — counter reads `2 / 3`.
+The database change is `supabase/migrations/20261110000000_three_paid_washes.sql`
+(freezes the old target of 4 on cards already mid-cycle). **Applied to the live
+database on 10 November 2026**: 2 test cards that were mid-cycle keep a target of
+4 until their free wash; the other 5 active cards follow the new offer of 3.
 
-`loyalty_config.visits_required = 4` means *washes the customer pays for*. The
+`loyalty_config.visits_required = 3` means *washes the customer pays for*. The
 card draws one more slot than that. Getting this backwards is the mistake the
 build already made once; see `changing-the-offer.md`.
 
 After the free wash is given, the card keeps showing the finished row for
-**three hours**, then resets to `0 / 4`.
+**three hours**, then resets to `0 / 3`.
 
 ---
 

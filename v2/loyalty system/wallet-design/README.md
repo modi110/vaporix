@@ -2,7 +2,8 @@
 
 Final design: **Direction B, Redline Gauge, in Vaporix blue. Spanish only.**
 Approved on the design canvas, 8 November 2026. The canvas boards are
-"FINAL — Apple Wallet · 5 estados · Español" and "FINAL — Google Wallet · 5 estados · Español".
+"FINAL — Apple Wallet · 4 estados · Español" and "FINAL — Google Wallet · 4 estados · Español"
+(updated 10 November 2026 for the 3 + 1 offer; the gauge PNGs here are rendered from those boards).
 
 This folder has every file the two wallets need from design. Nothing here
 contains a customer's data: the QR code, the name and the numbers are pass
@@ -30,30 +31,32 @@ in the hero image as a "Don't".
 
 ---
 
-## The five states
+## The four states
 
-`N` = paid washes on the card. State 5 (free wash redeemed) uses `N = 0`.
+Offer since 10 November 2026: **three paid washes, the fourth free.** The gauge
+has four segments: three for paid washes, the last one the gift.
+
+`N` = paid washes on the card. State 4 (free wash redeemed) uses `N = 0`.
 
 | State | Image | LAVADOS | Primary (Apple) / "Hasta lavado gratis" (Google) | PREMIO (Apple) | Premio (Google) | Message |
 |---|---|---|---|---|---|---|
-| 1 | `strip_1` / `hero_1` | 1/4 | 3 más · PARA TU LAVADO GRATIS | 5º lavado gratis | 5º gratis | — |
-| 2 | `strip_2` / `hero_2` | 2/4 | 2 más · PARA TU LAVADO GRATIS | 5º lavado gratis | 5º gratis | — |
-| 3 | `strip_3` / `hero_3` | 3/4 | 1 más · PARA TU LAVADO GRATIS | 5º lavado gratis | 5º gratis | — |
-| 4 | `strip_4` / `hero_4` | 4/4 | GRATIS · ¡TU PRÓXIMO LAVADO ES GRATIS! | Listo para usar | Listo para usar | ¡Tu próximo lavado es gratis! |
-| 5 | `strip_0` / `hero_0` | 0/4 | 4 más · PARA TU LAVADO GRATIS | 5º lavado gratis | 5º gratis | Lavado gratis canjeado. ¡Gracias! |
+| 1 | `strip_1` / `hero_1` | 1/3 | 2 más · PARA TU LAVADO GRATIS | 4º lavado gratis | 4º gratis | — |
+| 2 | `strip_2` / `hero_2` | 2/3 | 1 más · PARA TU LAVADO GRATIS | 4º lavado gratis | 4º gratis | — |
+| 3 | `strip_3` / `hero_3` | 3/3 | GRATIS · ¡TU PRÓXIMO LAVADO ES GRATIS! | Listo para usar | Listo para usar | ¡Tu próximo lavado es gratis! |
+| 4 | `strip_0` / `hero_0` | 0/3 | 3 más · PARA TU LAVADO GRATIS | 4º lavado gratis | 4º gratis | Lavado gratis canjeado. ¡Gracias! |
 
-On Google, state 4 changes the row label too: "Tu próximo lavado" / "¡GRATIS!".
+On Google, state 3 changes the row label too: "Tu próximo lavado" / "¡GRATIS!".
 
-State 5 is the card starting again from zero: the reward field goes straight
-back to "5º lavado gratis", never "Canjeado".
+State 4 is the card starting again from zero: the reward field goes straight
+back to "4º lavado gratis", never "Canjeado".
 
 ### Messages
 
 - **Apple:** put the text in `changeMessage` on the `premio` field, only in the
-  pass sent for state 4 and state 5. States 1–3 have no `changeMessage`. Apple
+  pass sent for state 3 and state 4. States 1–2 have no `changeMessage`. Apple
   says to use change messages "only for updates to time-critical information"
   and "never for marketing", which the free-wash unlock fits.
-- **Google:** PATCH the object, and for states 4 and 5 add a message
+- **Google:** PATCH the object, and for states 3 and 4 add a message
   (`addmessage`) with `TEXT_AND_NOTIFY`. Notification titles should be under 29
   characters, so the title is the message itself, without extra text.
 
@@ -68,13 +71,13 @@ back to "5º lavado gratis", never "Canjeado".
 | `icon.png`, `@2x`, `@3x` | 38 × 38 pt (38 / 76 / 114 px) | Required on every pass. Square, no rounded corners: the system rounds them |
 | `logo.png`, `@2x`, `@3x` | 50 × 50 pt (50 / 100 / 150 px) | Round VRX mark, transparent outside the circle. Top-left corner |
 | `strip_N.png`, `@2x`, `@3x` | 375 × 144 pt (375 / 750 / 1125 px) | **Rename to `strip.png` / `strip@2x.png` / `strip@3x.png`** inside the pass for state N |
-| `pass.json` | — | Template, shown at state 3. `CAPITALS_LIKE_THIS` are values the server fills in |
+| `pass.json` | — | Template, shown at state 2. `CAPITALS_LIKE_THIS` are values the server fills in |
 
 Colours: background `rgb(0, 95, 211)`, values `rgb(255, 255, 255)`, labels
 `rgb(220, 232, 248)`.
 
 Gauge (in the images): filled washes deep blue `#003474`, still to fill white,
-and at 4/4 the reward segment turns gold `#E8C547` with a gold glow and a white
+and at 3/3 the reward segment turns gold `#E8C547` with a gold glow and a white
 sparkle.
 
 ### `google/` — served from `https://vaporix.net/wallet/google/`
@@ -88,7 +91,7 @@ is built.
 | `program-logo.png` | 660 × 660 px | Full square, white, **not pre-cut into a circle**. Google masks it; the mark sits inside the 15% safe margin |
 | `hero_N.png` | 1032 × 812 px | Transparent background, so the card's `#005FD3` shows through. 20dp clear at top and bottom. Set per customer in `object.heroImage`. Drawn for the Android position: **below the QR code** (the barcode section's bottom slot) |
 | `loyalty-class.json` | — | Created once. Two card rows: Lavados / Hasta lavado gratis, then Socio / Premio |
-| `loyalty-object.example.json` | — | One per customer, shown at state 3 |
+| `loyalty-object.example.json` | — | One per customer, shown at state 2 |
 
 ---
 

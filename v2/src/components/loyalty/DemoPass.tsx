@@ -5,8 +5,8 @@ import { useTranslations } from "next-intl";
 
 import { LoyaltyPass } from "./LoyaltyPass";
 
-/** Paid washes on the sample, matching the live programme's four. */
-const TARGET = 4;
+/** Paid washes on the sample, matching the live programme's three. */
+const TARGET = 3;
 const STEP_MS = 520;
 
 /**

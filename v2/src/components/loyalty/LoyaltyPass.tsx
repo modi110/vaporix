@@ -2,8 +2,8 @@ import { cardFont } from "@/lib/fonts";
 import type { LoyaltyState } from "@/lib/loyalty/types";
 import "./loyalty-pass.css";
 
-/** The gauge artwork exists for 0 to 4 paid washes, one image per count. */
-const GAUGE_MAX = 4;
+/** The gauge artwork exists for 0 to 3 paid washes, one image per count. */
+const GAUGE_MAX = 3;
 
 /**
  * The customer's loyalty card: the "Redline Gauge" design, the same artwork
@@ -44,7 +44,7 @@ export function LoyaltyPass({
   nameTag?: "h1" | "p";
 }) {
   const filled = celebrating ? state.visitsRequired : state.visits;
-  // The artwork stops at four washes. A longer programme would need more dial
+  // The artwork stops at three washes. A longer programme would need more dial
   // images; until they exist the dial stays at its last picture.
   const gauge = Math.min(Math.max(filled, 0), GAUGE_MAX);
   const base = `/images/card/gauge/strip-${gauge}`;

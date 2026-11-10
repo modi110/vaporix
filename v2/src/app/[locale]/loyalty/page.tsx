@@ -35,7 +35,7 @@ export async function generateMetadata({
 const STEPS = [
   { key: "join", icon: "wallet" },
   { key: "show", icon: "/images/card/gauge/strip-2.png" },
-  { key: "free", icon: "/images/card/gauge/strip-4.png" },
+  { key: "free", icon: "/images/card/gauge/strip-3.png" },
 ] as const;
 
 /** The step's picture, on a disc of the card's blue. */

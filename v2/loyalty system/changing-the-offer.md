@@ -7,10 +7,11 @@ They behave very differently, and that difference is the whole point of this pag
 
 `loyalty_config.visits_required` is **the washes the customer pays for**, not the
 washes on the card. The card draws that many car stamps **plus one gift slot**, so
-the current value of `4` reads as "five washes, the fifth free".
+the current value of `3` reads as "four washes, the fourth free".
 
 | `visits_required` | The offer | The card |
 |---|---|---|
+| 3 | four washes, the fourth free (**current**, since 10 Nov 2026) | 3 segments + gift, counter `2 / 3` |
 | 4 | five washes, the fifth free | 4 cars + gift, counter `2 / 4` |
 | 5 | six washes, the sixth free | 5 cars + gift, counter `2 / 5` |
 
@@ -142,12 +143,15 @@ The sample card on both pages also counts to a fixed four (`TARGET` in
 
 | File | Key | Current text (es) |
 |---|---|---|
-| `messages/*.json` | `loyalty.lede` | Cada lavado suma un sello y el quinto es gratis… |
-| `messages/*.json` | `loyalty.steps.show.body` | …Cuatro lavados, cuatro sellos. |
-| `messages/*.json` | `loyalty.steps.free.title` | El quinto va por nuestra cuenta |
-| `messages/*.json` | `loyaltyBand.body` | …cada lavado suma un sello y el quinto es gratis. |
-| `messages/*.json` | `meta.loyalty.description` | …cada lavado suma un sello y el quinto es gratis. |
-| `src/components/loyalty/DemoPass.tsx` | `TARGET` | 4 |
+| `messages/*.json` | `loyalty.lede` | Cada lavado suma un sello y el cuarto es gratis… |
+| `messages/*.json` | `loyalty.steps.show.body` | …Tres lavados, tres sellos. |
+| `messages/*.json` | `loyalty.steps.free.title` | El cuarto va por nuestra cuenta |
+| `messages/*.json` | `loyaltyBand.body` | …cada lavado suma un sello y el cuarto es gratis. |
+| `messages/*.json` | `meta.loyalty.description` | …cada lavado suma un sello y el cuarto es gratis. |
+| `src/components/loyalty/DemoPass.tsx` | `TARGET` | 3 |
+| `src/components/loyalty/LoyaltyPass.tsx` | `GAUGE_MAX` | 3 (one gauge picture per count; a different count needs new artwork from the design canvas) |
+| `src/lib/wallet/types.ts` | gauge range, reward text | 0–3, "4º gratis" |
+| `loyalty system/wallet-design/` | gauge PNGs, `pass.json`, Google JSON | drawn for 3 + 1 |
 
 **Two more that go stale when the *reward* changes, not the number.** These say
 "free" in so many words, because "tu próximo lavado es Lavado GRATIS" is not a

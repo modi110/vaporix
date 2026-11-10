@@ -13,7 +13,7 @@
   "authenticationToken": "PER_PASS_SECRET_AT_LEAST_16_CHARS",
   "storeCard": {
     "headerFields": [
-      { "key": "lavados", "label": "LAVADOS", "value": "3/4" }
+      { "key": "lavados", "label": "LAVADOS", "value": "2/3" }
     ],
     "primaryFields": [
       { "key": "progreso", "label": "PARA TU LAVADO GRATIS", "value": "1 más" }
@@ -22,10 +22,10 @@
       { "key": "socio", "label": "SOCIO", "value": "CUSTOMER_NAME" }
     ],
     "auxiliaryFields": [
-      { "key": "premio", "label": "PREMIO", "value": "5º lavado gratis" }
+      { "key": "premio", "label": "PREMIO", "value": "4º lavado gratis" }
     ],
     "backFields": [
-      { "key": "como", "label": "Cómo funciona", "value": "Paga 4 lavados y el 5º es gratis. Enseña este código al personal después de cada lavado." },
+      { "key": "como", "label": "Cómo funciona", "value": "Paga 3 lavados y el 4º es gratis. Enseña este código al personal después de cada lavado." },
       { "key": "numero", "label": "Número de cliente", "value": "CARD_NUMBER" },
       { "key": "web", "label": "Web", "value": "https://vaporix.net" },
       { "key": "contacto", "label": "Contacto", "value": "TELÉFONO · DIRECCIÓN, Buñol (Valencia)" },

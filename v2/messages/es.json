@@ -75,7 +75,7 @@
     },
     "loyalty": {
       "title": "Programa de fidelización — Vaporix",
-      "description": "Únete a la tarjeta de fidelidad de Vaporix en Buñol: cada lavado suma un sello y el quinto es gratis."
+      "description": "Únete a la tarjeta de fidelidad de Vaporix en Buñol: cada lavado suma un sello y el cuarto es gratis."
     }
   },
   "vehicles": {
@@ -158,7 +158,7 @@
   "loyalty": {
     "label": "Fidelidad",
     "title": "Únete. <b>Disfruta de lavados gratis.</b>",
-    "lede": "Cada lavado suma un sello y el quinto es gratis. Apúntate en un minuto con tu nombre y tu teléfono: tu tarjeta va en el móvil, sin app y sin cartón.",
+    "lede": "Cada lavado suma un sello y el cuarto es gratis. Apúntate en un minuto con tu nombre y tu teléfono: tu tarjeta va en el móvil, sin app y sin cartón.",
     "ctaJoin": "Quiero mi tarjeta",
     "ctaHow": "Cómo funciona",
     "howTitle": "Así de fácil.",
@@ -169,10 +169,10 @@
       },
       "show": {
         "title": "Enséñala en cada lavado",
-        "body": "Escaneamos tu código QR y la aguja sube. Cuatro lavados, cuatro sellos."
+        "body": "Escaneamos tu código QR y la aguja sube. Tres lavados, tres sellos."
       },
       "free": {
-        "title": "El quinto va por nuestra cuenta",
+        "title": "El cuarto va por nuestra cuenta",
         "body": "Con la tarjeta llena, tu siguiente lavado es gratis. Y vuelta a empezar."
       }
     },
@@ -207,7 +207,7 @@
   },
   "loyaltyBand": {
     "title": "¡Únete y disfruta de lavados gratis!",
-    "body": "Tu tarjeta de fidelidad va en el móvil: cada lavado suma un sello y el quinto es gratis.",
+    "body": "Tu tarjeta de fidelidad va en el móvil: cada lavado suma un sello y el cuarto es gratis.",
     "cta": "Quiero mi tarjeta"
   },
   "card": {

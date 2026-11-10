@@ -14,7 +14,7 @@ import type { LoyaltyState } from "@/lib/loyalty/types";
 export const dynamic = "force-dynamic";
 
 /** Washes paid for. The card draws this many cars plus the gift slot. */
-const TOTAL = 4;
+const TOTAL = 3;
 const REWARD_ES = "Lavado GRATIS";
 
 /** Mirrors the copy the real card page builds from next-intl. */
