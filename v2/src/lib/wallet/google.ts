@@ -217,6 +217,9 @@ export const googleWallet: WalletAdapter = {
           method: "POST",
           body: JSON.stringify({
             message: {
+              // Google rejects a message without an id; one per send, so a
+              // repeat visit never collides with an earlier message.
+              id: `visit_${Date.now()}`,
               header: view.message.title,
               body: view.message.body,
               messageType: "TEXT_AND_NOTIFY",
@@ -225,7 +228,11 @@ export const googleWallet: WalletAdapter = {
         },
         key,
       );
-      if (!msg.ok) console.error(`Google Wallet message failed (${msg.status})`);
+      if (!msg.ok) {
+        // Google's error text says which field it refused; it holds no secret.
+        const detail = (await msg.text().catch(() => "")).slice(0, 500);
+        console.error(`Google Wallet message failed (${msg.status}): ${detail}`);
+      }
     } catch (error) {
       console.error(
         "Google Wallet update error:",

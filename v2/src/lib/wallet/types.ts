@@ -67,13 +67,14 @@ export function toPassView(
       : justRedeemed
         ? {
             full: "¡Disfruta tu lavado gratis! 🎉 Te esperamos pronto 🚗",
-            title: "¡Disfruta tu lavado gratis! 🎉",
-            body: "Te esperamos pronto 🚗",
+            title: "¡Disfruta tu lavado gratis!",
+            body: "🎉 Te esperamos pronto 🚗",
           }
         : {
             full: "¡Gracias por tu visita! 💙",
             title: "¡Gracias por tu visita! 💙",
-            body: " ",
+            // Google refuses an empty body.
+            body: `Llevas ${state.visits} de ${max} lavados`,
           },
     customerName: state.customerName,
     cardNumber: state.cardNumber,

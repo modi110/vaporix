@@ -277,7 +277,7 @@ Google may reject), an Android phone, and the new v2 design on a pass.
 
 **Notifications (11 November):** every recorded visit now sends a wallet message
 (thank-you, then "¡Enhorabuena! 🎉 Tu próximo lavado es gratis" at 3/3, "¡Disfruta tu lavado gratis! 🎉 Te esperamos pronto 🚗" after the free wash). Google side is coded
-(`toPassView.message` → `addMessage`). Wording is a draft for the owner. Untested
+(`toPassView.message` → `addMessage`). Live on 11 November every message failed with 400 (pass updates fine); fixed locally on `loyalty`: each message now carries an `id`, the thank-you body is "Llevas N de 3 lavados" instead of blank, and Google's error text is logged. Needs deploy + a real scan to confirm. Wording is a draft for the owner. Untested
 on a phone.
 
 ### Apple Wallet — built, 11 November (local on `loyalty`, not deployed, never run against Apple)
