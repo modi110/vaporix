@@ -169,11 +169,12 @@ database.
 > alter table public.loyalty_config alter column visits_required set default 4;
 > ```
 
-### Test data — do not delete yet
+### Test data — deleted 11 November
 
-Three customers, including `Wesam` (card `8729771`), plus the `TEST` staff
-account. **The owner wants these shown to the client first.** Delete after the
-demo. `Mohammad` (admin) stays.
+All test customers (with their cards, visits and rewards) and the `TEST` staff
+account were deleted from the live database on 11 November 2026, at the owner's
+request. Only the `Mohammad` admin staff account remains. The SQL below is kept
+for the next clean-up.
 
 Order matters. `TEST` has visits and redemptions on record, and those keep
 their staff link on purpose (no cascade), so deleting `TEST` first fails.
@@ -217,10 +218,10 @@ design from the wallet blockers; the accounts and phones below still apply.
   branch in `card/[token]/page.tsx`. The same badges sit in the loyalty page hero.
   Until then the web card is the only working card, since the QR is what staff scan.
 - Privacy policy page at `/es/privacidad` and `/en/privacy`, linked from the
-  footer and the signup form. Text lives in `src/content/privacy.ts`. The NIF
-  prints as "[to be completed]" until `site.taxId` in `src/content/site.ts` is
-  set; check `site.legalName` against the registered name too. Have the client
-  read it before launch.
+  footer and the signup form. Text lives in `src/content/privacy.ts`. On 11
+  November the owner chose not to print the NIF: the controller line gives the
+  business name and address only, and `site.taxId` is `null` and unused. Have the
+  client read it before launch.
 
 ---
 
@@ -228,9 +229,8 @@ design from the wallet blockers; the accounts and phones below still apply.
 
 | Item | Waiting on |
 |---|---|
-| The privacy page's NIF/CIF | the client. The page is written and linked; it shows "[to be completed]" in place of the NIF until `site.taxId` is set (Spanish law, RGPD/LOPDGDD, wants the data controller named) |
-| Deploy to Vercel | the owner's go-ahead |
-| Deleting the test rows | the client demo happening first |
+| The privacy page's NIF/CIF | decided against by the owner on 11 November; the page does not print it (note: Spanish law, RGPD/LOPDGDD, normally wants the data controller identified, so the client may want it added back) |
+| Deploy to Vercel | done 11 November (`35a7b96`); loyalty still shown as "Próximamente" |
 | Supabase paid tier | the client saying yes |
 | **Google Wallet** | built; waits on Google's production approval, the official badge artwork, and a deploy for the image address. See below |
 | **Apple Wallet** | built; waits on the €99/yr Developer Program (and the decision that it is worth it), then the setup steps in its section below |
