@@ -34,15 +34,9 @@ export default async function PrivacyPage({
   setRequestLocale(locale);
   const doc = privacy[locale];
 
-  // The NIF is not known yet. Printing a visible marker, not an empty gap,
-  // means the page cannot quietly go live without it.
-  const taxId =
-    site.taxId ?? (locale === "es" ? "[por completar]" : "[to be completed]");
-
   const fill = (text: string) =>
     text
       .replaceAll("{{controller}}", site.legalName)
-      .replaceAll("{{taxId}}", taxId)
       .replaceAll("{{address}}", `${addressLine}, ${site.address.region}`)
       .replaceAll("{{email}}", site.email)
       .replaceAll("{{phone}}", site.phone);

@@ -30,7 +30,7 @@ export const privacy: Record<
       {
         heading: "Quién es el responsable",
         body: [
-          "{{controller}}, con NIF {{taxId}}, domicilio en {{address}}.",
+          "{{controller}}, domicilio en {{address}}.",
           "Para cualquier duda sobre tus datos: {{email}} o el teléfono {{phone}}.",
         ],
       },
@@ -84,7 +84,7 @@ export const privacy: Record<
       {
         heading: "Who is responsible",
         body: [
-          "{{controller}}, tax ID (NIF) {{taxId}}, at {{address}}.",
+          "{{controller}}, at {{address}}.",
           "For any question about your data: {{email}} or {{phone}}.",
         ],
       },
