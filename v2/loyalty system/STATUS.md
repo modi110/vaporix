@@ -14,7 +14,7 @@ The three documents in this folder do different jobs:
 
 ---
 
-## Signup open, 11 November (local on `loyalty`)
+## Signup open, 11 November (deployed, `98f949d`)
 
 Signup form is open on production builds too (no `inert`, no overlay). The
 navy "Próximamente" stamp stays on the form panel's corner and on the sample
