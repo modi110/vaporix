@@ -15,12 +15,20 @@ const nextConfig: NextConfig = {
    *
    * Add whatever address `next dev` prints as "Network" if it changes.
    */
-  allowedDevOrigins: ["100.65.251.29"],
+  allowedDevOrigins: ["100.65.251.29", "*.trycloudflare.com"],
 
   // The repo sits inside OneDrive, where a stray lockfile further up the tree
   // confuses workspace detection. Pin the root to this project.
   turbopack: {
     root: __dirname,
+  },
+  // The Apple pass routes read their images with fs at runtime, which the
+  // build's file tracing cannot see on its own.
+  outputFileTracingIncludes: {
+    "/api/wallet/apple": ["./src/lib/wallet/apple-assets/**/*"],
+    "/api/wallet/apple/v1/passes/[passTypeId]/[serial]": [
+      "./src/lib/wallet/apple-assets/**/*",
+    ],
   },
   images: {
     formats: ["image/avif", "image/webp"],

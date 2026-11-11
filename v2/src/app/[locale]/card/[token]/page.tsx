@@ -7,6 +7,7 @@ import { LoyaltyPass, dialCopy } from "@/components/loyalty/LoyaltyPass";
 import { WalletButtons } from "@/components/loyalty/WalletButtons";
 import { getCardState, isCelebrating } from "@/lib/loyalty/service";
 import { renderQrSvg } from "@/lib/loyalty/qr";
+import { appleConfigured } from "@/lib/wallet/apple";
 import { googleWallet } from "@/lib/wallet/google";
 
 /**
@@ -65,6 +66,11 @@ export default async function CardPage({
           <p className="text-base text-[#2b3a52]">{t("readyBody")}</p>
         </div>
         <WalletButtons
+          appleHref={
+            appleConfigured()
+              ? `/api/wallet/apple?token=${encodeURIComponent(token)}`
+              : undefined
+          }
           googleHref={
             googleWallet.isConfigured()
               ? `/api/wallet/google?token=${encodeURIComponent(token)}`

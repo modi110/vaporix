@@ -18,10 +18,13 @@ import { useTranslations } from "next-intl";
  */
 export function WalletButtons({
   children,
+  appleHref,
   googleHref,
 }: {
   /** Extra items after the two badges, in the same grid. */
   children?: React.ReactNode;
+  /** When set, the Apple badge is a real link that downloads the pass. */
+  appleHref?: string;
   /** When set, the Google badge is a real link that saves the pass. */
   googleHref?: string;
 }) {
@@ -30,7 +33,7 @@ export function WalletButtons({
   return (
     <section aria-label={t("walletTitle")} className="grid w-full max-w-[360px] gap-3">
       <div className="grid gap-3">
-        <Badge small={t("walletAddTo")} big="Apple Wallet">
+        <Badge small={t("walletAddTo")} big="Apple Wallet" href={appleHref}>
           <AppleWalletIcon />
         </Badge>
         <Badge small={t("walletAddTo")} big="Google Wallet" href={googleHref}>

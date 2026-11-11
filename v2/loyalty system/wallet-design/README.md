@@ -40,10 +40,10 @@ has four segments: three for paid washes, the last one the gift.
 
 | State | Image | LAVADOS | Primary (Apple) / "Hasta lavado gratis" (Google) | PREMIO (Apple) | Premio (Google) | Message |
 |---|---|---|---|---|---|---|
-| 1 | `strip_1` / `hero_1` | 1/3 | 2 más · PARA TU LAVADO GRATIS | 4º lavado gratis | 4º gratis | — |
-| 2 | `strip_2` / `hero_2` | 2/3 | 1 más · PARA TU LAVADO GRATIS | 4º lavado gratis | 4º gratis | — |
-| 3 | `strip_3` / `hero_3` | 3/3 | GRATIS · ¡TU PRÓXIMO LAVADO ES GRATIS! | Listo para usar | Listo para usar | ¡Tu próximo lavado es gratis! |
-| 4 | `strip_0` / `hero_0` | 0/3 | 3 más · PARA TU LAVADO GRATIS | 4º lavado gratis | 4º gratis | Lavado gratis canjeado. ¡Gracias! |
+| 1 | `strip_1` / `hero_1` | 1/3 | 2 más · PARA TU LAVADO GRATIS | 4º lavado gratis | 4º gratis | ¡Gracias por tu visita! 💙 |
+| 2 | `strip_2` / `hero_2` | 2/3 | 1 más · PARA TU LAVADO GRATIS | 4º lavado gratis | 4º gratis | ¡Gracias por tu visita! 💙 |
+| 3 | `strip_3` / `hero_3` | 3/3 | GRATIS · ¡TU PRÓXIMO LAVADO ES GRATIS! | Listo para usar | Listo para usar | ¡Enhorabuena! 🎉 Tu próximo lavado es gratis |
+| 4 | `strip_0` / `hero_0` | 0/3 | 3 más · PARA TU LAVADO GRATIS | 4º lavado gratis | 4º gratis | ¡Disfruta tu lavado gratis! 🎉 Te esperamos pronto 🚗 |
 
 On Google, state 3 changes the row label too: "Tu próximo lavado" / "¡GRATIS!".
 
@@ -52,13 +52,26 @@ back to "4º lavado gratis", never "Canjeado".
 
 ### Messages
 
-- **Apple:** put the text in `changeMessage` on the `premio` field, only in the
-  pass sent for state 3 and state 4. States 1–2 have no `changeMessage`. Apple
-  says to use change messages "only for updates to time-critical information"
-  and "never for marketing", which the free-wash unlock fits.
-- **Google:** PATCH the object, and for states 3 and 4 add a message
-  (`addmessage`) with `TEXT_AND_NOTIFY`. Notification titles should be under 29
-  characters, so the title is the message itself, without extra text.
+**Decided 11 November 2026: a notification after every recorded visit**, fired
+when staff confirm the scan. Visits 1–2: thank-you. Visit 3 (3/3): congratulation.
+After the free wash: thank-you. Wording in `toPassView` (`src/lib/wallet/types.ts`)
+is a draft for the owner to approve.
+
+- **Apple:** a notification fires only when a field with a `changeMessage` changes
+  value in the pass the phone downloads. Put the message on **one** field per
+  state, or the phone shows two alerts: `lavados` for states 1–2 and 4 (its value
+  changes on every visit), `premio` for state 3 only (it flips to "Listo para
+  usar"; do not also put one on `lavados` in that pass). Use `"%@"` in the text for
+  the new value, or plain text. Built in `src/lib/wallet/apple.ts` (update service
+  + APNs push; see `STATUS.md`).
+  Apple says change messages are for time-critical updates, "never for marketing":
+  keep them about the visit, not offers.
+- **Google:** PATCH the object, then `addMessage` with `TEXT_AND_NOTIFY` after
+  every recorded visit (built in `google.ts`). Titles should be under 29
+  characters, so Google gets a short title plus a body (`message.title` /
+  `message.body` in `types.ts`); Apple gets the whole text (`message.full`). The
+  table below shows the full text. Google may cap notifications
+  per pass per day: check on a real phone.
 
 ---
 

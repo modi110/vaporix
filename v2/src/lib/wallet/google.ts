@@ -209,23 +209,21 @@ export const googleWallet: WalletAdapter = {
         return;
       }
 
-      if (view.message) {
-        const msg = await api(
-          `/loyaltyObject/${id}/addMessage`,
-          {
-            method: "POST",
-            body: JSON.stringify({
-              message: {
-                header: view.message,
-                body: " ",
-                messageType: "TEXT_AND_NOTIFY",
-              },
-            }),
-          },
-          key,
-        );
-        if (!msg.ok) console.error(`Google Wallet message failed (${msg.status})`);
-      }
+      const msg = await api(
+        `/loyaltyObject/${id}/addMessage`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            message: {
+              header: view.message.title,
+              body: view.message.body,
+              messageType: "TEXT_AND_NOTIFY",
+            },
+          }),
+        },
+        key,
+      );
+      if (!msg.ok) console.error(`Google Wallet message failed (${msg.status})`);
     } catch (error) {
       console.error(
         "Google Wallet update error:",

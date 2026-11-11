@@ -233,7 +233,7 @@ design from the wallet blockers; the accounts and phones below still apply.
 | Deleting the test rows | the client demo happening first |
 | Supabase paid tier | the client saying yes |
 | **Google Wallet** | built; waits on Google's production approval, the official badge artwork, and a deploy for the image address. See below |
-| **Apple Wallet** | €99/yr Developer Program, and a decision that it is worth it |
+| **Apple Wallet** | built; waits on the €99/yr Developer Program (and the decision that it is worth it), then the setup steps in its section below |
 
 ### Google Wallet — built, 9 November (local on `loyalty`, not deployed)
 
@@ -274,6 +274,43 @@ public HTTPS address (a tunnel while testing, the live site later).
 number, QR, rows and the gauge. **Not tested yet:** the pass updating after a scan
 and after a redemption, the 4/4 notification message (sent with a blank body, which
 Google may reject), an Android phone, and the new v2 design on a pass.
+
+**Notifications (11 November):** every recorded visit now sends a wallet message
+(thank-you, then "¡Enhorabuena! 🎉 Tu próximo lavado es gratis" at 3/3, "¡Disfruta tu lavado gratis! 🎉 Te esperamos pronto 🚗" after the free wash). Google side is coded
+(`toPassView.message` → `addMessage`). Wording is a draft for the owner. Untested
+on a phone.
+
+### Apple Wallet — built, 11 November (local on `loyalty`, not deployed, never run against Apple)
+
+Everything is coded; it waits on the Developer account and has only been tested
+with a throwaway certificate (the .pkpass builds, signs and holds the right
+fields for each state; it cannot be installed on a phone without Apple's certs).
+
+- `src/lib/wallet/apple.ts` — builds the signed .pkpass (`passkit-generator`),
+  derives each pass's token (HMAC of the card number), and sends the APNs push
+  (empty payload, HTTP/2, the pass certificate as TLS client cert).
+- `src/lib/wallet/apple-registry.ts` — phone registrations, "what changed", and
+  `currentPass` (the pass is always built from the live card; the free-wash
+  message uses `isCelebrating`, so it needs no extra state).
+- Routes: `/api/wallet/apple?token=` (download, the Add button) and Apple's web
+  service under `/api/wallet/apple/v1/...` (register, unregister, list changed,
+  get pass, log).
+- `sync.ts` pushes Apple after every visit/redeem when configured. The phone then
+  fetches the pass and shows the `changeMessage` of the field that changed: on
+  `lavados` normally, on `premio` at 3/3 (one alert, never two).
+- Migration `20261111000000_apple_wallet_registrations.sql` — **applied to the live
+  database on 11 November 2026** (table `apple_pass_registrations`, RLS on, no policies).
+- Images are copied to `src/lib/wallet/apple-assets/` (the build must ship them,
+  see `outputFileTracingIncludes` in `next.config.ts`). `wallet-design/apple/pass.json`
+  is now only a reference; the real one is built in `apple.ts`.
+
+**To switch it on:** join the Developer Program → register a Pass Type ID
+(`pass.net.vaporix.loyalty` suggested) → create its certificate, export cert + key
+as PEM → download Apple's WWDR (G4) certificate as PEM → set the `APPLE_*` vars
+(see `.env.example`) in Vercel → deploy → test on a real
+iPhone (add pass, scan, watch for the alert). Never change `APPLE_PASS_AUTH_SECRET`
+afterwards. Still to check on a phone: that Apple shows the emoji and the alert on
+the lock screen, and that the "GRATIS" primary field looks right.
 
 **Still open:** Google's production approval (until then the pass says
 "[TEST ONLY]" and only test accounts can save it); the official Google badge

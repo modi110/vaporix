@@ -13,7 +13,7 @@
   "authenticationToken": "PER_PASS_SECRET_AT_LEAST_16_CHARS",
   "storeCard": {
     "headerFields": [
-      { "key": "lavados", "label": "LAVADOS", "value": "2/3" }
+      { "key": "lavados", "label": "LAVADOS", "value": "2/3", "changeMessage": "¡Gracias por tu visita! 💙" }
     ],
     "primaryFields": [
       { "key": "progreso", "label": "PARA TU LAVADO GRATIS", "value": "1 más" }
