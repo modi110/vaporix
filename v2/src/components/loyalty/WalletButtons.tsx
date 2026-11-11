@@ -1,20 +1,16 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 /**
- * "Add to Apple Wallet" and "Add to Google Wallet", as a picture only.
+ * "Add to Apple Wallet" and "Add to Google Wallet".
  *
- * These are not buttons: nothing happens when they are tapped. The passes are
- * not built yet (they need an Apple Developer account and a Google Wallet
- * issuer account, see `loyalty system/STATUS.md`), so for now they only show
- * where the badges will go.
+ * Google's badge is Google's official artwork (`public/images/wallet/`, from
+ * the Wallet brand guidelines download: es-ES and en-GB "wallet-button"). Its
+ * shape, colours and padding must not be altered, and it must not be smaller
+ * than the other buttons, so it is shown at full width, never cropped.
  *
- * The look follows Apple's wallet buttons: black, thin light border, the
- * wallet icon on the left, a small "Add to" over the big product name. The
- * icons are drawn stand-ins, not the platforms' artwork. Apple and Google
- * both forbid making your own version of their badge, so before launch
- * replace each one with the official artwork (Apple's comes with the
- * Developer Program, Google's is a free download) and turn it into a real
- * link to the pass route.
+ * Apple's badge is still a drawn stand-in, a picture only. Apple forbids
+ * making your own version, so swap in the official artwork (it comes with
+ * the Developer Program) before Apple Wallet goes live.
  */
 export function WalletButtons({
   children,
@@ -36,9 +32,7 @@ export function WalletButtons({
         <Badge small={t("walletAddTo")} big="Apple Wallet" href={appleHref}>
           <AppleWalletIcon />
         </Badge>
-        <Badge small={t("walletAddTo")} big="Google Wallet" href={googleHref}>
-          <GoogleWalletIcon />
-        </Badge>
+        <GoogleBadge label={`${t("walletAddTo")} Google Wallet`} href={googleHref} />
         {children}
       </div>
     </section>
@@ -101,15 +95,28 @@ function AppleWalletIcon() {
   );
 }
 
-/** A wallet in Google's four colors. */
-function GoogleWalletIcon() {
-  return (
-    <svg viewBox="0 0 44 36" aria-hidden="true" className="h-9 w-11 shrink-0">
-      <rect x="3" y="3" width="38" height="30" rx="6" fill="#4285f4" />
-      <path d="M3 9a6 6 0 0 1 6-6h12v10H3Z" fill="#ea4335" />
-      <path d="M21 3h14a6 6 0 0 1 6 6v4H21Z" fill="#fbbc05" />
-      <path d="M3 23h38v4a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6Z" fill="#34a853" />
-      <circle cx="32" cy="18" r="4" fill="#fff" />
-    </svg>
+/**
+ * Google's official "Add to Google Wallet" button, untouched. Full width of
+ * the grid keeps it at least as large as the Apple badge beside it.
+ */
+function GoogleBadge({ label, href }: { label: string; href?: string }) {
+  const locale = useLocale();
+  const img = (
+    // A plain <img>: next/image would add nothing to a small static SVG.
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`/images/wallet/google-wallet-add-${locale === "es" ? "es" : "en"}.svg`}
+      alt={label}
+      className="h-auto w-full"
+    />
+  );
+  // A plain <a>, not next/link: the target is an API route that redirects to
+  // Google, so there is no page for the router to prefetch.
+  return href ? (
+    <a href={href} className="block rounded-full">
+      {img}
+    </a>
+  ) : (
+    <div>{img}</div>
   );
 }

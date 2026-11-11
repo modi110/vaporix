@@ -230,25 +230,14 @@ export default async function LoyaltyPage({
             </div>
 
             <div className="relative rounded-b-3xl bg-pearl px-6 py-10 sm:px-10 lg:rounded-r-3xl lg:rounded-bl-none lg:px-12 lg:py-14">
-              {/* Signups are not open yet: the form stays visible so visitors
-                  see how little it asks, but it cannot be used. Remove the
-                  overlay and `inert` to open the programme. */}
-              {process.env.NODE_ENV === "production" ? (
-                <>
-                  <div inert aria-hidden="true" className="select-none opacity-40 blur-[1.5px]">
-                    <JoinForm />
-                  </div>
-                  <div className="absolute inset-0 grid place-items-center rounded-b-3xl bg-pearl/45 px-6 lg:rounded-r-3xl lg:rounded-bl-none">
-                    <div className="grid justify-items-center gap-5 text-center">
-                      <ComingSoonStamp label={t("soon")} tone="navy" className="bg-pearl" />
-                      <p className="t-sub max-w-[26ch] text-giallo-deep">{t("soonForm")}</p>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                // Dev server only: the form is open so cards can be created.
-                <JoinForm />
-              )}
+              {/* Signups are open; the stamp stays pressed on the panel's
+                  corner as a soft-launch label. Remove it at full launch. */}
+              <ComingSoonStamp
+                label={t("soon")}
+                tone="navy"
+                className="pointer-events-none absolute -top-4 right-4 bg-pearl sm:right-8 lg:-top-5"
+              />
+              <JoinForm />
             </div>
           </div>
         </div>

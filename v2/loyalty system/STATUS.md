@@ -14,6 +14,15 @@ The three documents in this folder do different jobs:
 
 ---
 
+## Signup open, 11 November (local on `loyalty`)
+
+Signup form is open on production builds too (no `inert`, no overlay). The
+navy "Próximamente" stamp stays on the form panel's corner and on the sample
+cards as a soft-launch label; remove it at full launch. The Google badge is now
+Google's official artwork (`public/images/wallet/google-wallet-add-{es,en}.svg`,
+from the Wallet brand-guidelines SVG download). Apple's badge is still a drawn
+stand-in.
+
 ## Deployed 10 November 2026
 
 `loyalty` merged into `main` and live on vaporix.net (Vercel project `vaporix-v2`).
