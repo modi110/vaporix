@@ -9,7 +9,7 @@
 import { createSign } from "node:crypto";
 import { readFileSync } from "node:fs";
 
-const issuer = process.env.GOOGLE_WALLET_ISSUER_ID;
+const issuer = process.env.GOOGLE_WALLET_ISSUER_ID?.trim().replace(/\.+$/, "");
 const keyFile = process.env.GOOGLE_WALLET_KEY_FILE;
 if (!issuer || !keyFile) {
   console.error("Missing GOOGLE_WALLET_ISSUER_ID or GOOGLE_WALLET_KEY_FILE in .env.local");

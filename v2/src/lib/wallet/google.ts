@@ -53,7 +53,9 @@ function loadKey(): ServiceAccountKey | null {
 }
 
 function issuerId(): string | null {
-  return process.env.GOOGLE_WALLET_ISSUER_ID || null;
+  // Issuer IDs are digits only; strip stray spaces or a pasted trailing "."
+  // (it produced class ids like "..vaporix_club").
+  return process.env.GOOGLE_WALLET_ISSUER_ID?.trim().replace(/\.+$/, "") || null;
 }
 
 function assetBase(): string {
