@@ -1,19 +1,20 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
-    "contact": "Contact",
     "book": "Book",
     "menu": "Menu",
     "close": "Close",
     "switchLocale": "Ver en español",
     "services": "More services",
+    "business": "Business",
     "loyalty": "Loyalty",
     "loyaltyCard": "Loyalty card"
   },
   "hero": {
     "title": "Vaporix",
-    "tagline": "Car Wash - Fast Mechanics & Batteries",
+    "tagline": "Hand car wash and fast mechanics in Buñol.",
+    "proof": "{rating} on Google",
+    "proofLabel": "Rated {rating} out of 5 on Google",
     "cta": "Book",
     "carouselLabel": "Work from the studio",
     "goTo": "View image {n}",
@@ -47,7 +48,6 @@
     }
   },
   "studio": {
-    "title": "We do it properly, every time.",
     "photoAlt": "The Vaporix workshop's exterior at dusk, cars parked out front"
   },
   "cta": {
@@ -78,6 +78,48 @@
       "description": "Join the Vaporix loyalty card in Buñol: every wash earns a stamp and the fourth is free."
     }
   },
+  "offers": {
+    "label": "Workshop offers",
+    "kicker": "Fast mechanics and batteries",
+    "packName": "Full service and pre-ITV pack",
+    "packLede": "Special maintenance offer.",
+    "price": "99",
+    "currency": "€",
+    "includes": "Includes",
+    "items": {
+      "oil": "Engine oil change",
+      "filter": "Oil filter included",
+      "check": "30-point safety check",
+      "itv": "Pre-ITV inspection (Spain's MOT)",
+      "wash": "Exterior wash"
+    },
+    "battery": {
+      "label": "Batteries",
+      "value": "50%",
+      "text": "off batteries",
+      "warrantyValue": "2 years",
+      "warrantyText": "full warranty"
+    },
+    "facts": {
+      "week": "Open all week",
+      "noAppointment": "No appointment needed",
+      "fast": "Battery replaced in under an hour"
+    },
+    "photoAlt": "A black BMW X4 inside the Vaporix workshop",
+    "call": "Call",
+    "home": {
+      "cta": "Ask for the pack on WhatsApp",
+      "waText": "Hi, I'm interested in the 99 € full service and pre-ITV pack.",
+      "businessTitle": "On-site washing for businesses",
+      "businessText": "We hand and steam wash at your company's premises or offices, with a deep, eco-friendly disinfection of the cabin.",
+      "businessLink": "Services for businesses"
+    },
+    "business": {
+      "label": "For your fleet",
+      "cta": "Ask for the pack for your fleet",
+      "waText": "Hello, I'm writing on behalf of a company. We're interested in the 99 € full service and pre-ITV pack for our vehicles."
+    }
+  },
   "vehicles": {
     "label": "Prices",
     "title": "Pick your car's size",
@@ -98,21 +140,18 @@
     "cta": "Book"
   },
   "pages": {
-    "contact": {
-      "label": "Contact",
-      "title": "Ask us anything.",
-      "lede": "Call us or message us on WhatsApp: we reply the same working day.",
-      "findUs": "Where we are",
-      "hours": "Opening hours",
-      "callUs": "Call us",
-      "mapTitle": "Map showing Vaporix in Buñol"
-    },
     "book": {
       "label": "Book",
       "title": "Book your slot.",
-      "lede": "Choose a vehicle and a service, and we will confirm a time.",
+      "metaTitle": "Book and contact",
+      "lede": "Call or message us on WhatsApp and we will give you a time. We reply the same working day.",
       "call": "Call now",
-      "whatsapp": "Message on WhatsApp"
+      "whatsapp": "Message on WhatsApp",
+      "waText": "Hi, I would like to book at Vaporix. My vehicle and the service I need: ",
+      "findUs": "Where we are",
+      "hours": "Opening hours",
+      "email": "Email",
+      "mapTitle": "Map showing Vaporix in Buñol"
     },
     "about": {
       "label": "About",
@@ -135,6 +174,92 @@
         "tyre": "Puncture repair",
         "boost": "Battery jump-start"
       }
+    },
+    "business": {
+      "meta": {
+        "title": "Businesses and fleets — Vaporix",
+        "description": "Hand and steam washing at your company's premises, deep eco-friendly disinfection and fast mechanics at our workshop in Buñol. Request a free demonstration."
+      },
+      "label": "Businesses and fleets",
+      "title": "Washing and maintenance for your fleet.",
+      "lede": "Eco-efficient steam cleaning and fast mechanical maintenance: we come to your premises or offices, and service your vehicles at our workshop in Buñol.",
+      "cta": "Request a free demonstration",
+      "call": "Call",
+      "waText": "Hello, I'm writing on behalf of a company. We'd like to request the free demonstration on one of our vehicles.",
+      "proof": {
+        "demo": "Free demonstration",
+        "week": "Open all week",
+        "noAppointment": "No appointment needed"
+      },
+      "heroPhotoAlt": "A grey car with its doors open inside the Vaporix workshop",
+      "photoTag": "At our workshop in Buñol",
+      "benefits": {
+        "label": "On-site washing",
+        "title": "Professional washing and steam disinfection.",
+        "photoAlt": "Dashboard and seats of a BMW after interior cleaning",
+        "items": {
+          "onsite": {
+            "title": "Hand and steam washing on site",
+            "body": "We travel to your business premises or offices, so your staff don't have to make the trip."
+          },
+          "steam": {
+            "title": "Deep eco-friendly disinfection",
+            "body": "High-temperature steam removes germs, allergens and odours from the cabin at the root, without harsh chemicals."
+          },
+          "finish": {
+            "title": "Protection and shine",
+            "body": "Careful treatment with premium products that preserve the paint and the corporate finish."
+          }
+        }
+      },
+      "commitments": {
+        "title": "Our operating commitment to businesses.",
+        "items": {
+          "week": {
+            "title": "Open all week",
+            "body": "To fit around the quiet times in your business."
+          },
+          "noAppointment": {
+            "title": "No appointment needed",
+            "body": "We handle breakdowns and checks without an appointment, keeping vehicle downtime to a minimum."
+          },
+          "materials": {
+            "title": "Approved materials",
+            "body": "Professional consumables and parts that meet safety and environmental regulations."
+          }
+        }
+      },
+      "steps": {
+        "title": "Ways to start.",
+        "items": {
+          "visit": {
+            "title": "Call or technical visit",
+            "body": "We schedule a short call or a technical visit with you."
+          },
+          "demo": {
+            "title": "Free demonstration",
+            "body": "A hands-on demonstration, completely free, on any vehicle in your fleet."
+          }
+        }
+      },
+      "sectors": {
+        "title": "Made for businesses that live on the road.",
+        "lede": "If your business depends on its vehicles every day, this is for you.",
+        "items": {
+          "delivery": "Delivery and distribution",
+          "courier": "Courier and parcels",
+          "trades": "Building, plumbing and electrical",
+          "technicians": "HVAC and technical services",
+          "rental": "Vehicle rental",
+          "taxi": "Taxi, ride-hailing and ambulances",
+          "schools": "Driving schools",
+          "industry": "Factories and farm cooperatives"
+        }
+      },
+      "closing": {
+        "title": "Try it first on one of your vehicles.",
+        "body": "The hands-on demonstration is completely free. Message us on WhatsApp or call and we'll arrange it."
+      }
     }
   },
   "map": {
@@ -151,7 +276,6 @@
     "moreServices": "More services"
   },
   "mechanics": {
-    "label": "Vaporix",
     "title": "Fast mechanics & batteries",
     "tagline": "At your home, your work, wherever you are"
   },
@@ -239,6 +363,7 @@
     "lede": "Reviews left on our Google listing, in the words they were written in.",
     "anonymous": "Google review",
     "stars": "{n} out of 5",
-    "railLabel": "Customer reviews"
+    "railLabel": "Customer reviews",
+    "googleLink": "See the reviews on Google"
   }
 }

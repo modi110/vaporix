@@ -8,8 +8,6 @@ import { HoursTable } from "@/components/ui/HoursTable";
 
 const links: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
-  { href: "/about", key: "about" },
-  { href: "/contact", key: "contact" },
   { href: "/book", key: "book" },
 ];
 

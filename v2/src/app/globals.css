@@ -564,3 +564,112 @@
 .map-embed {
   filter: invert(0.92) hue-rotate(180deg) saturate(0.78) brightness(0.95);
 }
+
+/* ============================================================
+   OFFERS
+   The 99 € pack and the battery offer (`Offers.tsx`). The spec
+   row's rules are pseudo-elements so they can draw in; they are
+   always there, motion or not.
+
+   The one rounded band on the site (the owner asked for "no sharp
+   edges" here only). One scale: `--offer-r` on the panels,
+   a fixed 1rem on the one tile nested inside a panel, pills
+   (`rounded-full`) for buttons, numbers and fact tags.
+
+   The entrance plays once, and only when the band was armed by
+   its script (`is-armed`, added only when the band starts below
+   the fold and motion is welcome). Without the script, or with
+   reduced motion, every rule below the first is inert and the
+   band simply shows.
+   ============================================================ */
+.offers {
+  --offer-r: clamp(1.5rem, 2.6vw, 2.25rem);
+}
+.offer-panel {
+  border-radius: var(--offer-r);
+  overflow: hidden;
+}
+.offer-tile {
+  border-radius: 1rem;
+}
+.offer-item + .offer-item::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: rgb(0 95 211 / 0.18);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .offers.is-armed .offer-fade,
+  .offers.is-armed .offer-cur,
+  .offers.is-armed .offer-item > * {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.8s var(--ease-out-expo),
+      transform 0.8s var(--ease-out-expo);
+  }
+  .offers.is-armed .offer-digits {
+    clip-path: inset(100% 0 -10% 0);
+    transform: translateY(0.25em);
+    transition:
+      clip-path 1.2s var(--ease-out-expo) 0.15s,
+      transform 1.2s var(--ease-out-expo) 0.15s;
+  }
+  /* The white panel rises first; the figure lifts inside it. */
+  .offers.is-armed .offer-pack {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+      opacity 0.9s var(--ease-out-expo),
+      transform 0.9s var(--ease-out-expo);
+  }
+  /* The battery panel wipes open from its top edge, curves kept. */
+  .offers.is-armed .offer-battery-panel {
+    clip-path: inset(0 0 100% 0 round var(--offer-r));
+    transition: clip-path 1.1s var(--ease-out-expo) 0.45s;
+  }
+  .offers.is-armed .offer-item::before {
+    transform: scaleX(0);
+    transition: transform 0.9s var(--ease-out-expo);
+    transition-delay: calc(0.5s + var(--i) * 0.08s);
+  }
+  .offers.is-armed .offer-item > * {
+    transition-delay: calc(0.6s + var(--i) * 0.08s);
+  }
+  .offers.is-armed .offer-cur {
+    transition-delay: 0.7s;
+  }
+
+  .offers.is-in .offer-fade,
+  .offers.is-in .offer-cur,
+  .offers.is-in .offer-item > *,
+  .offers.is-in .offer-pack {
+    opacity: 1;
+    transform: none;
+  }
+  .offers.is-in .offer-digits {
+    clip-path: inset(0 0 -10% 0);
+    transform: none;
+  }
+  .offers.is-in .offer-battery-panel {
+    clip-path: inset(0 0 0 0 round var(--offer-r));
+  }
+  .offers.is-in .offer-item::before {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   BUSINESS
+   `/empresas` uses the offers band's rounded language on its
+   own panels (hero photo, service cards, commitment block, step
+   cards, closing panel): the same radius scale as `--offer-r`,
+   pills for everything else. Motion is the site-wide reveal.
+   ============================================================ */
+.biz-panel {
+  border-radius: clamp(1.5rem, 2.6vw, 2.25rem);
+  overflow: hidden;
+}

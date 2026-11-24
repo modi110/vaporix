@@ -1,46 +1,31 @@
 import { useTranslations } from "next-intl";
 import { ButtonLink } from "@/components/ui/Button";
-import { ServiceIcon } from "@/components/ui/ServiceIcon";
-import { services } from "@/content/services";
 
 /**
- * The mechanics side of the business: the brand line, then every job as an
- * icon and its name, then a pointer to `/services`. The names are the same
- * strings that page lists (`pages.services.items`), so the two cannot
- * promise different things.
+ * The mechanics side of the business, in one line and a link to `/services`.
  *
- * The dark band between two light ones: `work` and `studio` either side are
- * both light, and a home page that is four light sections deep by this point
- * (highlights, prices, work) needs the break as much as this section needs
- * the contrast for its own button.
+ * It used to list every job with an icon, but the offers band higher up now
+ * carries the mechanics pack, and the full list lives on `/services` — a third
+ * copy here was the home page repeating itself. What is left is the pointer.
+ *
+ * A strip, not a full section: deep blue between the white reviews and the
+ * navy map, the same step-darker device the offers band uses, so it reads as
+ * its own band without the padding of one.
  */
 export function MoreServices() {
   const m = useTranslations("mechanics");
-  const p = useTranslations("pages.services");
   const w = useTranslations("work");
 
   return (
-    <section className="section bg-navy text-pearl">
-      <div className="wrap">
-        <p className="t-sub mb-2 font-medium">{m("label")}</p>
-        <h2 className="t-display mb-3 max-w-[18ch]">{m("title")}</h2>
-        {/* Pearl, not muted-invert: the grey is ~3:1 on this blue at this size. */}
-        <p className="t-sub mb-12 text-pearl">{m("tagline")}</p>
-
-        <ul className="mb-12 grid grid-cols-3 gap-x-4 gap-y-8 md:grid-cols-5 lg:grid-cols-9">
-          {services.map((id) => (
-            <li key={id} className="lift flex flex-col items-start gap-3">
-              <ServiceIcon id={id} className="size-9" />
-              {/* Not `t-caption`: 12px of condensed uppercase is under the
-                  legible floor for a name someone actually has to read. */}
-              <span className="text-sm uppercase leading-snug">
-                {p(`items.${id}`)}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        <ButtonLink href="/services" variant="white">
+    <section className="bg-giallo-deep py-10 text-pearl md:py-12">
+      <div className="wrap flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-10">
+        <p className="t-heading">
+          {m("title")}
+          {/* Pearl at 80%, not muted-invert: the grey is too faint on this
+              blue for a line someone is meant to read. */}
+          <span className="text-pearl/80"> · {m("tagline")}</span>
+        </p>
+        <ButtonLink href="/services" variant="white" className="self-start md:self-auto">
           {w("moreServices")}
         </ButtonLink>
       </div>

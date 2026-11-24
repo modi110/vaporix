@@ -76,6 +76,10 @@ export const site = {
   ],
 } as const;
 
+/** A WhatsApp link that opens the chat with `text` already typed. */
+export const whatsappWith = (text: string) =>
+  `${site.whatsapp}?text=${encodeURIComponent(text)}`;
+
 /** One-line address, the form used in body copy and link labels. */
 export const addressLine = `${site.address.street}, ${site.address.postcode} ${site.address.city}`;
 

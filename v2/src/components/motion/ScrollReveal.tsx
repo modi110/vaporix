@@ -10,7 +10,8 @@ import { usePathname } from "next/navigation";
  * Targets the top-level blocks of each `<section>` inside `<main>` — the
  * children of its `.wrap` when it has one, plus anything sitting beside the
  * wrap (the full-bleed photo rails). The hero is skipped: it is a full-screen
- * carousel with its own motion.
+ * carousel with its own motion. So is any section marked `data-motion="own"`
+ * (the offers band), which choreographs its own entrance.
  *
  * Only blocks still *below* the fold get hidden. Hiding something already on
  * screen would make it blink out and back in after hydration; those are
@@ -29,7 +30,7 @@ export function ScrollReveal() {
     const targets: HTMLElement[] = [];
     document
       .querySelectorAll<HTMLElement>(
-        'main section:not([aria-roledescription="carousel"])',
+        'main section:not([aria-roledescription="carousel"]):not([data-motion="own"])',
       )
       .forEach((section) => {
         for (const child of Array.from(section.children) as HTMLElement[]) {

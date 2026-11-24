@@ -1,19 +1,20 @@
 {
   "nav": {
     "home": "Inicio",
-    "about": "Nosotros",
-    "contact": "Contacto",
     "book": "Reservar",
     "menu": "Menú",
     "close": "Cerrar",
     "switchLocale": "View in English",
     "services": "Más servicios",
+    "business": "Empresas",
     "loyalty": "Fidelidad",
     "loyaltyCard": "Tarjeta de fidelidad"
   },
   "hero": {
     "title": "Vaporix",
-    "tagline": "Lavado de Coches - Mecánica Rápida y Baterías",
+    "tagline": "Lavado a mano y mecánica rápida en Buñol.",
+    "proof": "{rating} en Google",
+    "proofLabel": "Valoración de {rating} sobre 5 en Google",
     "cta": "Reservar",
     "carouselLabel": "Trabajos del taller",
     "goTo": "Ver la imagen {n}",
@@ -47,7 +48,6 @@
     }
   },
   "studio": {
-    "title": "Lo hacemos bien, siempre.",
     "photoAlt": "La fachada de la nave Vaporix al atardecer, con coches aparcados delante"
   },
   "cta": {
@@ -78,6 +78,48 @@
       "description": "Únete a la tarjeta de fidelidad de Vaporix en Buñol: cada lavado suma un sello y el cuarto es gratis."
     }
   },
+  "offers": {
+    "label": "Ofertas del taller",
+    "kicker": "Mecánica rápida y baterías",
+    "packName": "Pack mantenimiento integral y Pre-ITV",
+    "packLede": "Oferta especial de mantenimiento.",
+    "price": "99",
+    "currency": "€",
+    "includes": "Incluye",
+    "items": {
+      "oil": "Cambio de aceite del motor",
+      "filter": "Filtro de aceite incluido",
+      "check": "Revisión de 30 puntos de seguridad",
+      "itv": "Revisión previa a la ITV",
+      "wash": "Lavado exterior del vehículo"
+    },
+    "battery": {
+      "label": "Baterías",
+      "value": "50%",
+      "text": "de descuento en baterías",
+      "warrantyValue": "2 años",
+      "warrantyText": "de garantía total"
+    },
+    "facts": {
+      "week": "Abrimos toda la semana",
+      "noAppointment": "Sin cita previa",
+      "fast": "Cambio de batería en menos de una hora"
+    },
+    "photoAlt": "Un BMW X4 negro dentro de la nave del taller Vaporix",
+    "call": "Llamar",
+    "home": {
+      "cta": "Pedir el pack por WhatsApp",
+      "waText": "Hola, me interesa el Pack mantenimiento integral y Pre-ITV de 99 €.",
+      "businessTitle": "Lavado a domicilio para empresas",
+      "businessText": "Lavamos a mano y con vapor en las instalaciones u oficinas de tu empresa, con desinfección profunda ecológica del habitáculo.",
+      "businessLink": "Servicios para empresas"
+    },
+    "business": {
+      "label": "Ventajas para su flota",
+      "cta": "Pedir el pack para su flota",
+      "waText": "Hola, les escribo de parte de una empresa. Nos interesa el Pack mantenimiento integral y Pre-ITV de 99 € para nuestros vehículos."
+    }
+  },
   "vehicles": {
     "label": "Tarifas",
     "title": "Elige el tamaño de tu coche",
@@ -98,21 +140,18 @@
     "cta": "Reservar"
   },
   "pages": {
-    "contact": {
-      "label": "Contacto",
-      "title": "Pregúntanos lo que quieras.",
-      "lede": "Llámanos o escríbenos por WhatsApp: respondemos el mismo día laborable.",
-      "findUs": "Dónde estamos",
-      "hours": "Horario",
-      "callUs": "Llámanos",
-      "mapTitle": "Mapa con la ubicación de Vaporix en Buñol"
-    },
     "book": {
       "label": "Reservar",
       "title": "Reserva tu cita.",
-      "lede": "Elige vehículo y servicio, y te confirmamos la hora.",
+      "metaTitle": "Reservar y contacto",
+      "lede": "Llámanos o escríbenos por WhatsApp y te damos hora. Respondemos el mismo día laborable.",
       "call": "Llamar ahora",
-      "whatsapp": "Escribir por WhatsApp"
+      "whatsapp": "Escribir por WhatsApp",
+      "waText": "Hola, quiero pedir cita en Vaporix. Mi vehículo y el servicio que necesito: ",
+      "findUs": "Dónde estamos",
+      "hours": "Horario",
+      "email": "Correo",
+      "mapTitle": "Mapa con la ubicación de Vaporix en Buñol"
     },
     "about": {
       "label": "Nosotros",
@@ -135,6 +174,92 @@
         "tyre": "Reparación de pinchazos",
         "boost": "Servicio de arranque"
       }
+    },
+    "business": {
+      "meta": {
+        "title": "Empresas y flotas — Vaporix",
+        "description": "Lavado a mano y con vapor en las instalaciones de su empresa, desinfección profunda ecológica y mecánica rápida en nuestro taller de Buñol. Solicite una demostración gratuita."
+      },
+      "label": "Empresas y flotas",
+      "title": "Lavado y mantenimiento para su flota.",
+      "lede": "Limpieza ecoeficiente a vapor y mantenimiento mecánico rápido: nos desplazamos a sus instalaciones u oficinas y ponemos a punto sus vehículos en nuestro taller de Buñol.",
+      "cta": "Solicitar demostración gratuita",
+      "call": "Llamar",
+      "waText": "Hola, les escribo de parte de una empresa. Nos gustaría solicitar la demostración gratuita en uno de nuestros vehículos.",
+      "proof": {
+        "demo": "Demostración gratuita",
+        "week": "Abrimos toda la semana",
+        "noAppointment": "Sin cita previa"
+      },
+      "heroPhotoAlt": "Un coche gris con las puertas abiertas bajo la nave del taller Vaporix",
+      "photoTag": "En nuestro taller de Buñol",
+      "benefits": {
+        "label": "Lavado a domicilio",
+        "title": "Lavado profesional y desinfección a vapor.",
+        "photoAlt": "Salpicadero y asientos de un BMW después de la limpieza interior",
+        "items": {
+          "onsite": {
+            "title": "Lavado a mano y con vapor a domicilio",
+            "body": "Nos desplazamos a sus instalaciones comerciales u oficinas, evitando traslados de personal."
+          },
+          "steam": {
+            "title": "Desinfección profunda ecológica",
+            "body": "El vapor a alta temperatura elimina de raíz gérmenes, alérgenos y malos olores en el habitáculo, sin recurrir a químicos agresivos."
+          },
+          "finish": {
+            "title": "Protección y brillo",
+            "body": "Tratamiento cuidadoso con productos premium que preservan la pintura y los acabados corporativos."
+          }
+        }
+      },
+      "commitments": {
+        "title": "Compromiso operativo para empresas.",
+        "items": {
+          "week": {
+            "title": "Abrimos toda la semana",
+            "body": "Para adaptarnos a los picos de inactividad de su negocio."
+          },
+          "noAppointment": {
+            "title": "Sin cita previa",
+            "body": "Atendemos incidencias y revisiones sin cita previa, minimizando el tiempo de paralización del vehículo."
+          },
+          "materials": {
+            "title": "Materiales homologados",
+            "body": "Consumibles y repuestos profesionales que cumplen la normativa de seguridad y medio ambiente."
+          }
+        }
+      },
+      "steps": {
+        "title": "Cómo empezar.",
+        "items": {
+          "visit": {
+            "title": "Llamada o visita técnica",
+            "body": "Agendamos con usted una breve llamada o una visita técnica."
+          },
+          "demo": {
+            "title": "Demostración gratuita",
+            "body": "Una demostración práctica, completamente gratuita, en cualquiera de los vehículos de su flota."
+          }
+        }
+      },
+      "sectors": {
+        "title": "Pensado para empresas que viven en la carretera.",
+        "lede": "Si su negocio depende de sus vehículos cada día, esto es para usted.",
+        "items": {
+          "delivery": "Reparto y distribución",
+          "courier": "Mensajería y paquetería",
+          "trades": "Reformas, fontanería y electricidad",
+          "technicians": "Climatización y servicios técnicos",
+          "rental": "Alquiler de vehículos",
+          "taxi": "Taxi, VTC y ambulancias",
+          "schools": "Autoescuelas",
+          "industry": "Fábricas y cooperativas agrícolas"
+        }
+      },
+      "closing": {
+        "title": "Pruébelo primero en uno de sus vehículos.",
+        "body": "La demostración práctica es completamente gratuita. Escríbanos por WhatsApp o llámenos y la coordinamos."
+      }
     }
   },
   "map": {
@@ -151,7 +276,6 @@
     "moreServices": "Más servicios"
   },
   "mechanics": {
-    "label": "Vaporix",
     "title": "Mecánica rápida y baterías",
     "tagline": "En tu casa, en tu trabajo, donde estés"
   },
@@ -239,6 +363,7 @@
     "lede": "Opiniones publicadas en nuestra ficha de Google, tal y como se escribieron.",
     "anonymous": "Opinión en Google",
     "stars": "{n} sobre 5",
-    "railLabel": "Opiniones de clientes"
+    "railLabel": "Opiniones de clientes",
+    "googleLink": "Ver las opiniones en Google"
   }
 }

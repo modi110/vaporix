@@ -11,7 +11,7 @@ const items: { key: string; icon: HighlightIconId }[] = [
 /**
  * Four reasons to book, each one already said somewhere else on the site —
  * the flat price in `vehicles.lede`, the same-day WhatsApp reply in
- * `pages.contact.lede`, the unhurried pace in `pages.about.body`, the seven-day
+ * `pages.book.lede`, the unhurried pace in `pages.about.body`, the seven-day
  * week in `site.hours`. This just surfaces them together, right after the hero
  * and before the price list gives the first of them a number.
  *

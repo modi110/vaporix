@@ -5,6 +5,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { alternatesFor } from "@/i18n/urls";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { Offers } from "@/components/sections/Offers";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 import { services } from "@/content/services";
 
@@ -37,9 +38,10 @@ export default async function ServicesPage({
 }
 
 /**
- * No prices here, unlike `/reservar` — these are quoted per car once we've
- * seen it, not flat like the wash. The page exists to say the workshop does
- * more than washing, not to sell any one of these on its own.
+ * No per-job prices here — these are quoted per car once we've seen it, not
+ * flat like the wash. The one exception is the workshop's standing offers
+ * (the 99 € pack and the battery discount), which follow the list: navy
+ * header, white list, deep-blue offers, white closing band.
  */
 function Services() {
   const p = useTranslations("pages.services");
@@ -58,6 +60,8 @@ function Services() {
           ))}
         </div>
       </section>
+
+      <Offers />
 
       <CtaBand />
     </>

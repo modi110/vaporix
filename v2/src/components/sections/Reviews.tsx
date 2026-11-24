@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useDragRail } from "@/components/ui/useDragRail";
 import { reviews } from "@/content/reviews";
 import { site } from "@/content/site";
+import { ButtonAnchor } from "@/components/ui/Button";
 
 /**
  * What customers wrote on the Google listing, on the same drag rail the price
@@ -86,12 +87,20 @@ export function Reviews() {
             section is evidence for, so it gets the weight the price list gives
             a price rather than a caption somewhere.
           */}
-          <p className="flex items-center gap-4 md:justify-end">
-            <b className="text-[clamp(2.75rem,7vw,4.5rem)] font-medium leading-none tabular-nums">
-              {rating}
-            </b>
-            <Stars className="size-5" label={t("stars", { n: rating })} />
-          </p>
+          <div className="grid justify-items-start gap-4 md:justify-items-end">
+            <p className="flex items-center gap-4">
+              <b className="text-[clamp(2.75rem,7vw,4.5rem)] font-medium leading-none tabular-nums">
+                {rating}
+              </b>
+              <Stars className="size-5" label={t("stars", { n: rating })} />
+            </p>
+            {/* The listing itself, so anyone can read every review, not just
+                these five. No count beside the score: it is not in the site
+                data yet, and it would go stale on its own. */}
+            <ButtonAnchor href={site.mapsUrl} variant="outlined">
+              {t("googleLink")}
+            </ButtonAnchor>
+          </div>
         </header>
       </div>
 

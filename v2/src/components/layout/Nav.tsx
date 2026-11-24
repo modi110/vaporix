@@ -12,9 +12,8 @@ import { site } from "@/content/site";
 const links: { href: StaticPathname; key: string }[] = [
   { href: "/", key: "home" },
   { href: "/services", key: "services" },
+  { href: "/business", key: "business" },
   { href: "/loyalty", key: "loyalty" },
-  { href: "/about", key: "about" },
-  { href: "/contact", key: "contact" },
 ];
 
 /**

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { heroSlides } from "@/content/hero";
 import { site } from "@/content/site";
@@ -54,6 +54,31 @@ export function Hero() {
   const studio = useTranslations("studio");
   const hours = useTranslations("hours");
   const { weekdays, saturday, sunday } = site.hours;
+  const locale = useLocale();
+  // The listing's score, from `site.rating` — the same number `Reviews`
+  // shows. No review count: it is not in the site data yet, and a number
+  // here has to be one the listing can back up.
+  const rating = site.rating.toLocaleString(locale, {
+    minimumFractionDigits: 1,
+  });
+  const proof = (
+    <p
+      role="img"
+      aria-label={t("proofLabel", { rating })}
+      className="flex items-center gap-2.5 text-sm uppercase text-pearl"
+    >
+      <span aria-hidden="true" className="flex gap-1">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <svg key={i} viewBox="0 0 24 24" fill="currentColor" className="size-3.5">
+            <path d="M12 3.5 14.5 9.3 20.8 9.9 16.1 14.1 17.5 20.3 12 17 6.5 20.3 7.9 14.1 3.2 9.9 9.5 9.3Z" />
+          </svg>
+        ))}
+      </span>
+      <span aria-hidden="true" className="tabular-nums">
+        {t("proof", { rating })}
+      </span>
+    </p>
+  );
   const [index, setIndex] = useState(0);
   const [held, setHeld] = useState(false);
 
@@ -166,14 +191,25 @@ export function Hero() {
             draggable={false}
           />
         </picture>
+        {/* The facade's own white sign (its list of services) sits right
+            behind the tagline at desktop widths, and through the old 70-90%
+            fade its lettering read as ghost text behind the promise. So the
+            text column gets a blur first (the sign becomes a soft patch of
+            light, the photo keeps its texture), feathered out to the right,
+            and a denser fade on top of it. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,30,72,.92)_0%,rgba(0,52,116,.7)_32%,rgba(0,52,116,0)_58%)]"
+          className="absolute inset-y-0 left-0 w-1/2 backdrop-blur-[14px] [mask-image:linear-gradient(to_right,#000_72%,transparent)]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,30,72,.95)_0%,rgba(0,34,82,.9)_30%,rgba(0,52,116,.5)_44%,rgba(0,52,116,0)_60%)]"
         />
         <div className="absolute left-[var(--gutter)] top-1/2 max-w-[30rem] -translate-y-[42%]">
           <h1 className="hero-rise t-hero text-pearl">{t("title")}</h1>
           <div className="hero-fade">
-            <p className="t-heading mb-8 mt-3 text-pearl">{t("tagline")}</p>
+            <p className="t-heading mt-3 text-balance text-pearl">{t("tagline")}</p>
+            <div className="mb-8 mt-4">{proof}</div>
             <div className="flex gap-3">
               <ButtonLink href="/book" variant="white">
                 {t("cta")}
@@ -250,7 +286,8 @@ export function Hero() {
           />
           <div className="wrap pointer-events-auto absolute inset-x-0 bottom-0 z-[3] pb-[max(2.5rem,env(safe-area-inset-bottom))]">
             <h1 className="t-hero text-pearl">{t("title")}</h1>
-            <p className="t-sub mb-6 text-pearl">{t("tagline")}</p>
+            <p className="t-sub text-pearl">{t("tagline")}</p>
+            <div className="mb-6 mt-3">{proof}</div>
             <ButtonLink href="/book">{t("cta")}</ButtonLink>
           </div>
         </div>

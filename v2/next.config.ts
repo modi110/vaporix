@@ -33,6 +33,22 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  /**
+   * Contact was folded into Book (22 November 2026): one page for calling,
+   * WhatsApp, the address, hours and the map. The old addresses stay alive
+   * as permanent redirects so shared links and search results still land.
+   * Unprefixed `/contacto` and `/contact` need no rule of their own: the
+   * proxy adds the locale first and the result lands on one of these.
+   * Redirects run before the proxy, so these win over locale handling.
+   */
+  async redirects() {
+    return [
+      { source: "/es/contacto", destination: "/es/reservar", permanent: true },
+      { source: "/es/contact", destination: "/es/reservar", permanent: true },
+      { source: "/en/contact", destination: "/en/book", permanent: true },
+      { source: "/en/contacto", destination: "/en/book", permanent: true },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

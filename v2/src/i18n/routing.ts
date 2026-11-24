@@ -15,10 +15,6 @@ export const routing = defineRouting({
       es: "/nosotros",
       en: "/about",
     },
-    "/contact": {
-      es: "/contacto",
-      en: "/contact",
-    },
     "/book": {
       es: "/reservar",
       en: "/book",
@@ -26,6 +22,10 @@ export const routing = defineRouting({
     "/services": {
       es: "/mas-servicios",
       en: "/services",
+    },
+    "/business": {
+      es: "/empresas",
+      en: "/business",
     },
     "/loyalty": {
       es: "/fidelidad",
