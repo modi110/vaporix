@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import { Link } from "@/i18n/navigation";
 import { LoyaltyPass, dialCopy } from "@/components/loyalty/LoyaltyPass";
 import { WalletButtons } from "@/components/loyalty/WalletButtons";
 import { getCardState, isCelebrating } from "@/lib/loyalty/service";
 import { renderQrSvg } from "@/lib/loyalty/qr";
-import { appleConfigured } from "@/lib/wallet/apple";
 import { googleWallet } from "@/lib/wallet/google";
 
 /**
@@ -53,11 +51,9 @@ export default async function CardPage({
     );
   }
 
-  // The card is meant to live in Apple Wallet and Google Wallet, not on the
-  // site, so signup lands here: the two wallet badges first, and a third
-  // button that opens the web card. TEMPORARY: the passes are not built yet,
-  // so the web card is the only working card. Once they are, delete the
-  // `view` button and the `?card=1` branch below.
+  // The card lives in Google Wallet, not on the site, so signup lands here
+  // with the Google Wallet button only. The web card below (`?card=1`) stays
+  // reachable by URL but is no longer linked from this screen.
   if (!showCard) {
     return (
       <div className="pass-page">
@@ -66,24 +62,12 @@ export default async function CardPage({
           <p className="text-base text-[#2b3a52]">{t("readyBody")}</p>
         </div>
         <WalletButtons
-          appleHref={
-            appleConfigured()
-              ? `/api/wallet/apple?token=${encodeURIComponent(token)}`
-              : undefined
-          }
           googleHref={
             googleWallet.isConfigured()
               ? `/api/wallet/google?token=${encodeURIComponent(token)}`
               : undefined
           }
-        >
-          <Link
-            href={{ pathname: "/card/[token]", params: { token }, query: { card: "1" } }}
-            className="flex min-h-14 items-center justify-center rounded-xl border border-[#005fd3] bg-white px-4 py-2 text-[1.05rem] font-semibold tracking-normal text-[#005fd3] transition-transform duration-150 hover:-translate-y-0.5 active:translate-y-0"
-          >
-            {t("viewCard")}
-          </Link>
-        </WalletButtons>
+        />
       </div>
     );
   }
